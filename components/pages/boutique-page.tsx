@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import { ArrowUpRight, Clock, MapPin, Train } from 'lucide-react'
 import { ContactLink } from '@/components/contact-link'
+import { CriticalHeroImage } from '@/components/ui/critical-hero-image'
 import { Container, Section, LocationMap } from '@/components/ui'
 import { CONTACT_PHONE, CONTACT_PHONE_RAW } from '@/lib/config'
 import type { Locale } from '@/lib/i18n'
@@ -206,7 +207,7 @@ export function BoutiquePage({ locale = 'pl' }: { locale?: Locale } = {}) {
     <>
       <section className="relative isolate min-h-screen w-full overflow-hidden bg-[#050403] text-white">
         <div className="absolute inset-0">
-          <Image
+          <CriticalHeroImage
             src="/butikmain.jpg"
             alt={t.imageAltMain}
             fill

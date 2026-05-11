@@ -1,5 +1,5 @@
-import Image from 'next/image'
 import { Lock } from 'lucide-react'
+import { CriticalHeroImage } from '@/components/ui/critical-hero-image'
 import { Container, Section } from '@/components/ui'
 import { FadeIn } from '@/components/ui/fade-in'
 import type { Locale } from '@/lib/i18n'
@@ -48,7 +48,7 @@ export function PrivateCollectionHero({ locale = 'pl' }: { locale?: Locale } = {
       className="relative overflow-hidden bg-[#050403] text-white"
     >
       <div className="pointer-events-none absolute inset-0">
-        <Image
+        <CriticalHeroImage
           src="/watch-31.jpg"
           alt=""
           fill

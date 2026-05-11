@@ -4,6 +4,11 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { flushSync } from 'react-dom'
 import { usePathname, useRouter } from 'next/navigation'
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
+import {
+  CRITICAL_HERO_READY_EVENT,
+  criticalHeroImageForPathname,
+  isCriticalHeroReady,
+} from '@/lib/critical-hero'
 
 interface PageTransitionProps {
   children: React.ReactNode
@@ -12,6 +17,7 @@ interface PageTransitionProps {
 const CURTAIN_COVER_MS = 460
 const CURTAIN_TOTAL_MS = 920
 const CURTAIN_REVEAL_AFTER_ROUTE_MS = 520
+const CRITICAL_HERO_REVEAL_TIMEOUT_MS = 3200
 // Pure safety net dla nawigacji która nigdy nie dochodzi do skutku (network fail,
 // zerwana kompilacja w devie). Pierwsze wejście na route dynamiczny w devie potrafi
 // trwać 3-4s przez kompilację Next.js — fallback MUSI być znacząco dłuższy, inaczej
@@ -37,6 +43,7 @@ export function PageTransition({ children }: PageTransitionProps) {
   const showCurtainRef = useRef(false)
   const pushTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const hideTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const heroReadyCleanupRef = useRef<(() => void) | null>(null)
   // True dopóki nawigacja zainicjowana klikiem nie dotarła do nowego pathname.
   // Chroni przed drugim cyklem kurtyny gdyby fallback hide odpalił przed kompilacją.
   const userInitiatedRef = useRef(false)
@@ -50,15 +57,47 @@ export function PageTransition({ children }: PageTransitionProps) {
   const clearTimers = () => {
     if (pushTimerRef.current) clearTimeout(pushTimerRef.current)
     if (hideTimerRef.current) clearTimeout(hideTimerRef.current)
+    if (heroReadyCleanupRef.current) heroReadyCleanupRef.current()
     pushTimerRef.current = null
     hideTimerRef.current = null
+    heroReadyCleanupRef.current = null
   }
 
-  const scheduleHide = (transitionId: number, delay: number) => {
+  const scheduleHide = (transitionId: number, delay: number, waitForHeroSrc?: string | null) => {
     if (hideTimerRef.current) clearTimeout(hideTimerRef.current)
+    if (heroReadyCleanupRef.current) {
+      heroReadyCleanupRef.current()
+      heroReadyCleanupRef.current = null
+    }
+
     hideTimerRef.current = setTimeout(() => {
       if (transitionIdRef.current !== transitionId) return
-      setCurtain(false)
+
+      if (!waitForHeroSrc || isCriticalHeroReady(waitForHeroSrc)) {
+        setCurtain(false)
+        return
+      }
+
+      const release = () => {
+        if (heroReadyCleanupRef.current) {
+          heroReadyCleanupRef.current()
+          heroReadyCleanupRef.current = null
+        }
+        if (transitionIdRef.current !== transitionId) return
+        setCurtain(false)
+      }
+
+      const onHeroReady = (event: Event) => {
+        const detail = (event as CustomEvent<{ src?: string }>).detail
+        if (!detail?.src || isCriticalHeroReady(waitForHeroSrc)) release()
+      }
+
+      const fallbackTimer = setTimeout(release, CRITICAL_HERO_REVEAL_TIMEOUT_MS)
+      window.addEventListener(CRITICAL_HERO_READY_EVENT, onHeroReady)
+      heroReadyCleanupRef.current = () => {
+        clearTimeout(fallbackTimer)
+        window.removeEventListener(CRITICAL_HERO_READY_EVENT, onHeroReady)
+      }
     }, delay)
   }
 
@@ -166,7 +205,7 @@ export function PageTransition({ children }: PageTransitionProps) {
     }
 
     if (showCurtainRef.current) {
-      scheduleHide(transitionId, CURTAIN_REVEAL_AFTER_ROUTE_MS)
+      scheduleHide(transitionId, CURTAIN_REVEAL_AFTER_ROUTE_MS, criticalHeroImageForPathname(pathname))
     } else if (userInitiatedRef.current) {
       // Klik użytkownika zainicjował nawigację, ale kurtyna już zniknęła (np. fallback
       // hide odpalił podczas wolnej kompilacji w devie). Nie pokazuj jej drugi raz —
@@ -175,15 +214,14 @@ export function PageTransition({ children }: PageTransitionProps) {
       // Pathname zmienił się bez naszego klika (programowe router.push, redirect z
       // form action itp.) — pokaż kurtynę, żeby zachować spójną estetykę przejść.
       setCurtain(true)
-      scheduleHide(transitionId, CURTAIN_TOTAL_MS)
+      scheduleHide(transitionId, CURTAIN_TOTAL_MS, criticalHeroImageForPathname(pathname))
     }
     userInitiatedRef.current = false
   }, [pathname, reducedMotion])
 
   useEffect(() => {
     return () => {
-      if (pushTimerRef.current) clearTimeout(pushTimerRef.current)
-      if (hideTimerRef.current) clearTimeout(hideTimerRef.current)
+      clearTimers()
     }
   }, [])
 
