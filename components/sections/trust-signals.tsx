@@ -74,9 +74,26 @@ function LocalizedTrustSignals({ locale }: { locale: Exclude<Locale, 'pl'> }) {
       ? 'We help match a watch to style, budget and story. If the piece is not in stock, we help source it.'
       : 'Ми допомагаємо підібрати годинник до стилю, бюджету та історії. Якщо потрібного екземпляра немає, допомагаємо його знайти.',
     consult: en ? 'Book a consultation' : 'Записатися на консультацію',
-    privateText: en
-      ? 'Private consultations, verified pieces and a calm boutique process at Mokotowska 71.'
-      : 'Приватні консультації, перевірені екземпляри та спокійний процес у бутіку на Mokotowska 71.',
+    collectorsTitle: en ? 'Trusted by collectors' : 'Нам довіряють колекціонери',
+    thousands: en ? 'thousands' : 'тисячі',
+    completedTransactions: en ? (
+      <>
+        Completed<br />transactions
+      </>
+    ) : (
+      <>
+        Завершених<br />транзакцій
+      </>
+    ),
+    boutiqueLocation: en ? (
+      <>
+        Boutique in<br />central Warsaw
+      </>
+    ) : (
+      <>
+        Бутік у центрі<br />Варшави
+      </>
+    ),
   }
 
   return (
@@ -203,14 +220,31 @@ function LocalizedTrustSignals({ locale }: { locale: Exclude<Locale, 'pl'> }) {
             </div>
           </FadeIn>
           <FadeIn delay={0.1}>
-            <div className="trust-card relative h-full bg-[#0a0a0a] p-8 text-white lg:p-12">
+            <div className="trust-card group relative h-full bg-background p-8 lg:p-12">
               <div className="flex items-start gap-6">
-                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center bg-accent-gold/15">
+                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center bg-accent-gold/10">
                   <Users className="h-5 w-5 text-accent-gold" strokeWidth={1.5} />
                 </div>
-                <div>
-                  <h3 className="font-serif text-2xl font-medium">{en ? 'Private client process' : 'Приватний процес для клієнта'}</h3>
-                  <p className="mt-4 text-sm leading-relaxed text-white/60 text-pretty">{copy.privateText}</p>
+                <div className="flex-1">
+                  <h3 className="font-serif text-2xl font-medium text-foreground">{copy.collectorsTitle}</h3>
+                  <div className="mt-6 grid grid-cols-1 gap-6 min-[430px]:grid-cols-2">
+                    <div className="min-w-0">
+                      <p className="break-words font-serif text-4xl font-medium text-foreground italic sm:text-5xl">
+                        {copy.thousands}
+                      </p>
+                      <p className="mt-2 max-w-full break-words font-sans text-[10px] uppercase tracking-[0.18em] text-muted-foreground sm:tracking-[0.3em]">
+                        {copy.completedTransactions}
+                      </p>
+                    </div>
+                    <div className="min-w-0">
+                      <p className="break-words font-serif text-4xl font-medium text-accent-gold/80 sm:text-5xl">
+                        {en ? 'since' : 'з'} <AnimatedCounter value={2019} />
+                      </p>
+                      <p className="mt-2 max-w-full break-words font-sans text-[10px] uppercase tracking-[0.18em] text-muted-foreground sm:tracking-[0.3em]">
+                        {copy.boutiqueLocation}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -462,7 +496,7 @@ export function TrustSignals() {
                         od <AnimatedCounter value={2019} />
                       </p>
                       <p className="mt-2 max-w-full break-words text-[10px] font-sans uppercase tracking-[0.18em] text-muted-foreground sm:tracking-[0.3em]">
-                        Ponad dekada<br />doświadczenia
+                        Butik w centrum<br />Warszawy
                       </p>
                     </div>
                   </div>
