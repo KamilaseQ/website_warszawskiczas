@@ -1,0 +1,52 @@
+{
+  "slug": "tag-heuer",
+  "brand": "TAG Heuer",
+  "model": "Grand Carrera Calibre 36 RS2 Caliper Chronograph Ti2",
+  "displayName": "TAG Heuer Grand Carrera Calibre 36 RS2 Caliper Chronograph Ti2",
+  "reference": "CAV5186.FC6304",
+  "referenceStatus": "rozpoznanie wysokiej pewno?ci na podstawie tarczy i uk?adu Caliper",
+  "year": "oko?o 2012-2013, do potwierdzenia",
+  "condition": "dobry / bardzo dobry, widoczne drobne ?lady u?ytkowania",
+  "material": "tytan PVD, pasek sk?rzany",
+  "character": "wy?cigowy chronograf wysokiej cz?stotliwo?ci",
+  "shortDescription": "TAG Heuer Grand Carrera CAV5186.FC6304 to tytanowy chronograf Calibre 36 z systemem Caliper do odczytu 1/10 sekundy.",
+  "curiosityQuote": "Calibre 36 bazuje na idei wysokiej cz?stotliwo?ci 36 000 wahni?? na godzin?, dzi?ki czemu chronograf mo?e mierzy? dziesi?te cz??ci sekundy.",
+  "parameters": {
+    "rok": "ok. 2012-2013, do potwierdzenia",
+    "stan": "dobry / bardzo dobry, ocena wst?pna ze zdj??",
+    "materia?": "tytan PVD, sk?ra",
+    "referencja": "CAV5186.FC6304"
+  },
+  "history": "Grand Carrera Calibre 36 RS2 by? pokazem technicznej strony TAG Heuera: zamiast klasycznych licznik?w wykorzystano system Rotating System i skal? Caliper, inspirowane desk? rozdzielcz? samochodu GT. Mechanizm Calibre 36 pracuje z wysok? cz?stotliwo?ci?, podkre?laj?c sportowy rodow?d marki.",
+  "sourceUrls": [
+    "https://www.chrono24.com/tagheuer/grand-carrera-calibre-36-rs-2-caliper-chronograph-ti2-limited-edition-cav5186fc6304-full-set-mit-garantie-occasion-refurbished--id45796109.htm",
+    "https://www.jurawatches.co.uk/products/tag-heuer-watch-grand-carrera-automatic-chronograph-cav5186-fc6304-tag-347"
+  ],
+  "status": "dost?pny",
+  "price": "cena na zapytanie",
+  "images": [
+    {
+      "shot": "Front",
+      "src": "images/tag-heuer/front.jpg",
+      "width": 1823,
+      "height": 2435
+    },
+    {
+      "shot": "Left",
+      "src": "images/tag-heuer/left.jpg",
+      "width": 1969,
+      "height": 2630
+    },
+    {
+      "shot": "Right",
+      "src": "images/tag-heuer/right.jpg",
+      "width": 1963,
+      "height": 2622
+    }
+  ],
+  "seo": {
+    "title": "TAG Heuer Grand Carrera Calibre 36 RS2 Caliper Chronograph Ti2 - Warszawski Czas",
+    "description": "TAG Heuer Grand Carrera CAV5186.FC6304 to tytanowy chronograf Calibre 36 z systemem Caliper do odczytu 1/10 sekundy."
+  },
+  "verificationNote": "Rok, stan i dok?adna referencja konkretnego egzemplarza powinny zosta? potwierdzone dokumentami, numerem seryjnym lub ogl?dzinami zegarmistrza przed publikacj? sprzeda?ow?."
+}

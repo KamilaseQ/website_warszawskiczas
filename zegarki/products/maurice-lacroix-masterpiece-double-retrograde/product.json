@@ -1,0 +1,46 @@
+{
+  "slug": "maurice-lacroix-masterpiece-double-retrograde",
+  "brand": "Maurice Lacroix",
+  "model": "Masterpiece Double R?trograde Phase de Lune",
+  "displayName": "Maurice Lacroix Masterpiece Double R?trograde Phase de Lune",
+  "reference": "MP7018 / wariant do potwierdzenia",
+  "referenceStatus": "rozpoznanie modelu wysokiej pewno?ci; referencja zale?y od konfiguracji koperty",
+  "year": "lata 2000-2010, do potwierdzenia",
+  "condition": "bardzo dobry, ocena wst?pna ze zdj??",
+  "material": "stal i z?oto lub pow?oka z?ota, pasek sk?rzany, tarcza z retrogradami",
+  "character": "zegarek komplikowany klasyczny",
+  "shortDescription": "Maurice Lacroix Masterpiece Double R?trograde ??czy klasyczn? elegancj? z widowiskow? tarcz?: dat? retrograde, rezerw? chodu i faz? ksi??yca.",
+  "curiosityQuote": "Retrogrady w Masterpiece dzia?aj? jak ma?y spektakl mechaniki, kt?ry pozostaje czytelny mimo liczby wskaza?.",
+  "parameters": {
+    "rok": "lata 2000-2010, do potwierdzenia",
+    "stan": "bardzo dobry, ocena wst?pna ze zdj??",
+    "materia?": "stal i z?oto lub pow?oka z?ota, pasek sk?rzany, tarcza z retrogradami",
+    "referencja": "MP7018 / wariant do potwierdzenia"
+  },
+  "history": "Kolekcja Masterpiece by?a dla Maurice Lacroix przestrzeni? na bardziej ambitne komplikacje mechaniczne. Double R?trograde Phase de Lune ??czy wskazanie daty po ?uku, rezerw? chodu, dzie? tygodnia i faz? ksi??yca, tworz?c zegarek o charakterze klasycznym, ale technicznie bardziej z?o?onym ni? standardowy trzywskaz?wkowiec.",
+  "sourceUrls": [
+    "https://www.mauricelacroix.com/",
+    "https://www.chrono24.com/mauricelacroix/masterpiece-double-retrograde.htm"
+  ],
+  "status": "dost?pny",
+  "price": "cena na zapytanie",
+  "images": [
+    {
+      "shot": "Front",
+      "src": "images/maurice-lacroix-masterpiece-double-retrograde/front.jpg"
+    },
+    {
+      "shot": "Lewy profil",
+      "src": "images/maurice-lacroix-masterpiece-double-retrograde/lewo.jpg"
+    },
+    {
+      "shot": "Prawy profil",
+      "src": "images/maurice-lacroix-masterpiece-double-retrograde/prawo.jpg"
+    }
+  ],
+  "seo": {
+    "title": "Maurice Lacroix Masterpiece Double R?trograde Phase de Lune - Warszawski Czas",
+    "description": "Maurice Lacroix Masterpiece Double R?trograde ??czy klasyczn? elegancj? z widowiskow? tarcz?: dat? retrograde, rezerw? chodu i faz? ksi??yca."
+  },
+  "verificationNote": "Rok, stan i dok?adna referencja konkretnego egzemplarza powinny zosta? potwierdzone dokumentami, numerem seryjnym lub ogl?dzinami zegarmistrza przed publikacj? sprzeda?ow?."
+}

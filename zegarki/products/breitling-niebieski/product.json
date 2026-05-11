@@ -1,0 +1,51 @@
+{
+  "slug": "breitling-niebieski",
+  "brand": "Breitling",
+  "model": "Superocean Heritage B20 Automatic 42",
+  "displayName": "Breitling Superocean Heritage B20 Automatic 42",
+  "reference": "AB2010161C1A1",
+  "referenceStatus": "rozpoznanie wysokiej pewno?ci na podstawie wygl?du i zgodno?ci z katalogiem Breitling",
+  "year": "rok egzemplarza do potwierdzenia; model wsp??czesny, linia B20 Automatic 42",
+  "condition": "bardzo dobry, z widocznymi drobnymi ?ladami u?ytkowania na bezelu i kopercie",
+  "material": "stal nierdzewna, niebieski ceramiczny bezel, bransoleta stalowa typu mesh",
+  "character": "sportowo-elegancki diver",
+  "shortDescription": "Breitling Superocean Heritage B20 Automatic 42 z niebiesk? tarcz? ??czy klasyczny styl nurkowy lat 50. z nowoczesnym manufakturowym kalibrem B20.",
+  "curiosityQuote": "Niebieska ceramika i stalowa siatka tworz? zegarek, kt?ry wygl?da naturalnie zar?wno przy wodzie, jak i pod mankietem marynarki.",
+  "parameters": {
+    "rok": "do potwierdzenia",
+    "stan": "bardzo dobry, ocena wst?pna ze zdj??",
+    "materia?": "stal nierdzewna, ceramika, stalowa bransoleta mesh",
+    "referencja": "AB2010161C1A1"
+  },
+  "history": "Superocean Heritage czerpie z pierwszych nurkowych Breitling?w z 1957 roku, ale w wersji B20 Automatic 42 korzysta z nowoczesnego, certyfikowanego chronometru z oko?o 70-godzinn? rezerw? chodu. Tr?jk?tne wskaz?wki, szeroki bezel i bransoleta mesh buduj? rozpoznawalny most mi?dzy zegarkiem narz?dziowym a eleganckim zegarkiem codziennym.",
+  "sourceUrls": [
+    "https://www.breitling.com/us-en/watches/superocean-heritage/superocean-heritage-b20-automatic-42/AB2010161C1A1/"
+  ],
+  "status": "dost?pny",
+  "price": "cena na zapytanie",
+  "images": [
+    {
+      "shot": "Front",
+      "src": "images/breitling-niebieski/front.jpg",
+      "width": 1844,
+      "height": 2464
+    },
+    {
+      "shot": "Left",
+      "src": "images/breitling-niebieski/left.jpg",
+      "width": 1730,
+      "height": 2311
+    },
+    {
+      "shot": "Right",
+      "src": "images/breitling-niebieski/right.jpg",
+      "width": 1644,
+      "height": 2197
+    }
+  ],
+  "seo": {
+    "title": "Breitling Superocean Heritage B20 Automatic 42 - Warszawski Czas",
+    "description": "Breitling Superocean Heritage B20 Automatic 42 z niebiesk? tarcz? ??czy klasyczny styl nurkowy lat 50. z nowoczesnym manufakturowym kalibrem B20."
+  },
+  "verificationNote": "Rok, stan i dok?adna referencja konkretnego egzemplarza powinny zosta? potwierdzone dokumentami, numerem seryjnym lub ogl?dzinami zegarmistrza przed publikacj? sprzeda?ow?."
+}

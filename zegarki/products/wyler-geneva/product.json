@@ -1,0 +1,52 @@
+{
+  "slug": "wyler-geneva",
+  "brand": "Wyler Gen?ve",
+  "model": "Code-R Chronograph",
+  "displayName": "Wyler Gen?ve Code-R Chronograph",
+  "reference": "100.1 / 100.4 family - do potwierdzenia",
+  "referenceStatus": "rozpoznanie kolekcji wysokiej pewno?ci; dok?adny wariant wymaga dekla",
+  "year": "oko?o 2008-2009, do potwierdzenia",
+  "condition": "dobry / bardzo dobry, ocena wst?pna ze zdj??",
+  "material": "tytan/stal i materia?y kompozytowe, gumowy pasek",
+  "character": "awangardowy chronograf sportowy",
+  "shortDescription": "Wyler Gen?ve Code-R Chronograph to masywny, techniczny chronograf z amortyzowan? konstrukcj? Incaflex i niebieskim paskiem gumowym.",
+  "curiosityQuote": "Code-R wygl?da jak zegarek zbudowany wok?? koperty - ?ruby, mostki i amortyzacja s? tu cz??ci? j?zyka projektu.",
+  "parameters": {
+    "rok": "ok. 2008-2009, do potwierdzenia",
+    "stan": "dobry / bardzo dobry, ocena wst?pna ze zdj??",
+    "materia?": "tytan/stal, materia?y specjalne, guma",
+    "referencja": "100.1 / 100.4 family - do potwierdzenia"
+  },
+  "history": "Wyler Gen?ve wskrzesi? system Incaflex w nowoczesnej, bardzo du?ej kopercie Code-R. Chronografy tej serii cz?sto korzysta?y z automatycznych kalibr?w ETA 2894-2, mia?y dat?, 100 m wodoszczelno?ci i konstrukcj? zaprojektowan? tak, by eksponowa? techniczny charakter zegarka.",
+  "sourceUrls": [
+    "https://www.orologidiclasse.com/catalogo-orologi/wyler-geneve/code-r-chronograph/5081/",
+    "https://superwatchman.com/wyler-geneve/code-r-chronograph-red-dial/"
+  ],
+  "status": "dost?pny",
+  "price": "cena na zapytanie",
+  "images": [
+    {
+      "shot": "Front",
+      "src": "images/wyler-geneva/front.jpg",
+      "width": 2106,
+      "height": 2814
+    },
+    {
+      "shot": "Left",
+      "src": "images/wyler-geneva/left.jpg",
+      "width": 1891,
+      "height": 2526
+    },
+    {
+      "shot": "Right",
+      "src": "images/wyler-geneva/right.jpg",
+      "width": 2064,
+      "height": 2757
+    }
+  ],
+  "seo": {
+    "title": "Wyler Gen?ve Code-R Chronograph - Warszawski Czas",
+    "description": "Wyler Gen?ve Code-R Chronograph to masywny, techniczny chronograf z amortyzowan? konstrukcj? Incaflex i niebieskim paskiem gumowym."
+  },
+  "verificationNote": "Rok, stan i dok?adna referencja konkretnego egzemplarza powinny zosta? potwierdzone dokumentami, numerem seryjnym lub ogl?dzinami zegarmistrza przed publikacj? sprzeda?ow?."
+}

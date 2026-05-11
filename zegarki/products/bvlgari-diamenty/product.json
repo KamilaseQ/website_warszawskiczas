@@ -1,0 +1,51 @@
+{
+  "slug": "bvlgari-diamenty",
+  "brand": "Bvlgari",
+  "model": "Bvlgari Bvlgari Diamond Dial",
+  "displayName": "Bvlgari Bvlgari Diamond Dial",
+  "reference": "BB33SLD / BB33SSD - do potwierdzenia",
+  "referenceStatus": "rozpoznanie kolekcji wysokiej pewno?ci; referencja wymaga odczytu z dekla",
+  "year": "do potwierdzenia; estetyka kolekcji z lat 2000+",
+  "condition": "dobry / bardzo dobry, ocena wst?pna ze zdj??",
+  "material": "stal nierdzewna, masa per?owa, indeksy diamentowe, sk?rzany pasek",
+  "character": "jubilerski zegarek codzienny",
+  "shortDescription": "Bvlgari Bvlgari z per?ow? tarcz? i diamentowymi indeksami to subtelna, bi?uteryjna interpretacja rzymskiego klasyka marki.",
+  "curiosityQuote": "Najbardziej rozpoznawalnym detalem nie jest tu koronka ani indeksy, lecz pe?ny napis BVLGARI BVLGARI na stalowym pier?cieniu.",
+  "parameters": {
+    "rok": "do potwierdzenia",
+    "stan": "dobry / bardzo dobry, ocena wst?pna ze zdj??",
+    "materia?": "stal, masa per?owa, diamenty, sk?ra",
+    "referencja": "BB33SLD / BB33SSD - do potwierdzenia"
+  },
+  "history": "Zegarki Bvlgari Bvlgari s? projektowane jak bi?uteria u?ytkowa: prosta tarcza zostaje oprawiona w mocny, graficzny bezel z nazw? marki. Wariant z mas? per?ow? i diamentowymi indeksami wzmacnia jubilerski charakter, ale pozostawia czytelny, oszcz?dny uk?ad dw?ch wskaz?wek.",
+  "sourceUrls": [
+    "https://www.chrono24.com/bulgari/index.htm"
+  ],
+  "status": "dost?pny",
+  "price": "cena na zapytanie",
+  "images": [
+    {
+      "shot": "Front",
+      "src": "images/bvlgari-diamenty/front.jpg",
+      "width": 1677,
+      "height": 2241
+    },
+    {
+      "shot": "Left",
+      "src": "images/bvlgari-diamenty/left.jpg",
+      "width": 1767,
+      "height": 2361
+    },
+    {
+      "shot": "Right",
+      "src": "images/bvlgari-diamenty/right.jpg",
+      "width": 1898,
+      "height": 2536
+    }
+  ],
+  "seo": {
+    "title": "Bvlgari Bvlgari Diamond Dial - Warszawski Czas",
+    "description": "Bvlgari Bvlgari z per?ow? tarcz? i diamentowymi indeksami to subtelna, bi?uteryjna interpretacja rzymskiego klasyka marki."
+  },
+  "verificationNote": "Rok, stan i dok?adna referencja konkretnego egzemplarza powinny zosta? potwierdzone dokumentami, numerem seryjnym lub ogl?dzinami zegarmistrza przed publikacj? sprzeda?ow?."
+}

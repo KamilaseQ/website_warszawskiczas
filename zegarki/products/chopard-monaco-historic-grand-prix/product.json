@@ -1,0 +1,46 @@
+{
+  "slug": "chopard-monaco-historic-grand-prix",
+  "brand": "Chopard",
+  "model": "Grand Prix de Monaco Historique Chronograph",
+  "displayName": "Chopard Grand Prix de Monaco Historique Chronograph",
+  "reference": "168570-3001 / wariant do potwierdzenia",
+  "referenceStatus": "rozpoznanie modelu wysokiej pewno?ci; referencja wymaga potwierdzenia po deklu",
+  "year": "ok. 2010-2015, do potwierdzenia",
+  "condition": "bardzo dobry, ocena wst?pna ze zdj??",
+  "material": "stal nierdzewna lub tytan/stal, pasek sk?rzany lub tekstylny",
+  "character": "sportowy chronograf motorsport",
+  "shortDescription": "Chopard Grand Prix de Monaco Historique Chronograph to zegarek z motoryzacyjnym temperamentem, podkre?lony kontrastow? tarcz? i pomara?czowymi akcentami.",
+  "curiosityQuote": "To Chopard dla os?b, kt?re wol? zapach padoku od ciszy gabloty, ale nadal oczekuj? szwajcarskiego wyko?czenia.",
+  "parameters": {
+    "rok": "ok. 2010-2015, do potwierdzenia",
+    "stan": "bardzo dobry, ocena wst?pna ze zdj??",
+    "materia?": "stal nierdzewna lub tytan/stal, pasek sk?rzany lub tekstylny",
+    "referencja": "168570-3001 / wariant do potwierdzenia"
+  },
+  "history": "Chopard jest wieloletnim partnerem wy?cig?w Grand Prix de Monaco Historique, a kolekcja powsta?a jako ho?d dla klasycznego motorsportu. Chronografy z tej serii korzystaj? z czytelnego uk?adu licznik?w, skali tachymetrycznej i dynamicznych kolor?w, dzi?ki czemu maj? bardziej sportowy charakter ni? bi?uteryjne linie Happy Sport czy Imperiale.",
+  "sourceUrls": [
+    "https://www.chopard.com/",
+    "https://www.chrono24.com/chopard/ref-1685703001.htm"
+  ],
+  "status": "dost?pny",
+  "price": "cena na zapytanie",
+  "images": [
+    {
+      "shot": "Front",
+      "src": "images/chopard-monaco-historic-grand-prix/front.jpg"
+    },
+    {
+      "shot": "Lewy profil",
+      "src": "images/chopard-monaco-historic-grand-prix/lewo.jpg"
+    },
+    {
+      "shot": "Prawy profil",
+      "src": "images/chopard-monaco-historic-grand-prix/prawo.jpg"
+    }
+  ],
+  "seo": {
+    "title": "Chopard Grand Prix de Monaco Historique Chronograph - Warszawski Czas",
+    "description": "Chopard Grand Prix de Monaco Historique Chronograph to zegarek z motoryzacyjnym temperamentem, podkre?lony kontrastow? tarcz? i pomara?czowymi akcentami."
+  },
+  "verificationNote": "Rok, stan i dok?adna referencja konkretnego egzemplarza powinny zosta? potwierdzone dokumentami, numerem seryjnym lub ogl?dzinami zegarmistrza przed publikacj? sprzeda?ow?."
+}

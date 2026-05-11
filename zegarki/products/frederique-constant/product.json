@@ -1,0 +1,51 @@
+{
+  "slug": "frederique-constant",
+  "brand": "Frederique Constant",
+  "model": "Manufacture Slimline Moonphase",
+  "displayName": "Frederique Constant Manufacture Slimline Moonphase",
+  "reference": "FC-705N4S6",
+  "referenceStatus": "rozpoznanie wysokiej pewno?ci na podstawie tarczy i konfiguracji",
+  "year": "do potwierdzenia; znane roczniki ofert: 2015, 2016, 2024",
+  "condition": "bardzo dobry, ocena wst?pna ze zdj??",
+  "material": "stal nierdzewna, niebieski pasek sk?rzany",
+  "character": "smuk?y zegarek garniturowy z faz? ksi??yca",
+  "shortDescription": "Frederique Constant FC-705N4S6 oferuje niebiesk? tarcz?, datownik wskaz?wkowy i fazy ksi??yca w smuk?ej kopercie manufacture.",
+  "curiosityQuote": "To zegarek, kt?ry wygl?da klasycznie, ale sercem jest manufakturowy kaliber FC-705 z komplikacj? faz ksi??yca.",
+  "parameters": {
+    "rok": "do potwierdzenia",
+    "stan": "bardzo dobry, ocena wst?pna ze zdj??",
+    "materia?": "stal nierdzewna, sk?ra",
+    "referencja": "FC-705N4S6"
+  },
+  "history": "Slimline Moonphase Manufacture jest przyk?adem strategii Frederique Constant: oferowa? klasyczne komplikacje w przyst?pniejszym, ale nadal eleganckim wydaniu. Referencja FC-705N4S6 wyr??nia si? granatow? tarcz? oraz zintegrowanym wskazaniem daty i fazy ksi??yca na godzinie 6.",
+  "sourceUrls": [
+    "https://www.chrono24.com/frederiqueconstant/ref-fc705n4s6.htm"
+  ],
+  "status": "dost?pny",
+  "price": "cena na zapytanie",
+  "images": [
+    {
+      "shot": "Front",
+      "src": "images/frederique-constant/front.jpg",
+      "width": 1872,
+      "height": 2501
+    },
+    {
+      "shot": "Left",
+      "src": "images/frederique-constant/left.jpg",
+      "width": 1779,
+      "height": 2377
+    },
+    {
+      "shot": "Right",
+      "src": "images/frederique-constant/right.jpg",
+      "width": 1677,
+      "height": 2241
+    }
+  ],
+  "seo": {
+    "title": "Frederique Constant Manufacture Slimline Moonphase - Warszawski Czas",
+    "description": "Frederique Constant FC-705N4S6 oferuje niebiesk? tarcz?, datownik wskaz?wkowy i fazy ksi??yca w smuk?ej kopercie manufacture."
+  },
+  "verificationNote": "Rok, stan i dok?adna referencja konkretnego egzemplarza powinny zosta? potwierdzone dokumentami, numerem seryjnym lub ogl?dzinami zegarmistrza przed publikacj? sprzeda?ow?."
+}

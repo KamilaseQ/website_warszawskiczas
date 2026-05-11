@@ -1,0 +1,52 @@
+{
+  "slug": "chopard-zielony",
+  "brand": "Chopard",
+  "model": "Imperiale Chronograph Jewellery",
+  "displayName": "Chopard Imperiale Chronograph Jewellery",
+  "reference": "Imperiale Chronograph - dok?adna referencja do potwierdzenia",
+  "referenceStatus": "rozpoznanie kolekcji wysokiej pewno?ci; ref. wymaga dekla/dokument?w",
+  "year": "lata 2000-2010., do potwierdzenia",
+  "condition": "dobry / bardzo dobry, ocena wst?pna ze zdj??",
+  "material": "bia?y metal szlachetny lub stal, diamenty, masa per?owa, zielona sk?ra",
+  "character": "jubilerski chronograf damski",
+  "shortDescription": "Chopard Imperiale Chronograph z zielonym paskiem i diamentow? opraw? ??czy cesarskie inspiracje kolekcji z funkcjonalno?ci? stopera.",
+  "curiosityQuote": "Imperiale korzysta z detali kojarzonych z insygniami w?adzy - od kolumnowych uszu po kaboszony na koronce i przyciskach.",
+  "parameters": {
+    "rok": "do potwierdzenia",
+    "stan": "dobry / bardzo dobry, ocena wst?pna ze zdj??",
+    "materia?": "bia?y metal/stal, diamenty, masa per?owa, sk?ra",
+    "referencja": "do potwierdzenia"
+  },
+  "history": "Imperiale jest najbardziej ceremonialn? z codziennych linii Chopard: geometryczne uszy, kaboszony i rzymskie akcenty odnosz? si? do estetyki dawnych insygni?w. W chronografie z opraw? diamentow? i per?ow? tarcz? sportowa funkcja staje si? cz??ci? bi?uteryjnej kompozycji.",
+  "sourceUrls": [
+    "https://www.chrono24.com/chopard/imperiale-chronograph---white-gold---mother-of-pearl-dial-diamonds-bezel---4143--id41253786.htm",
+    "https://www.essential-watches.com/Chopard/Imperiale-Round"
+  ],
+  "status": "dost?pny",
+  "price": "cena na zapytanie",
+  "images": [
+    {
+      "shot": "Front",
+      "src": "images/chopard-zielony/front.jpg",
+      "width": 1677,
+      "height": 2240
+    },
+    {
+      "shot": "Left",
+      "src": "images/chopard-zielony/left.jpg",
+      "width": 1820,
+      "height": 2432
+    },
+    {
+      "shot": "Right",
+      "src": "images/chopard-zielony/right.jpg",
+      "width": 1824,
+      "height": 2437
+    }
+  ],
+  "seo": {
+    "title": "Chopard Imperiale Chronograph Jewellery - Warszawski Czas",
+    "description": "Chopard Imperiale Chronograph z zielonym paskiem i diamentow? opraw? ??czy cesarskie inspiracje kolekcji z funkcjonalno?ci? stopera."
+  },
+  "verificationNote": "Rok, stan i dok?adna referencja konkretnego egzemplarza powinny zosta? potwierdzone dokumentami, numerem seryjnym lub ogl?dzinami zegarmistrza przed publikacj? sprzeda?ow?."
+}

@@ -1,0 +1,46 @@
+{
+  "slug": "breitling-chronomat-evolution-blue",
+  "brand": "Breitling",
+  "model": "Chronomat Evolution Blue Dial",
+  "displayName": "Breitling Chronomat Evolution Blue Dial",
+  "reference": "A13356 - do potwierdzenia",
+  "referenceStatus": "rozpoznanie modelu wysokiej pewno?ci; referencj? nale?y potwierdzi? po deklu",
+  "year": "ok. 2004-2008, do potwierdzenia",
+  "condition": "dobry / bardzo dobry, ocena wst?pna ze zdj??",
+  "material": "stal nierdzewna, niebieska tarcza, pasek gumowy",
+  "character": "lotniczy chronograf sportowy",
+  "shortDescription": "Breitling Chronomat Evolution z niebiesk? tarcz? to wyrazisty automatyczny chronograf o masywnej kopercie i technicznym charakterze.",
+  "curiosityQuote": "Niebieska tarcza ?agodzi narz?dziow? sylwetk? Chronomata, ale nie odbiera mu lotniczej energii.",
+  "parameters": {
+    "rok": "ok. 2004-2008, do potwierdzenia",
+    "stan": "dobry / bardzo dobry, ocena wst?pna ze zdj??",
+    "materia?": "stal nierdzewna, niebieska tarcza, pasek gumowy",
+    "referencja": "A13356 - do potwierdzenia"
+  },
+  "history": "Chronomat Evolution rozwija? najwa?niejsz? wsp??czesn? lini? Breitlinga: chronograf automatyczny, obracany bezel z rider tabs, czytelne liczniki i mocn? kopert?. Ten wariant z rzymskimi indeksami i dat? na godzinie 3 dobrze pokazuje okres, w kt?rym Chronomat sta? si? jednym z najbardziej rozpoznawalnych luksusowych zegark?w sportowych pocz?tku XXI wieku.",
+  "sourceUrls": [
+    "https://www.breitlingsource.com/watch_details/Chronomat_3.html",
+    "https://www.chrono24.com/breitling/ref-a13356.htm"
+  ],
+  "status": "dost?pny",
+  "price": "cena na zapytanie",
+  "images": [
+    {
+      "shot": "Front",
+      "src": "images/breitling-chronomat-evolution-blue/front.jpg"
+    },
+    {
+      "shot": "Lewy profil",
+      "src": "images/breitling-chronomat-evolution-blue/lewo.jpg"
+    },
+    {
+      "shot": "Prawy profil",
+      "src": "images/breitling-chronomat-evolution-blue/prawo.jpg"
+    }
+  ],
+  "seo": {
+    "title": "Breitling Chronomat Evolution Blue Dial - Warszawski Czas",
+    "description": "Breitling Chronomat Evolution z niebiesk? tarcz? to wyrazisty automatyczny chronograf o masywnej kopercie i technicznym charakterze."
+  },
+  "verificationNote": "Rok, stan i dok?adna referencja konkretnego egzemplarza powinny zosta? potwierdzone dokumentami, numerem seryjnym lub ogl?dzinami zegarmistrza przed publikacj? sprzeda?ow?."
+}

@@ -1,0 +1,50 @@
+{
+  "slug": "cartier-tank-americaine-diamond",
+  "brand": "Cartier",
+  "model": "Tank Am?ricaine Diamond",
+  "displayName": "Cartier Tank Am?ricaine Diamond",
+  "reference": "do potwierdzenia",
+  "referenceStatus": "rozpoznanie kolekcji wysokiej pewno?ci; referencja zale?y od rozmiaru i konfiguracji diament?w",
+  "year": "lata 2000-2010, do potwierdzenia",
+  "condition": "bardzo dobry, ocena wst?pna ze zdj??",
+  "material": "bia?e z?oto lub stal, diamentowy bezel, czarna tarcza, pasek sk?rzany",
+  "character": "elegancki zegarek jubilerski",
+  "shortDescription": "Cartier Tank Am?ricaine z czarn? tarcz? i diamentow? lunet? ??czy architektur? klasycznego Tanka z bardziej wyd?u?on?, wieczorow? sylwetk?.",
+  "curiosityQuote": "W Tank Am?ricaine prostok?t Cartiera staje si? smuklejszy, bardziej formalny i zdecydowanie bardziej salonowy.",
+  "parameters": {
+    "rok": "lata 2000-2010, do potwierdzenia",
+    "stan": "bardzo dobry, ocena wst?pna ze zdj??",
+    "materia?": "bia?e z?oto lub stal, diamentowy bezel, czarna tarcza, pasek sk?rzany",
+    "referencja": "do potwierdzenia"
+  },
+  "history": "Tank Am?ricaine rozwija lini? Tank Cintr?e: wyd?u?ona koperta, zakrzywiony profil i rzymska typografia zachowuj? DNA marki, ale nadaj? mu bardziej wsp??czesne proporcje. Wersja z czarn? tarcz?, dat? i opraw? diamentow? jest propozycj? katalogow? dla klienta szukaj?cego rozpoznawalnego Cartiera o wieczorowym charakterze.",
+  "sourceUrls": [
+    "https://www.cartier.com/en-us/watches/collections/tank/tank-americaine/",
+    "https://www.chrono24.com/cartier/tank-americaine.htm"
+  ],
+  "status": "dost?pny",
+  "price": "cena na zapytanie",
+  "images": [
+    {
+      "shot": "Front",
+      "src": "images/cartier-tank-americaine-diamond/front.jpg"
+    },
+    {
+      "shot": "Lewy profil",
+      "src": "images/cartier-tank-americaine-diamond/lewo.jpg"
+    },
+    {
+      "shot": "Prawy profil",
+      "src": "images/cartier-tank-americaine-diamond/prawo.jpg"
+    },
+    {
+      "shot": "Dodatkowy lewy profil",
+      "src": "images/cartier-tank-americaine-diamond/bardziej-lewo.jpg"
+    }
+  ],
+  "seo": {
+    "title": "Cartier Tank Am?ricaine Diamond - Warszawski Czas",
+    "description": "Cartier Tank Am?ricaine z czarn? tarcz? i diamentow? lunet? ??czy architektur? klasycznego Tanka z bardziej wyd?u?on?, wieczorow? sylwetk?."
+  },
+  "verificationNote": "Rok, stan i dok?adna referencja konkretnego egzemplarza powinny zosta? potwierdzone dokumentami, numerem seryjnym lub ogl?dzinami zegarmistrza przed publikacj? sprzeda?ow?."
+}

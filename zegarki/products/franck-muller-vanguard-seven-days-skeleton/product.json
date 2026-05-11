@@ -1,0 +1,42 @@
+{
+  "slug": "franck-muller-vanguard-seven-days-skeleton",
+  "brand": "Franck Muller",
+  "model": "Vanguard Seven Days Skeleton",
+  "displayName": "Franck Muller Vanguard Seven Days Skeleton",
+  "reference": "V 45 S6 SQT / wariant do potwierdzenia",
+  "referenceStatus": "rozpoznanie modelu wysokiej pewno?ci po napisie Seven Days i uk?adzie szkieletu",
+  "year": "lata 2010-2020, do potwierdzenia",
+  "condition": "bardzo dobry, ocena wst?pna ze zdj??",
+  "material": "koperta tonneau, szkieletowany mechanizm, pasek gumowo-sk?rzany",
+  "character": "awangardowy skeleton",
+  "shortDescription": "Franck Muller Vanguard Seven Days Skeleton pokazuje mechanizm jako g??wny element projektu, z czerwonymi akcentami i architektur? tarczy typow? dla linii Vanguard.",
+  "curiosityQuote": "W tym zegarku tarcza nie zas?ania mechanizmu, tylko robi z niego scen?.",
+  "parameters": {
+    "rok": "lata 2010-2020, do potwierdzenia",
+    "stan": "bardzo dobry, ocena wst?pna ze zdj??",
+    "materia?": "koperta tonneau, szkieletowany mechanizm, pasek gumowo-sk?rzany",
+    "referencja": "V 45 S6 SQT / wariant do potwierdzenia"
+  },
+  "history": "Franck Muller zbudowa? rozpoznawalno?? na odwa?nych kopertach Cintr?e Curvex i komplikacjach pokazywanych w teatralny spos?b. Vanguard jest bardziej sportow?, wsp??czesn? interpretacj? tej filozofii: du?a koperta tonneau, wyraziste indeksy kierunkowe i szkieletowany kaliber o siedmiodniowej rezerwie chodu tworz? zegarek zdecydowanie pokazowy.",
+  "sourceUrls": [
+    "https://www.franckmuller.com/vanguard",
+    "https://www.chrono24.com/franckmuller/vanguard.htm"
+  ],
+  "status": "dost?pny",
+  "price": "cena na zapytanie",
+  "images": [
+    {
+      "shot": "Front",
+      "src": "images/franck-muller-vanguard-seven-days-skeleton/front.jpg"
+    },
+    {
+      "shot": "Lewy profil",
+      "src": "images/franck-muller-vanguard-seven-days-skeleton/lewo.jpg"
+    }
+  ],
+  "seo": {
+    "title": "Franck Muller Vanguard Seven Days Skeleton - Warszawski Czas",
+    "description": "Franck Muller Vanguard Seven Days Skeleton pokazuje mechanizm jako g??wny element projektu, z czerwonymi akcentami i architektur? tarczy typow? dla linii Vanguard."
+  },
+  "verificationNote": "Rok, stan i dok?adna referencja konkretnego egzemplarza powinny zosta? potwierdzone dokumentami, numerem seryjnym lub ogl?dzinami zegarmistrza przed publikacj? sprzeda?ow?."
+}

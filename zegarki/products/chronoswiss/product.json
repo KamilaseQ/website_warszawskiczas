@@ -1,0 +1,58 @@
+{
+  "slug": "chronoswiss",
+  "brand": "Chronoswiss",
+  "model": "R?gulateur",
+  "displayName": "Chronoswiss R?gulateur",
+  "reference": "CH 1223",
+  "referenceStatus": "rozpoznanie wysokiej pewno?ci na podstawie uk?adu regulatora i napisu na tarczy",
+  "year": "oko?o 1995-2005, dok?adny rocznik do potwierdzenia",
+  "condition": "dobry / bardzo dobry, ocena wst?pna ze zdj??",
+  "material": "stal nierdzewna, bransoleta stalowa",
+  "character": "klasyczny regulator mechaniczny",
+  "shortDescription": "Chronoswiss R?gulateur CH 1223 z czarn? tarcz? prezentuje czas w historycznym uk?adzie regulatora z osobn? godzin?, minut? i sekund?.",
+  "curiosityQuote": "W regulatorze najwa?niejsza jest minuta - dlatego centralna wskaz?wka prowadzi odczyt, a godziny i sekundy maj? w?asne subtarcze.",
+  "parameters": {
+    "rok": "ok. 1995-2005, do potwierdzenia",
+    "stan": "dobry / bardzo dobry, ocena wst?pna ze zdj??",
+    "materia?": "stal nierdzewna",
+    "referencja": "CH 1223"
+  },
+  "history": "Chronoswiss zbudowa? swoj? rozpoznawalno?? na przeniesieniu koncepcji zegara regulatorowego na zegarek nar?czny. Model CH 1223 zachowuje karbowan? lunet?, cebulkow? koronk? i porz?dek tarczy, kt?ry celowo rozdziela wskazania, aby podkre?li? zegarmistrzowski rodow?d formy.",
+  "sourceUrls": [
+    "https://www.chrono24.com/chronoswiss/ref-ch1223.htm",
+    "https://www.watch-wiki.net/doku.php?id=chronoswiss_regulateur"
+  ],
+  "status": "dost?pny",
+  "price": "cena na zapytanie",
+  "images": [
+    {
+      "shot": "Front",
+      "src": "images/chronoswiss/front.jpg",
+      "width": 1720,
+      "height": 2298
+    },
+    {
+      "shot": "Left",
+      "src": "images/chronoswiss/left.jpg",
+      "width": 1770,
+      "height": 2365
+    },
+    {
+      "shot": "Right",
+      "src": "images/chronoswiss/right.jpg",
+      "width": 1760,
+      "height": 2351
+    },
+    {
+      "shot": "Back",
+      "src": "images/chronoswiss/back.jpg",
+      "width": 1699,
+      "height": 2270
+    }
+  ],
+  "seo": {
+    "title": "Chronoswiss R?gulateur - Warszawski Czas",
+    "description": "Chronoswiss R?gulateur CH 1223 z czarn? tarcz? prezentuje czas w historycznym uk?adzie regulatora z osobn? godzin?, minut? i sekund?."
+  },
+  "verificationNote": "Rok, stan i dok?adna referencja konkretnego egzemplarza powinny zosta? potwierdzone dokumentami, numerem seryjnym lub ogl?dzinami zegarmistrza przed publikacj? sprzeda?ow?."
+}

@@ -1,0 +1,46 @@
+{
+  "slug": "cartier-mini-baignoire-czerwony",
+  "brand": "Cartier",
+  "model": "Mini Baignoire / Colis?e",
+  "displayName": "Cartier Mini Baignoire / Colis?e",
+  "reference": "do potwierdzenia",
+  "referenceStatus": "rozpoznanie jako ma?y damski Cartier wysokiej pewno?ci; model i referencja wymagaj? potwierdzenia po deklu",
+  "year": "lata 1990-2000, do potwierdzenia",
+  "condition": "dobry / bardzo dobry, ocena wst?pna ze zdj??",
+  "material": "z?oto, czarna tarcza, czerwony pasek sk?rzany",
+  "character": "bi?uteryjny zegarek damski",
+  "shortDescription": "Ma?y z?oty Cartier z czarn? tarcz? i czerwonym paskiem ma charakter dyskretnej bi?uterii, w kt?rej kolor gra r?wnie mocno jak forma koperty.",
+  "curiosityQuote": "Czerwony pasek zmienia klasyczny zegarek damski Cartiera w akcent, kt?ry dzia?a jak detal haute couture.",
+  "parameters": {
+    "rok": "lata 1990-2000, do potwierdzenia",
+    "stan": "dobry / bardzo dobry, ocena wst?pna ze zdj??",
+    "materia?": "z?oto, czarna tarcza, czerwony pasek sk?rzany",
+    "referencja": "do potwierdzenia"
+  },
+  "history": "Cartier od dekad buduje damskie zegarki na pograniczu jubilerstwa i wzornictwa u?ytkowego. Ten egzemplarz, widoczny na zdj?ciach jako niewielka z?ota koperta z czarn? tarcz?, wymaga potwierdzenia dok?adnej linii po deklu, ale estetycznie wpisuje si? w ma?e modele Baignoire, Colis?e i pokrewne projekty maison z prze?omu lat 90. i 2000.",
+  "sourceUrls": [
+    "https://www.cartier.com/",
+    "https://www.cartier.com/en-us/watches/collections/baignoire/"
+  ],
+  "status": "dost?pny",
+  "price": "cena na zapytanie",
+  "images": [
+    {
+      "shot": "Front",
+      "src": "images/cartier-mini-baignoire-czerwony/front.jpg"
+    },
+    {
+      "shot": "Lewy profil",
+      "src": "images/cartier-mini-baignoire-czerwony/lewo.jpg"
+    },
+    {
+      "shot": "Prawy profil",
+      "src": "images/cartier-mini-baignoire-czerwony/prawo.jpg"
+    }
+  ],
+  "seo": {
+    "title": "Cartier Mini Baignoire / Colis?e - Warszawski Czas",
+    "description": "Ma?y z?oty Cartier z czarn? tarcz? i czerwonym paskiem ma charakter dyskretnej bi?uterii, w kt?rej kolor gra r?wnie mocno jak forma koperty."
+  },
+  "verificationNote": "Rok, stan i dok?adna referencja konkretnego egzemplarza powinny zosta? potwierdzone dokumentami, numerem seryjnym lub ogl?dzinami zegarmistrza przed publikacj? sprzeda?ow?."
+}

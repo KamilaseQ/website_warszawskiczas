@@ -1,0 +1,52 @@
+{
+  "slug": "omega-biala-tarcza",
+  "brand": "Omega",
+  "model": "Constellation Manhattan Quartz Date",
+  "displayName": "Omega Constellation Manhattan Quartz Date",
+  "reference": "rodzina 396 / 1512 - do potwierdzenia z dekla",
+  "referenceStatus": "rozpoznanie kolekcji wysokiej pewno?ci; dok?adna referencja wymaga dekla",
+  "year": "lata 1990-2000., do potwierdzenia",
+  "condition": "dobry, widoczne ?lady u?ytkowania na kopercie i bezelu",
+  "material": "stal nierdzewna, zintegrowana bransoleta stalowa",
+  "character": "klasyczny Constellation Manhattan",
+  "shortDescription": "Omega Constellation Manhattan z jasn? tarcz? i zintegrowan? bransolet? to elegancki kwarcowy klasyk z charakterystycznymi pazurami koperty.",
+  "curiosityQuote": "Cztery pazury Constellation Manhattan zacz??y jako element konstrukcyjny, a sta?y si? jednym z najbardziej rozpoznawalnych znak?w Omegi.",
+  "parameters": {
+    "rok": "lata 1990-2000., do potwierdzenia",
+    "stan": "dobry, ocena wst?pna ze zdj??",
+    "materia?": "stal nierdzewna",
+    "referencja": "do potwierdzenia"
+  },
+  "history": "Constellation Manhattan zadebiutowa? w 1982 roku i zmieni? eleganck? lini? Omegi w zegarek o mocnej, architektonicznej kopercie. Jasna tarcza, rzymski bezel i zintegrowana bransoleta tworz? dyskretny, codzienny wariant tej stylistyki.",
+  "sourceUrls": [
+    "https://dumarko.com/blogs/news/vintage-omega-constellation-collectors-guide",
+    "https://www.catawiki.com/en/l/99692638-omega-constellation-men-1990-1999"
+  ],
+  "status": "dost?pny",
+  "price": "cena na zapytanie",
+  "images": [
+    {
+      "shot": "Front",
+      "src": "images/omega-biala-tarcza/front.jpg",
+      "width": 1868,
+      "height": 2495
+    },
+    {
+      "shot": "Left",
+      "src": "images/omega-biala-tarcza/left.jpg",
+      "width": 1737,
+      "height": 2321
+    },
+    {
+      "shot": "Right",
+      "src": "images/omega-biala-tarcza/right.jpg",
+      "width": 1878,
+      "height": 2509
+    }
+  ],
+  "seo": {
+    "title": "Omega Constellation Manhattan Quartz Date - Warszawski Czas",
+    "description": "Omega Constellation Manhattan z jasn? tarcz? i zintegrowan? bransolet? to elegancki kwarcowy klasyk z charakterystycznymi pazurami koperty."
+  },
+  "verificationNote": "Rok, stan i dok?adna referencja konkretnego egzemplarza powinny zosta? potwierdzone dokumentami, numerem seryjnym lub ogl?dzinami zegarmistrza przed publikacj? sprzeda?ow?."
+}

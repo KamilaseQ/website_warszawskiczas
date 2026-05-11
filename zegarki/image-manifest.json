@@ -1,0 +1,386 @@
+﻿[
+    {
+        "group":  "Breitling niebieski",
+        "slug":  "breitling-niebieski",
+        "shot":  "Front",
+        "file":  "C:\\Users\\212ka\\Documents\\warszawski-czas-zegarki-katalog\\images\\breitling-niebieski\\front.jpg",
+        "width":  1844,
+        "height":  2464
+    },
+    {
+        "group":  "Breitling niebieski",
+        "slug":  "breitling-niebieski",
+        "shot":  "Left",
+        "file":  "C:\\Users\\212ka\\Documents\\warszawski-czas-zegarki-katalog\\images\\breitling-niebieski\\left.jpg",
+        "width":  1730,
+        "height":  2311
+    },
+    {
+        "group":  "Breitling niebieski",
+        "slug":  "breitling-niebieski",
+        "shot":  "Right",
+        "file":  "C:\\Users\\212ka\\Documents\\warszawski-czas-zegarki-katalog\\images\\breitling-niebieski\\right.jpg",
+        "width":  1644,
+        "height":  2197
+    },
+    {
+        "group":  "Breitling złoto różowy",
+        "slug":  "breitling-rozowe-zloto",
+        "shot":  "Front",
+        "file":  "C:\\Users\\212ka\\Documents\\warszawski-czas-zegarki-katalog\\images\\breitling-rozowe-zloto\\front.jpg",
+        "width":  1588,
+        "height":  2121
+    },
+    {
+        "group":  "Breitling złoto różowy",
+        "slug":  "breitling-rozowe-zloto",
+        "shot":  "Left",
+        "file":  "C:\\Users\\212ka\\Documents\\warszawski-czas-zegarki-katalog\\images\\breitling-rozowe-zloto\\left.jpg",
+        "width":  1627,
+        "height":  2174
+    },
+    {
+        "group":  "Breitling złoto różowy",
+        "slug":  "breitling-rozowe-zloto",
+        "shot":  "Right",
+        "file":  "C:\\Users\\212ka\\Documents\\warszawski-czas-zegarki-katalog\\images\\breitling-rozowe-zloto\\right.jpg",
+        "width":  1797,
+        "height":  2401
+    },
+    {
+        "group":  "Bvlgari",
+        "slug":  "bvlgari",
+        "shot":  "Back",
+        "file":  "C:\\Users\\212ka\\Documents\\warszawski-czas-zegarki-katalog\\images\\bvlgari\\back.jpg",
+        "width":  1558,
+        "height":  2081
+    },
+    {
+        "group":  "Bvlgari",
+        "slug":  "bvlgari",
+        "shot":  "Front",
+        "file":  "C:\\Users\\212ka\\Documents\\warszawski-czas-zegarki-katalog\\images\\bvlgari\\front.jpg",
+        "width":  1727,
+        "height":  2307
+    },
+    {
+        "group":  "Bvlgari",
+        "slug":  "bvlgari",
+        "shot":  "Left",
+        "file":  "C:\\Users\\212ka\\Documents\\warszawski-czas-zegarki-katalog\\images\\bvlgari\\left.jpg",
+        "width":  1822,
+        "height":  2434
+    },
+    {
+        "group":  "Bvlgari",
+        "slug":  "bvlgari",
+        "shot":  "Right",
+        "file":  "C:\\Users\\212ka\\Documents\\warszawski-czas-zegarki-katalog\\images\\bvlgari\\right.jpg",
+        "width":  1771,
+        "height":  2366
+    },
+    {
+        "group":  "Bvlgari diamenty",
+        "slug":  "bvlgari-diamenty",
+        "shot":  "Front",
+        "file":  "C:\\Users\\212ka\\Documents\\warszawski-czas-zegarki-katalog\\images\\bvlgari-diamenty\\front.jpg",
+        "width":  1677,
+        "height":  2241
+    },
+    {
+        "group":  "Bvlgari diamenty",
+        "slug":  "bvlgari-diamenty",
+        "shot":  "Left",
+        "file":  "C:\\Users\\212ka\\Documents\\warszawski-czas-zegarki-katalog\\images\\bvlgari-diamenty\\left.jpg",
+        "width":  1767,
+        "height":  2361
+    },
+    {
+        "group":  "Bvlgari diamenty",
+        "slug":  "bvlgari-diamenty",
+        "shot":  "Right",
+        "file":  "C:\\Users\\212ka\\Documents\\warszawski-czas-zegarki-katalog\\images\\bvlgari-diamenty\\right.jpg",
+        "width":  1898,
+        "height":  2536
+    },
+    {
+        "group":  "Cartier",
+        "slug":  "cartier",
+        "shot":  "Back",
+        "file":  "C:\\Users\\212ka\\Documents\\warszawski-czas-zegarki-katalog\\images\\cartier\\back.jpg",
+        "width":  3018,
+        "height":  4032
+    },
+    {
+        "group":  "Cartier",
+        "slug":  "cartier",
+        "shot":  "Front",
+        "file":  "C:\\Users\\212ka\\Documents\\warszawski-czas-zegarki-katalog\\images\\cartier\\front.jpg",
+        "width":  1674,
+        "height":  2237
+    },
+    {
+        "group":  "Cartier",
+        "slug":  "cartier",
+        "shot":  "Left",
+        "file":  "C:\\Users\\212ka\\Documents\\warszawski-czas-zegarki-katalog\\images\\cartier\\left.jpg",
+        "width":  1779,
+        "height":  2377
+    },
+    {
+        "group":  "Cartier",
+        "slug":  "cartier",
+        "shot":  "Right",
+        "file":  "C:\\Users\\212ka\\Documents\\warszawski-czas-zegarki-katalog\\images\\cartier\\right.jpg",
+        "width":  1770,
+        "height":  2365
+    },
+    {
+        "group":  "Chopard full diamenty",
+        "slug":  "chopard-full-diamenty",
+        "shot":  "Front",
+        "file":  "C:\\Users\\212ka\\Documents\\warszawski-czas-zegarki-katalog\\images\\chopard-full-diamenty\\front.jpg",
+        "width":  1890,
+        "height":  2525
+    },
+    {
+        "group":  "Chopard full diamenty",
+        "slug":  "chopard-full-diamenty",
+        "shot":  "Left",
+        "file":  "C:\\Users\\212ka\\Documents\\warszawski-czas-zegarki-katalog\\images\\chopard-full-diamenty\\left.jpg",
+        "width":  1999,
+        "height":  2671
+    },
+    {
+        "group":  "Chopard full diamenty",
+        "slug":  "chopard-full-diamenty",
+        "shot":  "Little right",
+        "file":  "C:\\Users\\212ka\\Documents\\warszawski-czas-zegarki-katalog\\images\\chopard-full-diamenty\\little-right.jpg",
+        "width":  2016,
+        "height":  2694
+    },
+    {
+        "group":  "Chopard full diamenty",
+        "slug":  "chopard-full-diamenty",
+        "shot":  "Right",
+        "file":  "C:\\Users\\212ka\\Documents\\warszawski-czas-zegarki-katalog\\images\\chopard-full-diamenty\\right.jpg",
+        "width":  2046,
+        "height":  2733
+    },
+    {
+        "group":  "Chopard tourbillon",
+        "slug":  "chopard-tourbillon",
+        "shot":  "Front",
+        "file":  "C:\\Users\\212ka\\Documents\\warszawski-czas-zegarki-katalog\\images\\chopard-tourbillon\\front.jpg",
+        "width":  1837,
+        "height":  2454
+    },
+    {
+        "group":  "Chopard tourbillon",
+        "slug":  "chopard-tourbillon",
+        "shot":  "Left",
+        "file":  "C:\\Users\\212ka\\Documents\\warszawski-czas-zegarki-katalog\\images\\chopard-tourbillon\\left.jpg",
+        "width":  1879,
+        "height":  2510
+    },
+    {
+        "group":  "Chopard tourbillon",
+        "slug":  "chopard-tourbillon",
+        "shot":  "Right",
+        "file":  "C:\\Users\\212ka\\Documents\\warszawski-czas-zegarki-katalog\\images\\chopard-tourbillon\\right.jpg",
+        "width":  1764,
+        "height":  2357
+    },
+    {
+        "group":  "Chopard zielony",
+        "slug":  "chopard-zielony",
+        "shot":  "Front",
+        "file":  "C:\\Users\\212ka\\Documents\\warszawski-czas-zegarki-katalog\\images\\chopard-zielony\\front.jpg",
+        "width":  1677,
+        "height":  2240
+    },
+    {
+        "group":  "Chopard zielony",
+        "slug":  "chopard-zielony",
+        "shot":  "Left",
+        "file":  "C:\\Users\\212ka\\Documents\\warszawski-czas-zegarki-katalog\\images\\chopard-zielony\\left.jpg",
+        "width":  1820,
+        "height":  2432
+    },
+    {
+        "group":  "Chopard zielony",
+        "slug":  "chopard-zielony",
+        "shot":  "Right",
+        "file":  "C:\\Users\\212ka\\Documents\\warszawski-czas-zegarki-katalog\\images\\chopard-zielony\\right.jpg",
+        "width":  1824,
+        "height":  2437
+    },
+    {
+        "group":  "Chronoswiss",
+        "slug":  "chronoswiss",
+        "shot":  "Back",
+        "file":  "C:\\Users\\212ka\\Documents\\warszawski-czas-zegarki-katalog\\images\\chronoswiss\\back.jpg",
+        "width":  1699,
+        "height":  2270
+    },
+    {
+        "group":  "Chronoswiss",
+        "slug":  "chronoswiss",
+        "shot":  "Front",
+        "file":  "C:\\Users\\212ka\\Documents\\warszawski-czas-zegarki-katalog\\images\\chronoswiss\\front.jpg",
+        "width":  1720,
+        "height":  2298
+    },
+    {
+        "group":  "Chronoswiss",
+        "slug":  "chronoswiss",
+        "shot":  "Left",
+        "file":  "C:\\Users\\212ka\\Documents\\warszawski-czas-zegarki-katalog\\images\\chronoswiss\\left.jpg",
+        "width":  1770,
+        "height":  2365
+    },
+    {
+        "group":  "Chronoswiss",
+        "slug":  "chronoswiss",
+        "shot":  "Right",
+        "file":  "C:\\Users\\212ka\\Documents\\warszawski-czas-zegarki-katalog\\images\\chronoswiss\\right.jpg",
+        "width":  1760,
+        "height":  2351
+    },
+    {
+        "group":  "Frederique constant",
+        "slug":  "frederique-constant",
+        "shot":  "Front",
+        "file":  "C:\\Users\\212ka\\Documents\\warszawski-czas-zegarki-katalog\\images\\frederique-constant\\front.jpg",
+        "width":  1872,
+        "height":  2501
+    },
+    {
+        "group":  "Frederique constant",
+        "slug":  "frederique-constant",
+        "shot":  "Left",
+        "file":  "C:\\Users\\212ka\\Documents\\warszawski-czas-zegarki-katalog\\images\\frederique-constant\\left.jpg",
+        "width":  1779,
+        "height":  2377
+    },
+    {
+        "group":  "Frederique constant",
+        "slug":  "frederique-constant",
+        "shot":  "Right",
+        "file":  "C:\\Users\\212ka\\Documents\\warszawski-czas-zegarki-katalog\\images\\frederique-constant\\right.jpg",
+        "width":  1677,
+        "height":  2241
+    },
+    {
+        "group":  "Omega biała tarcza",
+        "slug":  "omega-biala-tarcza",
+        "shot":  "Front",
+        "file":  "C:\\Users\\212ka\\Documents\\warszawski-czas-zegarki-katalog\\images\\omega-biala-tarcza\\front.jpg",
+        "width":  1868,
+        "height":  2495
+    },
+    {
+        "group":  "Omega biała tarcza",
+        "slug":  "omega-biala-tarcza",
+        "shot":  "Left",
+        "file":  "C:\\Users\\212ka\\Documents\\warszawski-czas-zegarki-katalog\\images\\omega-biala-tarcza\\left.jpg",
+        "width":  1737,
+        "height":  2321
+    },
+    {
+        "group":  "Omega biała tarcza",
+        "slug":  "omega-biala-tarcza",
+        "shot":  "Right",
+        "file":  "C:\\Users\\212ka\\Documents\\warszawski-czas-zegarki-katalog\\images\\omega-biala-tarcza\\right.jpg",
+        "width":  1878,
+        "height":  2509
+    },
+    {
+        "group":  "Omega Czarna Tarcza",
+        "slug":  "omega-czarna-tarcza",
+        "shot":  "Front",
+        "file":  "C:\\Users\\212ka\\Documents\\warszawski-czas-zegarki-katalog\\images\\omega-czarna-tarcza\\front.jpg",
+        "width":  1765,
+        "height":  2358
+    },
+    {
+        "group":  "Omega Czarna Tarcza",
+        "slug":  "omega-czarna-tarcza",
+        "shot":  "Left",
+        "file":  "C:\\Users\\212ka\\Documents\\warszawski-czas-zegarki-katalog\\images\\omega-czarna-tarcza\\left.jpg",
+        "width":  1636,
+        "height":  2186
+    },
+    {
+        "group":  "Omega Czarna Tarcza",
+        "slug":  "omega-czarna-tarcza",
+        "shot":  "Right",
+        "file":  "C:\\Users\\212ka\\Documents\\warszawski-czas-zegarki-katalog\\images\\omega-czarna-tarcza\\right.jpg",
+        "width":  1898,
+        "height":  2536
+    },
+    {
+        "group":  "Piaget",
+        "slug":  "piaget",
+        "shot":  "Front",
+        "file":  "C:\\Users\\212ka\\Documents\\warszawski-czas-zegarki-katalog\\images\\piaget\\front.jpg",
+        "width":  1596,
+        "height":  2132
+    },
+    {
+        "group":  "Piaget",
+        "slug":  "piaget",
+        "shot":  "Right",
+        "file":  "C:\\Users\\212ka\\Documents\\warszawski-czas-zegarki-katalog\\images\\piaget\\right.jpg",
+        "width":  1671,
+        "height":  2233
+    },
+    {
+        "group":  "TAG Heuer",
+        "slug":  "tag-heuer",
+        "shot":  "Front",
+        "file":  "C:\\Users\\212ka\\Documents\\warszawski-czas-zegarki-katalog\\images\\tag-heuer\\front.jpg",
+        "width":  1823,
+        "height":  2435
+    },
+    {
+        "group":  "TAG Heuer",
+        "slug":  "tag-heuer",
+        "shot":  "Left",
+        "file":  "C:\\Users\\212ka\\Documents\\warszawski-czas-zegarki-katalog\\images\\tag-heuer\\left.jpg",
+        "width":  1969,
+        "height":  2630
+    },
+    {
+        "group":  "TAG Heuer",
+        "slug":  "tag-heuer",
+        "shot":  "Right",
+        "file":  "C:\\Users\\212ka\\Documents\\warszawski-czas-zegarki-katalog\\images\\tag-heuer\\right.jpg",
+        "width":  1963,
+        "height":  2622
+    },
+    {
+        "group":  "Wyler Geneva",
+        "slug":  "wyler-geneva",
+        "shot":  "Front",
+        "file":  "C:\\Users\\212ka\\Documents\\warszawski-czas-zegarki-katalog\\images\\wyler-geneva\\front.jpg",
+        "width":  2106,
+        "height":  2814
+    },
+    {
+        "group":  "Wyler Geneva",
+        "slug":  "wyler-geneva",
+        "shot":  "Left",
+        "file":  "C:\\Users\\212ka\\Documents\\warszawski-czas-zegarki-katalog\\images\\wyler-geneva\\left.jpg",
+        "width":  1891,
+        "height":  2526
+    },
+    {
+        "group":  "Wyler Geneva",
+        "slug":  "wyler-geneva",
+        "shot":  "Right",
+        "file":  "C:\\Users\\212ka\\Documents\\warszawski-czas-zegarki-katalog\\images\\wyler-geneva\\right.jpg",
+        "width":  2064,
+        "height":  2757
+    }
+]

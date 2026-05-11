@@ -1,0 +1,50 @@
+{
+  "slug": "rolex-sky-dweller",
+  "brand": "Rolex",
+  "model": "Sky-Dweller Black Dial",
+  "displayName": "Rolex Sky-Dweller Black Dial",
+  "reference": "326934 - do potwierdzenia",
+  "referenceStatus": "rozpoznanie wysokiej pewno?ci po uk?adzie Sky-Dweller, karbowanym bezele i czarnej tarczy",
+  "year": "2017+, rocznik egzemplarza do potwierdzenia",
+  "condition": "bardzo dobry, ocena wst?pna ze zdj??",
+  "material": "Oystersteel i bia?e z?oto, bransoleta Oyster, czarna tarcza",
+  "character": "luksusowy zegarek podr??ny",
+  "shortDescription": "Rolex Sky-Dweller 326934 z czarn? tarcz? to zegarek podr??ny z rocznym kalendarzem, drug? stref? czasu i charakterystycznym systemem Ring Command.",
+  "curiosityQuote": "Sky-Dweller ukrywa jedn? z najbardziej praktycznych komplikacji Rolexa w formie, kt?ra z daleka wygl?da jak klasyczny model z karbowanym bezelem.",
+  "parameters": {
+    "rok": "2017+, rocznik egzemplarza do potwierdzenia",
+    "stan": "bardzo dobry, ocena wst?pna ze zdj??",
+    "materia?": "Oystersteel i bia?e z?oto, bransoleta Oyster, czarna tarcza",
+    "referencja": "326934 - do potwierdzenia"
+  },
+  "history": "Sky-Dweller zosta? zaprezentowany jako najbardziej komplikowany wsp??czesny Rolex: ??czy czas lokalny, czas domowy w 24-godzinnym pier?cieniu oraz kalendarz roczny Saros. W wersji 326934 stalowa koperta wsp??pracuje z bezelem z bia?ego z?ota, a obs?uga funkcji odbywa si? przez obracany bezel Ring Command.",
+  "sourceUrls": [
+    "https://www.rolex.com/watches/sky-dweller",
+    "https://www.chrono24.com/rolex/ref-326934.htm"
+  ],
+  "status": "dost?pny",
+  "price": "cena na zapytanie",
+  "images": [
+    {
+      "shot": "Front",
+      "src": "images/rolex-sky-dweller/front.jpg"
+    },
+    {
+      "shot": "Front lewy profil",
+      "src": "images/rolex-sky-dweller/front-lewo.jpg"
+    },
+    {
+      "shot": "Lewy profil",
+      "src": "images/rolex-sky-dweller/lewo.jpg"
+    },
+    {
+      "shot": "Prawy profil",
+      "src": "images/rolex-sky-dweller/prawo.jpg"
+    }
+  ],
+  "seo": {
+    "title": "Rolex Sky-Dweller Black Dial - Warszawski Czas",
+    "description": "Rolex Sky-Dweller 326934 z czarn? tarcz? to zegarek podr??ny z rocznym kalendarzem, drug? stref? czasu i charakterystycznym systemem Ring Command."
+  },
+  "verificationNote": "Rok, stan i dok?adna referencja konkretnego egzemplarza powinny zosta? potwierdzone dokumentami, numerem seryjnym lub ogl?dzinami zegarmistrza przed publikacj? sprzeda?ow?."
+}

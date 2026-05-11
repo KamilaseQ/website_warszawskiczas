@@ -1,0 +1,46 @@
+{
+  "slug": "piaget",
+  "brand": "Piaget",
+  "model": "Possession",
+  "displayName": "Piaget Possession",
+  "reference": "do potwierdzenia",
+  "referenceStatus": "rozpoznanie kolekcji wysokiej pewno?ci; dok?adna ref. wymaga dekla/dokument?w",
+  "year": "do potwierdzenia; wsp??czesna linia Possession 29 mm",
+  "condition": "dobry / bardzo dobry, widoczne drobne ?lady na bezelu",
+  "material": "bia?y metal szlachetny lub stal, diament, bia?y pasek sk?rzany",
+  "character": "bi?uteryjny zegarek damski",
+  "shortDescription": "Piaget Possession z bia?ym paskiem i obrotowym pier?cieniem to minimalistyczna bi?uteria zegarkowa z jednym diamentowym akcentem.",
+  "curiosityQuote": "W Possession najwa?niejszy jest ruch pier?cienia - ma?y, dotykowy gest, kt?ry odr??nia zegarek od klasycznej bi?uterii.",
+  "parameters": {
+    "rok": "do potwierdzenia",
+    "stan": "dobry / bardzo dobry, ocena wst?pna ze zdj??",
+    "materia?": "bia?y metal/stal, diament, sk?ra",
+    "referencja": "do potwierdzenia"
+  },
+  "history": "Possession przenosi motyw obrotowego pier?cienia z bi?uterii Piageta do zegarka. Oszcz?dna tarcza, mi?kka koperta i ruchomy detal z diamentem tworz? przedmiot bli?szy luksusowej bransolecie ni? klasycznemu zegarkowi narz?dziowemu.",
+  "sourceUrls": [
+    "https://www.piaget.com/us-en/watches/possession/white-gold-diamond-watch-g0a44298",
+    "https://www.chrono24.com/piaget/possession-watch-diamond-mother-of-pearl-29mm-g0a45092--id46004316.htm"
+  ],
+  "status": "dost?pny",
+  "price": "cena na zapytanie",
+  "images": [
+    {
+      "shot": "Front",
+      "src": "images/piaget/front.jpg",
+      "width": 1596,
+      "height": 2132
+    },
+    {
+      "shot": "Right",
+      "src": "images/piaget/right.jpg",
+      "width": 1671,
+      "height": 2233
+    }
+  ],
+  "seo": {
+    "title": "Piaget Possession - Warszawski Czas",
+    "description": "Piaget Possession z bia?ym paskiem i obrotowym pier?cieniem to minimalistyczna bi?uteria zegarkowa z jednym diamentowym akcentem."
+  },
+  "verificationNote": "Rok, stan i dok?adna referencja konkretnego egzemplarza powinny zosta? potwierdzone dokumentami, numerem seryjnym lub ogl?dzinami zegarmistrza przed publikacj? sprzeda?ow?."
+}

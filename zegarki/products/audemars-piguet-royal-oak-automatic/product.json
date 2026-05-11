@@ -1,0 +1,46 @@
+{
+  "slug": "audemars-piguet-royal-oak-automatic",
+  "brand": "Audemars Piguet",
+  "model": "Royal Oak Automatic",
+  "displayName": "Audemars Piguet Royal Oak Automatic",
+  "reference": "15300ST / 14790ST - wariant do potwierdzenia",
+  "referenceStatus": "rozpoznanie kolekcji wysokiej pewno?ci; dok?adna referencja zale?y od ?rednicy koperty i numer?w na deklu",
+  "year": "ok. lata 2000., do potwierdzenia",
+  "condition": "bardzo dobry, ocena wst?pna ze zdj??",
+  "material": "stal nierdzewna, srebrna tarcza tapisserie, pasek sk?rzany",
+  "character": "sportowa ikona haute horlogerie",
+  "shortDescription": "Audemars Piguet Royal Oak Automatic ze srebrn? tarcz? tapisserie przenosi projekt Geralda Genty w eleganck?, stalow? form? na pasku sk?rzanym.",
+  "curiosityQuote": "O?miok?tny bezel i zintegrowana linia koperty sprawi?y, ?e stalowy zegarek m?g? sta? si? pe?noprawnym symbolem luksusu.",
+  "parameters": {
+    "rok": "ok. lata 2000., do potwierdzenia",
+    "stan": "bardzo dobry, ocena wst?pna ze zdj??",
+    "materia?": "stal nierdzewna, srebrna tarcza tapisserie, pasek sk?rzany",
+    "referencja": "15300ST / 14790ST - wariant do potwierdzenia"
+  },
+  "history": "Royal Oak z 1972 roku prze?ama? granic? mi?dzy zegarkiem sportowym a presti?owym zegarkiem mechanicznym. Egzemplarz ze srebrn? tarcz?, dat? na godzinie 3 i automatycznym naci?giem zachowuje najwa?niejsze cechy projektu: ?ruby w bezelu, szczotkowan? stal i geometryczn? tarcz? typu tapisserie.",
+  "sourceUrls": [
+    "https://www.audemarspiguet.com/com/en/watch-collection/royal-oak.html",
+    "https://www.chrono24.com/audemarspiguet/ref-15300stoo1220st01.htm"
+  ],
+  "status": "dost?pny",
+  "price": "cena na zapytanie",
+  "images": [
+    {
+      "shot": "Front",
+      "src": "images/audemars-piguet-royal-oak-automatic/front.jpg"
+    },
+    {
+      "shot": "Lewy profil",
+      "src": "images/audemars-piguet-royal-oak-automatic/lewo.jpg"
+    },
+    {
+      "shot": "Prawy profil",
+      "src": "images/audemars-piguet-royal-oak-automatic/prawo.jpg"
+    }
+  ],
+  "seo": {
+    "title": "Audemars Piguet Royal Oak Automatic - Warszawski Czas",
+    "description": "Audemars Piguet Royal Oak Automatic ze srebrn? tarcz? tapisserie przenosi projekt Geralda Genty w eleganck?, stalow? form? na pasku sk?rzanym."
+  },
+  "verificationNote": "Rok, stan i dok?adna referencja konkretnego egzemplarza powinny zosta? potwierdzone dokumentami, numerem seryjnym lub ogl?dzinami zegarmistrza przed publikacj? sprzeda?ow?."
+}

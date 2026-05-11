@@ -1,0 +1,58 @@
+{
+  "slug": "cartier",
+  "brand": "Cartier",
+  "model": "Must 21 Chronoscaph",
+  "displayName": "Cartier Must 21 Chronoscaph",
+  "reference": "2424 / W10125U2",
+  "referenceStatus": "rozpoznanie wysokiej pewno?ci; ref. 2424 zgodna z modelem i uk?adem tarczy",
+  "year": "lata 2000., dok?adny rocznik do potwierdzenia",
+  "condition": "dobry / bardzo dobry, widoczne ?lady u?ytkowania na bezelu",
+  "material": "stal nierdzewna, elementy gumowe, bransoleta stalowo-gumowa",
+  "character": "sportowy Cartier z chronografem",
+  "shortDescription": "Cartier Must 21 Chronoscaph ref. 2424 ??czy rzymski bezel, stal i gum? z praktycznym kwarcowym chronografem.",
+  "curiosityQuote": "Chronoscaph pokazuje mniej formaln? stron? Cartiera - nadal z rzymskimi cyframi, ale w rytmie sportowego chronografu.",
+  "parameters": {
+    "rok": "lata 2000., do potwierdzenia",
+    "stan": "dobry / bardzo dobry, ocena wst?pna ze zdj??",
+    "materia?": "stal nierdzewna i guma",
+    "referencja": "2424 / W10125U2"
+  },
+  "history": "Must 21 Chronoscaph nale?y do okresu, w kt?rym Cartier ??czy? w?asny j?zyk projektowy z bardziej sportow? konstrukcj?. Bezel z rzymskimi cyframi i kaboszonowa koronka pozostaj? czytelnie cartierowskie, a chronograf, data i mieszana bransoleta stalowo-gumowa nadaj? mu codzienny, dynamiczny charakter.",
+  "sourceUrls": [
+    "https://www.analogshift.com/products/cartier-must-21-chronoscaph",
+    "https://www.youtube.com/watch?v=QJ4UoNswxcA"
+  ],
+  "status": "dost?pny",
+  "price": "cena na zapytanie",
+  "images": [
+    {
+      "shot": "Front",
+      "src": "images/cartier/front.jpg",
+      "width": 1674,
+      "height": 2237
+    },
+    {
+      "shot": "Left",
+      "src": "images/cartier/left.jpg",
+      "width": 1779,
+      "height": 2377
+    },
+    {
+      "shot": "Right",
+      "src": "images/cartier/right.jpg",
+      "width": 1770,
+      "height": 2365
+    },
+    {
+      "shot": "Back",
+      "src": "images/cartier/back.jpg",
+      "width": 3018,
+      "height": 4032
+    }
+  ],
+  "seo": {
+    "title": "Cartier Must 21 Chronoscaph - Warszawski Czas",
+    "description": "Cartier Must 21 Chronoscaph ref. 2424 ??czy rzymski bezel, stal i gum? z praktycznym kwarcowym chronografem."
+  },
+  "verificationNote": "Rok, stan i dok?adna referencja konkretnego egzemplarza powinny zosta? potwierdzone dokumentami, numerem seryjnym lub ogl?dzinami zegarmistrza przed publikacj? sprzeda?ow?."
+}

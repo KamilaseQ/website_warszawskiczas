@@ -1,0 +1,52 @@
+{
+  "slug": "omega-czarna-tarcza",
+  "brand": "Omega",
+  "model": "Constellation Manhattan Day-Date Quartz",
+  "displayName": "Omega Constellation Manhattan Day-Date Quartz",
+  "reference": "396.1070 / 396.1080 - do potwierdzenia",
+  "referenceStatus": "rozpoznanie wysokiej pewno?ci dla wariantu Day-Date; dok?adna ref. wymaga dekla",
+  "year": "oko?o 1980-1990, do potwierdzenia",
+  "condition": "dobry, widoczne ?lady u?ytkowania na bezelu i kopercie",
+  "material": "stal nierdzewna, mo?liwy bezel z elementem z?ota w zale?no?ci od referencji",
+  "character": "vintage Manhattan z podw?jnym kalendarzem",
+  "shortDescription": "Omega Constellation Manhattan Day-Date z czarn? tarcz? wyr??nia si? dwoma subtarczzami kalendarza i smuk?ym kwarcowym profilem.",
+  "curiosityQuote": "W tej konfiguracji Constellation ??czy elegancki profil z funkcjonalnym, niemal instrumentowym uk?adem dnia i daty.",
+  "parameters": {
+    "rok": "ok. 1980-1990, do potwierdzenia",
+    "stan": "dobry, ocena wst?pna ze zdj??",
+    "materia?": "stal / stal-z?oto, do potwierdzenia",
+    "referencja": "396.1070 / 396.1080 - do potwierdzenia"
+  },
+  "history": "Wersje Day-Date Constellation Manhattan nale?? do najbardziej charakterystycznych odmian tej linii z lat 80. i 90. Kwarcowy kaliber pozwala? zachowa? bardzo smuk?? kopert?, a osobne wskazania dnia tygodnia i daty nada?y tarczy techniczny, kolekcjonerski charakter.",
+  "sourceUrls": [
+    "https://everywatch.com/omega/constellation-day-date/watch-31606124",
+    "https://www.chrono24.com/omega/constellation--id46062532.htm"
+  ],
+  "status": "dost?pny",
+  "price": "cena na zapytanie",
+  "images": [
+    {
+      "shot": "Front",
+      "src": "images/omega-czarna-tarcza/front.jpg",
+      "width": 1765,
+      "height": 2358
+    },
+    {
+      "shot": "Left",
+      "src": "images/omega-czarna-tarcza/left.jpg",
+      "width": 1636,
+      "height": 2186
+    },
+    {
+      "shot": "Right",
+      "src": "images/omega-czarna-tarcza/right.jpg",
+      "width": 1898,
+      "height": 2536
+    }
+  ],
+  "seo": {
+    "title": "Omega Constellation Manhattan Day-Date Quartz - Warszawski Czas",
+    "description": "Omega Constellation Manhattan Day-Date z czarn? tarcz? wyr??nia si? dwoma subtarczzami kalendarza i smuk?ym kwarcowym profilem."
+  },
+  "verificationNote": "Rok, stan i dok?adna referencja konkretnego egzemplarza powinny zosta? potwierdzone dokumentami, numerem seryjnym lub ogl?dzinami zegarmistrza przed publikacj? sprzeda?ow?."
+}

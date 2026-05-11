@@ -1,0 +1,46 @@
+{
+  "slug": "rolex-daytona-panda",
+  "brand": "Rolex",
+  "model": "Cosmograph Daytona White Dial",
+  "displayName": "Rolex Cosmograph Daytona White Dial",
+  "reference": "116500LN - do potwierdzenia",
+  "referenceStatus": "rozpoznanie wysokiej pewno?ci po bia?ej tarczy, czarnym ceramicznym bezele i uk?adzie wsp??czesnej Daytony",
+  "year": "2016-2023, rocznik egzemplarza do potwierdzenia",
+  "condition": "bardzo dobry, ocena wst?pna ze zdj??",
+  "material": "stal Oystersteel, czarny ceramiczny bezel Cerachrom, bransoleta Oyster",
+  "character": "ikoniczny chronograf sportowy",
+  "shortDescription": "Rolex Cosmograph Daytona 116500LN z bia?? tarcz? to jeden z najbardziej po??danych stalowych chronograf?w wsp??czesnego rynku luksusowego.",
+  "curiosityQuote": "Kontrast bia?ej tarczy i czarnego bezela da? Daytonie przydomek, kt?ry natychmiast sta? si? j?zykiem kolekcjoner?w.",
+  "parameters": {
+    "rok": "2016-2023, rocznik egzemplarza do potwierdzenia",
+    "stan": "bardzo dobry, ocena wst?pna ze zdj??",
+    "materia?": "stal Oystersteel, czarny ceramiczny bezel Cerachrom, bransoleta Oyster",
+    "referencja": "116500LN - do potwierdzenia"
+  },
+  "history": "Daytona powsta?a jako chronograf dla kierowc?w wy?cigowych, a wsp??czesna referencja 116500LN wprowadzi?a czarny ceramiczny bezel Cerachrom do stalowej wersji. Model korzysta z automatycznego kalibru 4130, ma skal? tachymetryczn? na lunecie i uk?ad licznik?w, kt?ry sta? si? jednym z najwa?niejszych kod?w wizualnych Rolexa.",
+  "sourceUrls": [
+    "https://www.rolex.com/watches/cosmograph-daytona",
+    "https://www.chrono24.com/rolex/ref-116500ln.htm"
+  ],
+  "status": "dost?pny",
+  "price": "cena na zapytanie",
+  "images": [
+    {
+      "shot": "Front",
+      "src": "images/rolex-daytona-panda/front.jpg"
+    },
+    {
+      "shot": "Lewy profil",
+      "src": "images/rolex-daytona-panda/lewo.jpg"
+    },
+    {
+      "shot": "Prawy profil",
+      "src": "images/rolex-daytona-panda/prawo.jpg"
+    }
+  ],
+  "seo": {
+    "title": "Rolex Cosmograph Daytona White Dial - Warszawski Czas",
+    "description": "Rolex Cosmograph Daytona 116500LN z bia?? tarcz? to jeden z najbardziej po??danych stalowych chronograf?w wsp??czesnego rynku luksusowego."
+  },
+  "verificationNote": "Rok, stan i dok?adna referencja konkretnego egzemplarza powinny zosta? potwierdzone dokumentami, numerem seryjnym lub ogl?dzinami zegarmistrza przed publikacj? sprzeda?ow?."
+}

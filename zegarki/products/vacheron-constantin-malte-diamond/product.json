@@ -1,0 +1,46 @@
+{
+  "slug": "vacheron-constantin-malte-diamond",
+  "brand": "Vacheron Constantin",
+  "model": "Malte Diamond",
+  "displayName": "Vacheron Constantin Malte Diamond",
+  "reference": "do potwierdzenia",
+  "referenceStatus": "rozpoznanie jako linia Malte / tonneau wysokiej pewno?ci; dok?adna referencja wymaga potwierdzenia po deklu",
+  "year": "lata 2000-2010, do potwierdzenia",
+  "condition": "bardzo dobry, ocena wst?pna ze zdj??",
+  "material": "z?oto lub bia?e z?oto, diamenty, tarcza guilloche, pasek sk?rzany",
+  "character": "jubilerski dress watch",
+  "shortDescription": "Vacheron Constantin Malte Diamond ??czy kszta?t tonneau, giloszowan? tarcz? i dyskretn? opraw? diamentow? w klasycznym zegarku wieczorowym.",
+  "curiosityQuote": "Tonneau Vacherona ma w sobie mi?kko?? bi?uterii, ale zachowuje porz?dek tradycyjnego zegarmistrzostwa genewskiego.",
+  "parameters": {
+    "rok": "lata 2000-2010, do potwierdzenia",
+    "stan": "bardzo dobry, ocena wst?pna ze zdj??",
+    "materia?": "z?oto lub bia?e z?oto, diamenty, tarcza guilloche, pasek sk?rzany",
+    "referencja": "do potwierdzenia"
+  },
+  "history": "Kolekcja Malte jest jedn? z linii, w kt?rych Vacheron Constantin rozwija? nieokr?g?e koperty i bardziej dekoracyjne wyko?czenia. Egzemplarz ze zdj?? ma wyd?u?on? kopert? tonneau, diamentowe boki, rzymskie cyfry 12 i 6 oraz giloszowan? tarcz?, co lokuje go po stronie eleganckich, jubilerskich modeli maison.",
+  "sourceUrls": [
+    "https://www.vacheron-constantin.com/",
+    "https://www.chrono24.com/vacheronconstantin/malte.htm"
+  ],
+  "status": "dost?pny",
+  "price": "cena na zapytanie",
+  "images": [
+    {
+      "shot": "Front",
+      "src": "images/vacheron-constantin-malte-diamond/front.jpg"
+    },
+    {
+      "shot": "Lewy profil",
+      "src": "images/vacheron-constantin-malte-diamond/lewo.jpg"
+    },
+    {
+      "shot": "Prawy profil",
+      "src": "images/vacheron-constantin-malte-diamond/prawo.jpg"
+    }
+  ],
+  "seo": {
+    "title": "Vacheron Constantin Malte Diamond - Warszawski Czas",
+    "description": "Vacheron Constantin Malte Diamond ??czy kszta?t tonneau, giloszowan? tarcz? i dyskretn? opraw? diamentow? w klasycznym zegarku wieczorowym."
+  },
+  "verificationNote": "Rok, stan i dok?adna referencja konkretnego egzemplarza powinny zosta? potwierdzone dokumentami, numerem seryjnym lub ogl?dzinami zegarmistrza przed publikacj? sprzeda?ow?."
+}

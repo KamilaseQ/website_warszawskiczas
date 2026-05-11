@@ -1,0 +1,52 @@
+{
+  "slug": "chopard-tourbillon",
+  "brand": "Chopard",
+  "model": "L.U.C Tourbillon 8 Jours",
+  "displayName": "Chopard L.U.C Tourbillon 8 Jours",
+  "reference": "16/8502 lub 16/8963 - do potwierdzenia",
+  "referenceStatus": "rozpoznanie funkcji i rodziny wysokiej pewno?ci; dok?adna referencja wymaga dokument?w lub czytelnego dekla",
+  "year": "oko?o 2004-2006, do potwierdzenia",
+  "condition": "dobry / bardzo dobry, ocena wst?pna ze zdj??",
+  "material": "bia?y metal szlachetny lub stal, pasek aligatorowy",
+  "character": "haute horlogerie z tourbillonem i 8-dniow? rezerw?",
+  "shortDescription": "Chopard L.U.C Tourbillon 8 Jours to zegarek wysokiej komplikacji z rezerw? chodu na osiem dni i widocznym tourbillonem na godzinie 6.",
+  "curiosityQuote": "Osiem dni rezerwy chodu i tourbillon w jednym zegarku pokazuj? ambicj? Chopard Manufacture z pocz?tk?w linii L.U.C.",
+  "parameters": {
+    "rok": "ok. 2004-2006, do potwierdzenia",
+    "stan": "dobry / bardzo dobry, ocena wst?pna ze zdj??",
+    "materia?": "bia?y metal szlachetny lub stal, sk?ra aligatora",
+    "referencja": "16/8502 lub 16/8963 - do potwierdzenia"
+  },
+  "history": "Kolekcja L.U.C powsta?a jako manufakturowa odpowied? Chopard na wielk? tradycj? zegarmistrzowsk?. Tourbillony L.U.C wykorzystywa?y wielob?bnow? architektur? Quattro, daj?c? bardzo d?ug? rezerw? chodu, a otwarcie tarczy przy godzinie 6 eksponowa?o jedn? z najbardziej presti?owych komplikacji mechanicznych.",
+  "sourceUrls": [
+    "https://www.collectorsquare.com/en/watches/chopard/l.u.c-tourbillon/lpi",
+    "https://objects-prod.cdn.chopard.com/PDFs/manuals-customer-service/Instruction_manual_LUC_Complications_2023.pdf"
+  ],
+  "status": "dost?pny",
+  "price": "cena na zapytanie",
+  "images": [
+    {
+      "shot": "Front",
+      "src": "images/chopard-tourbillon/front.jpg",
+      "width": 1837,
+      "height": 2454
+    },
+    {
+      "shot": "Left",
+      "src": "images/chopard-tourbillon/left.jpg",
+      "width": 1879,
+      "height": 2510
+    },
+    {
+      "shot": "Right",
+      "src": "images/chopard-tourbillon/right.jpg",
+      "width": 1764,
+      "height": 2357
+    }
+  ],
+  "seo": {
+    "title": "Chopard L.U.C Tourbillon 8 Jours - Warszawski Czas",
+    "description": "Chopard L.U.C Tourbillon 8 Jours to zegarek wysokiej komplikacji z rezerw? chodu na osiem dni i widocznym tourbillonem na godzinie 6."
+  },
+  "verificationNote": "Rok, stan i dok?adna referencja konkretnego egzemplarza powinny zosta? potwierdzone dokumentami, numerem seryjnym lub ogl?dzinami zegarmistrza przed publikacj? sprzeda?ow?."
+}

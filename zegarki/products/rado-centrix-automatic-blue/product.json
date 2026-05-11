@@ -1,0 +1,42 @@
+{
+  "slug": "rado-centrix-automatic-blue",
+  "brand": "Rado",
+  "model": "Centrix Automatic Blue Dial",
+  "displayName": "Rado Centrix Automatic Blue Dial",
+  "reference": "R30030 / wariant do potwierdzenia",
+  "referenceStatus": "rozpoznanie kolekcji wysokiej pewno?ci; referencja zale?y od ?rednicy i bransolety",
+  "year": "lata 2010-2020, do potwierdzenia",
+  "condition": "bardzo dobry, ocena wst?pna ze zdj??",
+  "material": "stal nierdzewna i ceramika high-tech, niebieska tarcza, bransoleta",
+  "character": "nowoczesny zegarek codzienny",
+  "shortDescription": "Rado Centrix Automatic z niebiesk? tarcz? ??czy smuk?? kopert? z ceramiczn? bransolet? i spokojnym, wsp??czesnym charakterem.",
+  "curiosityQuote": "Centrix pokazuje specjalno?? Rado: luksus codzienny oparty bardziej na materiale i wygodzie ni? na ostentacji.",
+  "parameters": {
+    "rok": "lata 2010-2020, do potwierdzenia",
+    "stan": "bardzo dobry, ocena wst?pna ze zdj??",
+    "materia?": "stal nierdzewna i ceramika high-tech, niebieska tarcza, bransoleta",
+    "referencja": "R30030 / wariant do potwierdzenia"
+  },
+  "history": "Rado od lat buduje to?samo?? wok?? ceramiki high-tech i odpornych materia??w. Centrix jest jedn? z najbardziej uniwersalnych linii marki: zw??aj?ca si? bransoleta, prosta tarcza i automatyczny mechanizm daj? zegarek ?atwy do noszenia na co dzie?, a niebieski kolor dodaje mu bardziej wsp??czesnej prezencji.",
+  "sourceUrls": [
+    "https://www.rado.com/",
+    "https://www.rado.com/en_us/centrix.html"
+  ],
+  "status": "dost?pny",
+  "price": "cena na zapytanie",
+  "images": [
+    {
+      "shot": "Front",
+      "src": "images/rado-centrix-automatic-blue/front.jpg"
+    },
+    {
+      "shot": "Lewy profil",
+      "src": "images/rado-centrix-automatic-blue/lewo.jpg"
+    }
+  ],
+  "seo": {
+    "title": "Rado Centrix Automatic Blue Dial - Warszawski Czas",
+    "description": "Rado Centrix Automatic z niebiesk? tarcz? ??czy smuk?? kopert? z ceramiczn? bransolet? i spokojnym, wsp??czesnym charakterem."
+  },
+  "verificationNote": "Rok, stan i dok?adna referencja konkretnego egzemplarza powinny zosta? potwierdzone dokumentami, numerem seryjnym lub ogl?dzinami zegarmistrza przed publikacj? sprzeda?ow?."
+}

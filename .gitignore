@@ -1,0 +1,16 @@
+﻿node_modules
+.next
+out
+
+.env
+.env.local
+.env.*.local
+
+*.log
+*.tsbuildinfo
+.pnpm-store
+.pnpm-debug.log*
+npm-debug.log*
+
+.DS_Store
+Thumbs.db
