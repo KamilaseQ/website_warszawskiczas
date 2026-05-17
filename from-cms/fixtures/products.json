@@ -1,33 +1,4 @@
-export interface Product {
-  id: string
-  slug: string
-  name: string
-  brand: string
-  category: 'zegarki' | 'bizuteria' | 'akcesoria'
-  /** Materiał koperty / bransolety / paska. */
-  material?: string
-  reference?: string
-  /** Rozmiar koperty (np. "40 mm" lub "32 × 45 mm" przy prostokątnych/tonneau). */
-  caseSize?: string
-  /** Rok egzemplarza. */
-  year?: number | string
-  condition?: string
-  price?: number
-  priceOnRequest?: boolean
-  isNew?: boolean
-  isExclusive?: boolean
-  featured?: boolean
-  status?: 'Dostępny' | 'Zarezerwowany' | 'Niedostępny'
-  /** Lista ścieżek zdjęć produktowych w `/public`. Pierwsze = obraz główny. */
-  images?: string[]
-  description: string
-  editorial?: string
-  story?: string
-}
-
-const img = (slug: string, files: string[]) => files.map((f) => `/products/${slug}/${f}`)
-
-export const mockProducts: Product[] = [
+[
   {
     "id": "1",
     "slug": "breitling-niebieski",
@@ -40,7 +11,11 @@ export const mockProducts: Product[] = [
     "condition": "Bardzo dobry, drobne ślady użytkowania na bezelu i kopercie",
     "priceOnRequest": true,
     "status": "Dostępny",
-    "images": ["/products/breitling-niebieski/front.jpg", "/products/breitling-niebieski/left.jpg", "/products/breitling-niebieski/right.jpg"],
+    "images": [
+      "/products/breitling-niebieski/front.jpg",
+      "/products/breitling-niebieski/left.jpg",
+      "/products/breitling-niebieski/right.jpg"
+    ],
     "description": "Breitling Superocean Heritage B20 Automatic 42 z niebieską tarczą — klasyczny styl nurkowy lat 50. w nowoczesnym, manufakturowym wydaniu.",
     "editorial": "Superocean Heritage B20 Automatic 42 łączy estetykę pierwszych nurkowych Breitlingów z 1957 roku z certyfikowanym kalibrem chronometru i 70-godzinną rezerwą chodu. Niebieska ceramika i stalowa siatka tworzą zegarek, który wygląda naturalnie zarówno przy wodzie, jak i pod mankietem marynarki.",
     "story": "Superocean Heritage czerpie z pierwszych nurkowych Breitlingów z 1957 roku, ale w wersji B20 Automatic 42 korzysta z nowoczesnego, certyfikowanego chronometru z około 70-godzinną rezerwą chodu. Trójkątne wskazówki, szeroki bezel i bransoleta mesh budują rozpoznawalny most między zegarkiem narzędziowym a eleganckim zegarkiem codziennym."
@@ -57,7 +32,11 @@ export const mockProducts: Product[] = [
     "condition": "Dobry / bardzo dobry, normalne ślady użytkowania",
     "priceOnRequest": true,
     "status": "Dostępny",
-    "images": ["/products/breitling-rozowe-zloto/front.jpg", "/products/breitling-rozowe-zloto/left.jpg", "/products/breitling-rozowe-zloto/right.jpg"],
+    "images": [
+      "/products/breitling-rozowe-zloto/front.jpg",
+      "/products/breitling-rozowe-zloto/left.jpg",
+      "/products/breitling-rozowe-zloto/right.jpg"
+    ],
     "description": "Breitling Chronomat Evolution w złotej tonacji i z tarczą mother-of-pearl — masywny chronograf lotniczy w jubilerskim wydaniu.",
     "editorial": "To Chronomat z epoki, w której techniczny chronograf Breitlinga nabrał ostentacyjnie luksusowego charakteru. Wersja z masą perłową i złotem przenosi sportowe DNA kolekcji w stronę zegarka statusowego, zachowując mocną kopertę i obrotowy bezel.",
     "story": "Chronomat Evolution był rozwinięciem flagowej linii Breitlinga stworzonej z myślą o profesjonalnych chronografach. Wersje z kalibrem Breitling 13 łączyły automatyczny chronograf, datę, obrotowy bezel i mocną kopertę, a warianty z masą perłową i złotem przenosiły sportowe DNA kolekcji w stronę zegarka statusowego."
@@ -75,7 +54,12 @@ export const mockProducts: Product[] = [
     "priceOnRequest": true,
     "isNew": true,
     "status": "Dostępny",
-    "images": ["/products/bvlgari/front.jpg", "/products/bvlgari/left.jpg", "/products/bvlgari/right.jpg", "/products/bvlgari/back.jpg"],
+    "images": [
+      "/products/bvlgari/front.jpg",
+      "/products/bvlgari/left.jpg",
+      "/products/bvlgari/right.jpg",
+      "/products/bvlgari/back.jpg"
+    ],
     "description": "Bvlgari Bvlgari BB41SPG to stalowo-złoty automat 41 mm z charakterystycznym podwójnym logo na bezelu.",
     "editorial": "Podpis na bezelu jest tu elementem projektu, nie dodatkiem — Bvlgari zrobiło z nazwy marki ornament. Koperta 41 mm, automatyczny mechanizm BVL 191 widoczny przez przeszklony dekiel i dwukolorowa bransoleta utrzymują linię między biżuterią a zegarkiem codziennym.",
     "story": "Linia Bvlgari Bvlgari wywodzi się z estetyki rzymskich monet, gdzie inskrypcja biegnie po obwodzie. W referencji BB41SPG ten motyw łączy się z nowoczesną kopertą 41 mm, automatycznym mechanizmem BVL 191 widocznym przez przeszklony dekiel oraz dwukolorową bransoletą."
@@ -93,7 +77,11 @@ export const mockProducts: Product[] = [
     "priceOnRequest": true,
     "isExclusive": true,
     "status": "Dostępny",
-    "images": ["/products/bvlgari-diamenty/front.jpg", "/products/bvlgari-diamenty/left.jpg", "/products/bvlgari-diamenty/right.jpg"],
+    "images": [
+      "/products/bvlgari-diamenty/front.jpg",
+      "/products/bvlgari-diamenty/left.jpg",
+      "/products/bvlgari-diamenty/right.jpg"
+    ],
     "description": "Bvlgari Bvlgari z perłową tarczą i diamentowymi indeksami — subtelna, biżuteryjna interpretacja rzymskiego klasyka marki.",
     "editorial": "Najbardziej rozpoznawalnym detalem nie jest tu koronka ani indeksy, lecz pełny napis BVLGARI BVLGARI na stalowym pierścieniu. Masa perłowa i diamentowe indeksy wzmacniają jubilerski charakter, ale pozostawiają czytelny, oszczędny układ dwóch wskazówek.",
     "story": "Zegarki Bvlgari Bvlgari są projektowane jak biżuteria użytkowa: prosta tarcza zostaje oprawiona w mocny, graficzny bezel z nazwą marki. Wariant z masą perłową i diamentowymi indeksami wzmacnia jubilerski charakter, ale pozostawia czytelny, oszczędny układ dwóch wskazówek."
@@ -110,7 +98,12 @@ export const mockProducts: Product[] = [
     "condition": "Dobry / bardzo dobry, widoczne ślady użytkowania na bezelu",
     "priceOnRequest": true,
     "status": "Dostępny",
-    "images": ["/products/cartier/front.jpg", "/products/cartier/left.jpg", "/products/cartier/right.jpg", "/products/cartier/back.jpg"],
+    "images": [
+      "/products/cartier/front.jpg",
+      "/products/cartier/left.jpg",
+      "/products/cartier/right.jpg",
+      "/products/cartier/back.jpg"
+    ],
     "description": "Cartier Must 21 Chronoscaph ref. 2424 łączy rzymski bezel, stal i gumę z praktycznym kwarcowym chronografem.",
     "editorial": "Chronoscaph pokazuje mniej formalną stronę Cartiera — nadal z rzymskimi cyframi, ale w rytmie sportowego chronografu. Bezel z cyframi i kaboszonowa koronka pozostają czytelnie cartierowskie, a chronograf, data i mieszana bransoleta dodają codziennego, dynamicznego charakteru.",
     "story": "Must 21 Chronoscaph należy do okresu, w którym Cartier łączył własny język projektowy z bardziej sportową konstrukcją. Bezel z rzymskimi cyframi i kaboszonowa koronka pozostają czytelnie cartierowskie, a chronograf, data i mieszana bransoleta stalowo-gumowa nadają mu codzienny, dynamiczny charakter."
@@ -128,7 +121,12 @@ export const mockProducts: Product[] = [
     "priceOnRequest": true,
     "isExclusive": true,
     "status": "Dostępny",
-    "images": ["/products/chopard-full-diamenty/front.jpg", "/products/chopard-full-diamenty/left.jpg", "/products/chopard-full-diamenty/right.jpg", "/products/chopard-full-diamenty/little-right.jpg"],
+    "images": [
+      "/products/chopard-full-diamenty/front.jpg",
+      "/products/chopard-full-diamenty/left.jpg",
+      "/products/chopard-full-diamenty/right.jpg",
+      "/products/chopard-full-diamenty/little-right.jpg"
+    ],
     "description": "Chopard Happy Sport Chronograph 288499 — sportowy chronograf z ruchomymi diamentami i mocną oprawą kamieni.",
     "editorial": "Ruchome diamenty Happy Sport sprawiają, że tarcza nigdy nie wygląda dokładnie tak samo dwa razy. W wersji chronograf 42 mm model nabiera bardziej sportowego charakteru, a rozbudowana oprawa kamieni przenosi go w obszar wysokiej biżuterii.",
     "story": "Happy Sport to jedna z najbardziej rozpoznawalnych koncepcji Chopard: diamenty poruszają się swobodnie pomiędzy szafirowymi taflami nad tarczą. W wersji chronograf 42 mm model nabiera bardziej sportowego charakteru, a rozbudowana oprawa diamentowa przenosi go w obszar wysokiej biżuterii."
@@ -146,7 +144,11 @@ export const mockProducts: Product[] = [
     "priceOnRequest": true,
     "isExclusive": true,
     "status": "Dostępny",
-    "images": ["/products/chopard-tourbillon/front.jpg", "/products/chopard-tourbillon/left.jpg", "/products/chopard-tourbillon/right.jpg"],
+    "images": [
+      "/products/chopard-tourbillon/front.jpg",
+      "/products/chopard-tourbillon/left.jpg",
+      "/products/chopard-tourbillon/right.jpg"
+    ],
     "description": "Chopard L.U.C Tourbillon 8 Jours — zegarek wysokiej komplikacji z 8-dniową rezerwą chodu i widocznym tourbillonem na godzinie 6.",
     "editorial": "Osiem dni rezerwy chodu i tourbillon w jednym zegarku pokazują ambicję Chopard Manufacture z początków linii L.U.C. Wielobębnowa architektura Quattro daje rzadko spotykaną autonomię, a otwarcie tarczy przy godzinie 6 eksponuje jedną z najbardziej prestiżowych komplikacji mechanicznych.",
     "story": "Kolekcja L.U.C powstała jako manufakturowa odpowiedź Chopard na wielką tradycję zegarmistrzowską. Tourbillony L.U.C wykorzystywały wielobębnową architekturę Quattro, dającą bardzo długą rezerwę chodu, a otwarcie tarczy przy godzinie 6 eksponowało jedną z najbardziej prestiżowych komplikacji mechanicznych."
@@ -163,7 +165,11 @@ export const mockProducts: Product[] = [
     "condition": "Dobry / bardzo dobry",
     "priceOnRequest": true,
     "status": "Dostępny",
-    "images": ["/products/chopard-zielony/front.jpg", "/products/chopard-zielony/left.jpg", "/products/chopard-zielony/right.jpg"],
+    "images": [
+      "/products/chopard-zielony/front.jpg",
+      "/products/chopard-zielony/left.jpg",
+      "/products/chopard-zielony/right.jpg"
+    ],
     "description": "Chopard Imperiale Chronograph z zielonym paskiem i diamentową oprawą — cesarskie inspiracje kolekcji w wydaniu funkcjonalnego stopera.",
     "editorial": "Imperiale korzysta z detali kojarzonych z insygniami władzy — od kolumnowych uszu po kaboszony na koronce i przyciskach. W chronografie z oprawą diamentową i perłową tarczą sportowa funkcja staje się częścią biżuteryjnej kompozycji.",
     "story": "Imperiale jest najbardziej ceremonialną z codziennych linii Chopard: geometryczne uszy, kaboszony i rzymskie akcenty odnoszą się do estetyki dawnych insygniów. W chronografie z oprawą diamentową i perłową tarczą sportowa funkcja staje się częścią biżuteryjnej kompozycji."
@@ -180,7 +186,12 @@ export const mockProducts: Product[] = [
     "condition": "Dobry / bardzo dobry",
     "priceOnRequest": true,
     "status": "Dostępny",
-    "images": ["/products/chronoswiss/front.jpg", "/products/chronoswiss/left.jpg", "/products/chronoswiss/right.jpg", "/products/chronoswiss/back.jpg"],
+    "images": [
+      "/products/chronoswiss/front.jpg",
+      "/products/chronoswiss/left.jpg",
+      "/products/chronoswiss/right.jpg",
+      "/products/chronoswiss/back.jpg"
+    ],
     "description": "Chronoswiss Régulateur CH 1223 z czarną tarczą prezentuje czas w historycznym układzie regulatora — z osobną godziną, minutą i sekundą.",
     "editorial": "W regulatorze najważniejsza jest minuta — dlatego centralna wskazówka prowadzi odczyt, a godziny i sekundy mają własne subtarcze. Karbowana luneta i cebulkowa koronka podkreślają zegarmistrzowski rodowód formy.",
     "story": "Chronoswiss zbudował swoją rozpoznawalność na przeniesieniu koncepcji zegara regulatorowego na zegarek naręczny. Model CH 1223 zachowuje karbowaną lunetę, cebulkową koronkę i porządek tarczy, który celowo rozdziela wskazania, aby podkreślić zegarmistrzowski rodowód formy."
@@ -197,7 +208,11 @@ export const mockProducts: Product[] = [
     "condition": "Bardzo dobry",
     "price": 12500,
     "status": "Dostępny",
-    "images": ["/products/frederique-constant/front.jpg", "/products/frederique-constant/left.jpg", "/products/frederique-constant/right.jpg"],
+    "images": [
+      "/products/frederique-constant/front.jpg",
+      "/products/frederique-constant/left.jpg",
+      "/products/frederique-constant/right.jpg"
+    ],
     "description": "Frederique Constant FC-705N4S6 z niebieską tarczą, datownikiem wskazówkowym i fazami księżyca w smukłej kopercie manufacture.",
     "editorial": "To zegarek, który wygląda klasycznie, ale sercem jest manufakturowy kaliber FC-705 z komplikacją faz księżyca. Granatowa tarcza i zintegrowane wskazanie daty z fazą księżyca na godzinie 6 budują spokojną, garniturową kompozycję.",
     "story": "Slimline Moonphase Manufacture jest przykładem strategii Frederique Constant: oferować klasyczne komplikacje w przystępniejszym, ale nadal eleganckim wydaniu. Referencja FC-705N4S6 wyróżnia się granatową tarczą oraz zintegrowanym wskazaniem daty i fazy księżyca na godzinie 6."
@@ -214,7 +229,11 @@ export const mockProducts: Product[] = [
     "condition": "Dobry, widoczne ślady użytkowania na kopercie i bezelu",
     "price": 6800,
     "status": "Dostępny",
-    "images": ["/products/omega-biala-tarcza/front.jpg", "/products/omega-biala-tarcza/left.jpg", "/products/omega-biala-tarcza/right.jpg"],
+    "images": [
+      "/products/omega-biala-tarcza/front.jpg",
+      "/products/omega-biala-tarcza/left.jpg",
+      "/products/omega-biala-tarcza/right.jpg"
+    ],
     "description": "Omega Constellation Manhattan z jasną tarczą i zintegrowaną bransoletą — elegancki kwarcowy klasyk z charakterystycznymi pazurami koperty.",
     "editorial": "Cztery pazury Constellation Manhattan zaczęły jako element konstrukcyjny, a stały się jednym z najbardziej rozpoznawalnych znaków Omegi. Jasna tarcza, rzymski bezel i zintegrowana bransoleta tworzą dyskretny, codzienny wariant tej stylistyki.",
     "story": "Constellation Manhattan zadebiutował w 1982 roku i zmienił elegancką linię Omegi w zegarek o mocnej, architektonicznej kopercie. Jasna tarcza, rzymski bezel i zintegrowana bransoleta tworzą dyskretny, codzienny wariant tej stylistyki."
@@ -231,7 +250,11 @@ export const mockProducts: Product[] = [
     "condition": "Dobry, widoczne ślady użytkowania na bezelu i kopercie",
     "price": 5400,
     "status": "Dostępny",
-    "images": ["/products/omega-czarna-tarcza/front.jpg", "/products/omega-czarna-tarcza/left.jpg", "/products/omega-czarna-tarcza/right.jpg"],
+    "images": [
+      "/products/omega-czarna-tarcza/front.jpg",
+      "/products/omega-czarna-tarcza/left.jpg",
+      "/products/omega-czarna-tarcza/right.jpg"
+    ],
     "description": "Omega Constellation Manhattan Day-Date z czarną tarczą — dwie subtarcze kalendarza i smukły kwarcowy profil.",
     "editorial": "W tej konfiguracji Constellation łączy elegancki profil z funkcjonalnym, niemal instrumentowym układem dnia i daty. Smukła kwarcowa koperta i osobne wskazania nadają tarczy techniczny, kolekcjonerski charakter.",
     "story": "Wersje Day-Date Constellation Manhattan należą do najbardziej charakterystycznych odmian tej linii z lat 80. i 90. Kwarcowy kaliber pozwalał zachować bardzo smukłą kopertę, a osobne wskazania dnia tygodnia i daty nadały tarczy techniczny, kolekcjonerski charakter."
@@ -248,7 +271,10 @@ export const mockProducts: Product[] = [
     "condition": "Dobry / bardzo dobry, drobne ślady na bezelu",
     "priceOnRequest": true,
     "status": "Dostępny",
-    "images": ["/products/piaget/front.jpg", "/products/piaget/right.jpg"],
+    "images": [
+      "/products/piaget/front.jpg",
+      "/products/piaget/right.jpg"
+    ],
     "description": "Piaget Possession z białym paskiem i obrotowym pierścieniem — minimalistyczna biżuteria zegarkowa z jednym diamentowym akcentem.",
     "editorial": "W Possession najważniejszy jest ruch pierścienia — mały, dotykowy gest, który odróżnia zegarek od klasycznej biżuterii. Oszczędna tarcza i miękka koperta budują przedmiot bliższy luksusowej bransolecie niż klasycznemu zegarkowi narzędziowemu.",
     "story": "Possession przenosi motyw obrotowego pierścienia z biżuterii Piageta do zegarka. Oszczędna tarcza, miękka koperta i ruchomy detal z diamentem tworzą przedmiot bliższy luksusowej bransolecie niż klasycznemu zegarkowi narzędziowemu."
@@ -265,7 +291,11 @@ export const mockProducts: Product[] = [
     "condition": "Dobry / bardzo dobry, drobne ślady użytkowania",
     "price": 18900,
     "status": "Dostępny",
-    "images": ["/products/tag-heuer/front.jpg", "/products/tag-heuer/left.jpg", "/products/tag-heuer/right.jpg"],
+    "images": [
+      "/products/tag-heuer/front.jpg",
+      "/products/tag-heuer/left.jpg",
+      "/products/tag-heuer/right.jpg"
+    ],
     "description": "TAG Heuer Grand Carrera CAV5186.FC6304 to tytanowy chronograf Calibre 36 z systemem Caliper do odczytu 1/10 sekundy.",
     "editorial": "Calibre 36 bazuje na idei wysokiej częstotliwości 36 000 wahnięć na godzinę, dzięki czemu chronograf może mierzyć dziesiąte części sekundy. Skala Caliper i system Rotating System inspirowane są deską rozdzielczą samochodu GT.",
     "story": "Grand Carrera Calibre 36 RS2 był pokazem technicznej strony TAG Heuera: zamiast klasycznych liczników wykorzystano system Rotating System i skalę Caliper, inspirowane deską rozdzielczą samochodu GT. Mechanizm Calibre 36 pracuje z wysoką częstotliwością, podkreślając sportowy rodowód marki."
@@ -282,7 +312,11 @@ export const mockProducts: Product[] = [
     "condition": "Dobry / bardzo dobry",
     "price": 14500,
     "status": "Dostępny",
-    "images": ["/products/wyler-geneva/front.jpg", "/products/wyler-geneva/left.jpg", "/products/wyler-geneva/right.jpg"],
+    "images": [
+      "/products/wyler-geneva/front.jpg",
+      "/products/wyler-geneva/left.jpg",
+      "/products/wyler-geneva/right.jpg"
+    ],
     "description": "Wyler Genève Code-R Chronograph — masywny, techniczny chronograf z amortyzowaną konstrukcją Incaflex i niebieskim paskiem gumowym.",
     "editorial": "Code-R wygląda jak zegarek zbudowany wokół koperty — śruby, mostki i amortyzacja są tu częścią języka projektu. Automatyczny chronograf bazujący na ETA 2894-2 dopełnia awangardowej, technicznej kompozycji.",
     "story": "Wyler Genève wskrzesił system Incaflex w nowoczesnej, bardzo dużej kopercie Code-R. Chronografy tej serii często korzystały z automatycznych kalibrów ETA 2894-2, miały datę, 100 m wodoszczelności i konstrukcję zaprojektowaną tak, by eksponować techniczny charakter zegarka."
@@ -299,7 +333,11 @@ export const mockProducts: Product[] = [
     "condition": "Bardzo dobry",
     "priceOnRequest": true,
     "status": "Dostępny",
-    "images": ["/products/audemars-piguet-royal-oak-automatic/front.jpg", "/products/audemars-piguet-royal-oak-automatic/lewo.jpg", "/products/audemars-piguet-royal-oak-automatic/prawo.jpg"],
+    "images": [
+      "/products/audemars-piguet-royal-oak-automatic/front.jpg",
+      "/products/audemars-piguet-royal-oak-automatic/lewo.jpg",
+      "/products/audemars-piguet-royal-oak-automatic/prawo.jpg"
+    ],
     "description": "Audemars Piguet Royal Oak Automatic ze srebrną tarczą tapisserie przenosi projekt Geralda Genty w elegancką, stalową formę na pasku skórzanym.",
     "editorial": "Ośmiokątny bezel i zintegrowana linia koperty sprawiły, że stalowy zegarek mógł stać się pełnoprawnym symbolem luksusu.",
     "story": "Royal Oak z 1972 roku przełamał granicę między zegarkiem sportowym a prestiżowym zegarkiem mechanicznym. Egzemplarz ze srebrną tarczą, datą na godzinie 3 i automatycznym naciągiem zachowuje najważniejsze cechy projektu: śruby w bezelu, szczotkowaną stal i geometryczną tarczą typu tapisserie."
@@ -316,7 +354,11 @@ export const mockProducts: Product[] = [
     "condition": "Dobry / bardzo dobry",
     "priceOnRequest": true,
     "status": "Dostępny",
-    "images": ["/products/breitling-chronomat-evolution-blue/front.jpg", "/products/breitling-chronomat-evolution-blue/lewo.jpg", "/products/breitling-chronomat-evolution-blue/prawo.jpg"],
+    "images": [
+      "/products/breitling-chronomat-evolution-blue/front.jpg",
+      "/products/breitling-chronomat-evolution-blue/lewo.jpg",
+      "/products/breitling-chronomat-evolution-blue/prawo.jpg"
+    ],
     "description": "Breitling Chronomat Evolution z niebieską tarczą to wyrazisty automatyczny chronograf o masywnej kopercie i technicznym charakterze.",
     "editorial": "Niebieska tarcza łagodzi narzędziową sylwetkę Chronomata, ale nie odbiera mu lotniczej energii.",
     "story": "Chronomat Evolution rozwijał najważniejszą współczesną linią Breitlinga: chronograf automatyczny, obracany bezel z rider tabs, czytelne liczniki i mocną kopertę. Ten wariant z rzymskimi indeksami i datą na godzinie 3 dobrze pokazuje okres, w którym Chronomat stać się jednym z najbardziej rozpoznawalnych luksusowych zegarków sportowych początku XXI wieku."
@@ -334,7 +376,11 @@ export const mockProducts: Product[] = [
     "priceOnRequest": true,
     "featured": true,
     "status": "Dostępny",
-    "images": ["/products/breitling-for-bentley-mulliner-perpetual-calendar/front.jpg", "/products/breitling-for-bentley-mulliner-perpetual-calendar/lewo.jpg", "/products/breitling-for-bentley-mulliner-perpetual-calendar/prawo.jpg"],
+    "images": [
+      "/products/breitling-for-bentley-mulliner-perpetual-calendar/front.jpg",
+      "/products/breitling-for-bentley-mulliner-perpetual-calendar/lewo.jpg",
+      "/products/breitling-for-bentley-mulliner-perpetual-calendar/prawo.jpg"
+    ],
     "description": "Breitling for Bentley Mulliner Perpetual Calendar łączy motoryzacyjny przepych linii Bentley z rozbudowanym kalendarzem wiecznym i fazą księżyca.",
     "editorial": "To Breitling z czasów, gdy współpraca z Bentleyem oznaczała nie tylko skalą i moc, ale też teatralną komplikacją na tarczy.",
     "story": "Linia Breitling for Bentley powstała po współpracy marki z Bentleyem przy Continental GT. Wersja Mulliner Perpetual Calendar należy do najbardziej złożonych modeli tej rodziny: pokazuje miesiąc, dzień, datą, fazą księżyca, cykl przestępny i wskazania 24-godzinne, zachowując charakter dużego, luksusowego chronografu inspirowanego światem grand tourerów."
@@ -351,7 +397,11 @@ export const mockProducts: Product[] = [
     "condition": "Dobry / bardzo dobry",
     "priceOnRequest": true,
     "status": "Dostępny",
-    "images": ["/products/cartier-mini-baignoire-czerwony/front.jpg", "/products/cartier-mini-baignoire-czerwony/lewo.jpg", "/products/cartier-mini-baignoire-czerwony/prawo.jpg"],
+    "images": [
+      "/products/cartier-mini-baignoire-czerwony/front.jpg",
+      "/products/cartier-mini-baignoire-czerwony/lewo.jpg",
+      "/products/cartier-mini-baignoire-czerwony/prawo.jpg"
+    ],
     "description": "Mały złoty Cartier z czarną tarczą i czerwonym paskiem ma charakter dyskretnej biżuterii, w której kolor gra równie mocno jak forma koperty.",
     "editorial": "Czerwony pasek zmienia klasyczny zegarek damski Cartiera w akcent, który działa jak detal haute couture.",
     "story": "Cartier od dekad buduje damskie zegarki na pograniczu jubilerstwa i wzornictwa użytkowego. Ten egzemplarz, widoczny na zdjęciach jako niewielka złota koperta z czarną tarczą, wymaga potwierdzenia dokładnej linii po deklu, ale estetycznie wpisuje się w małe modele Baignoire, Colisée i pokrewne projekty maison z przełomu lat 90. i 2000."
@@ -368,7 +418,12 @@ export const mockProducts: Product[] = [
     "condition": "Bardzo dobry",
     "priceOnRequest": true,
     "status": "Dostępny",
-    "images": ["/products/cartier-tank-americaine-diamond/front.jpg", "/products/cartier-tank-americaine-diamond/lewo.jpg", "/products/cartier-tank-americaine-diamond/prawo.jpg", "/products/cartier-tank-americaine-diamond/bardziej-lewo.jpg"],
+    "images": [
+      "/products/cartier-tank-americaine-diamond/front.jpg",
+      "/products/cartier-tank-americaine-diamond/lewo.jpg",
+      "/products/cartier-tank-americaine-diamond/prawo.jpg",
+      "/products/cartier-tank-americaine-diamond/bardziej-lewo.jpg"
+    ],
     "description": "Cartier Tank Américaine z czarną tarczą i diamentową lunetą łączy architekturą klasycznego Tanka z bardziej wydłużoną, wieczorową sylwetkę.",
     "editorial": "W Tank Américaine prostokąt Cartiera staje się smuklejszy, bardziej formalny i zdecydowanie bardziej salonowy.",
     "story": "Tank Américaine rozwija linią Tank Cintrée: wydłużona koperta, zakrzywiony profil i rzymska typografia zachowują DNA marki, ale nadają mu bardziej współczesne proporcje. Wersja z czarną tarczą, datą i oprawą diamentową jest propozycję katalogową dla klienta szukającego rozpoznawalnego Cartiera o wieczorowym charakterze."
@@ -385,7 +440,11 @@ export const mockProducts: Product[] = [
     "condition": "Bardzo dobry",
     "priceOnRequest": true,
     "status": "Dostępny",
-    "images": ["/products/chopard-monaco-historic-grand-prix/front.jpg", "/products/chopard-monaco-historic-grand-prix/lewo.jpg", "/products/chopard-monaco-historic-grand-prix/prawo.jpg"],
+    "images": [
+      "/products/chopard-monaco-historic-grand-prix/front.jpg",
+      "/products/chopard-monaco-historic-grand-prix/lewo.jpg",
+      "/products/chopard-monaco-historic-grand-prix/prawo.jpg"
+    ],
     "description": "Chopard Grand Prix de Monaco Historique Chronograph to zegarek z motoryzacyjnym temperamentem, podkreślony kontrastową tarczą i pomarańczowymi akcentami.",
     "editorial": "To Chopard dla osób, które wolą zapach padoku od ciszy gabloty, ale nadal oczekują szwajcarskiego wykończenia.",
     "story": "Chopard jest wieloletnim partnerem wyścigów Grand Prix de Monaco Historique, a kolekcja powstała jako hołd dla klasycznego motorsportu. Chronografy z tej serii korzystają z czytelnego układu liczników, skali tachymetrycznej i dynamicznych kolorów, dzięki czemu mają bardziej sportowy charakter niż biżuteryjne linie Happy Sport czy Imperiale."
@@ -402,7 +461,10 @@ export const mockProducts: Product[] = [
     "condition": "Bardzo dobry",
     "priceOnRequest": true,
     "status": "Dostępny",
-    "images": ["/products/franck-muller-vanguard-seven-days-skeleton/front.jpg", "/products/franck-muller-vanguard-seven-days-skeleton/lewo.jpg"],
+    "images": [
+      "/products/franck-muller-vanguard-seven-days-skeleton/front.jpg",
+      "/products/franck-muller-vanguard-seven-days-skeleton/lewo.jpg"
+    ],
     "description": "Franck Muller Vanguard Seven Days Skeleton pokazuje mechanizm jako główny element projektu, z czerwonymi akcentami i architekturą tarczy typową dla linii Vanguard.",
     "editorial": "W tym zegarku tarcza nie zasłania mechanizmu, tylko robi z niego scenę.",
     "story": "Franck Muller zbudował rozpoznawalność na odważnych kopertach Cintrée Curvex i komplikacjach pokazywanych w teatralny sposób. Vanguard jest bardziej sportową, współczesną interpretację tej filozofii: duża koperta tonneau, wyraziste indeksy kierunkowe i szkieletowany kaliber o siedmiodniowej rezerwie chodu tworzą zegarek zdecydowanie pokazowy."
@@ -419,7 +481,11 @@ export const mockProducts: Product[] = [
     "condition": "Bardzo dobry",
     "priceOnRequest": true,
     "status": "Dostępny",
-    "images": ["/products/maurice-lacroix-masterpiece-double-retrograde/front.jpg", "/products/maurice-lacroix-masterpiece-double-retrograde/lewo.jpg", "/products/maurice-lacroix-masterpiece-double-retrograde/prawo.jpg"],
+    "images": [
+      "/products/maurice-lacroix-masterpiece-double-retrograde/front.jpg",
+      "/products/maurice-lacroix-masterpiece-double-retrograde/lewo.jpg",
+      "/products/maurice-lacroix-masterpiece-double-retrograde/prawo.jpg"
+    ],
     "description": "Maurice Lacroix Masterpiece Double Rétrograde łączy klasyczną elegancję z widowiskową tarczą: datą retrograde, rezerwą chodu i fazą księżyca.",
     "editorial": "Retrogrady w Masterpiece działają jak mały spektakl mechaniki, który pozostaje czytelny mimo liczby wskazań.",
     "story": "Kolekcja Masterpiece była dla Maurice Lacroix przestrzenią na bardziej ambitne komplikacje mechaniczne. Double Rétrograde Phase de Lune łączy wskazanie daty po łuku, rezerwą chodu, dzień tygodnia i fazą księżyca, tworząc zegarek o charakterze klasycznym, ale technicznie bardziej złożonym niż standardowy trzywskazówkowiec."
@@ -436,7 +502,11 @@ export const mockProducts: Product[] = [
     "condition": "Bardzo dobry",
     "priceOnRequest": true,
     "status": "Dostępny",
-    "images": ["/products/omega-de-ville-prestige/front.jpg", "/products/omega-de-ville-prestige/lewo.jpg", "/products/omega-de-ville-prestige/prawo.jpg"],
+    "images": [
+      "/products/omega-de-ville-prestige/front.jpg",
+      "/products/omega-de-ville-prestige/lewo.jpg",
+      "/products/omega-de-ville-prestige/prawo.jpg"
+    ],
     "description": "Omega De Ville Prestige Co-Axial Chronometer to spokojny, formalny zegarek w złotej kopercie, z jasną tarczą i datą na godzinie 3.",
     "editorial": "De Ville Prestige nie próbuje dominował stroju; jego siłą jest proporcja, symetria i cichy certyfikat chronometru.",
     "story": "Linia De Ville oddzieliła się od Seamastera w latach 60. jako bardziej elegancka gałąź Omegi. Prestige zachowuje tę filozofię: klasyczna okrągła koperta, skórzany pasek i oszczędna tarcza. Wersje Co-Axial korzystają z mechanizmu z wychwytem Omegi, który stać się jednym z technologicznych znaków rozpoznawczych marki."
@@ -453,7 +523,11 @@ export const mockProducts: Product[] = [
     "condition": "Bardzo dobry",
     "priceOnRequest": true,
     "status": "Dostępny",
-    "images": ["/products/patek-philippe-annual-calendar-5396/front.jpg", "/products/patek-philippe-annual-calendar-5396/lewo.jpg", "/products/patek-philippe-annual-calendar-5396/prawo.jpg"],
+    "images": [
+      "/products/patek-philippe-annual-calendar-5396/front.jpg",
+      "/products/patek-philippe-annual-calendar-5396/lewo.jpg",
+      "/products/patek-philippe-annual-calendar-5396/prawo.jpg"
+    ],
     "description": "Patek Philippe Annual Calendar 5396 z fazą księżyca to elegancki zegarek komplikowany, w którym kalendarz roczny podano w wyjątkowo czytelnym, klasycznym układzie.",
     "editorial": "Trzy okna kalendarza i faza księżyca tworzą tarczą, która wygląda spokojnie mimo bardzo praktycznej komplikacji.",
     "story": "Patek Philippe wprowadził kalendarz roczny w 1996 roku, upraszczając codzienne korzystanie z komplikacji kalendarzowych. Referencja 5396 rozwija ten pomysł w estetyce inspirowanej zegarkami z połowy XX wieku: dzień i miesiąc w oknach pod godziną 12, faza księżyca i data na osi dolnej oraz klasyczna koperta na pasku."
@@ -470,7 +544,10 @@ export const mockProducts: Product[] = [
     "condition": "Bardzo dobry",
     "priceOnRequest": true,
     "status": "Dostępny",
-    "images": ["/products/rado-centrix-automatic-blue/front.jpg", "/products/rado-centrix-automatic-blue/lewo.jpg"],
+    "images": [
+      "/products/rado-centrix-automatic-blue/front.jpg",
+      "/products/rado-centrix-automatic-blue/lewo.jpg"
+    ],
     "description": "Rado Centrix Automatic z niebieską tarczą łączy smukłą kopertę z ceramiczną bransoletą i spokojnym, współczesnym charakterem.",
     "editorial": "Centrix pokazuje specjalność Rado: luksus codzienny oparty bardziej na materiale i wygodzie niż na ostentacji.",
     "story": "Rado od lat buduje tożsamość wokół ceramiki high-tech i odpornych materiałów. Centrix jest jedną z najbardziej uniwersalnych linii marki: zwężająca się bransoleta, prosta tarcza i automatyczny mechanizm dają zegarek łatwy do noszenia na co dzień, a niebieski kolor dodaje mu bardziej współczesnej prezencji."
@@ -487,7 +564,11 @@ export const mockProducts: Product[] = [
     "condition": "Bardzo dobry",
     "priceOnRequest": true,
     "status": "Dostępny",
-    "images": ["/products/rolex-daytona-panda/front.jpg", "/products/rolex-daytona-panda/lewo.jpg", "/products/rolex-daytona-panda/prawo.jpg"],
+    "images": [
+      "/products/rolex-daytona-panda/front.jpg",
+      "/products/rolex-daytona-panda/lewo.jpg",
+      "/products/rolex-daytona-panda/prawo.jpg"
+    ],
     "description": "Rolex Cosmograph Daytona 116500LN z białą tarczą to jeden z najbardziej pożądanych stalowych chronografów współczesnego rynku luksusowego.",
     "editorial": "Kontrast białej tarczy i czarnego bezela dał Daytonie przydomek, który natychmiast stać się językiem kolekcjonerów.",
     "story": "Daytona powstała jako chronograf dla kierowców wyścigowych, a współczesna referencja 116500LN wprowadziła czarny ceramiczny bezel Cerachrom do stalowej wersji. Model korzysta z automatycznego kalibru 4130, ma skalą tachymetryczną na lunecie i układ liczników, który stać się jednym z najważniejszych kodów wizualnych Rolexa."
@@ -504,7 +585,12 @@ export const mockProducts: Product[] = [
     "condition": "Dobry / bardzo dobry",
     "priceOnRequest": true,
     "status": "Dostępny",
-    "images": ["/products/rolex-datejust-vintage-czarna-tarcza/front.jpg", "/products/rolex-datejust-vintage-czarna-tarcza/lewo.jpg", "/products/rolex-datejust-vintage-czarna-tarcza/prawo.jpg", "/products/rolex-datejust-vintage-czarna-tarcza/tyl.jpg"],
+    "images": [
+      "/products/rolex-datejust-vintage-czarna-tarcza/front.jpg",
+      "/products/rolex-datejust-vintage-czarna-tarcza/lewo.jpg",
+      "/products/rolex-datejust-vintage-czarna-tarcza/prawo.jpg",
+      "/products/rolex-datejust-vintage-czarna-tarcza/tyl.jpg"
+    ],
     "description": "Rolex Datejust 36 w Rolesorze, z czarną tarczą i diamentowymi indeksami, łączy codzienny format Rolexa z wyraźnie biżuteryjnym akcentem.",
     "editorial": "Czarna tarcza uspokaja złoto, a diamentowe indeksy zostawiają zegarkowi dokładnie tyle blasku, ile potrzeba.",
     "story": "Dwukolorowe Datejusty z bransoletą Jubilee stały się jednym z najbardziej rozpoznawalnych zegarków końca XX wieku. Wariant z czarną tarczą i indeksami diamentowymi jest bardziej wieczorowy, ale zachowuje praktyczność automatycznego zegarka z datą, wodoodporną kopertę Oyster i bezelem z żółtego złota."
@@ -521,7 +607,11 @@ export const mockProducts: Product[] = [
     "condition": "Dobry / bardzo dobry",
     "priceOnRequest": true,
     "status": "Dostępny",
-    "images": ["/products/rolex-datejust-36-yellow-gold-blue-dial/front.jpg", "/products/rolex-datejust-36-yellow-gold-blue-dial/lewo.jpg", "/products/rolex-datejust-36-yellow-gold-blue-dial/prawo.jpg"],
+    "images": [
+      "/products/rolex-datejust-36-yellow-gold-blue-dial/front.jpg",
+      "/products/rolex-datejust-36-yellow-gold-blue-dial/lewo.jpg",
+      "/products/rolex-datejust-36-yellow-gold-blue-dial/prawo.jpg"
+    ],
     "description": "Rolex Datejust 36 w żółtym złocie i z niebieską tarczą to klasyczny zegarek codzienny w bardziej prestiżowej, vintage'owej odsłonie.",
     "editorial": "Niebieska tarcza na tle żółtego złota daje Datejustowi ton bardziej klubowy niż biurowy.",
     "story": "Datejust jest jednym z fundamentów katalogu Rolexa od 1945 roku. Wersje 36 mm ze złotą kopertę, karbowanym bezelem i datownikiem pod lupą Cyclops pozostają najbardziej rozpoznawalnym symbolem eleganckiego zegarka codziennego. Egzemplarz na pasku skórzanym ma lżejszy charakter niż konfiguracja na bransolecie President lub Jubilee."
@@ -538,7 +628,11 @@ export const mockProducts: Product[] = [
     "condition": "Bardzo dobry",
     "priceOnRequest": true,
     "status": "Dostępny",
-    "images": ["/products/rolex-datejust-41-everose-sundust/front.jpg", "/products/rolex-datejust-41-everose-sundust/lewo.jpg", "/products/rolex-datejust-41-everose-sundust/prawo.jpg"],
+    "images": [
+      "/products/rolex-datejust-41-everose-sundust/front.jpg",
+      "/products/rolex-datejust-41-everose-sundust/lewo.jpg",
+      "/products/rolex-datejust-41-everose-sundust/prawo.jpg"
+    ],
     "description": "Rolex Datejust 41 Everose Rolesor z tarczą sundust łączy klasyczną architekturą Datejusta z cieplejszym, współczesnym tonem różowego złota.",
     "editorial": "Everose Rolesor sprawia, że Datejust 41 jest bardziej miękki wizualnie, ale nadal pozostaje jednym z najbardziej czytelnych symboli Rolexa.",
     "story": "Współczesny Datejust 41 zachowuje najważniejsze znaki linii: datą, lupą Cyclops, karbowany bezel i bransoletą Jubilee. Referencja 126331 łączy stal Oystersteel z 18-karatowym złotem Everose, a mechanizm generacji 3235 zapewnia około 70 godzin rezerwy chodu i certyfikacją Superlative Chronometer."
@@ -554,7 +648,12 @@ export const mockProducts: Product[] = [
     "caseSize": "42 mm",
     "condition": "Bardzo dobry",
     "status": "Dostępny",
-    "images": ["/products/rolex-sky-dweller/front.jpg", "/products/rolex-sky-dweller/lewo.jpg", "/products/rolex-sky-dweller/prawo.jpg", "/products/rolex-sky-dweller/front-lewo.jpg"],
+    "images": [
+      "/products/rolex-sky-dweller/front.jpg",
+      "/products/rolex-sky-dweller/lewo.jpg",
+      "/products/rolex-sky-dweller/prawo.jpg",
+      "/products/rolex-sky-dweller/front-lewo.jpg"
+    ],
     "description": "Rolex Sky-Dweller 326934 z czarną tarczą to zegarek podróżny z rocznym kalendarzem, drugą strefą czasu i bezelem Ring Command.",
     "editorial": "Sky-Dweller ukrywa jedną z najbardziej praktycznych komplikacji Rolexa w formie, która z daleka pozostaje klasycznie elegancka.",
     "story": "Sky-Dweller zostać zaprezentowany jako najbardziej komplikowany współczesny Rolex: łączy czas lokalny, czas domowy w 24-godzinnym pierścieniu oraz kalendarz roczny Saros. W wersji 326934 stalowa koperta współpracuje z bezelem z białego złota, a obsługa funkcji odbywa się przez obracany bezel Ring Command.",
@@ -572,7 +671,10 @@ export const mockProducts: Product[] = [
     "condition": "Dobry / bardzo dobry",
     "priceOnRequest": true,
     "status": "Dostępny",
-    "images": ["/products/rolex-yacht-master-40-yellow-gold-blue-dial/lewo.jpg", "/products/rolex-yacht-master-40-yellow-gold-blue-dial/prawo.jpg"],
+    "images": [
+      "/products/rolex-yacht-master-40-yellow-gold-blue-dial/lewo.jpg",
+      "/products/rolex-yacht-master-40-yellow-gold-blue-dial/prawo.jpg"
+    ],
     "description": "Rolex Yacht-Master 40 w żółtym złocie to bardziej luksusowa interpretacja sportowego zegarka Oyster, z charakterystycznym bezelem regatowym.",
     "editorial": "Yacht-Master wygląda jak zegarek na pokład, ale w złocie mówi przede wszystkim językiem luksusowego stylu życia.",
     "story": "Yacht-Master zadebiutował w 1992 roku jako elegantsza, jachtowa alternatywa dla typowo narzędziowego Submarinera. Referencja 16628 w żółtym złocie należy do pierwszej generacji modelu i ma bezel z wypukłymi cyframi oraz pełnozłotą bransoletą Oyster. Ponieważ w paczce są tylko zdjęcia boczne, tarczą i wariant należy potwierdzić przed publikacją."
@@ -589,7 +691,11 @@ export const mockProducts: Product[] = [
     "condition": "Bardzo dobry",
     "priceOnRequest": true,
     "status": "Dostępny",
-    "images": ["/products/vacheron-constantin-malte-diamond/front.jpg", "/products/vacheron-constantin-malte-diamond/lewo.jpg", "/products/vacheron-constantin-malte-diamond/prawo.jpg"],
+    "images": [
+      "/products/vacheron-constantin-malte-diamond/front.jpg",
+      "/products/vacheron-constantin-malte-diamond/lewo.jpg",
+      "/products/vacheron-constantin-malte-diamond/prawo.jpg"
+    ],
     "description": "Vacheron Constantin Malte Diamond łączy kształt tonneau, giloszowaną tarczą i dyskretną oprawą diamentową w klasycznym zegarku wieczorowym.",
     "editorial": "Tonneau Vacherona ma w sobie miękkość biżuterii, ale zachowuje porządek tradycyjnego zegarmistrzostwa genewskiego.",
     "story": "Kolekcja Malte jest jedną z linii, w których Vacheron Constantin rozwijał nieokrągłe koperty i bardziej dekoracyjne wykończenia. Egzemplarz ze zdjęć ma wydłużoną kopertę tonneau, diamentowe boki, rzymskie cyfry 12 i 6 oraz giloszowaną tarczą, co lokuje go po stronie eleganckich, jubilerskich modeli maison."
@@ -606,7 +712,9 @@ export const mockProducts: Product[] = [
     "condition": "Nowy",
     "price": 250000,
     "status": "Dostępny",
-    "images": ["/products/patek-philippe-annual-calendar-chronograph/front.jpg"],
+    "images": [
+      "/products/patek-philippe-annual-calendar-chronograph/front.jpg"
+    ],
     "description": "Patek Philippe ref. 5960R-001 w różowym złocie — pierwszy chronograf z kalendarzem rocznym Patka, z trzema okienkami w jednej linii i wskaźnikiem dzień/noc.",
     "editorial": "Ref. 5960R-001 to pierwszy w historii Patek Philippe chronograf z kalendarzem rocznym napędzany w pełni manufakturowym kalibrem CH 28-520. Trzy okienka kalendarza w jednej linii i wskaźnik dzień/noc to najbardziej współczesna kompozycja wśród skomplikowanych Patków.",
     "story": "Annual Calendar Chronograph reprezentuje klasyczne podejście Patek Philippe do zegarków komplikowanych i eleganckich. Najważniejsze są proporcja, czytelność wskazań i potwierdzona dokumentacja konkretnego egzemplarza.",
@@ -625,7 +733,9 @@ export const mockProducts: Product[] = [
     "condition": "Używany",
     "price": 399000,
     "status": "Dostępny",
-    "images": ["/products/audemars-piguet-royal-oak-red-dial/front.jpg"],
+    "images": [
+      "/products/audemars-piguet-royal-oak-red-dial/front.jpg"
+    ],
     "description": "Audemars Piguet Royal Oak ref. 14800.ST 36 mm z rzadko spotykaną czerwoną tarczą — kolekcjonerski egzemplarz wczesnej generacji Royal Oaka.",
     "editorial": "Ref. 14800.ST to przejście między pierwszym Royal Oakiem Genty a późniejszymi 15202. Czerwona tarcza w wersji 36 mm jest jedną z rzadszych konfiguracji tego modelu — kolekcjonerski wybór dla osób, które wolą dyskretną kopertę i mocny akcent kolorystyczny.",
     "story": "Royal Oak Red Dial pokazuje charakter Audemars Piguet oparty na mocnej architekturze koperty i wysokim standardzie wykończenia. Forma jest tu równie istotna jak mechanika i pochodzenie egzemplarza.",
@@ -643,7 +753,9 @@ export const mockProducts: Product[] = [
     "condition": "Bardzo Dobry",
     "price": 80000,
     "status": "Dostępny",
-    "images": ["/products/rolex-datejust-iced-out-custom-arabic-dial/front.jpg"],
+    "images": [
+      "/products/rolex-datejust-iced-out-custom-arabic-dial/front.jpg"
+    ],
     "description": "Rolex Datejust 41 z aftermarketową tarczą z arabskimi cyframi i pełną oprawą diamentową koperty oraz lunety.",
     "editorial": "Bazą jest seryjny Datejust 41, ale tarcza z arabskimi indeksami i pełne aftermarketowe oblamowanie diamentami zmieniają charakter zegarka w stronę kolekcji hip-hopowej. Wersja przeznaczona dla osób, które traktują Datejust jak pretekst do biżuterii.",
     "story": "Datejust Iced Out Custom Arabic Dial wpisuje się w najważniejsze kody marki: kopertę Oyster, mocny status rynkowy i praktyczną elegancję. Dokładną konfigurację egzemplarza należy potwierdzić po dokumentach lub numerach referencyjnych.",
@@ -661,7 +773,9 @@ export const mockProducts: Product[] = [
     "condition": "Dobry / bardzo dobry",
     "price": 100000,
     "status": "Dostępny",
-    "images": ["/products/rolex-day-date-tridor/front.jpg"],
+    "images": [
+      "/products/rolex-day-date-tridor/front.jpg"
+    ],
     "description": "Rolex Day-Date 36 mm z bransoletą President Tridor splecioną z białego, żółtego i różowego złota — rzadka konfiguracja z lat 90.",
     "editorial": "Tridor to specjalna bransoleta President spleciona z trzech kolorów złota — białego, żółtego i różowego. Ref. 18239B z lat 90. łączy klasyczną kopertę 36 mm z efektem światła zmieniającego się w zależności od kąta padania, co dziś trudno znaleźć w nowych kolekcjach Rolexa.",
     "story": "Day-Date Tridor wpisuje się w najważniejsze kody marki: kopertę Oyster, mocny status rynkowy i praktyczną elegancję. Dokładną konfigurację egzemplarza należy potwierdzić po dokumentach lub numerach referencyjnych.",
@@ -679,7 +793,9 @@ export const mockProducts: Product[] = [
     "condition": "Bardzo Dobry",
     "price": 90000,
     "status": "Dostępny",
-    "images": ["/products/rolex-daytona-dial/front.jpg"],
+    "images": [
+      "/products/rolex-daytona-dial/front.jpg"
+    ],
     "description": "Rolex Cosmograph Daytona ref. 126503 w wersji Rolesor stal/żółte złoto, z kalibrem manufakturowym 4131.",
     "editorial": "Ref. 126503 to wersja Rolesor Daytony — koperta ze stali z bezelem i koroną z żółtego złota oraz kalibrem 4131. Następca legendarnej 116503, z odświeżonym mechanizmem o 72-godzinnej rezerwie chodu i przeprojektowanymi licznikami chronografu.",
     "story": "Daytona Dial wpisuje się w najważniejsze kody marki: kopertę Oyster, mocny status rynkowy i praktyczną elegancję. Dokładną konfigurację egzemplarza należy potwierdzić po dokumentach lub numerach referencyjnych.",
@@ -697,7 +813,9 @@ export const mockProducts: Product[] = [
     "condition": "Bardzo dobry",
     "price": 185000,
     "status": "Dostępny",
-    "images": ["/products/audemars-piguet-royal-oak-blue-dial-boutique-edition/front.jpg"],
+    "images": [
+      "/products/audemars-piguet-royal-oak-blue-dial-boutique-edition/front.jpg"
+    ],
     "description": "Audemars Piguet Royal Oak ref. 15300ST 39 mm z głęboko niebieską tarczą Petite Tapisserie — następca Jumbo, poprzednik 15202.",
     "editorial": "Ref. 15300ST z głęboko niebieską tarczą Petite Tapisserie była produkowana zaledwie kilka lat między Jumbo a obecną 15202/15500. Koperta 39 mm trafia w sweet spot między historyczną Jumbo a współczesnym 41 — proporcja, którą wielu kolekcjonerów uważa za optymalną.",
     "story": "Royal Oak Blue Dial Boutique Edition pokazuje charakter Audemars Piguet oparty na mocnej architekturze koperty i wysokim standardzie wykończenia. Forma jest tu równie istotna jak mechanika i pochodzenie egzemplarza.",
@@ -715,7 +833,9 @@ export const mockProducts: Product[] = [
     "condition": "Bardzo Dobry",
     "price": 36000,
     "status": "Dostępny",
-    "images": ["/products/girard-perregaux-classic/front.jpg"],
+    "images": [
+      "/products/girard-perregaux-classic/front.jpg"
+    ],
     "description": "Girard-Perregaux Classic w prostokątnej kopercie 35,4 × 30,4 mm z białego złota i diamentowymi indeksami — biżuteryjny zegarek wieczorowy.",
     "editorial": "Prostokątna koperta 35,4 × 30,4 mm z białego złota i diamentowymi indeksami sięga do języka art déco — epoki, w której Girard-Perregaux budował część swojej tożsamości. Mały, biżuteryjny zegarek wieczorowy o czysto klasycznych proporcjach.",
     "story": "Classic pokazuje klasyczną stronę Girard-Perregaux: elegancką formę, szlachetne materiały i zegarmistrzowski rodowód historycznej manufaktury."
@@ -732,7 +852,9 @@ export const mockProducts: Product[] = [
     "condition": "Bardzo dobry",
     "price": 70000,
     "status": "Dostępny",
-    "images": ["/products/cartier-santos-wersja-iced-out/front.jpg"],
+    "images": [
+      "/products/cartier-santos-wersja-iced-out/front.jpg"
+    ],
     "description": "Cartier Santos ref. WSSA0013 w pełnej oprawie diamentowej — kwadratowa koperta ze stali zachowana w ikonicznym kształcie projektu Louisa Cartiera.",
     "editorial": "Santos w wersji w pełni wysadzanej diamentami zachowuje charakterystyczne, widoczne śruby na bezelu i kwadratowy obrys koperty zaprojektowany jeszcze dla Alberta Santos-Dumonta. Diamenty nie chowają architektury zegarka — wzmacniają ją.",
     "story": "Santos wersja Iced Out korzysta z języka projektowego Cartiera: biżuteryjnej proporcji, rozpoznawalnej koperty i detalu. Dokładną konfigurację warto potwierdzić po referencji."
@@ -749,7 +871,9 @@ export const mockProducts: Product[] = [
     "condition": "Nowy",
     "price": 180000,
     "status": "Dostępny",
-    "images": ["/products/rolex-submariner/front.jpg"],
+    "images": [
+      "/products/rolex-submariner/front.jpg"
+    ],
     "description": "Rolex Submariner Date ref. 126619LB w pełni z 18-karatowego białego złota, z niebieską tarczą i zielonym pierścieniem Cerachrom.",
     "editorial": "Ref. 126619LB to Submariner w pełni z białego złota — koperta, bransoleta i bezel z 18-karatowego stopu, niebieska tarcza i zielony pierścień Cerachrom. Najbardziej kosztowna wersja seryjnego Submarinera, ważąca prawie dwa razy więcej niż stalowy odpowiednik.",
     "story": "Submariner wpisuje się w najważniejsze kody marki: kopertę Oyster, mocny status rynkowy i praktyczną elegancję. Dokładną konfigurację egzemplarza należy potwierdzić po dokumentach lub numerach referencyjnych.",
@@ -768,7 +892,9 @@ export const mockProducts: Product[] = [
     "condition": "Bardzo Dobry",
     "price": 155000,
     "status": "Dostępny",
-    "images": ["/products/patek-philippe-calatrava-annual-calendar/front.jpg"],
+    "images": [
+      "/products/patek-philippe-calatrava-annual-calendar/front.jpg"
+    ],
     "description": "Patek Philippe Calatrava ref. 5205G-010 z białego złota — kalendarz roczny i niebieska gradientowa tarcza w klasycznej kopercie 40 mm.",
     "editorial": "Ref. 5205G-010 łączy klasyczną kopertę Calatravy z kalendarzem rocznym — komplikacją opatentowaną przez Patek Philippe w 1996 roku, która wymaga ręcznej korekty tylko raz w roku. Tarcza w gradientowym niebieskim z dniem, datą i miesiącem w jednej linii to jeden z bardziej wyważonych projektów współczesnego Patka.",
     "story": "Calatrava Annual Calendar reprezentuje klasyczne podejście Patek Philippe do zegarków komplikowanych i eleganckich. Najważniejsze są proporcja, czytelność wskazań i potwierdzona dokumentacja konkretnego egzemplarza.",
@@ -786,7 +912,9 @@ export const mockProducts: Product[] = [
     "condition": "Używany",
     "price": 15000,
     "status": "Dostępny",
-    "images": ["/products/bvlgari-bvlgari-bb23gl/front.jpg"],
+    "images": [
+      "/products/bvlgari-bvlgari-bb23gl/front.jpg"
+    ],
     "description": "Bvlgari Bvlgari BB23GL w pełnym żółtym złocie — biżuteryjna koperta 23 mm z charakterystycznym podwójnym logo na bezelu.",
     "editorial": "Linia Bvlgari Bvlgari z podwójnym, grawerowanym logo na bezelu powstała w 1977 roku jako jeden z pierwszych zegarków rzymskiej manufaktury jubilerskiej. Wersja BB23 w 23 mm i pełnym żółtym złocie to klasyczny biżuteryjny rozmiar — bliżej bransoletki niż klasycznego zegarka damskiego.",
     "story": "Bvlgari BB23GL pokazuje rzymski, graficzny język Bvlgari, w którym logo i geometria koperty są częścią projektu. To zegarek stojący blisko biżuterii, ale zachowujący codzienną funkcję."
@@ -803,7 +931,9 @@ export const mockProducts: Product[] = [
     "condition": "Używany",
     "price": 99000,
     "status": "Dostępny",
-    "images": ["/products/audemars-piguet-royal-oak-14800-or/front.jpg"],
+    "images": [
+      "/products/audemars-piguet-royal-oak-14800-or/front.jpg"
+    ],
     "description": "Audemars Piguet Royal Oak ref. 14800.OR z lat 90. — pełne żółte złoto, koperta 36 mm i klasyczna złota tarcza Tapisserie.",
     "editorial": "Ref. 14800.OR to wczesny Royal Oak w pełnym żółtym złocie i koperce 36 mm — wymiarze bliższym oryginałowi Genty z 1972 roku niż dzisiejszym 41 mm. Tonalna, złota tarcza Tapisserie z kompletną złotą bransoletą daje masę i ciepło, których nowsze wersje już nie powtarzają.",
     "story": "Royal Oak 14800.OR pokazuje charakter Audemars Piguet oparty na mocnej architekturze koperty i wysokim standardzie wykończenia. Forma jest tu równie istotna jak mechanika i pochodzenie egzemplarza.",
@@ -821,7 +951,9 @@ export const mockProducts: Product[] = [
     "condition": "Bardzo Dobry",
     "price": 115000,
     "status": "Dostępny",
-    "images": ["/products/audemars-piguet-code-11-59/front.jpg"],
+    "images": [
+      "/products/audemars-piguet-code-11-59/front.jpg"
+    ],
     "description": "Audemars Piguet Code 11:59 ref. 15210OR w różowym złocie — koperta 41 mm z podwójnie zakrzywionym szkłem szafirowym i ośmiokątnym pierścieniem środkowym.",
     "editorial": "Code 11:59 to próba Audemars Piguet, by stworzyć trzecią — obok Royal Oaka i Royal Oak Offshore — własną architekturę okrągłej koperty. Podwójnie zakrzywione szkło szafirowe i ośmiokątny pierścień środkowy między kopertą a uchami sprawiają, że projekt mieni się w zupełnie inny sposób przy każdym kącie spojrzenia.",
     "story": "Code 11:59 pokazuje charakter Audemars Piguet oparty na mocnej architekturze koperty i wysokim standardzie wykończenia. Forma jest tu równie istotna jak mechanika i pochodzenie egzemplarza.",
@@ -839,7 +971,9 @@ export const mockProducts: Product[] = [
     "condition": "Bardzo dobry",
     "price": 360000,
     "status": "Dostępny",
-    "images": ["/products/rolex-day-date-platinum/front.jpg"],
+    "images": [
+      "/products/rolex-day-date-platinum/front.jpg"
+    ],
     "description": "Rolex Day-Date 40 ref. 228396TBR w platynie 950, z bezelem z baguette diamentów i bransoletą President.",
     "editorial": "Ref. 228396TBR to najwyższa półka kolekcji Day-Date — platynowa koperta 40 mm z bezelem ustawionym 36 baguette'ami diamentów. Platyna ma matową, niemal zimną głębię, której nie da się odtworzyć w żadnym innym metalu szlachetnym; w połączeniu z bransoletą President to najcięższy seryjny Rolex w produkcji.",
     "story": "Day-Date Platinum wpisuje się w najważniejsze kody marki: kopertę Oyster, mocny status rynkowy i praktyczną elegancję. Dokładną konfigurację egzemplarza należy potwierdzić po dokumentach lub numerach referencyjnych.",
@@ -857,7 +991,9 @@ export const mockProducts: Product[] = [
     "condition": "Dobry",
     "price": 55000,
     "status": "Dostępny",
-    "images": ["/products/cartier-panthere/front.jpg"],
+    "images": [
+      "/products/cartier-panthere/front.jpg"
+    ],
     "description": "Cartier Panthère ref. W25022B9 Small w żółtym złocie — szeroka, miękka bransoleta z połączonych ogniw i prostokątna koperta 22 × 30 mm.",
     "editorial": "Panthère, wprowadzona w 1983 roku, była symbolem stylu lat 80. — od Madonny po Pierce'a Brosnana w roli Bonda. Po dekadach przerwy Cartier wznowił model w 2017 roku w niemal niezmienionej formie. Płynna, szeroka bransoleta z połączonych ogniw to jeden z najbardziej charakterystycznych elementów ikonografii marki.",
     "story": "Panthère korzysta z języka projektowego Cartiera: biżuteryjnej proporcji, rozpoznawalnej koperty i detalu. Dokładną konfigurację warto potwierdzić po referencji."
@@ -874,7 +1010,9 @@ export const mockProducts: Product[] = [
     "condition": "Nowy",
     "price": 65000,
     "status": "Dostępny",
-    "images": ["/products/rolex-yacht-master-40-black-dial/front.jpg"],
+    "images": [
+      "/products/rolex-yacht-master-40-black-dial/front.jpg"
+    ],
     "description": "Rolex Yacht-Master 40 ref. 126621 Rolesor — Oystersteel z różowym złotem Everose, czarna tarcza i obrotowy bezel.",
     "editorial": "Ref. 126621 łączy stal Oystersteel z różowym złotem Everose w wersji Rolesor — bransoletą Oyster i bezelem z dwukierunkowo obracaną skalą minutową. To najbardziej żeglarski z Yacht-Masterów: cieplejszy charakter niż stal, bardziej praktyczny niż pełne złoto.",
     "story": "Yacht Master 40 Black Dial wpisuje się w najważniejsze kody marki: kopertę Oyster, mocny status rynkowy i praktyczną elegancję. Dokładną konfigurację egzemplarza należy potwierdzić po dokumentach lub numerach referencyjnych.",
@@ -892,7 +1030,9 @@ export const mockProducts: Product[] = [
     "condition": "Bardzo dobry",
     "price": 32000,
     "status": "Dostępny",
-    "images": ["/products/omega-seamaster-diver-300-m-chronograph/front.jpg"],
+    "images": [
+      "/products/omega-seamaster-diver-300-m-chronograph/front.jpg"
+    ],
     "description": "Omega Seamaster Diver 300 m Chronograph 44 mm — kaliber co-axial 9900, niebieska ceramiczna luneta i charakterystyczna falista tarcza.",
     "editorial": "Seamaster Diver 300 m Chronograph łączy charakterystyczną falistą tarczę z chronografem napędzanym kalibrem co-axial 9900. Niebieska ceramiczna luneta, zawór helowy o godzinie 10 i opływowa koperta 44 mm — Omega rozwiązuje tu kwestię nurkowej użyteczności bez kompromisów estetycznych.",
     "story": "Seamaster Diver 300 m Chronograph należy do praktycznej, rozpoznawalnej części świata Omegi, gdzie historia modelu spotyka się z codzienną użytecznością. Referencja i stan wymagają standardowej weryfikacji."
@@ -909,7 +1049,9 @@ export const mockProducts: Product[] = [
     "condition": "Nowy",
     "price": 76000,
     "status": "Dostępny",
-    "images": ["/products/rolex-datejust-wimbledon/front.jpg"],
+    "images": [
+      "/products/rolex-datejust-wimbledon/front.jpg"
+    ],
     "description": "Rolex Datejust 41 ref. 126333 Rolesor stal/żółte złoto, z grafitową tarczą Wimbledon i zielonymi cyframi rzymskimi.",
     "editorial": "Wimbledon to potoczna nazwa wersji Datejust z grafitową tarczą i zielonymi cyframi rzymskimi — odsyłka do barw najstarszego turnieju tenisowego, którego Rolex jest oficjalnym chronometrażystą od 1978 roku. Ref. 126333 w wersji Rolesor 41 mm z karbowanym bezelem to jeden z najbardziej rozpoznawalnych dialów współczesnej kolekcji.",
     "story": "Datejust Wimbledon wpisuje się w najważniejsze kody marki: kopertę Oyster, mocny status rynkowy i praktyczną elegancję. Dokładną konfigurację egzemplarza należy potwierdzić po dokumentach lub numerach referencyjnych.",
@@ -927,7 +1069,9 @@ export const mockProducts: Product[] = [
     "condition": "Bardzo Dobry",
     "price": 85000,
     "status": "Dostępny",
-    "images": ["/products/patek-philippe-twenty-4/front.jpg"],
+    "images": [
+      "/products/patek-philippe-twenty-4/front.jpg"
+    ],
     "description": "Patek Philippe Twenty~4 ref. 4910/20 z białego złota, w prostokątnej kopercie 25,1 × 30 mm z podwójnym rzędem diamentów.",
     "editorial": "Ref. 4910/20 to oryginalna, prostokątna Twenty~4 wprowadzona w 1999 roku — biały złoto, podwójny rząd diamentów wzdłuż obrysu koperty i kwarcowy mechanizm. Patek Philippe zaprojektował ją wprost jako codzienny zegarek dla nowoczesnej kobiety; dziś ten konkretny układ jest stopniowo wycofywany na rzecz wersji okrągłej z mechanizmem automatycznym.",
     "story": "Twenty~4 reprezentuje klasyczne podejście Patek Philippe do zegarków komplikowanych i eleganckich. Najważniejsze są proporcja, czytelność wskazań i potwierdzona dokumentacja konkretnego egzemplarza.",
@@ -945,7 +1089,9 @@ export const mockProducts: Product[] = [
     "condition": "Bardzo dobry",
     "price": 75000,
     "status": "Dostępny",
-    "images": ["/products/franck-muller-vegas/front.jpg"],
+    "images": [
+      "/products/franck-muller-vegas/front.jpg"
+    ],
     "description": "Franck Muller Vegas ref. 5850 w różowym złocie — kolekcjonerska komplikacja z działającą ruletką osadzoną na tarczy.",
     "editorial": "Vegas 5850 to kolekcjonerski żart Francka Mullera: na tarczy zegarka osadzono działającą ruletkę uruchamianą przyciskiem na boku koperty Cintrée Curvex. Komplikacja, której nie ma żaden inny producent — i jeden z najbardziej rozpoznawalnych modeli z genewskiej części repertuaru marki.",
     "story": "Vegas pokazuje odważniejszą stronę zegarmistrzostwa: charakterystyczną kopertę, mocną typografię i projekt wychodzący poza klasyczną zachowawczość."
@@ -962,7 +1108,9 @@ export const mockProducts: Product[] = [
     "condition": "Bardzo dobry",
     "price": 75000,
     "status": "Dostępny",
-    "images": ["/products/zenith-el-primero-espada/front.jpg"],
+    "images": [
+      "/products/zenith-el-primero-espada/front.jpg"
+    ],
     "description": "Zenith El Primero Espada w różowym złocie — chronograf wysokiej częstotliwości 36 000 vph w sportowo-eleganckiej obudowie 40 mm.",
     "editorial": "El Primero z 1969 roku był pierwszym automatycznym chronografem wysokiej częstotliwości — 36 000 vph pozwala mierzyć czas z dokładnością do 1/10 sekundy. Wersja Espada w pełnym różowym złocie z trzylicznikową tarczą i zintegrowaną bransoletą sięga do estetyki sportowo-eleganckiej z lat 70., kiedy ta kategoria właśnie się definiowała.",
     "story": "El Primero Espada odwołuje się do technicznej historii Zenith i rodziny El Primero. Mechaniczny rodowód marki jest równie ważny jak materiał i stan egzemplarza."
@@ -979,7 +1127,9 @@ export const mockProducts: Product[] = [
     "condition": "Bardzo Dobry",
     "price": 32000,
     "status": "Dostępny",
-    "images": ["/products/omega-speedmaster-moonwatch-professional/front.jpg"],
+    "images": [
+      "/products/omega-speedmaster-moonwatch-professional/front.jpg"
+    ],
     "description": "Omega Speedmaster Moonwatch Professional 42 mm — ręcznie nakręcany chronograf certyfikowany przez NASA, z kalibrem Master Chronometer 3861.",
     "editorial": "Speedmaster Professional to jedyny zegarek certyfikowany przez NASA do misji załogowych w przestrzeni kosmicznej — od Gemini, przez wszystkie sześć lądowań na Księżycu, po ISS. Aktualna wersja z kalibrem Master Chronometer 3861 zachowuje ręczne nakręcanie, hesalitowe szkło w opcji oraz architekturę tarczy praktycznie niezmienioną od 1969 roku.",
     "story": "Speedmaster Moonwatch Professional należy do praktycznej, rozpoznawalnej części świata Omegi, gdzie historia modelu spotyka się z codzienną użytecznością. Referencja i stan wymagają standardowej weryfikacji."
@@ -996,7 +1146,9 @@ export const mockProducts: Product[] = [
     "condition": "Bardzo dobry",
     "price": 38000,
     "status": "Dostępny",
-    "images": ["/products/omega-constellation/front.jpg"],
+    "images": [
+      "/products/omega-constellation/front.jpg"
+    ],
     "description": "Omega Constellation 39 mm w wersji steel-gold z cyframi rzymskimi i kalibrem Master Chronometer 8900.",
     "editorial": "Constellation to najstarsza ciągle produkowana linia Omegi — debiutowała w 1952 roku jako pierwszy seryjny chronometr marki. Charakterystyczne, czteropazurowe „mocowania” na bezelu i zintegrowana bransoleta od 1982 roku stały się sygnaturą modelu. Wersja steel-gold z cyframi rzymskimi i kalibrem Master Chronometer 8900 to klasyk gatunku Sport-Elegant.",
     "story": "Constellation należy do praktycznej, rozpoznawalnej części świata Omegi, gdzie historia modelu spotyka się z codzienną użytecznością. Referencja i stan wymagają standardowej weryfikacji."
@@ -1013,7 +1165,9 @@ export const mockProducts: Product[] = [
     "condition": "Bardzo dobry",
     "price": 410000,
     "status": "Dostępny",
-    "images": ["/products/chopard-happy-sport/front.jpg"],
+    "images": [
+      "/products/chopard-happy-sport/front.jpg"
+    ],
     "description": "Chopard Happy Sport ref. 278559-3001 w białym złocie z ruchomymi diamentami pływającymi nad tarczą — sygnaturalna komplikacja maison.",
     "editorial": "Happy Sport, debiut 1993, opiera się na opatentowanym pomyśle Caroline Scheufele: ruchome diamenty zamknięte między dwoma szafirowymi kryształami, swobodnie pływające po tarczy. Każdy obrót nadgarstka wprawia kamienie w ruch — to mechaniczna kinetyka, która zaprojektowała własny język marki Chopard.",
     "story": "Happy Sport łączy zegarmistrzostwo Chopard z jubilerskim wyczuciem formy. Przy takich modelach szczególnie ważne jest potwierdzenie kamieni, materiału oraz kompletności dokumentów.",
@@ -1031,7 +1185,9 @@ export const mockProducts: Product[] = [
     "condition": "Bardzo dobry",
     "price": 215000,
     "status": "Dostępny",
-    "images": ["/products/patek-philippe-perpetual-calendar/front.jpg"],
+    "images": [
+      "/products/patek-philippe-perpetual-calendar/front.jpg"
+    ],
     "description": "Patek Philippe Perpetual Calendar ref. 3940J w żółtym złocie — najdłużej produkowany kalendarz wieczny Patka (1985–2007).",
     "editorial": "Ref. 3940 produkowano w latach 1985–2007 — to najdłużej oferowany kalendarz wieczny Patek Philippe i jeden z najcieńszych automatycznych perpetuali w historii (3,75 mm grubości mechanizmu). Trzy podtarcze, wskaźnik faz księżyca i okienko 24-godzinne ułożone z idealną symetrią, której nowsza ref. 5327 już nie odtwarza tak czysto.",
     "story": "Perpetual Calendar reprezentuje klasyczne podejście Patek Philippe do zegarków komplikowanych i eleganckich. Najważniejsze są proporcja, czytelność wskazań i potwierdzona dokumentacja konkretnego egzemplarza.",
@@ -1049,7 +1205,9 @@ export const mockProducts: Product[] = [
     "condition": "Bardzo dobry",
     "price": 100000,
     "status": "Dostępny",
-    "images": ["/products/vacheron-constantin-overseas/front.jpg"],
+    "images": [
+      "/products/vacheron-constantin-overseas/front.jpg"
+    ],
     "description": "Vacheron Constantin Overseas ref. 1205V z lat 90. — pełne żółte złoto z diamentowym bezelem, pierwsza generacja kontynuująca dziedzictwo ref. 222.",
     "editorial": "Pierwsza generacja Overseas (ref. 1205V) z lat 90. wywodzi się bezpośrednio z legendarnej 222 zaprojektowanej przez Jörga Hyseka w 1977 roku — odpowiedzi Vacheron Constantin na Royal Oaka i Nautilusa. Wersja w pełnym żółtym złocie z diamentowym bezelem to rzadko spotykana, jubilerska interpretacja sportowo-eleganckiego klasyka Genewy.",
     "story": "Overseas wpisuje się w tradycję jednej z najstarszych genewskich manufaktur. Istotne są proporcje, wykończenie oraz pewność referencji konkretnego egzemplarza.",
@@ -1067,7 +1225,9 @@ export const mockProducts: Product[] = [
     "condition": "Bardzo dobry",
     "price": 320000,
     "status": "Dostępny",
-    "images": ["/products/chopard-chronometer-1-of-100/front.jpg"],
+    "images": [
+      "/products/chopard-chronometer-1-of-100/front.jpg"
+    ],
     "description": "Chopard L.U.C Chronometer ref. 161902-5001 — limitowana edycja 100 egzemplarzy w pełnym złocie, z certyfikatem COSC i pieczęcią genewską.",
     "editorial": "Limitowana edycja 100 egzemplarzy w pełnym złocie — Chopard od lat buduje w manufakturze L.U.C w Fleurier zegarki z certyfikacją chronometru COSC i pieczęcią genewską jednocześnie. Numerowany egzemplarz to dokument konkretnego momentu w historii L.U.C, mającego krótszą, ale bardzo zdyscyplinowaną tradycję wśród szwajcarskich manufaktur.",
     "story": "Chronometer 1 of 100 łączy zegarmistrzostwo Chopard z jubilerskim wyczuciem formy. Przy takich modelach szczególnie ważne jest potwierdzenie kamieni, materiału oraz kompletności dokumentów.",
@@ -1085,7 +1245,9 @@ export const mockProducts: Product[] = [
     "condition": "Bardzo dobry",
     "price": 65000,
     "status": "Dostępny",
-    "images": ["/products/franck-muller-long-island/front.jpg"],
+    "images": [
+      "/products/franck-muller-long-island/front.jpg"
+    ],
     "description": "Franck Muller Long Island ref. 1200 SC DT w różowym złocie — prostokątna koperta art déco z charakterystyczną „balonową” typografią cyfr.",
     "editorial": "Long Island Franck Mullera bezpośrednio cytuje epokę art déco i prostokątne zegarki Cartiera, Patka i Jaeger-LeCoultre z lat 20. i 30. Charakterystyczna typografia liczb w „balonowych” odlewach i wydłużona, lekko wybrzuszona koperta to znak rozpoznawczy tego niezależnego mistrza komplikacji.",
     "story": "Long Island pokazuje odważniejszą stronę zegarmistrzostwa: charakterystyczną kopertę, mocną typografię i projekt wychodzący poza klasyczną zachowawczość."
@@ -1102,7 +1264,9 @@ export const mockProducts: Product[] = [
     "condition": "Nowy",
     "price": 20000,
     "status": "Dostępny",
-    "images": ["/products/bvlgari-bvlgari-103711/front.jpg"],
+    "images": [
+      "/products/bvlgari-bvlgari-103711/front.jpg"
+    ],
     "description": "Bvlgari Bvlgari ref. 103711 w stali, koperta 41 mm z grawerowanym podwójnym logo na bezelu i manufakturowym kalibrem BVL 191.",
     "editorial": "Współczesna interpretacja linii Bvlgari Bvlgari w kopercie 41 mm ze stali — z grawerowanym podwójnym logo na bezelu, które pozostaje znakiem rozpoznawczym kolekcji od 1977 roku. Manufakturowy kaliber automatyczny BVL 191 i czysto rzymska estetyka, którą Bvlgari rozwija od momentu przejęcia Daniela Roth i Gérald Genta w 2000 roku.",
     "story": "Bvlgari 103711 pokazuje rzymski, graficzny język Bvlgari, w którym logo i geometria koperty są częścią projektu. To zegarek stojący blisko biżuterii, ale zachowujący codzienną funkcję.",
@@ -1120,7 +1284,9 @@ export const mockProducts: Product[] = [
     "condition": "Bardzo dobry",
     "price": 75000,
     "status": "Dostępny",
-    "images": ["/products/iwc-chronograph-portugieser/front.jpg"],
+    "images": [
+      "/products/iwc-chronograph-portugieser/front.jpg"
+    ],
     "description": "IWC Portugieser Chronograph ref. IW371611 w różowym złocie 41 mm — klasyczny układ z dwiema podtarczami i kolejowym torem minutowym.",
     "editorial": "Linia Portugieser powstała w 1939 roku jako duży, czytelny zegarek dla portugalskich oficerów marynarki — na tarczy obowiązywała precyzja chronometrów morskich. Wersja chronograf w różowym złocie 41 mm z kalibrem 69355 to klasyczny układ z dwiema podtarczami, kolejowym torem minutowym i charakterystycznym smukłym Feuilles.",
     "story": "Chronograph Portugieser reprezentuje techniczną, czytelną elegancję IWC. Marka słynie z dużych tarcz, praktycznych komplikacji i zegarków użytkowych mimo prestiżowego charakteru."
@@ -1137,7 +1303,9 @@ export const mockProducts: Product[] = [
     "condition": "Bardzo dobry",
     "price": 180000,
     "status": "Dostępny",
-    "images": ["/products/iwc-perpetual-calendar-1-of-250/front.jpg"],
+    "images": [
+      "/products/iwc-perpetual-calendar-1-of-250/front.jpg"
+    ],
     "description": "IWC Portugieser Perpetual Calendar ref. IW503404 — limitowana edycja 250 egzemplarzy w różowym złocie, z 7-dniową rezerwą chodu i fazami księżyca dla obu półkul.",
     "editorial": "Limitowana do 250 egzemplarzy seria Portugieser Perpetual Calendar w pełnym różowym złocie — z mechanizmem 51614, 7-dniową rezerwą chodu i wskazaniem faz księżyca dla obu półkul (błąd jednego dnia raz na 577,5 roku). Komplikacja zaprojektowana przez Kurta Klausa w latach 80. i do dziś używana praktycznie bez zmian konstrukcyjnych.",
     "story": "Perpetual Calendar 1 of 250 reprezentuje techniczną, czytelną elegancję IWC. Marka słynie z dużych tarcz, praktycznych komplikacji i zegarków użytkowych mimo prestiżowego charakteru.",
@@ -1155,34 +1323,11 @@ export const mockProducts: Product[] = [
     "condition": "Bardzo dobry",
     "price": 25000,
     "status": "Dostępny",
-    "images": ["/products/iwc-portugieser-7-days/front.jpg"],
+    "images": [
+      "/products/iwc-portugieser-7-days/front.jpg"
+    ],
     "description": "IWC Portugieser Automatic 7 Days ref. IW500705 w stali 42,3 mm — manufakturowy kaliber 51011 z tygodniową rezerwą chodu i wskaźnikiem rezerwy o godzinie 3.",
     "editorial": "Manufakturowy kaliber 51011 zapewnia tygodniową rezerwę chodu — dlatego po dłuższym zostawieniu zegarka „w szufladzie” i tak chodzi dalej. Wskaźnik rezerwy o godzinie 3 i mała sekunda o godzinie 9 dają tarczy znak rozpoznawczy całej linii Portugieser; wersja stalowa 42,3 mm to klasyczny punkt wejścia w manufakturową ofertę IWC.",
     "story": "Portugieser 7 days reprezentuje techniczną, czytelną elegancję IWC. Marka słynie z dużych tarcz, praktycznych komplikacji i zegarków użytkowych mimo prestiżowego charakteru."
   }
 ]
-
-/**
- * Kanoniczny URL produktu — zawsze w formie "marka-model" (kebab-case),
- * niezależnie od wewnętrznego `slug`.
- */
-export function productUrlSlug(p: Pick<Product, 'brand' | 'name'>): string {
-  const raw = `${p.brand} ${p.name}`
-  return raw
-    .toLowerCase()
-    .normalize('NFD')
-    .replace(/[̀-ͯ]/g, '')
-    .replace(/ł/g, 'l')
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '')
-}
-
-export function findProductByUrlSlug(slug: string): Product | undefined {
-  return mockProducts.find((p) => productUrlSlug(p) === slug)
-}
-
-export const featuredProduct = mockProducts.find((p) => p.featured) ?? mockProducts[0]
-export const otherFeaturedProducts = mockProducts
-  .filter((p) => !p.featured && p.category === 'zegarki')
-  .slice(0, 6)
-export const featuredProducts = mockProducts.slice(0, 4)

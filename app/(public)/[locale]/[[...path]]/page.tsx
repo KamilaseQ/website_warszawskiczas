@@ -18,7 +18,13 @@ import {
   TrustSignals,
 } from '@/components/sections'
 import { Button, Container, FaqAccordion, Heading, Section, Text, type FaqItem } from '@/components/ui'
-import { findProductByUrlSlug, mockProducts, productUrlSlug } from '@/data/mock-products'
+import {
+  findProductByUrlSlug,
+  getAllProducts,
+  getProductBySlug,
+  productUrlSlug,
+} from '@/from-cms/adapters/products'
+import type { Product } from '@/from-cms/schemas/product'
 import { CONTACT_PHONE, CONTACT_PHONE_RAW } from '@/lib/config'
 import { absoluteUrl, canonicalPath, isLocale, localizedAlternates, localizePath, publicRoutePaths, type Locale } from '@/lib/i18n'
 import { getLocalizedLanding, localizedLandingSlugs } from '@/lib/localized-landings'
@@ -35,9 +41,9 @@ import {
   WatchBuyingServicePage,
 } from '@/components/pages/services-pages'
 
-// dynamicParams = true so URL-encoded Unicode segments (Cyrillic UA slugs)
-// route reliably; unknown routes still 404 via notFound() after canonicalisation.
-export const dynamicParams = true
+// Static export wymaga dynamicParams=false — wszystkie ścieżki muszą wyjść
+// z `generateStaticParams`, nieznane URL-e dostają 404 z hostingu.
+export const dynamicParams = false
 
 interface PageProps {
   params: Promise<{ locale: string; path?: string[] }>
@@ -73,7 +79,8 @@ function assertLocale(locale: string): Exclude<Locale, 'pl'> {
 }
 
 export async function generateStaticParams() {
-  const productPaths = mockProducts.map((p) => `/produkty/${productUrlSlug(p)}`)
+  const products = await getAllProducts()
+  const productPaths = products.map((p) => `/produkty/${productUrlSlug(p)}`)
   const canonicalRoutes = [...publicRoutePaths, ...productPaths]
 
   return localizedLocales.flatMap((locale) =>
@@ -82,12 +89,18 @@ export async function generateStaticParams() {
       const segments = localized.split('/').filter(Boolean)
       // First segment is the locale prefix (e.g. 'en', 'ua') — strip it for [[...path]] params.
       segments.shift()
-      return {
-        locale,
-        path: segments,
-      }
+      // Segmenty zostają w surowej UTF-8 (cyrylica dla UA, łacinka dla EN).
+      // Next dev URL-decoduje request przed matchem; static export tworzy
+      // pliki z UTF-8 w nazwach, które Apache na Hostingerze obsługuje.
+      return { locale, path: segments }
     }),
   )
+}
+
+async function resolveProduct(slug: string): Promise<Product | null> {
+  const byUrlSlug = await findProductByUrlSlug(slug)
+  if (byUrlSlug) return byUrlSlug
+  return getProductBySlug(slug)
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
@@ -97,7 +110,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   if (route.startsWith('/produkty/')) {
     const slug = route.replace('/produkty/', '')
-    const source = findProductByUrlSlug(slug) ?? mockProducts.find((p) => p.slug === slug)
+    const source = await resolveProduct(slug)
     if (!source) return { title: locale === 'en' ? 'Product not found' : 'Товар не знайдено', robots: { index: false, follow: true } }
     const product = localizeProduct(source, locale)
     const canonicalSlug = productUrlSlug(source)
@@ -126,8 +139,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (route === '/produkty') return productListMetadata(locale)
 
   const landingSlug = route.slice(1)
-  if (localizedLandingSlugs.includes(landingSlug)) {
-    const page = getLocalizedLanding(landingSlug, locale)
+  if ((localizedLandingSlugs as readonly string[]).includes(landingSlug)) {
+    const page = await getLocalizedLanding(landingSlug, locale)
     if (!page) notFound()
     return {
       title: page.title,
@@ -195,7 +208,7 @@ export default async function LocalizedPage({ params }: PageProps) {
   const locale = assertLocale(rawLocale)
   const route = routeFromPath(path, locale)
 
-  if (route === '/') return <LocalizedHome />
+  if (route === '/') return await renderLocalizedHome()
   if (route === '/kolekcja-na-zapytanie') return <PrivateCollectionPage locale={locale} />
   if (route === '/butik') return <BoutiquePage locale={locale} />
   if (route === '/kontakt') return <ContactPage locale={locale} />
@@ -205,12 +218,12 @@ export default async function LocalizedPage({ params }: PageProps) {
   if (route === '/uslugi/skup') return <WatchBuyingServicePage locale={locale} />
   if (route === '/uslugi/komis') return <ConsignmentServicePage locale={locale} />
   if (route === '/uslugi/naprawa-i-serwis') return <RepairServicePage locale={locale} />
-  if (route === '/produkty') return <LocalizedProducts locale={locale} />
-  if (route.startsWith('/produkty/')) return <LocalizedProductDetail route={route} locale={locale} />
+  if (route === '/produkty') return await LocalizedProducts({ locale })
+  if (route.startsWith('/produkty/')) return await LocalizedProductDetail({ route, locale })
 
   const landingSlug = route.slice(1)
-  if (localizedLandingSlugs.includes(landingSlug)) {
-    const page = getLocalizedLanding(landingSlug, locale)
+  if ((localizedLandingSlugs as readonly string[]).includes(landingSlug)) {
+    const page = await getLocalizedLanding(landingSlug, locale)
     if (!page) notFound()
     return (
       <>
@@ -245,11 +258,16 @@ export default async function LocalizedPage({ params }: PageProps) {
   notFound()
 }
 
-function LocalizedHome() {
+async function renderLocalizedHome() {
+  const { getFeaturedProduct, getOtherFeaturedProducts } = await import('@/from-cms/adapters/products')
+  const [featured, others] = await Promise.all([
+    getFeaturedProduct(),
+    getOtherFeaturedProducts(6),
+  ])
   return (
     <>
       <Hero />
-      <ProductShowcase />
+      <ProductShowcase featured={featured} others={others} />
       <TrustSignals />
       <BrandPositioning />
       <HiddenCollectionTeaser />
@@ -281,8 +299,9 @@ function productListMetadata(locale: Exclude<Locale, 'pl'>): Metadata {
   }
 }
 
-function LocalizedProducts({ locale }: { locale: Exclude<Locale, 'pl'> }) {
-  const products = mockProducts.map((p) => localizeProduct(p, locale))
+async function LocalizedProducts({ locale }: { locale: Exclude<Locale, 'pl'> }) {
+  const all = await getAllProducts()
+  const products = all.map((p) => localizeProduct(p, locale))
   const title = locale === 'en' ? 'Available watches in the boutique' : 'Годинники доступні в бутіку'
   const intro =
     locale === 'en'
@@ -300,7 +319,7 @@ function LocalizedProducts({ locale }: { locale: Exclude<Locale, 'pl'> }) {
           <div className="grid items-end gap-6 lg:grid-cols-12 lg:gap-12">
             <div className="lg:col-span-7">
               <p className="font-sans text-[10px] font-bold uppercase tracking-[0.4em] text-accent-gold">
-                {locale === 'en' ? 'Catalogue' : 'Каталог'} · {mockProducts.filter((p) => p.category === 'zegarki').length}
+                {locale === 'en' ? 'Catalogue' : 'Каталог'} · {all.filter((p) => p.category === 'zegarki').length}
               </p>
               <h1 className="mt-3 font-serif text-3xl font-medium leading-[1.05] tracking-tight text-foreground sm:text-4xl lg:text-5xl">
                 {title}
@@ -365,20 +384,44 @@ const certificationFaq = (locale: Exclude<Locale, 'pl'>): FaqItem[] =>
         { q: 'Чи надаєте гарантію?', a: 'Так. Гарантія бутіка на механізм доступна, якщо для конкретного екземпляра не зазначено інше.' },
       ]
 
-function LocalizedProductDetail({ route, locale }: { route: string; locale: Exclude<Locale, 'pl'> }) {
+async function LocalizedProductDetail({ route, locale }: { route: string; locale: Exclude<Locale, 'pl'> }) {
   const slug = route.replace('/produkty/', '')
-  const source = findProductByUrlSlug(slug) ?? mockProducts.find((p) => p.slug === slug)
+  const source = await resolveProduct(slug)
   if (!source) notFound()
   const product = localizeProduct(source, locale)
   const price = formatProductPrice(source, locale)
   const canonicalSlug = productUrlSlug(source)
   const productLabel = `${product.brand} ${product.name}`
   const productUrl = absoluteUrl(`/produkty/${canonicalSlug}`, locale)
-  const productImages = (source.images ?? []).map((src) => absoluteUrl(src))
-  const related = mockProducts
+  const productImages = (source.images ?? []).map((src) =>
+    src.startsWith('http') ? src : absoluteUrl(src),
+  )
+  const allProducts = await getAllProducts()
+  const related = allProducts
     .filter((p) => p.id !== source.id && p.category === source.category)
     .slice(0, 3)
     .map((p) => localizeProduct(p, locale))
+  const isUnavailable = source.status === 'Niedostępny'
+  const statusBadge =
+    source.status === 'Niedostępny'
+      ? locale === 'en'
+        ? 'On request — we can source'
+        : 'На замовлення — можемо знайти'
+      : source.status
+  const ctaLabel = isUnavailable
+    ? locale === 'en'
+      ? 'Ask about sourcing'
+      : 'Запитати про пошук'
+    : locale === 'en'
+      ? 'Ask about availability'
+      : 'Запитати про наявність'
+  const subnote = isUnavailable
+    ? locale === 'en'
+      ? 'Sourced in 7–30 days · No waiting list'
+      : 'Знайдемо за 7–30 днів · Без черги'
+    : locale === 'en'
+      ? 'Free valuation · Discreet consultation'
+      : 'Безкоштовна оцінка · Дискретна консультація'
 
   const productJsonLd = {
     '@context': 'https://schema.org',
@@ -400,10 +443,8 @@ function LocalizedProductDetail({ route, locale }: { route: string; locale: Excl
       price: source.price ?? undefined,
       availability:
         source.status === 'Niedostępny'
-          ? 'https://schema.org/SoldOut'
-          : source.status === 'Zarezerwowany'
-            ? 'https://schema.org/PreOrder'
-            : 'https://schema.org/InStock',
+          ? 'https://schema.org/PreOrder'
+          : 'https://schema.org/InStock',
       seller: { '@type': 'Organization', name: 'Warszawski Czas', url: absoluteUrl('/', locale) },
       areaServed: { '@type': 'Country', name: 'PL' },
     },
@@ -451,6 +492,14 @@ function LocalizedProductDetail({ route, locale }: { route: string; locale: Excl
                   {product.year ? ` · ${product.year}` : ''}
                 </p>
               )}
+              {source.status && (
+                <div className="mt-6 inline-flex items-center gap-2">
+                  <span className="h-1.5 w-1.5 rounded-full bg-accent-gold" />
+                  <span className="font-sans text-[10px] font-bold uppercase tracking-[0.35em] text-foreground/80">
+                    {statusBadge}
+                  </span>
+                </div>
+              )}
               <div className="my-8 h-px w-12 bg-accent-gold" />
               <Text className="text-base leading-relaxed text-foreground/85">{product.description}</Text>
               {product.editorial && <p className="mt-6 font-serif text-base italic leading-relaxed text-muted-foreground">&ldquo;{product.editorial}&rdquo;</p>}
@@ -465,8 +514,11 @@ function LocalizedProductDetail({ route, locale }: { route: string; locale: Excl
                 {price && <p className="font-serif text-3xl font-medium text-foreground">{price}</p>}
                 <div className="mt-6 flex flex-col gap-3">
                   <Button asChild className="w-full" size="lg">
-                    <ContactLink source="product-detail" product={productLabel}>
-                      {locale === 'en' ? 'Ask about availability' : 'Запитати про наявність'}
+                    <ContactLink
+                      source={isUnavailable ? 'product-detail-sourcing' : 'product-detail'}
+                      product={productLabel}
+                    >
+                      {ctaLabel}
                     </ContactLink>
                   </Button>
                   <a
@@ -476,6 +528,9 @@ function LocalizedProductDetail({ route, locale }: { route: string; locale: Excl
                     {locale === 'en' ? 'Call' : 'Зателефонувати'} · {CONTACT_PHONE}
                   </a>
                 </div>
+                <p className="mt-4 font-sans text-[11px] uppercase tracking-[0.18em] text-muted-foreground/80">
+                  {subnote}
+                </p>
               </div>
             </div>
           </div>

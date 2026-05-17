@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { ContactLink } from '@/components/contact-link'
 import { Container, Section, Heading, Text, Button } from '@/components/ui'
 import { ProductCatalog } from '@/components/products'
-import { mockProducts, productUrlSlug } from '@/data/mock-products'
+import { getAllProducts, productUrlSlug } from '@/from-cms/adapters/products'
 
 export const metadata: Metadata = {
   title: 'Zegarki luksusowe w Warszawie — katalog Warszawski Czas',
@@ -22,9 +22,20 @@ export const metadata: Metadata = {
   },
 }
 
-const collectionJsonLd = (() => {
-  const watches = mockProducts.filter((p) => p.category === 'zegarki' && p.status !== 'Niedostępny')
-  return {
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Strona główna', item: 'https://warszawskiczas.pl' },
+    { '@type': 'ListItem', position: 2, name: 'Zegarki', item: 'https://warszawskiczas.pl/produkty' },
+  ],
+}
+
+export default async function ProduktyPage() {
+  const products = await getAllProducts()
+  // Decyzja: produkty `Niedostępny` zostają w katalogu i JSON-LD — sprowadzamy na zamówienie.
+  const watches = products.filter((p) => p.category === 'zegarki')
+  const collectionJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     name: 'Zegarki luksusowe w Warszawie',
@@ -42,18 +53,6 @@ const collectionJsonLd = (() => {
       })),
     },
   }
-})()
-
-const breadcrumbJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Strona główna', item: 'https://warszawskiczas.pl' },
-    { '@type': 'ListItem', position: 2, name: 'Zegarki', item: 'https://warszawskiczas.pl/produkty' },
-  ],
-}
-
-export default function ProduktyPage() {
   return (
     <>
       <script
@@ -71,7 +70,7 @@ export default function ProduktyPage() {
           <div className="grid items-end gap-6 lg:grid-cols-12 lg:gap-12">
             <div className="lg:col-span-7">
               <p className="font-sans text-[10px] font-bold uppercase tracking-[0.4em] text-accent-gold">
-                Katalog · {mockProducts.filter((p) => p.category === 'zegarki').length} pozycji
+                Katalog · {watches.length} pozycji
               </p>
               <h1 className="mt-3 font-serif text-3xl font-medium tracking-tight text-foreground sm:text-4xl lg:text-5xl leading-[1.05]">
                 Zegarki dostępne <span className="italic text-foreground/80">w butiku</span>
@@ -96,7 +95,7 @@ export default function ProduktyPage() {
       {/* Catalog — bezpośrednio pod banerem, bez dużego oddechu */}
       <Section variant="muted" spacing="sm">
         <Container>
-          <ProductCatalog products={mockProducts} />
+          <ProductCatalog products={products} />
         </Container>
       </Section>
 

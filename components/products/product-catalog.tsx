@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation'
 import { ProductCard } from './product-card'
 import { cn } from '@/lib/utils'
 import { useBodyScrollLock } from '@/lib/use-body-scroll-lock'
-import type { Product } from '@/data/mock-products'
+import type { Product } from '@/from-cms/schemas/product'
 import { localeFromPathname, ui } from '@/lib/i18n'
 
 interface ProductCatalogProps {

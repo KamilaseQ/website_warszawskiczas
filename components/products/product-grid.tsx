@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils'
 import { ProductCard } from './product-card'
-import type { Product } from '@/data/mock-products'
+import type { Product } from '@/from-cms/schemas/product'
 
 interface ProductGridProps {
   products: Product[]

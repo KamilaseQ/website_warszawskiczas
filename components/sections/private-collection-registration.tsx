@@ -5,6 +5,7 @@ import { Container, Section } from '@/components/ui'
 import { FadeIn } from '@/components/ui/fade-in'
 import { readSessionPath } from '@/components/session-tracker'
 import type { Locale } from '@/lib/i18n'
+import { submitLead } from '@/from-cms/adapters/leads'
 
 const copy = {
   pl: {
@@ -127,12 +128,18 @@ export function PrivateCollectionRegistration({ locale = 'pl' }: { locale?: Loca
       ? `[Kolekcja Prywatna] ${aboutMe}`
       : `[Kolekcja Prywatna] ${t.aboutFallback}`
 
+    if (fd.get('rodo') !== 'on') {
+      setErrorMsg(t.fallbackError)
+      setStatus('error')
+      return
+    }
     const payload = {
+      type: 'private-access' as const,
       name: String(fd.get('name') ?? ''),
       email: String(fd.get('email') ?? ''),
       phone: String(fd.get('phone') ?? ''),
       message,
-      rodo: fd.get('rodo') === 'on',
+      rodo: true as const,
       company: String(fd.get('company') ?? ''),
       t: mountedAt.current,
       source: 'kolekcja-prywatna',
@@ -141,19 +148,12 @@ export function PrivateCollectionRegistration({ locale = 'pl' }: { locale?: Loca
     }
 
     try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      })
-
+      const res = await submitLead(payload)
       if (res.ok) {
         setStatus('success')
         return
       }
-
-      const data = await res.json().catch(() => ({}))
-      setErrorMsg(typeof data?.error === 'string' ? data.error : t.fallbackError)
+      setErrorMsg(res.error ?? t.fallbackError)
       setStatus('error')
     } catch {
       setErrorMsg(t.networkError)

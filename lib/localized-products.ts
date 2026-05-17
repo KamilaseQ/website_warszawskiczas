@@ -1,4 +1,4 @@
-import { type Product } from '@/data/mock-products'
+import type { Product } from '@/from-cms/schemas/product'
 import { type Locale, ui } from '@/lib/i18n'
 
 const intlLocale = (locale: Locale) => (locale === 'ua' ? 'uk-UA' : locale === 'en' ? 'en-US' : 'pl-PL')

@@ -8,12 +8,17 @@ import {
   TrustSignals,
   FinalCTA,
 } from '@/components/sections'
+import { getFeaturedProduct, getOtherFeaturedProducts } from '@/from-cms/adapters/products'
 
-export default function HomePage() {
+export default async function HomePage() {
+  const [featured, others] = await Promise.all([
+    getFeaturedProduct(),
+    getOtherFeaturedProducts(6),
+  ])
   return (
     <>
       <Hero />
-      <ProductShowcase />
+      <ProductShowcase featured={featured} others={others} />
       <TrustSignals />
       <BrandPositioning />
       <HiddenCollectionTeaser />

@@ -30,27 +30,21 @@ export function PrivateCollectionGallery() {
   const [error, setError] = useState(false)
   const [submitting, setSubmitting] = useState(false)
 
+  const expectedCode = (
+    process.env.NEXT_PUBLIC_PRIVATE_COLLECTION_CODE ?? 'mokotowska2026'
+  ).trim().toLowerCase()
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (submitting) return
     setSubmitting(true)
-    try {
-      const res = await fetch('/api/private-access', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ code }),
-      })
-      if (res.ok) {
-        setUnlocked(true)
-        setError(false)
-      } else {
-        setError(true)
-      }
-    } catch {
+    await new Promise((r) => setTimeout(r, 250))
+    if (code.trim().toLowerCase() === expectedCode) {
+      setUnlocked(true)
+      setError(false)
+    } else {
       setError(true)
-    } finally {
-      setSubmitting(false)
     }
+    setSubmitting(false)
   }
 
   const scrollToForm = (e: React.MouseEvent) => {

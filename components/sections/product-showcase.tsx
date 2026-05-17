@@ -8,11 +8,17 @@ import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { ContactLink } from '@/components/contact-link'
 import { Container, Section, ImagePlaceholder, KenBurns, Magnetic, ScrollDrift } from '@/components/ui'
 import { FadeIn } from '@/components/ui/fade-in'
-import { featuredProduct, otherFeaturedProducts, productUrlSlug } from '@/data/mock-products'
+import { productUrlSlug } from '@/from-cms/adapters/products'
+import type { Product } from '@/from-cms/schemas/product'
 import { localeFromPathname, localizePath } from '@/lib/i18n'
 import { localizeProduct } from '@/lib/localized-products'
 
-export function ProductShowcase() {
+interface ProductShowcaseProps {
+  featured: Product
+  others: Product[]
+}
+
+export function ProductShowcase({ featured, others }: ProductShowcaseProps) {
   const pathname = usePathname()
   const locale = localeFromPathname(pathname)
   const scrollerRef = useRef<HTMLDivElement>(null)
@@ -61,7 +67,7 @@ export function ProductShowcase() {
       item: 'позиція',
     },
   }[locale]
-  const localizedFeatured = localizeProduct(featuredProduct, locale)
+  const localizedFeatured = localizeProduct(featured, locale)
 
   const scrollBy = (dir: 'left' | 'right') => {
     const el = scrollerRef.current
@@ -122,10 +128,10 @@ export function ProductShowcase() {
                 offset={['start 85%', 'end 15%']}
                 className="relative aspect-[4/5] w-full sm:aspect-[3/4]"
               >
-                {featuredProduct.images?.[0] ? (
+                {featured.images?.[0] ? (
                   <Image
-                    src={featuredProduct.images[0]}
-                    alt={`${featuredProduct.brand} ${featuredProduct.name}`}
+                    src={featured.images[0]}
+                    alt={`${featured.brand} ${featured.name}`}
                     fill
                     priority
                     sizes="(min-width: 1024px) 58vw, 100vw"
@@ -144,7 +150,7 @@ export function ProductShowcase() {
               {/* Podpis edytorialny pod obrazem */}
               <div className="mt-4 flex items-center">
                 <span className="font-sans text-[10px] uppercase tracking-[0.3em] text-muted-foreground/60">
-                  {featuredProduct.brand} · {featuredProduct.reference}
+                  {featured.brand} · {featured.reference}
                 </span>
               </div>
             </div>
@@ -167,14 +173,14 @@ export function ProductShowcase() {
               </p>
 
               <h2 className="mt-6 font-serif text-4xl font-medium tracking-tight text-foreground sm:text-6xl lg:text-[4rem] leading-[1]">
-                {featuredProduct.brand}
+                {featured.brand}
               </h2>
               <h3 className="mt-2 font-serif italic text-2xl font-normal text-foreground/80 sm:text-4xl">
-                {featuredProduct.name}
+                {featured.name}
               </h3>
 
               <p className="mt-6 font-sans text-[11px] font-bold uppercase tracking-[0.3em] text-muted-foreground">
-                Ref. {featuredProduct.reference} &nbsp;·&nbsp; {featuredProduct.year}
+                Ref. {featured.reference} &nbsp;·&nbsp; {featured.year}
               </p>
 
               {/* Złoty separator */}
@@ -246,7 +252,7 @@ export function ProductShowcase() {
           ref={scrollerRef}
           className="no-scrollbar mt-2 flex snap-x snap-mandatory gap-6 overflow-x-auto px-6 pb-4 scroll-pl-6 lg:px-[max(1.5rem,calc((100vw-80rem)/2+1.5rem))] lg:scroll-pl-[max(1.5rem,calc((100vw-80rem)/2+1.5rem))]"
         >
-          {otherFeaturedProducts.map((p, i) => (
+          {others.map((p, i) => (
             <Link
               key={p.id}
               href={localizePath(`/produkty/${productUrlSlug(p)}`, locale)}

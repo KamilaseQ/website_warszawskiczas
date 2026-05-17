@@ -1,0 +1,67 @@
+# ============================================================================
+# Warszawski Czas — konfiguracja Apache na Hostinger Business
+# ----------------------------------------------------------------------------
+# Generowana ze statycznego buildu Next.js (`output: 'export'`).
+# Zastępuje to, co w trybie SSR robił `next.config.js` (headers + redirects)
+# oraz middleware (hreflang).
+# Zmiany w tym pliku trafiają na produkcję razem z resztą `out/` przez deploy.
+# ============================================================================
+
+# ---------------------- Wymuszenie HTTPS + non-www ------------------------
+RewriteEngine On
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} ^www\.warszawskiczas\.pl [NC]
+RewriteRule ^(.*)$ https://warszawskiczas.pl/$1 [R=301,L]
+
+# ---------------------- 301 redirects (migracje URL) ----------------------
+# Zsynchronizowane z dawnym `next.config.js` `redirects()`. Aktualizuj tylko
+# tutaj — `next.config.js` w trybie static export nie obsługuje `redirects()`.
+RewriteRule ^skup-zegarkow/?$              /skup-zegarkow-warszawa        [R=301,L]
+RewriteRule ^skup/?$                       /skup-zegarkow-warszawa        [R=301,L]
+RewriteRule ^komis/?$                      /komis-zegarkow-warszawa       [R=301,L]
+RewriteRule ^naprawa-i-serwis/?$           /uslugi/naprawa-i-serwis       [R=301,L]
+RewriteRule ^serwis/?$                     /uslugi/naprawa-i-serwis       [R=301,L]
+RewriteRule ^oferta/?$                     /produkty                      [R=301,L]
+RewriteRule ^kontakt-lokalizacja/?$        /kontakt                       [R=301,L]
+RewriteRule ^lokalizacja/?$                /kontakt                       [R=301,L]
+
+# ---------------------- Clean URLs → .html ---------------------------------
+# Next static export wypluwa `out/produkty.html`, `out/butik.html`, itd.
+# Apache musi rozumieć żądanie `/produkty` jako te pliki.
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.+?)/?$ $1.html [L]
+
+# Strona główna: index.html (Apache obsłuży automatycznie)
+
+# ---------------------- Custom 404 ----------------------------------------
+ErrorDocument 404 /404.html
+
+# ---------------------- Security headers -----------------------------------
+<IfModule mod_headers.c>
+  Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+</IfModule>
+
+# ---------------------- Cache static assets --------------------------------
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/webp                  "access plus 1 year"
+  ExpiresByType image/jpeg                  "access plus 1 year"
+  ExpiresByType image/png                   "access plus 1 year"
+  ExpiresByType image/svg+xml               "access plus 1 year"
+  ExpiresByType video/mp4                   "access plus 1 year"
+  ExpiresByType video/webm                  "access plus 1 year"
+  ExpiresByType font/woff2                  "access plus 1 year"
+  ExpiresByType text/css                    "access plus 1 week"
+  ExpiresByType application/javascript      "access plus 1 week"
+  ExpiresByType text/html                   "access plus 5 minutes"
+</IfModule>
+
+# ---------------------- Kompresja ------------------------------------------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json application/xml image/svg+xml font/woff2
+</IfModule>

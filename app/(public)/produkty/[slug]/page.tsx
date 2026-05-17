@@ -7,20 +7,33 @@ import { Container, Section, Heading, Text, Button, FaqAccordion, type FaqItem }
 import { RelatedGrid } from '@/components/products'
 import { ProductGallery } from '@/components/products/product-gallery'
 import { faqJsonLd } from '@/components/seo/seo-landing'
-import { mockProducts, productUrlSlug, findProductByUrlSlug } from '@/data/mock-products'
+import {
+  getAllProducts,
+  getProductBySlug,
+  findProductByUrlSlug,
+  productUrlSlug,
+} from '@/from-cms/adapters/products'
+import type { Product } from '@/from-cms/schemas/product'
 import { CONTACT_PHONE, CONTACT_PHONE_RAW } from '@/lib/config'
 
 interface PageProps {
   params: Promise<{ slug: string }>
 }
 
+async function resolveProduct(slug: string): Promise<Product | null> {
+  const byUrlSlug = await findProductByUrlSlug(slug)
+  if (byUrlSlug) return byUrlSlug
+  return getProductBySlug(slug)
+}
+
 export async function generateStaticParams() {
-  return mockProducts.map((p) => ({ slug: productUrlSlug(p) }))
+  const products = await getAllProducts()
+  return products.map((p) => ({ slug: productUrlSlug(p) }))
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params
-  const product = findProductByUrlSlug(slug) ?? mockProducts.find((p) => p.slug === slug)
+  const product = await resolveProduct(slug)
   if (!product) return { title: 'Produkt nie znaleziony', robots: { index: false, follow: true } }
 
   const canonicalSlug = productUrlSlug(product)
@@ -82,10 +95,12 @@ function formatPrice(value?: number, onRequest?: boolean) {
 
 export default async function ProductPage({ params }: PageProps) {
   const { slug } = await params
-  const product = findProductByUrlSlug(slug) ?? mockProducts.find((p) => p.slug === slug)
+  const product = await resolveProduct(slug)
   if (!product) notFound()
 
+  const allProducts = await getAllProducts()
   const price = formatPrice(product.price, product.priceOnRequest)
+  const isUnavailable = product.status === 'Niedostępny'
 
   const tokens = (s?: string) =>
     new Set(
@@ -98,7 +113,7 @@ export default async function ProductPage({ params }: PageProps) {
   const productMaterial = tokens(current.material)
   const productPrice = current.price ?? 0
 
-  function similarity(p: (typeof mockProducts)[number]) {
+  function similarity(p: Product) {
     let score = 0
     if (p.brand === current.brand) score += 4
     const otherMat = tokens(p.material)
@@ -120,7 +135,7 @@ export default async function ProductPage({ params }: PageProps) {
     return score
   }
 
-  const related = mockProducts
+  const related = allProducts
     .filter((p) => p.id !== product.id && p.category === product.category)
     .map((p) => ({ p, s: similarity(p) }))
     .sort((a, b) => b.s - a.s)
@@ -131,14 +146,35 @@ export default async function ProductPage({ params }: PageProps) {
 
   const statusTone =
     product.status === 'Niedostępny'
-      ? 'text-muted-foreground/70 line-through'
+      ? 'text-foreground/80'
       : product.status === 'Zarezerwowany'
         ? 'text-muted-foreground'
         : 'text-accent-gold'
 
+  const statusBadge =
+    product.status === 'Niedostępny'
+      ? 'Niedostępny — możemy sprowadzić'
+      : product.status
+
+  const ctaLabel = isUnavailable ? 'Zapytaj o sprowadzenie' : 'Zapytaj o dostępność'
+  const ctaSource = isUnavailable ? 'product-detail-sourcing' : 'product-detail'
+
   const canonicalSlug = productUrlSlug(product)
   const productUrl = `https://warszawskiczas.pl/produkty/${canonicalSlug}`
-  const productImages = (product.images ?? []).map((src) => `https://warszawskiczas.pl${src}`)
+  const productImages = (product.images ?? []).map((src) =>
+    src.startsWith('http') ? src : `https://warszawskiczas.pl${src}`,
+  )
+
+  /**
+   * `availability` w Offer:
+   * - `Niedostępny` → `PreOrder` (sprowadzamy na zamówienie — pełnoprawny cel SEO, NIE `SoldOut`)
+   * - `Zarezerwowany` → `InStock` (ostatni egzemplarz w rezerwacji, ale wciąż w obrocie)
+   * - `Dostępny` → `InStock`
+   */
+  const availability =
+    product.status === 'Niedostępny'
+      ? 'https://schema.org/PreOrder'
+      : 'https://schema.org/InStock'
 
   const productJsonLd = {
     '@context': 'https://schema.org',
@@ -163,13 +199,10 @@ export default async function ProductPage({ params }: PageProps) {
       url: productUrl,
       priceCurrency: 'PLN',
       price: product.price ?? undefined,
-      ...(product.priceOnRequest && !product.price ? { priceSpecification: { '@type': 'PriceSpecification', priceCurrency: 'PLN', price: 0, valueAddedTaxIncluded: true } } : {}),
-      availability:
-        product.status === 'Niedostępny'
-          ? 'https://schema.org/SoldOut'
-          : product.status === 'Zarezerwowany'
-            ? 'https://schema.org/PreOrder'
-            : 'https://schema.org/InStock',
+      ...(product.priceOnRequest && !product.price
+        ? { priceSpecification: { '@type': 'PriceSpecification', priceCurrency: 'PLN', price: 0, valueAddedTaxIncluded: true } }
+        : {}),
+      availability,
       itemCondition:
         product.condition && /nowy/i.test(product.condition)
           ? 'https://schema.org/NewCondition'
@@ -246,7 +279,7 @@ export default async function ProductPage({ params }: PageProps) {
                 <div className="mt-6 inline-flex items-center gap-2">
                   <span className="h-1.5 w-1.5 rounded-full bg-accent-gold" />
                   <span className={`font-sans text-[10px] font-bold uppercase tracking-[0.35em] ${statusTone}`}>
-                    {product.status}
+                    {statusBadge}
                   </span>
                 </div>
               )}
@@ -317,7 +350,7 @@ export default async function ProductPage({ params }: PageProps) {
                 )}
                 <div className="mt-6 flex flex-col gap-3">
                   <Button asChild className="w-full" size="lg">
-                    <ContactLink source="product-detail" product={productLabel}>Zapytaj o dostępność</ContactLink>
+                    <ContactLink source={ctaSource} product={productLabel}>{ctaLabel}</ContactLink>
                   </Button>
                   <a
                     href={`tel:${CONTACT_PHONE_RAW}`}
@@ -327,7 +360,9 @@ export default async function ProductPage({ params }: PageProps) {
                   </a>
                 </div>
                 <p className="mt-4 font-sans text-[11px] uppercase tracking-[0.18em] text-muted-foreground/80">
-                  Bezpłatna wycena · Dyskretna konsultacja
+                  {isUnavailable
+                    ? 'Sprowadzamy w 7–30 dni · Bez listy oczekujących'
+                    : 'Bezpłatna wycena · Dyskretna konsultacja'}
                 </p>
               </div>
             </div>

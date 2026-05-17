@@ -1,6 +1,9 @@
 import { MetadataRoute } from 'next'
-import { mockProducts, productUrlSlug } from '@/data/mock-products'
+import { getAllProducts, productUrlSlug } from '@/from-cms/adapters/products'
 import { absoluteUrl, locales, publicRoutePaths, type Locale } from '@/lib/i18n'
+
+// Wymagane w static export, żeby sitemap wygenerował się przy buildzie.
+export const dynamic = 'force-static'
 
 const LAST_CONTENT_UPDATE = '2026-05-10'
 
@@ -37,25 +40,26 @@ function entry(path: string, locale: Locale, priority = priorityForPath(path)): 
   }
 }
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const routes = publicRoutePaths.filter((path) => path !== '/kontakt/dziekujemy')
 
   const pages: MetadataRoute.Sitemap = locales.flatMap((locale) =>
     routes.map((path) => entry(path, locale)),
   )
 
+  const allProducts = await getAllProducts()
+  // Decyzja: produkty ze statusem `Niedostępny` POZOSTAJĄ w sitemap.
+  // Sprowadzamy je na zamówienie, więc są pełnoprawnymi celami SEO.
   const products: MetadataRoute.Sitemap = locales.flatMap((locale) =>
-    mockProducts
-      .filter((p) => p.status !== 'Niedostępny')
-      .map((p) => {
-        const path = `/produkty/${productUrlSlug(p)}`
-        const firstImage = p.images?.[0]
-        return {
-          ...entry(path, locale, 0.7),
-          changeFrequency: 'weekly' as const,
-          images: firstImage ? [absoluteUrl(firstImage)] : undefined,
-        }
-      }),
+    allProducts.map((p) => {
+      const path = `/produkty/${productUrlSlug(p)}`
+      const firstImage = p.images?.[0]
+      return {
+        ...entry(path, locale, 0.7),
+        changeFrequency: 'weekly' as const,
+        images: firstImage ? [absoluteUrl(firstImage)] : undefined,
+      }
+    }),
   )
 
   return [...pages, ...products]

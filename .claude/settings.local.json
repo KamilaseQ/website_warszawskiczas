@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Path \"c:\\\\Users\\\\212ka\\\\source\\\\repos\\\\website_warszawskiczas\" -Recurse -Directory)",
+      "Bash(Select-Object -First 20)",
+      "Bash(Get-ChildItem -Path \"c:\\\\Users\\\\212ka\\\\source\\\\repos\\\\website_warszawskiczas\" -Force)",
+      "PowerShell(Get-ChildItem \"$env:LOCALAPPDATA\\\\fnm_multishells\" -Directory | Select-Object -First 3 FullName; Get-ChildItem \"$env:LOCALAPPDATA\\\\fnm\" -ErrorAction SilentlyContinue -Recurse -Filter node.exe | Select-Object -First 3 FullName)",
+      "PowerShell(fnm current 2>$null)",
+      "PowerShell(fnm list 2>$null)",
+      "PowerShell(& fnm env --use-on-cd --shell powershell 2>$null)",
+      "PowerShell(Get-ChildItem \"$env:FNM_DIR\\\\node-versions\" -Directory | Select-Object FullName)",
+      "Bash(find /c/Users/212ka -maxdepth 6 -name \"node.exe\" 2>/dev/null | head -5)",
+      "Read(//c/Users/212ka/**)",
+      "Bash(/c/Users/212ka/AppData/Local/ms-playwright-go/1.57.0/node.exe scripts/migrate-products-to-fixtures.mjs)",
+      "Bash(/c/Users/212ka/AppData/Local/ms-playwright-go/1.57.0/node.exe -e \"const a=require\\('./from-cms/fixtures/products.json'\\);console.log\\('count:',a.length\\);console.log\\('uniq slugs:',new Set\\(a.map\\(p=>p.slug\\)\\).size\\);console.log\\('first:',JSON.stringify\\(a[0],null,2\\).slice\\(0,400\\)\\)\")",
+      "Bash(/c/Users/212ka/AppData/Local/ms-playwright-go/1.57.0/node.exe node_modules/typescript/bin/tsc -p tsconfig.lint.json --noEmit --pretty false)",
+      "Bash(/c/Users/212ka/AppData/Local/ms-playwright-go/1.57.0/node.exe ./node_modules/typescript/bin/tsc -p tsconfig.lint.json --noEmit --pretty false)",
+      "Bash(echo \"exit=$?\")",
+      "Bash(/c/Users/212ka/AppData/Local/ms-playwright-go/1.57.0/node.exe ./node_modules/typescript/bin/tsc --noEmit --pretty false from-cms/adapters/products.ts from-cms/adapters/leads.ts from-cms/adapters/translations.ts from-cms/schemas/product.ts)",
+      "Bash(/c/Users/212ka/AppData/Local/ms-playwright-go/1.57.0/node.exe ./node_modules/next/dist/bin/next build)",
+      "Bash(echo \"lint-exit=$?\")",
+      "Read(//c/Users/212ka/source/repos/website_warszawskiczas/out/ua/%D0%BF%D0%BE%D1%81%D0%BB%D1%83%D0%B3%D0%B8/**)",
+      "Bash(grep -E \"^послуги|%D0%BF%D0%BE%D1%81%D0%BB%D1%83%D0%B3%D0%B8$\")"
+    ]
+  }
+}

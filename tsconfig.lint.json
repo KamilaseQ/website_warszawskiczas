@@ -10,6 +10,7 @@
     "components/**/*.ts",
     "components/**/*.tsx",
     "data/**/*.ts",
+    "from-cms/**/*.ts",
     "lib/**/*.ts",
     "next.config.js",
     "tailwind.config.ts"

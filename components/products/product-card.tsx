@@ -7,7 +7,8 @@ import { motion, useReducedMotion } from 'framer-motion'
 import { ImagePlaceholder } from '@/components/ui'
 import { cn } from '@/lib/utils'
 import { localeFromPathname, localizePath, ui } from '@/lib/i18n'
-import { productUrlSlug, type Product } from '@/data/mock-products'
+import { productUrlSlug } from '@/from-cms/adapters/products'
+import type { Product } from '@/from-cms/schemas/product'
 
 function CardImage({ product }: { product: Product }) {
   const src = product.images?.[0]
@@ -62,15 +63,17 @@ export function ProductCard({ product, className, aspect = 'portrait', layout = 
       ? t.priceOnRequest
       : null
 
+  // Decyzja: status `Niedostępny` to operacyjny stan (sprowadzamy na zamówienie),
+  // NIE "sold out". Bez line-through, bez przygaszania — pełnoprawny cel SEO.
   const statusColor =
     product.status === 'Niedostępny'
-      ? 'text-muted-foreground/60 line-through'
+      ? 'text-foreground/80'
       : product.status === 'Zarezerwowany'
         ? 'text-muted-foreground/80'
         : 'text-accent-gold'
   const statusLabel =
     product.status === 'Niedostępny'
-      ? t.unavailable
+      ? t.unavailableSourcing
       : product.status === 'Zarezerwowany'
         ? t.reserved
         : product.status === 'Dostępny'

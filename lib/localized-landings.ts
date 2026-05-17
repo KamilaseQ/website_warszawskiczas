@@ -9,6 +9,8 @@ import {
   vintageWatches,
 } from '@/lib/seo-product-filters'
 import type { Locale } from '@/lib/i18n'
+import { getAllProducts } from '@/from-cms/adapters/products'
+import type { Product } from '@/from-cms/schemas/product'
 
 type LandingCopy = SeoLandingProps & {
   slug: string
@@ -75,7 +77,8 @@ const commonFaq = {
   ],
 } as const
 
-const definitions = {
+function buildDefinitions(products: Product[]) {
+  return {
   'skup-zegarkow-warszawa': {
     en: {
       title: 'Sell luxury watches in Warsaw - valuation in 15 minutes',
@@ -117,7 +120,7 @@ const definitions = {
       topic: 'sell Rolex in Warsaw',
       serviceName: 'Rolex buying in Warsaw',
       serviceType: 'Rolex watch buying',
-      products: productsByBrand('Rolex', 6),
+      products: productsByBrand(products, 'Rolex', 6),
     },
     ua: {
       title: 'Викуп Rolex у Варшаві - Submariner, Daytona, GMT-Master, Datejust',
@@ -131,7 +134,7 @@ const definitions = {
       topic: 'викуп Rolex у Варшаві',
       serviceName: 'Викуп Rolex у Варшаві',
       serviceType: 'Викуп Rolex',
-      products: productsByBrand('Rolex', 6),
+      products: productsByBrand(products, 'Rolex', 6),
     },
   },
   'wycena-zegarka-warszawa': {
@@ -231,7 +234,7 @@ const definitions = {
       topic: 'exclusive watches in Warsaw',
       serviceName: 'Luxury watches in Warsaw',
       serviceType: 'Luxury watch sales',
-      products: sportWatches(6),
+      products: sportWatches(products, 6),
     },
     ua: {
       title: 'Люксові годинники у Варшаві - Rolex, Patek Philippe, Cartier',
@@ -245,7 +248,7 @@ const definitions = {
       topic: 'ексклюзивні годинники у Варшаві',
       serviceName: 'Люксові годинники у Варшаві',
       serviceType: 'Продаж люксових годинників',
-      products: sportWatches(6),
+      products: sportWatches(products, 6),
     },
   },
   'zegarki-uzywane-warszawa': {
@@ -261,7 +264,7 @@ const definitions = {
       topic: 'pre-owned luxury watches in Warsaw',
       serviceName: 'Pre-owned luxury watches in Warsaw',
       serviceType: 'Pre-owned watch sales',
-      products: vintageWatches(6),
+      products: vintageWatches(products, 6),
     },
     ua: {
       title: 'Вживані люксові годинники у Варшаві - перевірені екземпляри',
@@ -275,7 +278,7 @@ const definitions = {
       topic: 'вживані люксові годинники у Варшаві',
       serviceName: 'Вживані люксові годинники у Варшаві',
       serviceType: 'Продаж вживаних годинників',
-      products: vintageWatches(6),
+      products: vintageWatches(products, 6),
     },
   },
   'zegarki-rolex-warszawa': {
@@ -300,7 +303,7 @@ const definitions = {
       topic: 'ladies luxury watches in Warsaw',
       serviceName: 'Ladies luxury watches in Warsaw',
       serviceType: 'Ladies watch sales',
-      products: ladiesWatches(6),
+      products: ladiesWatches(products, 6),
     },
     ua: {
       title: 'Жіночі люксові годинники у Варшаві - Cartier, Chopard, Omega, Rolex',
@@ -314,7 +317,7 @@ const definitions = {
       topic: 'жіночі люксові годинники у Варшаві',
       serviceName: 'Жіночі люксові годинники у Варшаві',
       serviceType: 'Продаж жіночих годинників',
-      products: ladiesWatches(6),
+      products: ladiesWatches(products, 6),
     },
   },
   'zegarki-ze-zlota-warszawa': {
@@ -330,7 +333,7 @@ const definitions = {
       topic: 'gold watches in Warsaw',
       serviceName: 'Gold watches in Warsaw',
       serviceType: 'Gold watch sales',
-      products: goldWatches(6),
+      products: goldWatches(products, 6),
     },
     ua: {
       title: 'Золоті годинники у Варшаві - жовте, рожеве та біле золото',
@@ -344,7 +347,7 @@ const definitions = {
       topic: 'золоті годинники у Варшаві',
       serviceName: 'Золоті годинники у Варшаві',
       serviceType: 'Продаж золотих годинників',
-      products: goldWatches(6),
+      products: goldWatches(products, 6),
     },
   },
   'zegarki-z-diamentami-warszawa': {
@@ -360,7 +363,7 @@ const definitions = {
       topic: 'diamond watches in Warsaw',
       serviceName: 'Diamond watches in Warsaw',
       serviceType: 'Diamond watch sales',
-      products: diamondWatches(6),
+      products: diamondWatches(products, 6),
     },
     ua: {
       title: 'Годинники з діамантами у Варшаві - люксові ювелірні моделі',
@@ -374,7 +377,7 @@ const definitions = {
       topic: 'годинники з діамантами у Варшаві',
       serviceName: 'Годинники з діамантами у Варшаві',
       serviceType: 'Продаж діамантових годинників',
-      products: diamondWatches(6),
+      products: diamondWatches(products, 6),
     },
   },
   'chronografy-warszawa': {
@@ -390,7 +393,7 @@ const definitions = {
       topic: 'luxury chronographs in Warsaw',
       serviceName: 'Luxury chronographs in Warsaw',
       serviceType: 'Chronograph sales',
-      products: chronographWatches(6),
+      products: chronographWatches(products, 6),
     },
     ua: {
       title: 'Хронографи у Варшаві - Daytona, Speedmaster, Royal Oak Chronograph',
@@ -404,7 +407,7 @@ const definitions = {
       topic: 'люксові хронографи у Варшаві',
       serviceName: 'Люксові хронографи у Варшаві',
       serviceType: 'Продаж хронографів',
-      products: chronographWatches(6),
+      products: chronographWatches(products, 6),
     },
   },
   'zegarki-na-zamowienie': {
@@ -453,7 +456,7 @@ const definitions = {
       topic: 'collector watches in Warsaw',
       serviceName: 'Collector watches in Warsaw',
       serviceType: 'Collector watch advisory',
-      products: vintageWatches(6),
+      products: vintageWatches(products, 6),
     },
     ua: {
       title: 'Колекційні годинники у Варшаві - рідкісні та важливі референси',
@@ -467,16 +470,43 @@ const definitions = {
       topic: 'колекційні годинники у Варшаві',
       serviceName: 'Колекційні годинники у Варшаві',
       serviceType: 'Консультації щодо колекційних годинників',
-      products: vintageWatches(6),
+      products: vintageWatches(products, 6),
     },
   },
-} as const
+  } as const
+}
 
-type Definition = (typeof definitions)[keyof typeof definitions]
-export const localizedLandingSlugs = Object.keys(definitions)
+type Definitions = ReturnType<typeof buildDefinitions>
+type Definition = Definitions[keyof Definitions]
 
-function brandDefinition(slug: string, locale: Exclude<Locale, 'pl'>, brand: string, onRequest = false): LandingCopy {
-  const products = productsByBrand(brand, 6)
+/**
+ * Stała lista slugów landingów — żeby nie wymagać pobierania produktów tylko
+ * po to, żeby wyciągnąć klucze. Spójna z `buildDefinitions()` powyżej.
+ */
+export const localizedLandingSlugs = [
+  'skup-zegarkow-warszawa',
+  'skup-rolex-warszawa',
+  'wycena-zegarka-warszawa',
+  'komis-zegarkow-warszawa',
+  'skup-zegarkow-centrum-warszawy',
+  'zegarki-luksusowe-warszawa',
+  'zegarki-uzywane-warszawa',
+  'zegarki-rolex-warszawa',
+  'zegarki-omega-warszawa',
+  'zegarki-cartier-warszawa',
+  'zegarki-damskie-warszawa',
+  'zegarki-ze-zlota-warszawa',
+  'zegarki-z-diamentami-warszawa',
+  'chronografy-warszawa',
+  'zegarki-na-zamowienie',
+  'rolex-na-zamowienie',
+  'patek-philippe-na-zamowienie',
+  'audemars-piguet-na-zamowienie',
+  'zegarki-kolekcjonerskie',
+] as const
+
+function brandDefinition(slug: string, locale: Exclude<Locale, 'pl'>, brand: string, products: Product[], onRequest = false): LandingCopy {
+  const brandProducts = productsByBrand(products, brand, 6)
   if (locale === 'en') {
     return buildCopy(slug, locale, {
       title: `${brand} watches Warsaw${onRequest ? ' - sourcing on request' : ' - verified luxury watches'}`,
@@ -488,7 +518,7 @@ function brandDefinition(slug: string, locale: Exclude<Locale, 'pl'>, brand: str
       topic: `${brand} watches in Warsaw`,
       serviceName: `${brand} watches in Warsaw`,
       serviceType: `${brand} watch sales and sourcing`,
-      products,
+      products: brandProducts,
       areaServed: onRequest ? 'Poland' : undefined,
     })
   }
@@ -503,7 +533,7 @@ function brandDefinition(slug: string, locale: Exclude<Locale, 'pl'>, brand: str
     topic: `${brand} у Варшаві`,
     serviceName: `${brand} у Варшаві`,
     serviceType: `Продаж і пошук ${brand}`,
-    products,
+    products: brandProducts,
     areaServed: onRequest ? 'Poland' : undefined,
   })
 }
@@ -603,9 +633,16 @@ function buildCopy(
   }
 }
 
-export function getLocalizedLanding(slug: string, locale: Exclude<Locale, 'pl'>): LandingCopy | null {
+export async function getLocalizedLanding(
+  slug: string,
+  locale: Exclude<Locale, 'pl'>,
+): Promise<LandingCopy | null> {
+  const products = await getAllProducts()
+  const definitions = buildDefinitions(products)
   const def = definitions[slug as keyof typeof definitions] as Definition | undefined
   if (!def) return null
-  if ('brand' in def) return brandDefinition(slug, locale, def.brand, 'onRequest' in def && !!def.onRequest)
+  if ('brand' in def) {
+    return brandDefinition(slug, locale, def.brand, products, 'onRequest' in def && !!def.onRequest)
+  }
   return buildCopy(slug, locale, def[locale])
 }

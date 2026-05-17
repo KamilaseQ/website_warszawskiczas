@@ -1,0 +1,70 @@
+name: Build & deploy do Hostinger
+
+# Triggery:
+#  - push na `main` (kod się zmienił, build świeży)
+#  - `repository_dispatch` — webhook z CMS po zmianie produktu/treści
+#    (CMS robi: `POST /repos/<owner>/<repo>/dispatches` z `event_type: cms-update`)
+#  - `workflow_dispatch` — manualne uruchomienie z UI GitHuba
+on:
+  push:
+    branches: [main]
+  repository_dispatch:
+    types: [cms-update]
+  workflow_dispatch:
+
+# Tylko jeden deploy w danej chwili. Jeśli przyjdzie nowy webhook gdy poprzedni
+# build trwa — anulujemy stary, robimy świeży z najnowszym contentem.
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build (static export)
+        run: npm run build
+        env:
+          # Po wdrożeniu CMS przełącz `CMS_MODE` w GitHub Secrets na `live`
+          # i ustaw `CMS_API_URL` + `CMS_API_TOKEN`. Do tego czasu build
+          # używa atrapy z `from-cms/fixtures/`.
+          CMS_MODE: ${{ secrets.CMS_MODE || 'mock' }}
+          CMS_API_URL: ${{ secrets.CMS_API_URL }}
+          CMS_API_TOKEN: ${{ secrets.CMS_API_TOKEN }}
+          NEXT_PUBLIC_CDN_BASE_URL: ${{ secrets.NEXT_PUBLIC_CDN_BASE_URL || 'https://cdn.warszawskiczas.pl' }}
+          NEXT_PUBLIC_PRIVATE_COLLECTION_CODE: ${{ secrets.NEXT_PUBLIC_PRIVATE_COLLECTION_CODE }}
+
+      - name: Deploy przez FTP na Hostinger
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          # Hostinger Business: katalog WWW to `public_html/`.
+          server-dir: public_html/
+          local-dir: ./out/
+          # Czyść stare pliki które już nie ma w nowym buildzie (sitemap itp.).
+          dangerous-clean-slate: false
+          # Wyklucz: .git, node_modules, plik logu wcześniejszego deployu.
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            **/.DS_Store
+
+      - name: Notyfikacja sukcesu
+        if: success()
+        run: echo "Deploy gotowy. Trigger=${{ github.event_name }}"

@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { localizedAlternates } from '@/lib/i18n'
 import { SeoLanding, landingBreadcrumbJsonLd, serviceJsonLd, itemListJsonLd } from '@/components/seo/seo-landing'
 import { diamondWatches } from '@/lib/seo-product-filters'
+import { getAllProducts } from '@/from-cms/adapters/products'
 
 const SLUG = 'zegarki-z-diamentami-warszawa'
 const URL = `https://warszawskiczas.pl/${SLUG}`
@@ -25,8 +26,9 @@ export const metadata: Metadata = {
   twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION, images: ['https://warszawskiczas.pl/chopard.jpg'] },
 }
 
-export default function Page() {
-  const products = diamondWatches(6)
+export default async function Page() {
+  const all = await getAllProducts()
+  const products = diamondWatches(all, 6)
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd({ name: 'Zegarki z diamentami w Warszawie', serviceType: 'Sprzedaż zegarków z diamentami', description: DESCRIPTION, url: URL })) }} />

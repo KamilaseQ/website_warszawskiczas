@@ -1,20 +1,9 @@
-import type { Metadata } from 'next'
-import { headers } from 'next/headers'
 import { Header, Footer, ScrollProgress, LoadingScreen, WhatsAppButton, PageTransition } from '@/components/layout'
-import { alternateLanguages, canonicalPath, localeFromPathname } from '@/lib/i18n'
 
-export async function generateMetadata(): Promise<Metadata> {
-  const requestHeaders = await headers()
-  const pathname = requestHeaders.get('x-wc-pathname') ?? '/'
-  const locale = localeFromPathname(pathname)
-  const canonical = canonicalPath(pathname, locale)
-
-  return {
-    alternates: {
-      languages: alternateLanguages(canonical, 'pl'),
-    },
-  }
-}
+// Layout-level metadata dla `alternates` była ustawiana z `x-wc-pathname` w
+// nagłówku middleware. Po przejściu na static export każda strona w drzewie
+// dostarcza własne `alternates` przez `localizedAlternates(...)` (patrz
+// `lib/i18n.ts`), więc layout-level fallback jest zbędny.
 
 export default function PublicLayout({
   children,

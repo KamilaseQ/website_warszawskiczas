@@ -336,22 +336,27 @@ export function PrivateCollectionFeatured({ locale = 'pl' }: { locale?: Locale }
     }
   }, [emblaApi])
 
+  /**
+   * Walidacja kodu odbywa się w przeglądarce, bo strona jest statyczna i nie
+   * ma backendu. Kod to tylko bramka teaser-owa (nie zabezpieczenie), więc
+   * akceptowalne — prawdziwa weryfikacja klienta odbywa się po wypełnieniu
+   * formularza rejestracji i kontakcie ze specjalistą.
+   */
+  const expectedCode = (
+    process.env.NEXT_PUBLIC_PRIVATE_COLLECTION_CODE ?? 'mokotowska2026'
+  ).trim().toLowerCase()
   const handleUnlock = async (e: React.FormEvent) => {
     e.preventDefault()
     if (submitting) return
     setSubmitting(true)
-    try {
-      const res = await fetch('/api/private-access', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ code }),
-      })
-      if (res.ok) { setUnlocked(true); setError(false) } else { setError(true) }
-    } catch {
+    await new Promise((r) => setTimeout(r, 250))
+    if (code.trim().toLowerCase() === expectedCode) {
+      setUnlocked(true)
+      setError(false)
+    } else {
       setError(true)
-    } finally {
-      setSubmitting(false)
     }
+    setSubmitting(false)
   }
 
   const scrollToRegistration = (e: React.MouseEvent) => {

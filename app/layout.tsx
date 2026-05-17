@@ -1,9 +1,7 @@
 import type { Metadata, Viewport } from 'next'
-import { headers } from 'next/headers'
 import { Suspense } from 'react'
 import { Playfair_Display, Inter, Cormorant_Garamond } from 'next/font/google'
 import { SessionTracker } from '@/components/session-tracker'
-import { localeConfig, type Locale } from '@/lib/i18n'
 import './globals.css'
 
 const playfair = Playfair_Display({
@@ -77,17 +75,21 @@ export const viewport: Viewport = {
   initialScale: 1,
 }
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  const requestHeaders = await headers()
-  const locale = (requestHeaders.get('x-wc-locale') ?? 'pl') as Locale
-  const htmlLang = localeConfig[locale]?.htmlLang ?? 'pl'
-
+  // W static export root layout nie zna locale (brak middleware). Każdy
+  // locale-specific route renderuje własną sekcję z localized metadata, ale
+  // sam <html lang> zostaje domyślny dla PL (główny rynek butiku).
   return (
-    <html lang={htmlLang} className={`${playfair.variable} ${inter.variable} ${cormorant.variable}`}>
+    <html lang="pl" className={`${playfair.variable} ${inter.variable} ${cormorant.variable}`}>
+      <head>
+        {/* Preconnect do CDN obrazów produktów — LCP win na karcie produktu. */}
+        <link rel="preconnect" href="https://cdn.warszawskiczas.pl" crossOrigin="" />
+        <link rel="dns-prefetch" href="https://cdn.warszawskiczas.pl" />
+      </head>
       <body className="font-sans">
         <Suspense fallback={null}>
           <SessionTracker />

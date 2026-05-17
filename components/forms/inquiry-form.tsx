@@ -7,6 +7,7 @@ import { Button } from '@/components/ui'
 import { cn } from '@/lib/utils'
 import { readSessionPath } from '@/components/session-tracker'
 import { localizePath, type Locale } from '@/lib/i18n'
+import { submitLead } from '@/from-cms/adapters/leads'
 
 interface InquiryFormProps {
   subject?: string
@@ -106,12 +107,18 @@ export function InquiryForm({
     const details = String(fd.get('details') ?? '')
     const message = subject ? `[${subject}] ${details}` : details
 
+    if (fd.get('rodo') !== 'on') {
+      setErrorMsg(t.errorFallback)
+      setStatus('error')
+      return
+    }
     const payload = {
+      type: 'inquiry' as const,
       name: String(fd.get('name') ?? ''),
       email: String(fd.get('email') ?? ''),
       phone: String(fd.get('phone') ?? ''),
       message,
-      rodo: fd.get('rodo') === 'on',
+      rodo: true as const,
       company: String(fd.get('company') ?? ''),
       t: mountedAt.current,
       source: subject,
@@ -120,19 +127,12 @@ export function InquiryForm({
     }
 
     try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      })
-
+      const res = await submitLead(payload)
       if (res.ok) {
         setStatus('success')
         return
       }
-
-      const data = await res.json().catch(() => ({}))
-      setErrorMsg(typeof data?.error === 'string' ? data.error : t.errorFallback)
+      setErrorMsg(res.error ?? t.errorFallback)
       setStatus('error')
     } catch {
       setErrorMsg(t.connectionError)
