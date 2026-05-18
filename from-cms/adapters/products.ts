@@ -11,6 +11,10 @@
 import { ProductListSchema, type Product } from '../schemas/product'
 import { CMS_MODE, assertLiveConfig } from '../mode'
 import fixtures from '../fixtures/products.json'
+import { productUrlSlug as productUrlSlugPure } from '@/lib/product-url'
+
+/** @deprecated Importuj z `@/lib/product-url`. Reeksport dla zgodności. */
+export const productUrlSlug = productUrlSlugPure
 
 let cache: Product[] | null = null
 
@@ -41,24 +45,9 @@ export async function getProductBySlug(slug: string): Promise<Product | null> {
   return all.find((p) => p.slug === slug) ?? null
 }
 
-/**
- * Kanoniczny URL produktu — zawsze w formie "marka-model" (kebab-case),
- * niezależnie od wewnętrznego `slug`.
- */
-export function productUrlSlug(p: Pick<Product, 'brand' | 'name'>): string {
-  const raw = `${p.brand} ${p.name}`
-  return raw
-    .toLowerCase()
-    .normalize('NFD')
-    .replace(/[̀-ͯ]/g, '')
-    .replace(/ł/g, 'l')
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '')
-}
-
 export async function findProductByUrlSlug(urlSlug: string): Promise<Product | null> {
   const all = await getAllProducts()
-  return all.find((p) => productUrlSlug(p) === urlSlug) ?? null
+  return all.find((p) => productUrlSlugPure(p) === urlSlug) ?? null
 }
 
 export async function getFeaturedProduct(): Promise<Product> {

@@ -1,7 +1,4 @@
-'use client'
-
 import type { JSX } from 'react'
-import { motion, useReducedMotion } from 'framer-motion'
 import { cn } from '@/lib/utils'
 
 interface RevealTextProps {
@@ -14,54 +11,25 @@ interface RevealTextProps {
 }
 
 /**
- * Staggered reveal — pojawianie się tekstu word-by-word lub line-by-line
- * przy wjeździe w viewport. Stosować oszczędnie na kluczowych H2.
+ * CSS-only staggered reveal. Statyczny HTML zawiera pełny tekst widoczny
+ * od razu — animacja to tylko stagger na opacity/blur per słowo/linia.
+ * Respektuje `prefers-reduced-motion` przez globalny media query.
  */
 export function RevealText({ text, className, as = 'h2', delay = 0, by = 'word' }: RevealTextProps) {
-  const reduce = useReducedMotion()
-  const Tag = motion[as]
-
-  if (reduce) {
-    const Static = as as keyof JSX.IntrinsicElements
-    return <Static className={className}>{text}</Static>
-  }
-
+  const Tag = as as keyof JSX.IntrinsicElements
   const parts = by === 'word' ? text.split(' ') : text.split('\n')
-  const sep = by === 'word' ? ' ' : '\n'
 
   return (
-    <Tag
-      className={cn(className)}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: '-80px' }}
-      variants={{
-        hidden: {},
-        visible: {
-          transition: { staggerChildren: 0.06, delayChildren: delay },
-        },
-      }}
-    >
+    <Tag className={cn(className)}>
       {parts.map((part, i) => (
-        <motion.span
+        <span
           key={i}
-          className={cn(by === 'line' ? 'block' : 'inline-block', 'overflow-hidden')}
-          variants={{
-            hidden: {},
-            visible: { transition: { staggerChildren: 0 } },
-          }}
+          className={cn(by === 'line' ? 'block' : 'inline-block', 'wc-fade-in')}
+          style={{ animationDelay: `${delay + i * 0.06}s` }}
         >
-          <motion.span
-            className="inline-block"
-            variants={{
-              hidden: { y: '100%', opacity: 0 },
-              visible: { y: 0, opacity: 1, transition: { duration: 0.7, ease: [0.21, 0.47, 0.32, 0.98] } },
-            }}
-          >
-            {part}
-            {i < parts.length - 1 && by === 'word' ? sep : ''}
-          </motion.span>
-        </motion.span>
+          {part}
+          {i < parts.length - 1 && by === 'word' ? ' ' : ''}
+        </span>
       ))}
     </Tag>
   )

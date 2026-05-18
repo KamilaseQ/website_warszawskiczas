@@ -439,8 +439,7 @@ async function LocalizedProductDetail({ route, locale }: { route: string; locale
     offers: {
       '@type': 'Offer',
       url: productUrl,
-      priceCurrency: 'PLN',
-      price: source.price ?? undefined,
+      ...(source.price ? { price: source.price, priceCurrency: 'PLN' } : {}),
       availability:
         source.status === 'Niedostępny'
           ? 'https://schema.org/PreOrder'

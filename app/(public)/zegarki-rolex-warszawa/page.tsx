@@ -6,7 +6,7 @@ import { getAllProducts } from '@/from-cms/adapters/products'
 
 const SLUG = 'zegarki-rolex-warszawa'
 const URL = `https://warszawskiczas.pl/${SLUG}`
-const TITLE = 'Rolex Warszawa — używane zegarki Rolex, skup i modele na zamówienie | Warszawski Czas'
+const TITLE = 'Rolex Warszawa — używane zegarki Rolex, skup i modele na zamówienie'
 const DESCRIPTION =
   'Zegarki Rolex w Warszawie — Submariner, Daytona, Datejust, GMT-Master, Day-Date, Sky-Dweller, Yacht-Master. Modele dostępne od ręki, sprowadzanie konkretnych referencji bez listy oczekujących i skup Rolexów. Mokotowska 71.'
 

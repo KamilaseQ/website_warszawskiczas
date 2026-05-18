@@ -1,11 +1,15 @@
 /**
  * Przełącznik źródła danych CMS.
  *
- * `mock` (default) — adaptery czytają z `from-cms/fixtures/*.json`.
- *   Tryb używany dziś, dopóki własny CMS nie jest gotowy.
+ * Build-time (Node.js, SSG):
+ *  - `CMS_MODE` (`mock` | `live`) decyduje skąd `getAllProducts()` bierze dane
+ *  - `CMS_API_URL` + `CMS_API_TOKEN` są SEKRETNE (build-time only)
  *
- * `live` — adaptery wykonują fetch z `CMS_API_URL` z nagłówkiem `Authorization: Bearer ${CMS_API_TOKEN}`.
- *   Włącz, gdy CMS będzie zdeployowany pod stabilnym URL-em.
+ * Runtime (przeglądarka):
+ *  - leady wysyłają się przez `NEXT_PUBLIC_CMS_LEAD_URL` (publiczny endpoint,
+ *    zabezpieczony CORS-em + rate-limitem po stronie CMS)
+ *  - bez tej zmiennej formularze wracają do trybu mock (`console.info`)
+ *  - sekretny token CMS-a NIE może trafić do bundle'a klienckiego
  *
  * Przełącznik jest read-only po inicjalizacji procesu — nie zmieniaj w runtime.
  */
@@ -21,6 +25,13 @@ function readMode(): CmsMode {
 export const CMS_MODE: CmsMode = readMode()
 export const CMS_API_URL: string | undefined = process.env.CMS_API_URL
 export const CMS_API_TOKEN: string | undefined = process.env.CMS_API_TOKEN
+
+/**
+ * Publiczny URL endpointu leadów — dostępny w przeglądarce.
+ * Ustawiany w `.env.production` jako `NEXT_PUBLIC_CMS_LEAD_URL`.
+ * Pusty / undefined → formularze logują do konsoli (mock).
+ */
+export const PUBLIC_LEAD_URL: string | undefined = process.env.NEXT_PUBLIC_CMS_LEAD_URL
 
 /** Wspólny helper rzucający czytelny błąd, gdy live-mode bez pełnej konfiguracji. */
 export function assertLiveConfig(): { url: string; token: string } {

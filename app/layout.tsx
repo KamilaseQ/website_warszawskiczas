@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Suspense } from 'react'
 import { Playfair_Display, Inter, Cormorant_Garamond } from 'next/font/google'
 import { SessionTracker } from '@/components/session-tracker'
+import { HtmlLangSync } from '@/components/html-lang-sync'
 import './globals.css'
 
 const playfair = Playfair_Display({
@@ -34,7 +35,13 @@ export const metadata: Metadata = {
   authors: [{ name: 'Warszawski Czas' }],
   metadataBase: new URL('https://warszawskiczas.pl'),
   alternates: {
-    canonical: '/',
+    canonical: 'https://warszawskiczas.pl/',
+    languages: {
+      pl: 'https://warszawskiczas.pl/',
+      en: 'https://warszawskiczas.pl/en',
+      'uk-UA': 'https://warszawskiczas.pl/ua',
+      'x-default': 'https://warszawskiczas.pl/',
+    },
   },
   openGraph: {
     type: 'website',
@@ -94,7 +101,54 @@ export default function RootLayout({
         <Suspense fallback={null}>
           <SessionTracker />
         </Suspense>
+        <Suspense fallback={null}>
+          <HtmlLangSync />
+        </Suspense>
         {children}
+        {/* Schema.org WebSite + Organization (uzupełnienie do LocalBusiness niżej) */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'WebSite',
+              '@id': 'https://warszawskiczas.pl/#website',
+              url: 'https://warszawskiczas.pl',
+              name: 'Warszawski Czas',
+              inLanguage: ['pl-PL', 'en-US', 'uk-UA'],
+              publisher: { '@id': 'https://warszawskiczas.pl/#organization' },
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Organization',
+              '@id': 'https://warszawskiczas.pl/#organization',
+              name: 'Warszawski Czas',
+              url: 'https://warszawskiczas.pl',
+              logo: {
+                '@type': 'ImageObject',
+                url: 'https://warszawskiczas.pl/icon.png',
+              },
+              sameAs: [
+                'https://www.instagram.com/warszawskiczas',
+                'https://www.facebook.com/warszawskiczas',
+              ],
+              contactPoint: [
+                {
+                  '@type': 'ContactPoint',
+                  telephone: '+48604501000',
+                  contactType: 'customer service',
+                  areaServed: 'PL',
+                  availableLanguage: ['Polish', 'English', 'Ukrainian'],
+                },
+              ],
+            }),
+          }}
+        />
         {/* 16.3 Schema.org LocalBusiness */}
         <script
           type="application/ld+json"

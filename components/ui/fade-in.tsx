@@ -1,7 +1,5 @@
-'use client'
-
-import { motion } from 'framer-motion'
 import { type ReactNode } from 'react'
+import { cn } from '@/lib/utils'
 
 interface FadeInProps {
   children: ReactNode
@@ -10,24 +8,21 @@ interface FadeInProps {
   direction?: 'up' | 'down' | 'left' | 'right' | 'none'
 }
 
+/**
+ * CSS-only fade-in. Statyczny HTML pokazuje treść bez czekania na JS —
+ * crawler i użytkownik bez JS widzą content od razu. Animacja jest tylko
+ * warstwą wzbogacającą, respektuje `prefers-reduced-motion`.
+ */
 export function FadeIn({ children, className, delay = 0, direction = 'up' }: FadeInProps) {
-  const directions = {
-    up: { y: 30 },
-    down: { y: -30 },
-    left: { y: 30 },
-    right: { y: 30 },
-    none: { x: 0, y: 0 }
-  }
-
+  const dataDir = direction === 'down' ? 'down' : direction === 'none' ? 'none' : 'up'
+  const style = delay ? { animationDelay: `${delay}s` } : undefined
   return (
-    <motion.div
-      initial={{ opacity: 0, filter: 'blur(8px)', ...directions[direction] }}
-      whileInView={{ opacity: 1, filter: 'blur(0px)', x: 0, y: 0 }}
-      viewport={{ once: true, margin: '-50px' }}
-      transition={{ duration: 0.9, delay, ease: [0.21, 0.47, 0.32, 0.98] }}
-      className={className}
+    <div
+      className={cn('wc-fade-in', className)}
+      data-direction={dataDir}
+      style={style}
     >
       {children}
-    </motion.div>
+    </div>
   )
 }

@@ -6,7 +6,7 @@ import { getAllProducts } from '@/from-cms/adapters/products'
 
 const SLUG = 'zegarki-ze-zlota-warszawa'
 const URL = `https://warszawskiczas.pl/${SLUG}`
-const TITLE = 'Zegarki ze złota Warszawa — żółte, różowe, białe 18K | Warszawski Czas'
+const TITLE = 'Zegarki ze złota Warszawa — żółte, różowe, białe 18K'
 const DESCRIPTION =
   'Złote zegarki w Warszawie — Rolex Day-Date, Patek Philippe Calatrava, Cartier Tank, Audemars Piguet Royal Oak. 18K złoto żółte, różowe (Everose), białe i bicolor. Z gwarancją autentyczności i dokumentacją pochodzenia.'
 

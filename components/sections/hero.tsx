@@ -143,7 +143,7 @@ export function Hero() {
         <FadeIn delay={0.1} direction="up">
           {/* 1.1 — powiększony H1 na desktopie, H1 jako element wizualny */}
           <h1 className="font-serif text-5xl font-medium tracking-tight text-white sm:text-6xl md:text-7xl lg:text-[7.5rem] xl:text-[8.5rem] drop-shadow-xl text-balance leading-[0.95]">
-            {copy.h1a}<br />
+            {copy.h1a}{' '}<br />
             <span className="italic font-normal">{copy.h1b}</span>
           </h1>
         </FadeIn>

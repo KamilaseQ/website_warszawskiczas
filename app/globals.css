@@ -500,3 +500,34 @@
   from { opacity: 0; transform: translateY(4px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+
+/* ===== FADE-IN (CSS-only) =====
+   Treść jest widoczna od razu w statycznym HTML — animacja jest tylko
+   warstwą wzbogacającą. Animacja respektuje `prefers-reduced-motion` przez
+   globalną regułę z @layer base. */
+@keyframes wc-fade-in-up {
+  from { opacity: 0; filter: blur(6px); transform: translateY(20px); }
+  to   { opacity: 1; filter: blur(0px); transform: translateY(0); }
+}
+@keyframes wc-fade-in-down {
+  from { opacity: 0; filter: blur(6px); transform: translateY(-20px); }
+  to   { opacity: 1; filter: blur(0px); transform: translateY(0); }
+}
+@keyframes wc-fade-in-plain {
+  from { opacity: 0; filter: blur(6px); }
+  to   { opacity: 1; filter: blur(0px); }
+}
+.wc-fade-in {
+  animation: wc-fade-in-up 900ms cubic-bezier(0.21, 0.47, 0.32, 0.98) both;
+}
+.wc-fade-in[data-direction="down"] {
+  animation-name: wc-fade-in-down;
+}
+.wc-fade-in[data-direction="none"] {
+  animation-name: wc-fade-in-plain;
+}
+@media (prefers-reduced-motion: reduce) {
+  .wc-fade-in {
+    animation: none !important;
+  }
+}

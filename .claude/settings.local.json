@@ -21,7 +21,12 @@
       "Bash(echo \"lint-exit=$?\")",
       "Read(//c/Users/212ka/source/repos/website_warszawskiczas/out/ua/%D0%BF%D0%BE%D1%81%D0%BB%D1%83%D0%B3%D0%B8/**)",
       "Bash(grep -E \"^послуги|%D0%BF%D0%BE%D1%81%D0%BB%D1%83%D0%B3%D0%B8$\")",
-      "Bash(git mv *)"
+      "Bash(git mv *)",
+      "Bash(npm run *)",
+      "PowerShell(npm run lint 2>&1)",
+      "PowerShell(Get-Command npm,node,npx -ErrorAction SilentlyContinue)",
+      "Bash(export PATH=\"/c/Users/212ka/AppData/Roaming/fnm/node-versions/v24.14.0/installation:$PATH\")",
+      "Bash(npm --version)"
     ]
   }
 }

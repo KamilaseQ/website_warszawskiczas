@@ -7,7 +7,7 @@ import { motion, useReducedMotion } from 'framer-motion'
 import { ImagePlaceholder } from '@/components/ui'
 import { cn } from '@/lib/utils'
 import { localeFromPathname, localizePath, ui } from '@/lib/i18n'
-import { productUrlSlug } from '@/from-cms/adapters/products'
+import { productUrlSlug } from '@/lib/product-url'
 import type { Product } from '@/from-cms/schemas/product'
 
 function CardImage({ product }: { product: Product }) {

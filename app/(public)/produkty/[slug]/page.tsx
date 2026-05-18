@@ -197,10 +197,8 @@ export default async function ProductPage({ params }: PageProps) {
     offers: {
       '@type': 'Offer',
       url: productUrl,
-      priceCurrency: 'PLN',
-      price: product.price ?? undefined,
-      ...(product.priceOnRequest && !product.price
-        ? { priceSpecification: { '@type': 'PriceSpecification', priceCurrency: 'PLN', price: 0, valueAddedTaxIncluded: true } }
+      ...(product.price
+        ? { price: product.price, priceCurrency: 'PLN' }
         : {}),
       availability,
       itemCondition:

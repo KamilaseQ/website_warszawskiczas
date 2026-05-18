@@ -1,0 +1,105 @@
+# Warszawski Czas — Checklista implementacyjna 10/10
+
+> Źródło: audyt z 2026-05-18 (zachowany w historii git pod tym samym plikiem).
+> Format: każdy punkt to konkretne działanie z odhaczalnym statusem.
+> **Pomijamy świadomie**: wszystko zależne od CDN/R2 (obrazy, warianty, image sitemap, `ProductImage`), bo zostaną wymienione po wdrożeniu CDN.
+
+Legenda:
+- `[x]` — zrobione (zaznaczone w tym repo)
+- `[ ]` — do zrobienia
+- `[skip-cdn]` — czeka na wdrożenie CDN/R2, świadomie pomijane teraz
+- `[skip-ext]` — wymaga zewnętrznych kont/usług (Search Console, GBP, Lighthouse runner, CMS)
+
+---
+
+## P0 — SEO i kontrakt, naprawić przed wzrostem ruchu
+
+- [x] **Naprawić zdublowany suffix title** na landingach (Rolex, złoto). Title nie powinien zawierać `| Warszawski Czas` skoro template w `app/layout.tsx` doklejà go automatycznie. Sprawdzić wszystkie pliki w `app/(public)/*/page.tsx`.
+- [x] **`html lang` per locale**. Strony `/en` i `/ua` muszą renderować `<html lang="en">` / `<html lang="uk-UA">`. Dziś root layout twardo wpisuje `lang="pl"`. Rozwiązanie: osobny segment layout dla `[locale]` lub wstrzyknięcie atrybutu po stronie klienta przy hydracji.
+- [x] **Hero H1 — dodać spacje** między `Luksusowe`/`Zegarki`, `Luxury`/`Watches`, `Люксові`/`Годинники`. Dziś `<br/>` daje wizualny break, ale tekst odczytany ciągiem brzmi `LuksusoweZegarki`.
+- [x] **Hreflang dla `/`**. Root layout musi też emitować `<link rel="alternate" hreflang>` (`pl`, `en`, `uk-UA`, `x-default`) — dziś tylko `canonical: '/'`.
+- [x] **`Offer.price = 0` dla produktów `priceOnRequest`**. Usunąć `priceSpecification.price: 0` w PL i `priceCurrency: 'PLN'` bez `price` w wariancie EN/UA. Dla produktów bez ceny — emitować `Offer` bez `price`/`priceCurrency` (albo całkiem pomijać `offers` i opisać dostępność słownie).
+- [x] **Animacje nie chowają statycznej treści**. `components/ui/fade-in.tsx` i `components/ui/reveal-text.tsx` renderują `opacity: 0` w SSR-owym HTML. Zamienić Framer Motion na CSS-only fade-in (animacja `wc-fade-in`) — działa od razu, respektuje `prefers-reduced-motion`, statyczny HTML jest widoczny bez JS.
+- [x] **Rozdzielić `productUrlSlug` od adaptera CMS**. Czysta funkcja powinna być w `lib/products-url.ts` (albo `lib/utils.ts`) — żeby komponenty klienta nie wciągały adaptera serwerowego (`from-cms/adapters/products`) tylko po slug.
+- [x] **Lead endpoint w trybie static export**. `from-cms/mode.ts` czyta `process.env.CMS_MODE`, ale w przeglądarce te wartości znikają (chyba że `NEXT_PUBLIC_*`). Dodać `NEXT_PUBLIC_CMS_LEAD_URL` i `NEXT_PUBLIC_CMS_MODE`, użyć ich w `submitLead`. Token CMS-a do produktów zostaje sekretny (build-time), token leadów nie istnieje — leady są publiczne, zabezpieczone CORS-em + rate-limit po stronie CMS.
+- [skip-cdn] Obrazy — warianty AVIF/WebP, image sitemap, `ProductImage` z wariantami.
+- [skip-cdn] OG image i sitemap image — weryfikacja absolutnych URL-i po migracji.
+
+## P1 — porządki kodu i dług techniczny
+
+- [x] **Usunąć `nodemailer` z `package.json`**. Reszta po wyrzuconym `/api/contact`. `@types/nodemailer` z devDeps też.
+- [x] **`BreadcrumbList` na landingach**. Sprawdzić każdy landing w `app/(public)/*` i upewnić się, że emituje `landingBreadcrumbJsonLd`. Część ma, część nie.
+- [x] **`WebSite` + `Organization` JSON-LD** w root layout. `LocalBusiness` już jest; dorzucić `Organization` (logo, sameAs, kontakt) i `WebSite` (z `SearchAction` jeśli kiedyś będzie wewnętrzny search).
+- [x] **Lazy-load Google Maps na `/kontakt`**. Dziś iframe ładuje się od razu. Użyć IntersectionObserver + injection iframe.
+- [ ] **`lastModified` w sitemap z `updatedAt` produktu/strony**. Dziś stała data. Dla produktów: użyj `product.updatedAt` (jeśli jest), dla landingów: data ostatniego commit-a pliku lub stała + revalidate strategia (przy SSG raz na build).
+- [skip-ext] Walidacja sitemap/hreflang/JSON-LD w CI.
+- [skip-ext] Lighthouse baseline (3 strony, zapisać `docs/lighthouse-baseline.md`).
+
+## P2 — UX (mobile, katalog, karta produktu)
+
+> Każdy z tych punktów wymaga osobnej decyzji UX z designem. Zostawione jako oddzielne taski — nie jest to wymóg techniczny.
+
+- [ ] Mobile hero — czytelny H1 nad foldem, statyczny poster wideo na pierwsze 200 ms.
+- [ ] Katalog — pierwszy rząd produktów widoczny szybciej, sticky filtr/sort, search-by-marka.
+- [ ] Karta produktu mobile — sticky bottom CTA (`Zapytaj` / `Zadzwoń` / `WhatsApp`).
+- [ ] Loader → krótszy lub `prefers-reduced-motion: reduce` całkowicie wyłącza.
+- [ ] Focus management w drawer/mobile menu.
+
+## P3 — Content i autorytet (długoterminowe)
+
+> Wymagają decyzji biznesowych i pracy content writera. Lista jako briefing.
+
+- [ ] Huby marek (Patek, AP, Omega, Cartier, Breitling, Vacheron, IWC, Chopard) — strony jak istniejący `zegarki-rolex-warszawa`.
+- [ ] Huby modeli/referencji dla najpopularniejszych (Daytona, Submariner, Nautilus, Royal Oak, Speedmaster, Santos, Tank).
+- [ ] Archiwum realizacji — sprzedane/sprowadzone egzemplarze z opisem briefu, bez udawania dostępności.
+- [ ] Strony procesowe — autentyczność, certyfikat, wycena, skup, sprowadzanie.
+- [ ] Strona `/o-nas` z imionami/zdjęciami zegarmistrza i właściciela, E-E-A-T.
+- [skip-ext] Google Business Profile workflow (kategorie, zdjęcia, posty, Q&A, system pozyskiwania opinii).
+- [skip-ext] Search Console — miesięczny przegląd, śledzenie pozycji klastrów.
+- [skip-ext] FAQ jako tylko UX, nie strategia rich results (Google ograniczył FAQPage rich results).
+
+## P4 — Integracje i CMS (kontrakt)
+
+- [skip-ext] Wersjonowanie API CMS-a (`/api/v1/products`, `/api/v1/leads`, opcjonalnie `/api/v1/translations`).
+- [skip-ext] Debounce/queue webhooków rebuildu (10 edycji ≠ 10 deployów).
+- [skip-ext] Preview workflow / draft mode.
+- [skip-ext] Last-known-good snapshot — fallback gdy CMS chwilowo down.
+- [skip-ext] Monitoring leadów — alert gdy 0 leadów w 24 h.
+
+---
+
+## Definition of Done — kryteria 10/10 (do walidacji po wdrożeniu CDN i CMS)
+
+SEO:
+- [ ] 0 krytycznych błędów w Search Console.
+- [ ] 100% indeksowalnych stron z `canonical`, kompletem `hreflang` i obecnych w sitemap.
+- [ ] 100% stron produktowych przechodzi Rich Results Test bez błędów krytycznych.
+
+UX (realne dane CrUX):
+- [ ] Mobile LCP < 2.5 s, INP < 200 ms, CLS < 0.1.
+- [ ] Pierwsze CTA widoczne na mobile bez frustracji.
+
+Kod:
+- [x] `npm run lint` przechodzi.
+- [x] `npm run build` przechodzi.
+- [ ] Komponenty klienta nie importują z `from-cms/adapters/*` (tylko z `lib/*` i `from-cms/schemas/*`).
+- [x] Brak `nodemailer` po wyrzuconych route handlerach.
+- [x] Animacje nie wymagają JS do pokazania treści.
+
+Integracje:
+- [ ] Lead z formularza trafia do publicznego endpointu CMS-a z kontekstem (UTM, source, product).
+- [ ] CMS może przebudować stronę przez webhook bez dewelopera.
+
+---
+
+## Źródła zewnętrzne (do okresowego przeglądu)
+
+- Google Search Central — SEO Starter Guide: https://developers.google.com/search/docs/fundamentals/seo-starter-guide
+- People-first content: https://developers.google.com/search/docs/fundamentals/creating-helpful-content
+- Ecommerce SEO: https://developers.google.com/search/docs/specialty/ecommerce
+- Product structured data: https://developers.google.com/search/docs/appearance/structured-data/product
+- Hreflang: https://developers.google.com/search/docs/advanced/crawling/localized-versions
+- Core Web Vitals: https://developers.google.com/search/docs/appearance/core-web-vitals
+- Image SEO: https://developers.google.com/search/docs/advanced/guidelines/google-images
+- FAQPage (ograniczenia rich results): https://developers.google.com/search/docs/appearance/structured-data/faqpage
+- AI Overviews: https://developers.google.com/search/docs/appearance/ai-overviews

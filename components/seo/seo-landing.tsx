@@ -5,7 +5,7 @@ import { ContactLink } from '@/components/contact-link'
 import { Container, Section, Heading, Text, Button, FaqAccordion, type FaqItem } from '@/components/ui'
 import { CONTACT_PHONE, CONTACT_PHONE_RAW, WHATSAPP_NUMBER, ADDRESS } from '@/lib/config'
 import { absoluteUrl, localizePath, type Locale, ui } from '@/lib/i18n'
-import { productUrlSlug } from '@/from-cms/adapters/products'
+import { productUrlSlug } from '@/lib/product-url'
 import type { Product } from '@/from-cms/schemas/product'
 
 export interface LandingStep {
