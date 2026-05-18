@@ -3,6 +3,7 @@ import { localizedAlternates } from '@/lib/i18n'
 import { SeoLanding, landingBreadcrumbJsonLd, serviceJsonLd, itemListJsonLd } from '@/components/seo/seo-landing'
 import { ladiesWatches } from '@/lib/seo-product-filters'
 import { getAllProducts } from '@/from-cms/adapters/products'
+import { relatedLinksFor } from '@/lib/related-links'
 
 const SLUG = 'zegarki-damskie-warszawa'
 const URL = `https://warszawskiczas.pl/${SLUG}`
@@ -38,7 +39,7 @@ export default async function Page() {
             heading: 'Kultowe damskie zegarki — Cartier, Rolex, Patek Philippe',
             paragraphs: [
               'Damski zegarek luksusowy łączy precyzję mechanizmu z biżuteryjną estetyką — koperta jest mniejsza (zwykle 22–34 mm), a wykończenie często obejmuje 18K złoto żółte, różowe lub białe, masę perłową na tarczy oraz indeksy lub bezele diamentowe. W ostatnich latach zatarciu uległa też granica między „męskim” a „damskim” — Cartier Tank, Rolex Datejust 36 i Audemars Piguet Royal Oak 37 są dziś chętnie noszone przez kobiety jako alternatywa dla biżuteryjnych modeli klasycznych.',
-              'W Warszawie oferujemy najszerszy wybór damskich zegarków luksusowych w trzech segmentach: biżuteryjne (Cartier Panthère, Bvlgari Serpenti, Piaget Limelight), klasyczne sportowe-elegant (Rolex Lady-Datejust, Patek Philippe Twenty~4, Chopard Happy Sport) oraz unisex z mniejszą kopertą (Cartier Tank Small/Medium, Audemars Piguet Royal Oak 37 mm, Vacheron Constantin Overseas 37 mm).',
+              'W Warszawie oferujemy szeroki wybór damskich zegarków luksusowych w trzech segmentach: biżuteryjne (Cartier Panthère, Bvlgari Serpenti, Piaget Limelight), klasyczne sportowe-elegant (Rolex Lady-Datejust, Patek Philippe Twenty~4, Chopard Happy Sport) oraz unisex z mniejszą kopertą (Cartier Tank Small/Medium, Audemars Piguet Royal Oak 37 mm, Vacheron Constantin Overseas 37 mm).',
             ],
           },
           {
@@ -75,17 +76,12 @@ export default async function Page() {
         }}
         faq={[
           { q: 'Jaki rozmiar koperty wybrać dla kobiety?', a: 'Klasyczny damski zegarek to 26–31 mm. Klientki ceniące mocniejszy, unisex charakter wybierają 33–37 mm (Cartier Tank Medium, Rolex Datejust 36, AP Royal Oak 37). Dla bardzo subtelnych nadgarstków najlepiej sprawdza się 22–25 mm (Cartier Mini Baignoire, Panthère Small).' },
-          { q: 'Czy zegarek damski musi mieć diamenty?', a: 'Nie. Wiele najpiękniejszych damskich zegarków nie ma diamentów (Cartier Tank Must w jednolitej tarczy, Rolex Lady-Datejust z gładkim bezelem, Patek Twenty~4 7300 z rzymskimi cyframi). Diamenty dodają biżuteryjnego charakteru i wartości, ale nie są wymogiem.' },
+          { q: 'Czy zegarek damski musi mieć diamenty?', a: 'Nie. Wiele cenionych damskich zegarków nie ma diamentów (Cartier Tank Must w jednolitej tarczy, Rolex Lady-Datejust z gładkim bezelem, Patek Twenty~4 7300 z rzymskimi cyframi). Diamenty dodają biżuteryjnego charakteru i wartości, ale nie są wymogiem.' },
           { q: 'Co jest lepsze — kwarc czy automat?', a: 'Kwarc: cieńszy, bezobsługowy, lekki, idealny do drobnego nadgarstka i okazjonalnego noszenia. Automat: bardziej tradycyjny, wymaga ruchu nadgarstka lub winderem, lepszy do codziennego noszenia. Wybór zależy od stylu życia klientki.' },
           { q: 'Czy oferujecie skup damskich zegarków?', a: 'Tak — skupujemy używane Cartier Panthère, Tank, Baignoire, Rolex Lady-Datejust, Patek Twenty~4, Chopard, Bvlgari i inne marki. Wstępna wycena po zdjęciach w 15 minut.' },
         ]}
         closingHeading="Wybierz damski zegarek"
-        relatedLinks={[
-          { href: '/zegarki-z-diamentami-warszawa', label: 'Zegarki z diamentami' },
-          { href: '/zegarki-ze-zlota-warszawa', label: 'Zegarki ze złota' },
-          { href: '/zegarki-cartier-warszawa', label: 'Zegarki Cartier' },
-          { href: '/zegarki-luksusowe-warszawa', label: 'Zegarki luksusowe' },
-        ]}
+        relatedLinks={relatedLinksFor('zegarki-damskie-warszawa', 'category-hub')}
       />
     </>
   )

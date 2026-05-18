@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { localizedAlternates } from '@/lib/i18n'
 import { SeoLanding, landingBreadcrumbJsonLd, serviceJsonLd } from '@/components/seo/seo-landing'
+import { relatedLinksFor } from '@/lib/related-links'
 
 const SLUG = 'zegarki-na-zamowienie'
 const URL = `https://warszawskiczas.pl/${SLUG}`
@@ -56,12 +57,7 @@ export default function Page() {
         ]}
         closingHeading="Powiedz, czego szukasz"
         closingText="Krótki brief — i otrzymujesz egzemplarze odpowiadające Twoim oczekiwaniom."
-        relatedLinks={[
-          { href: '/rolex-na-zamowienie', label: 'Rolex na zamówienie' },
-          { href: '/patek-philippe-na-zamowienie', label: 'Patek Philippe na zamówienie' },
-          { href: '/audemars-piguet-na-zamowienie', label: 'AP na zamówienie' },
-          { href: '/zegarki-kolekcjonerskie', label: 'Zegarki kolekcjonerskie' },
-        ]}
+        relatedLinks={relatedLinksFor('zegarki-na-zamowienie', 'on-request')}
       />
     </>
   )

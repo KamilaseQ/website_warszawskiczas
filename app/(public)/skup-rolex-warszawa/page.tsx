@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { localizedAlternates } from '@/lib/i18n'
 import { SeoLanding, landingBreadcrumbJsonLd, serviceJsonLd } from '@/components/seo/seo-landing'
+import { relatedLinksFor } from '@/lib/related-links'
 
 const SLUG = 'skup-rolex-warszawa'
 const URL = `https://warszawskiczas.pl/${SLUG}`
@@ -75,11 +76,7 @@ export default function Page() {
         ]}
         closingHeading="Wyceń Rolexa bez zobowiązań"
         closingText="Wyślij zdjęcia i numer referencji — wstępną ofertę poznasz w 15 minut. Bez prowizji, bez aukcji, bez czekania."
-        relatedLinks={[
-          { href: '/skup-zegarkow-warszawa', label: 'Skup zegarków Warszawa' },
-          { href: '/zegarki-rolex-warszawa', label: 'Zegarki Rolex Warszawa' },
-          { href: '/rolex-na-zamowienie', label: 'Rolex na zamówienie' },
-        ]}
+        relatedLinks={relatedLinksFor('skup-rolex-warszawa', 'service-hub')}
       />
     </>
   )

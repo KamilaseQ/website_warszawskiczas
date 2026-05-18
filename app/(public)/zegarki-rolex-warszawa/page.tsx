@@ -3,6 +3,7 @@ import { localizedAlternates } from '@/lib/i18n'
 import { SeoLanding, landingBreadcrumbJsonLd, serviceJsonLd, itemListJsonLd } from '@/components/seo/seo-landing'
 import { productsByBrand } from '@/lib/seo-product-filters'
 import { getAllProducts } from '@/from-cms/adapters/products'
+import { relatedLinksFor } from '@/lib/related-links'
 
 const SLUG = 'zegarki-rolex-warszawa'
 const URL = `https://warszawskiczas.pl/${SLUG}`
@@ -39,7 +40,7 @@ export default async function Page() {
       <SeoLanding
         eyebrow="Rolex · Warszawa"
         h1="Zegarki Rolex w Warszawie — od ręki i na zamówienie"
-        intro="Submariner, Daytona, Datejust, GMT-Master, Day-Date, Sky-Dweller, Yacht-Master, Explorer, Sea-Dweller, Air-King — najpełniejsza dostępność używanych zegarków Rolex w Warszawie. Sprowadzamy konkretne referencje Rolex bez listy oczekujących u autoryzowanego dealera. Działamy na rynku wtórnym i nie jesteśmy autoryzowanym dealerem Rolex SA."
+        intro="Submariner, Daytona, Datejust, GMT-Master, Day-Date, Sky-Dweller, Yacht-Master, Explorer, Sea-Dweller, Air-King — szeroki wybór używanych zegarków Rolex w Warszawie. Sprowadzamy konkretne referencje na zamówienie i kupujemy zegarki Rolex."
         primaryCtaLabel="Zapytaj o model Rolex"
         source="landing-zegarki-rolex"
         heroImage={{ src: '/Rolex Wimbledon.jpg', alt: 'Rolex Datejust Wimbledon — butik Warszawski Czas, Mokotowska 71' }}
@@ -58,7 +59,7 @@ export default async function Page() {
               'Rolex Submariner — w wersji Date i No Date, w stali 904L, ze złotem (Bluesy, Submariner Date 126613LB) oraz w pełnym żółtym lub białym złocie. Najczęściej kupowane referencje to 126610LN (czarna), 126610LV (Kermit), 126613LN i archiwalna 116610LV (Hulk).',
               'Rolex Daytona — kultowy chronograf w stali (116500LN i 126500LN), z białą lub czarną tarczą, w stalowo-żółtym Rolesor (116503), w pełnym żółtym i różowym złocie oraz w platynie (116506). Sprowadzamy także rzadkie konfiguracje, takie jak Daytona „Le Mans” 126529LN i edycje meteorytowe.',
               'Rolex GMT-Master II — Pepsi 126710BLRO, Batman 126710BLNR, Sprite 126720VTNR, Coke i Root Beer 126711CHNR. Dla klientów ceniących klasykę dostępne są także ostatnie generacje 116710LN i wersje w pełnym złocie.',
-              'Rolex Datejust — najszersza linia produktowa: Datejust 36, Datejust 41, Lady-Datejust 28 i 31. Najpopularniejsze tarcze to Wimbledon, Tapestry, Mother of Pearl i diamentowe oraz wersje Rolesor (stal-złoto żółte i Everose).',
+              'Rolex Datejust — szeroka linia produktowa: Datejust 36, Datejust 41, Lady-Datejust 28 i 31. Najpopularniejsze tarcze to Wimbledon, Tapestry, Mother of Pearl i diamentowe oraz wersje Rolesor (stal-złoto żółte i Everose).',
               'Rolex Day-Date — President w pełnym 18K złocie żółtym, białym, Everose oraz w platynie (228206). Tarcze Olive Roman, Meteorite i diamentowe są szczególnie poszukiwane w segmencie kolekcjonerskim.',
               'Rolex Sky-Dweller, Yacht-Master 40 i 42, Explorer I i II, Sea-Dweller 126600 oraz Air-King 126900 — sprowadzamy także te modele zarówno w wersjach stalowych, jak i z dodatkiem złota oraz z bransoletami Oysterflex i Oyster.',
             ],
@@ -102,13 +103,7 @@ export default async function Page() {
         ]}
         closingHeading="Zapytaj o swój model Rolex"
         closingText="Submariner, Daytona, Datejust, GMT-Master, Day-Date, Sky-Dweller — sprowadzimy konkretną referencję Rolex w 7–30 dni."
-        relatedLinks={[
-          { href: '/rolex-na-zamowienie', label: 'Rolex na zamówienie' },
-          { href: '/skup-rolex-warszawa', label: 'Skup Rolex Warszawa' },
-          { href: '/serwis-rolex-warszawa', label: 'Serwis Rolex' },
-          { href: '/komis-rolex-warszawa', label: 'Komis Rolex' },
-          { href: '/zegarki-luksusowe-warszawa', label: 'Zegarki luksusowe Warszawa' },
-        ]}
+        relatedLinks={relatedLinksFor('zegarki-rolex-warszawa', 'brand-hub')}
       />
     </>
   )

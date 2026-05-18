@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { localizedAlternates } from '@/lib/i18n'
 import { SeoLanding, landingBreadcrumbJsonLd, serviceJsonLd } from '@/components/seo/seo-landing'
+import { relatedLinksFor } from '@/lib/related-links'
 
 const SLUG = 'skup-zegarkow-warszawa'
 const URL = `https://warszawskiczas.pl/${SLUG}`
@@ -96,11 +97,7 @@ export default function Page() {
         ]}
         closingHeading="Wycena bez zobowiązań"
         closingText="Wyślij zdjęcia zegarka — wstępną cenę przekazujemy w 15 minut. Jeśli zaakceptujesz, finalizujemy transakcję tego samego dnia."
-        relatedLinks={[
-          { href: '/skup-rolex-warszawa', label: 'Skup Rolex Warszawa' },
-          { href: '/wycena-zegarka-warszawa', label: 'Wycena zegarka' },
-          { href: '/komis-zegarkow-warszawa', label: 'Komis zegarków' },
-        ]}
+        relatedLinks={relatedLinksFor('skup-zegarkow-warszawa', 'service-hub')}
       />
     </>
   )

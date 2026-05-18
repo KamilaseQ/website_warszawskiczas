@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { localizedAlternates } from '@/lib/i18n'
 import { SeoLanding, landingBreadcrumbJsonLd, serviceJsonLd } from '@/components/seo/seo-landing'
+import { relatedLinksFor } from '@/lib/related-links'
 
 const SLUG = 'rolex-na-zamowienie'
 const URL = `https://warszawskiczas.pl/${SLUG}`
@@ -56,11 +57,7 @@ export default function Page() {
         ]}
         closingHeading="Powiedz, jakiego Rolexa szukasz"
         closingText="Daytona, Submariner, GMT-Master, Datejust — sprowadzimy konkretną referencję."
-        relatedLinks={[
-          { href: '/zegarki-rolex-warszawa', label: 'Zegarki Rolex Warszawa' },
-          { href: '/skup-rolex-warszawa', label: 'Skup Rolex' },
-          { href: '/zegarki-na-zamowienie', label: 'Zegarki na zamówienie' },
-        ]}
+        relatedLinks={relatedLinksFor('rolex-na-zamowienie', 'on-request')}
       />
     </>
   )

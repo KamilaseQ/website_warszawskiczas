@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { localizedAlternates } from '@/lib/i18n'
 import { SeoLanding, landingBreadcrumbJsonLd, serviceJsonLd } from '@/components/seo/seo-landing'
+import { relatedLinksFor } from '@/lib/related-links'
 
 const SLUG = 'patek-philippe-na-zamowienie'
 const URL = `https://warszawskiczas.pl/${SLUG}`
@@ -50,11 +51,7 @@ export default function Page() {
         ]}
         closingHeading="Porozmawiajmy o konkretnym modelu"
         closingText="Nautilus, Aquanaut, Calatrava, Complications — wszystko w pełnej dyskrecji."
-        relatedLinks={[
-          { href: '/zegarki-na-zamowienie', label: 'Zegarki na zamówienie' },
-          { href: '/zegarki-kolekcjonerskie', label: 'Zegarki kolekcjonerskie' },
-          { href: '/audemars-piguet-na-zamowienie', label: 'AP na zamówienie' },
-        ]}
+        relatedLinks={relatedLinksFor('patek-philippe-na-zamowienie', 'on-request')}
       />
     </>
   )

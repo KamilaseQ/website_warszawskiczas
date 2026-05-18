@@ -229,15 +229,27 @@ function LocalizedTrustSignals({ locale }: { locale: Exclude<Locale, 'pl'> }) {
                   <h3 className="font-serif text-2xl font-medium text-foreground">{copy.collectorsTitle}</h3>
                   <div className="mt-6 grid grid-cols-1 gap-6 min-[430px]:grid-cols-2">
                     <div className="min-w-0">
-                      <p className="break-words font-serif text-4xl font-medium text-foreground italic sm:text-5xl">
+                      {/* EN "thousands" jest dłuższe niż PL "tysiące"/UA "тисячі" — w 2-kolumnowym
+                          układzie wymusza mniejszy font, żeby nie pękało w połowie wyrazu. */}
+                      <p
+                        className={
+                          'font-serif font-medium text-foreground italic [overflow-wrap:normal] ' +
+                          (en ? 'text-3xl sm:text-4xl' : 'text-4xl sm:text-5xl')
+                        }
+                      >
                         {copy.thousands}
                       </p>
-                      <p className="mt-2 max-w-full break-words font-sans text-[10px] uppercase tracking-[0.18em] text-muted-foreground sm:tracking-[0.3em]">
+                      <p className="mt-2 max-w-full font-sans text-[10px] uppercase tracking-[0.18em] text-muted-foreground sm:tracking-[0.3em]">
                         {copy.completedTransactions}
                       </p>
                     </div>
                     <div className="min-w-0">
-                      <p className="break-words font-serif text-4xl font-medium text-accent-gold/80 sm:text-5xl">
+                      <p
+                        className={
+                          'font-serif font-medium text-accent-gold/80 [overflow-wrap:normal] ' +
+                          (en ? 'text-3xl sm:text-4xl' : 'text-4xl sm:text-5xl')
+                        }
+                      >
                         {en ? 'since' : 'з'} <AnimatedCounter value={2019} />
                       </p>
                       <p className="mt-2 max-w-full break-words font-sans text-[10px] uppercase tracking-[0.18em] text-muted-foreground sm:tracking-[0.3em]">

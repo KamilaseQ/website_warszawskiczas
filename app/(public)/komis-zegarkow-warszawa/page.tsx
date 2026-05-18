@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { localizedAlternates } from '@/lib/i18n'
 import { SeoLanding, landingBreadcrumbJsonLd, serviceJsonLd } from '@/components/seo/seo-landing'
+import { relatedLinksFor } from '@/lib/related-links'
 
 const SLUG = 'komis-zegarkow-warszawa'
 const URL = `https://warszawskiczas.pl/${SLUG}`
@@ -57,10 +58,7 @@ export default function Page() {
         ]}
         closingHeading="Porozmawiajmy o Twoim zegarku"
         closingText="Po krótkiej wycenie wspólnie zdecydujemy, czy lepszym wyborem będzie komis, czy skup natychmiastowy."
-        relatedLinks={[
-          { href: '/skup-zegarkow-warszawa', label: 'Skup zegarków' },
-          { href: '/wycena-zegarka-warszawa', label: 'Wycena zegarka' },
-        ]}
+        relatedLinks={relatedLinksFor('komis-zegarkow-warszawa', 'service-hub')}
       />
     </>
   )

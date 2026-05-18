@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { localizedAlternates } from '@/lib/i18n'
 import { SeoLanding, landingBreadcrumbJsonLd, serviceJsonLd } from '@/components/seo/seo-landing'
+import { relatedLinksFor } from '@/lib/related-links'
 
 const SLUG = 'zegarki-kolekcjonerskie'
 const URL = `https://warszawskiczas.pl/${SLUG}`
@@ -48,12 +49,7 @@ export default function Page() {
           { title: 'Weryfikacja', description: 'Autentyczność, zgodność części, ekspertyzy zewnętrzne.' },
         ]}
         closingHeading="Porozmawiajmy o Twojej kolekcji"
-        relatedLinks={[
-          { href: '/zegarki-na-zamowienie', label: 'Zegarki na zamówienie' },
-          { href: '/patek-philippe-na-zamowienie', label: 'Patek Philippe na zamówienie' },
-          { href: '/audemars-piguet-na-zamowienie', label: 'AP na zamówienie' },
-          { href: '/rolex-na-zamowienie', label: 'Rolex na zamówienie' },
-        ]}
+        relatedLinks={relatedLinksFor('zegarki-kolekcjonerskie', 'category-hub')}
       />
     </>
   )

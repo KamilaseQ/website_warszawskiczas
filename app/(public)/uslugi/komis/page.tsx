@@ -5,7 +5,7 @@ import { localizedAlternates } from '@/lib/i18n'
 export const metadata: Metadata = {
   title: 'Komis zegarków Warszawa — sprzedaż dyskretna i premium',
   description:
-    'Profesjonalna sprzedaż komisowa zegarków premium w Warszawie. Dotrzemy do właściwych kolekcjonerów i uzyskamy najlepszą cenę. Mokotowska 71.',
+    'Profesjonalna sprzedaż komisowa zegarków premium w Warszawie. Dotrzemy do właściwych kolekcjonerów i pomożemy uzyskać atrakcyjną cenę finalną. Mokotowska 71.',
   alternates: localizedAlternates('/uslugi/komis', 'pl'),
   openGraph: {
     type: 'website',

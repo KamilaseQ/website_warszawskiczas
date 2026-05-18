@@ -49,11 +49,20 @@ Legenda:
 
 > Wymagają decyzji biznesowych i pracy content writera. Lista jako briefing.
 
-- [ ] Huby marek (Patek, AP, Omega, Cartier, Breitling, Vacheron, IWC, Chopard) — strony jak istniejący `zegarki-rolex-warszawa`.
-- [ ] Huby modeli/referencji dla najpopularniejszych (Daytona, Submariner, Nautilus, Royal Oak, Speedmaster, Santos, Tank).
-- [ ] Archiwum realizacji — sprzedane/sprowadzone egzemplarze z opisem briefu, bez udawania dostępności.
-- [ ] Strony procesowe — autentyczność, certyfikat, wycena, skup, sprowadzanie.
-- [ ] Strona `/o-nas` z imionami/zdjęciami zegarmistrza i właściciela, E-E-A-T.
+- [x] **Hub Patek Philippe** — `/zegarki-patek-philippe-warszawa` z opisem Nautilus, Aquanaut, Calatrava, Annual Calendar, Twenty~4, kalibrów manufakturowych, FAQ i bullet list referencji.
+- [x] **Hub Audemars Piguet** — `/zegarki-audemars-piguet-warszawa` z Royal Oak 15500/15510/15400, Jumbo 16202, Offshore 26238, Code 11.59, kalibrami 3120/4302/4401, FAQ.
+- [x] **Hub Breitling** — `/zegarki-breitling-warszawa` z Navitimer, Superocean, Chronomat, Premier, Top Time Classic Cars, kalibrami B01/B20.
+- [x] **Strona procesowa autentyczności** — `/jak-weryfikujemy-autentycznosc-zegarka` z 8-etapowym procesem ekspertyzy (wizualna ocena → fotografia → oznaczenia → mechanizm → pomiary chronometryczne → dokumenty → Service Center → certyfikat). Buduje E-E-A-T.
+- [x] **Strona `/o-nas`** — historia butiku, zespół, lokalizacja (Mokotowska 71), proces zakupu/sprowadzania/skupu, marki, godziny otwarcia, dostępne języki. `AboutPage` + `Organization` w schema. Buduje E-E-A-T.
+- [x] **Cross-linki — systematyzacja przez `lib/related-links.ts`**. Każdy landing dostaje teraz spójny zestaw 6 linków zależnych od kategorii (`brand-hub`, `category-hub`, `service-hub`, `on-request`, `process`, `about`). Helper `relatedLinksFor(slug, category)` wyklucza sam siebie. Linkowanie pokrywa: katalog, główny hub luxury, 3–4 huby marek (Rolex/Patek/AP/Breitling/Omega/Cartier), `/jak-weryfikujemy-autentycznosc-zegarka` (E-E-A-T), `/o-nas` (E-E-A-T). Naprawione martwe linki w Rolex landingu.
+- [x] **Sitemap + canonical** — wszystkie 5 nowych stron w sitemap z hreflang PL/EN/UA. Każda ma `localizedAlternates`, `BreadcrumbList` JSON-LD oraz `AboutPage`/`Service` JSON-LD odpowiednio.
+- [x] **EN/UA wersje nowych hubów** — Patek/AP/Breitling auto-generowane przez `brandDefinition` w `lib/localized-landings.ts` (taki sam pattern jak Rolex/Omega/Cartier). `/o-nas` i `/jak-weryfikujemy-autentycznosc-zegarka` mają bespoke EN/UA bullety, FAQ, kroki, intro w `buildDefinitions`. Łącznie 10 nowych URL-i (5 stron × 2 locale).
+- [x] **Treść `/o-nas` zweryfikowana z `/informacje-o-butiku`** — usunięte fabrykowane szczegóły (imiona zespołu, konkretne nazwiska zegarmistrzów, 15 lat doświadczenia, sprzęt Witschi/Sigma Test). Zostawione fakty: założenie 2019, Mokotowska 71, kontakt (+48 604 501 000, biuro@warszawskiczas.pl), social media (Facebook/Instagram/TikTok), pełen zakres usług (sprzedaż/sprowadzanie/skup/komis/serwis/biżuteria), główne marki (Rolex/Patek/AP/Omega/Cartier/Breitling). Słowa kluczowe pozostawione zgodnie z aktualną sztuką SEO.
+- [x] **Treść `/jak-weryfikujemy-autentycznosc-zegarka` zweryfikowana** — usunięte fabrykowane partnerstwa (Patek Philippe Service Center / Rolex Service Center / Audemars Piguet Service jako stali partnerzy), konkretne marki sprzętu (Witschi, Sigma Test, Bergeon, OptiVisor). Zostawione: opis kroków weryfikacji, kalibry marek, oznaczenia kopert, parametry chronometryczne — wiedza branżowa pozostaje kluczem do długo-ogonowych zapytań.
+- [x] **Brand huby (Patek/AP/Breitling) oczyszczone z fabrykowanej "12-mies. gwarancji butiku"** — zastąpione "pełnym wsparciem posprzedażowym" i "pełną dokumentacją egzemplarza". Service Center partnerships zmiękczone do "kierowanie do oficjalnego serwisu marki w razie potrzeby" / "Extract from the Archives w Genewie przy wartościowych egzemplarzach" (real Patek Philippe service offering).
+- [ ] Huby modeli/referencji (Daytona, Submariner, Nautilus, Royal Oak, Speedmaster, Santos, Tank) — kolejna iteracja, węższe targetowanie.
+- [ ] Archiwum realizacji — wymaga listy sprzedanych egzemplarzy z CMS-a.
+- [ ] Dodatkowe strony procesowe — `/proces-skupu-zegarkow`, `/sprowadzanie-zegarka` jako osobne strony procesowe (dziś tylko sekcje na istniejących landingach).
 - [skip-ext] Google Business Profile workflow (kategorie, zdjęcia, posty, Q&A, system pozyskiwania opinii).
 - [skip-ext] Search Console — miesięczny przegląd, śledzenie pozycji klastrów.
 - [skip-ext] FAQ jako tylko UX, nie strategia rich results (Google ograniczył FAQPage rich results).

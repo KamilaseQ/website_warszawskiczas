@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { localizedAlternates } from '@/lib/i18n'
 import { SeoLanding, landingBreadcrumbJsonLd, serviceJsonLd } from '@/components/seo/seo-landing'
+import { relatedLinksFor } from '@/lib/related-links'
 
 const SLUG = 'zegarki-luksusowe-warszawa'
 const URL = `https://warszawskiczas.pl/${SLUG}`
@@ -57,11 +58,7 @@ export default function Page() {
         ]}
         closingHeading="Zapraszamy do butiku"
         closingText="Umów prywatną prezentację — przygotujemy modele odpowiadające Twoim oczekiwaniom."
-        relatedLinks={[
-          { href: '/produkty', label: 'Cały katalog' },
-          { href: '/zegarki-uzywane-warszawa', label: 'Zegarki używane' },
-          { href: '/zegarki-na-zamowienie', label: 'Zegarki na zamówienie' },
-        ]}
+        relatedLinks={relatedLinksFor('zegarki-luksusowe-warszawa', 'category-hub')}
       />
     </>
   )

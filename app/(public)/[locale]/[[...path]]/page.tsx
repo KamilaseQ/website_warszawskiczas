@@ -29,7 +29,7 @@ import type { Product } from '@/from-cms/schemas/product'
 import { CONTACT_PHONE, CONTACT_PHONE_RAW } from '@/lib/config'
 import { absoluteUrl, canonicalPath, isLocale, localizedAlternates, localizePath, publicRoutePaths, type Locale } from '@/lib/i18n'
 import { getLocalizedLanding, localizedLandingSlugs } from '@/lib/localized-landings'
-import { formatProductPrice, localizeProduct } from '@/lib/localized-products'
+import { formatProductPrice, localizeProduct, localizeProductStatus } from '@/lib/localized-products'
 import { PrivateCollectionPage } from '@/components/pages/private-collection-page'
 import { AccessibilityStatementPage } from '@/components/pages/accessibility-statement-page'
 import { BoutiquePage } from '@/components/pages/boutique-page'
@@ -403,12 +403,7 @@ async function LocalizedProductDetail({ route, locale }: { route: string; locale
     .slice(0, 3)
     .map((p) => localizeProduct(p, locale))
   const isUnavailable = source.status === 'Niedostępny'
-  const statusBadge =
-    source.status === 'Niedostępny'
-      ? locale === 'en'
-        ? 'Available to order'
-        : 'Доступний на замовлення'
-      : source.status
+  const statusBadge = localizeProductStatus(source.status, locale)
   const ctaLabel = isUnavailable
     ? locale === 'en'
       ? 'Ask about this model'

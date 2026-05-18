@@ -3,6 +3,7 @@ import { localizedAlternates } from '@/lib/i18n'
 import { SeoLanding, landingBreadcrumbJsonLd, serviceJsonLd, itemListJsonLd } from '@/components/seo/seo-landing'
 import { productsByBrand } from '@/lib/seo-product-filters'
 import { getAllProducts } from '@/from-cms/adapters/products'
+import { relatedLinksFor } from '@/lib/related-links'
 
 const SLUG = 'zegarki-omega-warszawa'
 const URL = `https://warszawskiczas.pl/${SLUG}`
@@ -94,12 +95,7 @@ export default async function Page() {
         ]}
         closingHeading="Zapytaj o swoją Omegę"
         closingText="Speedmaster, Seamaster, Constellation, De Ville — od ręki w Warszawie albo na zamówienie."
-        relatedLinks={[
-          { href: '/zegarki-luksusowe-warszawa', label: 'Zegarki luksusowe' },
-          { href: '/chronografy-warszawa', label: 'Chronografy' },
-          { href: '/zegarki-sportowe-warszawa', label: 'Zegarki sportowe' },
-          { href: '/zegarki-kolekcjonerskie', label: 'Zegarki kolekcjonerskie' },
-        ]}
+        relatedLinks={relatedLinksFor('zegarki-omega-warszawa', 'brand-hub')}
       />
     </>
   )

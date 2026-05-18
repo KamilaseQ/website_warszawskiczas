@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { localizedAlternates } from '@/lib/i18n'
 import { SeoLanding, landingBreadcrumbJsonLd, serviceJsonLd } from '@/components/seo/seo-landing'
+import { relatedLinksFor } from '@/lib/related-links'
 
 const SLUG = 'skup-zegarkow-centrum-warszawy'
 const URL = `https://warszawskiczas.pl/${SLUG}`
@@ -53,11 +54,7 @@ export default function Page() {
         ]}
         closingHeading="Zapraszamy do butiku"
         closingText="Mokotowska 71, Warszawa — pn–pt 11–18, sb 11–15."
-        relatedLinks={[
-          { href: '/skup-zegarkow-warszawa', label: 'Skup zegarków Warszawa' },
-          { href: '/butik', label: 'Butik Mokotowska 71' },
-          { href: '/kontakt', label: 'Kontakt' },
-        ]}
+        relatedLinks={relatedLinksFor('skup-zegarkow-centrum-warszawy', 'service-hub')}
       />
     </>
   )

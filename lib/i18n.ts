@@ -89,6 +89,11 @@ const SEGMENT_TRANSLATIONS: Record<NonPlLocale, Record<string, string>> = {
     'patek-philippe-na-zamowienie': 'patek-philippe-on-request',
     'audemars-piguet-na-zamowienie': 'audemars-piguet-on-request',
     'zegarki-kolekcjonerskie': 'collector-watches',
+    'zegarki-patek-philippe-warszawa': 'patek-philippe-watches-warsaw',
+    'zegarki-audemars-piguet-warszawa': 'audemars-piguet-watches-warsaw',
+    'zegarki-breitling-warszawa': 'breitling-watches-warsaw',
+    'jak-weryfikujemy-autentycznosc-zegarka': 'how-we-authenticate-watches',
+    'o-nas': 'about-us',
   },
   ua: {
     produkty: 'каталог',
@@ -122,6 +127,11 @@ const SEGMENT_TRANSLATIONS: Record<NonPlLocale, Record<string, string>> = {
     'patek-philippe-na-zamowienie': 'patek-philippe-на-замовлення',
     'audemars-piguet-na-zamowienie': 'audemars-piguet-на-замовлення',
     'zegarki-kolekcjonerskie': 'колекційні-годинники',
+    'zegarki-patek-philippe-warszawa': 'годинники-patek-philippe-варшава',
+    'zegarki-audemars-piguet-warszawa': 'годинники-audemars-piguet-варшава',
+    'zegarki-breitling-warszawa': 'годинники-breitling-варшава',
+    'jak-weryfikujemy-autentycznosc-zegarka': 'як-перевіряємо-автентичність-годинника',
+    'o-nas': 'про-нас',
   },
 }
 
@@ -247,6 +257,11 @@ export const publicRoutePaths = [
   '/patek-philippe-na-zamowienie',
   '/audemars-piguet-na-zamowienie',
   '/zegarki-kolekcjonerskie',
+  '/zegarki-patek-philippe-warszawa',
+  '/zegarki-audemars-piguet-warszawa',
+  '/zegarki-breitling-warszawa',
+  '/jak-weryfikujemy-autentycznosc-zegarka',
+  '/o-nas',
 ] as const
 
 export const ui = {

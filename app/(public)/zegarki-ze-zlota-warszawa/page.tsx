@@ -3,6 +3,7 @@ import { localizedAlternates } from '@/lib/i18n'
 import { SeoLanding, landingBreadcrumbJsonLd, serviceJsonLd, itemListJsonLd } from '@/components/seo/seo-landing'
 import { goldWatches } from '@/lib/seo-product-filters'
 import { getAllProducts } from '@/from-cms/adapters/products'
+import { relatedLinksFor } from '@/lib/related-links'
 
 const SLUG = 'zegarki-ze-zlota-warszawa'
 const URL = `https://warszawskiczas.pl/${SLUG}`
@@ -38,7 +39,7 @@ export default async function Page() {
       <SeoLanding
         eyebrow="Złoto · 18K · Warszawa"
         h1="Zegarki ze złota — żółte, różowe, białe 18K"
-        intro="Najpiękniejsze zegarki w 18-karatowym złocie żółtym, różowym (Everose), białym oraz w wersjach bicolor (stal-złoto i Rolesor). Rolex Day-Date i Datejust w pełnym złocie, Patek Philippe Calatrava i Annual Calendar, Audemars Piguet Royal Oak w żółtym i różowym złocie, Cartier Tank Louis Cartier i Santos w 18K, Omega Constellation bicolor — najszerszy wybór złotych zegarków w Warszawie."
+        intro="Zegarki w 18-karatowym złocie żółtym, różowym (Everose), białym oraz w wersjach bicolor (stal-złoto i Rolesor). Rolex Day-Date i Datejust w pełnym złocie, Patek Philippe Calatrava i Annual Calendar, Audemars Piguet Royal Oak w żółtym i różowym złocie, Cartier Tank Louis Cartier i Santos w 18K, Omega Constellation bicolor — szeroki wybór złotych zegarków w Warszawie."
         primaryCtaLabel="Zobacz złote zegarki"
         source="landing-zegarki-ze-zlota"
         heroImage={{ src: '/patek.jpg', alt: 'Patek Philippe w złocie — butik Warszawski Czas' }}
@@ -54,7 +55,7 @@ export default async function Page() {
             heading: 'Co warto wiedzieć kupując złoty zegarek',
             paragraphs: [
               'Wartość złotego zegarka składa się z kilku elementów: marki i modelu, wagi i czystości złota (18K = 75% złota czystego), stanu koperty i bransolety, kompletu dokumentów i pudełka oraz historii serwisowej. W przypadku Rolexów i Patek Philippe sama wartość metalu szlachetnego stanowi typowo 15–35% ceny rynkowej — pozostała część to wartość marki, mechanizmu i historii.',
-              'Złoto w zegarkach klasy premium jest też dziś inwestycją: ceny złotych Rolex Day-Date i Patek Philippe Calatrava w 18K rosną szybciej niż ich stalowe odpowiedniki (z wyjątkiem segmentu sport-stal, gdzie Daytona, Submariner i Royal Oak ST notują własną dynamikę). Cartier Tank w 18K złocie różowym stał się jednym z najszybciej zyskujących na wartości modeli ostatnich lat.',
+              'Złoto w zegarkach klasy premium jest też dziś inwestycją: ceny złotych Rolex Day-Date i Patek Philippe Calatrava w 18K rosną szybciej niż ich stalowe odpowiedniki (z wyjątkiem segmentu sport-stal, gdzie Daytona, Submariner i Royal Oak ST notują własną dynamikę). Cartier Tank w 18K złocie różowym stał się jednym z modeli szybciej zyskujących na wartości w ostatnich latach.',
             ],
           },
         ]}
@@ -96,13 +97,7 @@ export default async function Page() {
         ]}
         closingHeading="Wybierz złoty zegarek"
         closingText="Pełne 18K złoto, Everose, białe lub bicolor — Rolex, Patek, Cartier, AP, Omega."
-        relatedLinks={[
-          { href: '/zegarki-z-diamentami-warszawa', label: 'Zegarki z diamentami' },
-          { href: '/zegarki-luksusowe-warszawa', label: 'Zegarki luksusowe' },
-          { href: '/zegarki-rolex-warszawa', label: 'Zegarki Rolex' },
-          { href: '/zegarki-cartier-warszawa', label: 'Zegarki Cartier' },
-          { href: '/zegarki-patek-philippe-warszawa', label: 'Zegarki Patek Philippe' },
-        ]}
+        relatedLinks={relatedLinksFor('zegarki-ze-zlota-warszawa', 'category-hub')}
       />
     </>
   )

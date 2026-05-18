@@ -3,6 +3,7 @@ import { localizedAlternates } from '@/lib/i18n'
 import { SeoLanding, landingBreadcrumbJsonLd, serviceJsonLd, itemListJsonLd } from '@/components/seo/seo-landing'
 import { chronographWatches } from '@/lib/seo-product-filters'
 import { getAllProducts } from '@/from-cms/adapters/products'
+import { relatedLinksFor } from '@/lib/related-links'
 
 const SLUG = 'chronografy-warszawa'
 const URL = `https://warszawskiczas.pl/${SLUG}`
@@ -89,13 +90,7 @@ export default async function Page() {
         ]}
         closingHeading="Zapytaj o chronograf"
         closingText="Daytona, Speedmaster, Royal Oak Chronograph, Nautilus 5980, Portugieser, Chronomat, El Primero — w stałej ofercie i na zamówienie."
-        relatedLinks={[
-          { href: '/zegarki-sportowe-warszawa', label: 'Zegarki sportowe' },
-          { href: '/zegarki-rolex-warszawa', label: 'Zegarki Rolex' },
-          { href: '/zegarki-omega-warszawa', label: 'Zegarki Omega' },
-          { href: '/zegarki-audemars-piguet-warszawa', label: 'Zegarki Audemars Piguet' },
-          { href: '/zegarki-iwc-warszawa', label: 'Zegarki IWC' },
-        ]}
+        relatedLinks={relatedLinksFor('chronografy-warszawa', 'category-hub')}
       />
     </>
   )

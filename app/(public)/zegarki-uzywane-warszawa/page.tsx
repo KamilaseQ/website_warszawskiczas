@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { localizedAlternates } from '@/lib/i18n'
 import { SeoLanding, landingBreadcrumbJsonLd, serviceJsonLd } from '@/components/seo/seo-landing'
+import { relatedLinksFor } from '@/lib/related-links'
 
 const SLUG = 'zegarki-uzywane-warszawa'
 const URL = `https://warszawskiczas.pl/${SLUG}`
@@ -55,11 +56,7 @@ export default function Page() {
           { q: 'Czy serwisujecie zegarki kupione u Was?', a: 'Tak — w naszym warsztacie zegarmistrzowskim, na warunkach preferencyjnych dla stałych klientów.' },
         ]}
         closingHeading="Sprawdź dostępne egzemplarze"
-        relatedLinks={[
-          { href: '/produkty', label: 'Cały katalog' },
-          { href: '/zegarki-luksusowe-warszawa', label: 'Zegarki luksusowe' },
-          { href: '/zegarki-na-zamowienie', label: 'Zegarki na zamówienie' },
-        ]}
+        relatedLinks={relatedLinksFor('zegarki-uzywane-warszawa', 'category-hub')}
       />
     </>
   )

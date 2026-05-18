@@ -3,6 +3,7 @@ import { localizedAlternates } from '@/lib/i18n'
 import { SeoLanding, landingBreadcrumbJsonLd, serviceJsonLd, itemListJsonLd } from '@/components/seo/seo-landing'
 import { productsByBrand } from '@/lib/seo-product-filters'
 import { getAllProducts } from '@/from-cms/adapters/products'
+import { relatedLinksFor } from '@/lib/related-links'
 
 const SLUG = 'zegarki-cartier-warszawa'
 const URL = `https://warszawskiczas.pl/${SLUG}`
@@ -89,12 +90,7 @@ export default async function Page() {
         ]}
         closingHeading="Zapytaj o swój model Cartier"
         closingText="Tank, Santos, Panthère, Ballon Bleu, Baignoire — sprowadzimy konkretną referencję."
-        relatedLinks={[
-          { href: '/zegarki-luksusowe-warszawa', label: 'Zegarki luksusowe' },
-          { href: '/zegarki-damskie-warszawa', label: 'Zegarki damskie' },
-          { href: '/zegarki-z-diamentami-warszawa', label: 'Zegarki z diamentami' },
-          { href: '/zegarki-ze-zlota-warszawa', label: 'Zegarki ze złota' },
-        ]}
+        relatedLinks={relatedLinksFor('zegarki-cartier-warszawa', 'brand-hub')}
       />
     </>
   )

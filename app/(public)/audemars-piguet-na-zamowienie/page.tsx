@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { localizedAlternates } from '@/lib/i18n'
 import { SeoLanding, landingBreadcrumbJsonLd, serviceJsonLd } from '@/components/seo/seo-landing'
+import { relatedLinksFor } from '@/lib/related-links'
 
 const SLUG = 'audemars-piguet-na-zamowienie'
 const URL = `https://warszawskiczas.pl/${SLUG}`
@@ -24,7 +25,7 @@ export default function Page() {
       <SeoLanding
         eyebrow="Audemars Piguet · Na zamówienie"
         h1="Audemars Piguet — Royal Oak, Offshore, Code 11.59"
-        intro="Audemars Piguet Royal Oak to dziś jeden z najtrudniej dostępnych zegarków świata. Sprowadzamy konkretne referencje na zamówienie z weryfikacją autentyczności i pełną dokumentacją."
+        intro="Audemars Piguet Royal Oak to dziś jeden z trudno dostępnych zegarków na rynku autoryzowanym. Sprowadzamy konkretne referencje na zamówienie z weryfikacją autentyczności i pełną dokumentacją."
         primaryCtaLabel="Zleć poszukiwanie AP"
         source="landing-ap-na-zamowienie"
         highlights={[
@@ -48,11 +49,7 @@ export default function Page() {
           { title: 'Finalizacja', description: 'Spotkanie w butiku — akceptacja, transakcja, gwarancja.' },
         ]}
         closingHeading="Porozmawiajmy o konkretnym AP"
-        relatedLinks={[
-          { href: '/zegarki-na-zamowienie', label: 'Zegarki na zamówienie' },
-          { href: '/rolex-na-zamowienie', label: 'Rolex na zamówienie' },
-          { href: '/zegarki-kolekcjonerskie', label: 'Zegarki kolekcjonerskie' },
-        ]}
+        relatedLinks={relatedLinksFor('audemars-piguet-na-zamowienie', 'on-request')}
       />
     </>
   )

@@ -86,5 +86,6 @@ Przełącznik jest read-only po inicjalizacji procesu. Adapter waliduje odpowied
 
 ## Linki
 
+- Plan aplikacji CMS/CRM: [CMS-CRM-APP-PLAN.md](CMS-CRM-APP-PLAN.md)
 - Plan przebudowy: [ARCHITECTURE-REVIEW.md](ARCHITECTURE-REVIEW.md)
 - Granica strona ↔ CMS: [from-cms/README.md](from-cms/README.md)

@@ -26,7 +26,10 @@
       "PowerShell(npm run lint 2>&1)",
       "PowerShell(Get-Command npm,node,npx -ErrorAction SilentlyContinue)",
       "Bash(export PATH=\"/c/Users/212ka/AppData/Roaming/fnm/node-versions/v24.14.0/installation:$PATH\")",
-      "Bash(npm --version)"
+      "Bash(npm --version)",
+      "WebFetch(domain:warszawskiczas.pl)",
+      "Bash(node -e ' *)",
+      "Bash(node scripts/clean-next-cache.mjs)"
     ]
   }
 }

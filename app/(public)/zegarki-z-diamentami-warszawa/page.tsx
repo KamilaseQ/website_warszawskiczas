@@ -3,6 +3,7 @@ import { localizedAlternates } from '@/lib/i18n'
 import { SeoLanding, landingBreadcrumbJsonLd, serviceJsonLd, itemListJsonLd } from '@/components/seo/seo-landing'
 import { diamondWatches } from '@/lib/seo-product-filters'
 import { getAllProducts } from '@/from-cms/adapters/products'
+import { relatedLinksFor } from '@/lib/related-links'
 
 const SLUG = 'zegarki-z-diamentami-warszawa'
 const URL = `https://warszawskiczas.pl/${SLUG}`
@@ -46,9 +47,9 @@ export default async function Page() {
           {
             heading: 'Diamentowe zegarki — fabryczne, after-market i custom iced out',
             paragraphs: [
-              'W obrocie luksusowymi zegarkami z diamentami spotykamy trzy kategorie egzemplarzy. Pierwsza to wersje fabryczne — diamenty osadzone przez producenta jako standardowa konfiguracja danej referencji (Rolex Datejust 178384 z fabrycznym bezelem diamentowym, Cartier Tank z indeksami brylantowymi, Patek Philippe Twenty~4 5910). Te modele zachowują pełną wartość rynkową i są najlepsze pod kątem inwestycyjnym.',
+              'W obrocie luksusowymi zegarkami z diamentami spotykamy trzy kategorie egzemplarzy. Pierwsza to wersje fabryczne — diamenty osadzone przez producenta jako standardowa konfiguracja danej referencji (Rolex Datejust 178384 z fabrycznym bezelem diamentowym, Cartier Tank z indeksami brylantowymi, Patek Philippe Twenty~4 5910). Te modele zachowują pełną wartość rynkową i są zwykle pierwszym wyborem przy zakupie z myślą o przyszłej odsprzedaży.',
               'Druga kategoria to wersje after-market — diamenty osadzone przez wyspecjalizowany warsztat już po zakupie zegarka, najczęściej w bezel, lugs, koronę lub bransoletę. Wartość rynkowa takiego zegarka jest niższa od fabrycznej wersji diamentowej, ale wyższa niż egzemplarza bez diamentów. Należy zachować ostrożność przy zakupie — szczególnie ważna jest weryfikacja jakości osadzenia i jakości samych kamieni (czystość, kolor, masa).',
-              'Trzecia, najszersza kategoria w segmencie luksusowym, to custom iced out — kompleksowe pokrycie zegarka diamentami (koperta, bezel, bransoleta, tarcza). Cartier Santos w wersji iced out, Rolex Datejust z arabską tarczą diamentową — to popularne customizacje. W każdym przypadku oferujemy pełną dokumentację: liczba diamentów, masa karatowa, czystość i kolor, wycenę GIA-poziomu.',
+              'Trzecia, popularna kategoria w segmencie luksusowym, to custom iced out — kompleksowe pokrycie zegarka diamentami (koperta, bezel, bransoleta, tarcza). Cartier Santos w wersji iced out, Rolex Datejust z arabską tarczą diamentową — to popularne customizacje. W każdym przypadku oferujemy pełną dokumentację: liczba diamentów, masa karatowa, czystość i kolor, wycenę GIA-poziomu.',
             ],
           },
           {
@@ -88,12 +89,7 @@ export default async function Page() {
           { q: 'Jakie diamenty stosujecie w wycenach?', a: 'W naszych dokumentach przedstawiamy klasę kolor i czystość zgodnie ze standardami GIA: kolor D–H (najczęściej G–H), czystość VVS1–VS2 (najczęściej VS).' },
         ]}
         closingHeading="Wybierz zegarek z diamentami"
-        relatedLinks={[
-          { href: '/zegarki-ze-zlota-warszawa', label: 'Zegarki ze złota' },
-          { href: '/zegarki-damskie-warszawa', label: 'Zegarki damskie' },
-          { href: '/zegarki-luksusowe-warszawa', label: 'Zegarki luksusowe' },
-          { href: '/zegarki-cartier-warszawa', label: 'Zegarki Cartier' },
-        ]}
+        relatedLinks={relatedLinksFor('zegarki-z-diamentami-warszawa', 'category-hub')}
       />
     </>
   )

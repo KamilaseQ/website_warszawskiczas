@@ -36,16 +36,28 @@ const brandList = [
   'Tudor',
 ]
 
+/**
+ * Spójna pula linków powiązanych dla EN/UA landingów. 6 linków: katalog,
+ * główne huby marek, główny hub kategorii luksusowej, proces weryfikacji,
+ * o butiku + kontakt. Każdy landing dostaje te linki domyślnie; specyficzne
+ * brand-hub-y (Rolex/Patek/AP/Breitling) dodają jeszcze 1–2 linki kontekstowe.
+ */
 const relatedCore = {
   en: [
     { href: '/produkty', label: 'Luxury watch catalogue' },
-    { href: '/kontakt', label: 'Contact the boutique' },
-    { href: '/butik', label: 'Visit the Warsaw boutique' },
+    { href: '/zegarki-luksusowe-warszawa', label: 'Luxury watches Warsaw' },
+    { href: '/zegarki-rolex-warszawa', label: 'Rolex watches' },
+    { href: '/zegarki-patek-philippe-warszawa', label: 'Patek Philippe watches' },
+    { href: '/jak-weryfikujemy-autentycznosc-zegarka', label: 'How we authenticate watches' },
+    { href: '/o-nas', label: 'About the boutique' },
   ],
   ua: [
     { href: '/produkty', label: 'Каталог люксових годинників' },
-    { href: '/kontakt', label: 'Зв’язатися з бутіком' },
-    { href: '/butik', label: 'Відвідати бутік у Варшаві' },
+    { href: '/zegarki-luksusowe-warszawa', label: 'Люксові годинники у Варшаві' },
+    { href: '/zegarki-rolex-warszawa', label: 'Годинники Rolex' },
+    { href: '/zegarki-patek-philippe-warszawa', label: 'Годинники Patek Philippe' },
+    { href: '/jak-weryfikujemy-autentycznosc-zegarka', label: 'Як перевіряємо автентичність' },
+    { href: '/o-nas', label: 'Про бутік' },
   ],
 } as const
 
@@ -443,6 +455,65 @@ function buildDefinitions(products: Product[]) {
   'rolex-na-zamowienie': { brand: 'Rolex', onRequest: true },
   'patek-philippe-na-zamowienie': { brand: 'Patek Philippe', onRequest: true },
   'audemars-piguet-na-zamowienie': { brand: 'Audemars Piguet', onRequest: true },
+  'zegarki-patek-philippe-warszawa': { brand: 'Patek Philippe' },
+  'zegarki-audemars-piguet-warszawa': { brand: 'Audemars Piguet' },
+  'zegarki-breitling-warszawa': { brand: 'Breitling' },
+  'o-nas': {
+    en: {
+      title: 'About Warszawski Czas - premium watch boutique at Mokotowska 71, Warsaw',
+      description:
+        'About Warszawski Czas — an independent boutique of luxury watches in central Warsaw since 2019. Sales, sourcing, buying, consignment and service of Rolex, Patek Philippe, Audemars Piguet, Omega, Cartier, Breitling and other premium brands.',
+      h1: 'Warszawski Czas — a premium watch boutique in the heart of Warsaw',
+      eyebrow: 'About the boutique · Mokotowska 71',
+      intro:
+        'Warszawski Czas is an independent boutique of luxury watches operating in Warsaw since 2019. We specialise in the sale, sourcing, buying and consignment of premium watches — Rolex, Patek Philippe, Audemars Piguet, Omega, Cartier, Breitling and other renowned brands. Our work is defined by an individual approach to every client, honest and reliable service, and expert advice based on long experience.',
+      cta: 'Book a boutique visit',
+      topic: 'about Warszawski Czas',
+      serviceName: 'Warszawski Czas — premium watch boutique',
+      serviceType: 'Luxury watch boutique',
+    },
+    ua: {
+      title: 'Про Warszawski Czas — преміальний бутік годинників на Mokotowska 71, Варшава',
+      description:
+        'Про Warszawski Czas — незалежний бутік люксових годинників у центрі Варшави з 2019 року. Продаж, пошук, викуп, комісія та сервіс Rolex, Patek Philippe, Audemars Piguet, Omega, Cartier, Breitling та інших преміальних брендів.',
+      h1: 'Warszawski Czas — преміальний бутік годинників у центрі Варшави',
+      eyebrow: 'Про бутік · Mokotowska 71',
+      intro:
+        'Warszawski Czas — незалежний бутік люксових годинників, що працює у Варшаві з 2019 року. Ми спеціалізуємося на продажу, пошуку, викупі та комісії преміальних годинників — Rolex, Patek Philippe, Audemars Piguet, Omega, Cartier, Breitling та інших відомих брендів. Нашу роботу визначає індивідуальний підхід до кожного клієнта, чесний та надійний сервіс, експертні поради на основі багаторічного досвіду.',
+      cta: 'Записатися на візит',
+      topic: 'про Warszawski Czas',
+      serviceName: 'Warszawski Czas — преміальний бутік годинників',
+      serviceType: 'Бутік люксових годинників',
+    },
+  },
+  'jak-weryfikujemy-autentycznosc-zegarka': {
+    en: {
+      title: 'How we authenticate watches - the Warszawski Czas verification process',
+      description:
+        'The full multi-step verification process used at Warszawski Czas for every luxury watch — visual inspection, case markings, movement analysis, documents, service history and completeness. Mokotowska 71, Warsaw.',
+      h1: 'How we authenticate luxury watches',
+      eyebrow: 'Process · Watchmaking expertise',
+      intro:
+        'Every watch entering the Warszawski Czas boutique — from sale, sourcing, buying or consignment — goes through a multi-step authenticity and condition verification process. We check visually, compare markings, analyse the movement, verify documents and check completeness. Only after passing all steps does a watch enter the catalogue or reach the client.',
+      cta: 'Book an expertise',
+      topic: 'how we authenticate luxury watches',
+      serviceName: 'Luxury watch authentication in Warsaw',
+      serviceType: 'Watch authenticity expertise',
+    },
+    ua: {
+      title: 'Як перевіряємо автентичність годинника — процес експертизи Warszawski Czas',
+      description:
+        'Повний багатоетапний процес перевірки люксових годинників у Warszawski Czas — візуальна оцінка, маркування корпусу, аналіз механізму, документи, сервісна історія та комплектність. Mokotowska 71, Варшава.',
+      h1: 'Як перевіряємо автентичність люксового годинника',
+      eyebrow: 'Процес · Годинникова експертиза',
+      intro:
+        'Кожен годинник, що потрапляє до бутіка Warszawski Czas — з продажу, пошуку, викупу чи комісії — проходить багатоетапну перевірку автентичності та стану. Ми оцінюємо візуально, порівнюємо маркування, аналізуємо механізм, перевіряємо документи та комплектність. Лише після всіх етапів годинник потрапляє до каталогу або до клієнта.',
+      cta: 'Записатися на експертизу',
+      topic: 'як перевіряємо автентичність годинника',
+      serviceName: 'Експертиза автентичності годинника у Варшаві',
+      serviceType: 'Експертиза автентичності годинників',
+    },
+  },
   'zegarki-kolekcjonerskie': {
     en: {
       title: 'Collector watches Warsaw - rare and important references',
@@ -503,6 +574,11 @@ export const localizedLandingSlugs = [
   'patek-philippe-na-zamowienie',
   'audemars-piguet-na-zamowienie',
   'zegarki-kolekcjonerskie',
+  'zegarki-patek-philippe-warszawa',
+  'zegarki-audemars-piguet-warszawa',
+  'zegarki-breitling-warszawa',
+  'o-nas',
+  'jak-weryfikujemy-autentycznosc-zegarka',
 ] as const
 
 function brandDefinition(slug: string, locale: Exclude<Locale, 'pl'>, brand: string, products: Product[], onRequest = false): LandingCopy {
