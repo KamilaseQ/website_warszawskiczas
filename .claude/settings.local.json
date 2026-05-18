@@ -20,7 +20,8 @@
       "Bash(/c/Users/212ka/AppData/Local/ms-playwright-go/1.57.0/node.exe ./node_modules/next/dist/bin/next build)",
       "Bash(echo \"lint-exit=$?\")",
       "Read(//c/Users/212ka/source/repos/website_warszawskiczas/out/ua/%D0%BF%D0%BE%D1%81%D0%BB%D1%83%D0%B3%D0%B8/**)",
-      "Bash(grep -E \"^послуги|%D0%BF%D0%BE%D1%81%D0%BB%D1%83%D0%B3%D0%B8$\")"
+      "Bash(grep -E \"^послуги|%D0%BF%D0%BE%D1%81%D0%BB%D1%83%D0%B3%D0%B8$\")",
+      "Bash(git mv *)"
     ]
   }
 }

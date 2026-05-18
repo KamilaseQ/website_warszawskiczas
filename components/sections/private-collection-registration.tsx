@@ -134,7 +134,10 @@ export function PrivateCollectionRegistration({ locale = 'pl' }: { locale?: Loca
       return
     }
     const payload = {
-      type: 'private-access' as const,
+      // Wizualnie sekcja udaje "ukrytą kolekcję", ale to teaser pod FOMO —
+      // operacyjnie traktujemy zgłoszenie jak każde inne `inquiry`. `source`
+      // pozwoli filtrować takie zgłoszenia w CMS jeśli kiedyś będzie sens.
+      type: 'inquiry' as const,
       name: String(fd.get('name') ?? ''),
       email: String(fd.get('email') ?? ''),
       phone: String(fd.get('phone') ?? ''),

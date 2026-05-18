@@ -405,20 +405,20 @@ async function LocalizedProductDetail({ route, locale }: { route: string; locale
   const statusBadge =
     source.status === 'Niedostępny'
       ? locale === 'en'
-        ? 'On request — we can source'
-        : 'На замовлення — можемо знайти'
+        ? 'Available to order'
+        : 'Доступний на замовлення'
       : source.status
   const ctaLabel = isUnavailable
     ? locale === 'en'
-      ? 'Ask about sourcing'
-      : 'Запитати про пошук'
+      ? 'Ask about this model'
+      : 'Запитати про цю модель'
     : locale === 'en'
       ? 'Ask about availability'
       : 'Запитати про наявність'
   const subnote = isUnavailable
     ? locale === 'en'
-      ? 'Sourced in 7–30 days · No waiting list'
-      : 'Знайдемо за 7–30 днів · Без черги'
+      ? 'Lead time 7–30 days · No waiting list'
+      : 'Виконання 7–30 днів · Без черги'
     : locale === 'en'
       ? 'Free valuation · Discreet consultation'
       : 'Безкоштовна оцінка · Дискретна консультація'

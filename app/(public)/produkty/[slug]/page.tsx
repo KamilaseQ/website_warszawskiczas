@@ -153,10 +153,10 @@ export default async function ProductPage({ params }: PageProps) {
 
   const statusBadge =
     product.status === 'Niedostępny'
-      ? 'Niedostępny — możemy sprowadzić'
+      ? 'Dostępny na zamówienie'
       : product.status
 
-  const ctaLabel = isUnavailable ? 'Zapytaj o sprowadzenie' : 'Zapytaj o dostępność'
+  const ctaLabel = isUnavailable ? 'Zapytaj o ten model' : 'Zapytaj o dostępność'
   const ctaSource = isUnavailable ? 'product-detail-sourcing' : 'product-detail'
 
   const canonicalSlug = productUrlSlug(product)
@@ -361,7 +361,7 @@ export default async function ProductPage({ params }: PageProps) {
                 </div>
                 <p className="mt-4 font-sans text-[11px] uppercase tracking-[0.18em] text-muted-foreground/80">
                   {isUnavailable
-                    ? 'Sprowadzamy w 7–30 dni · Bez listy oczekujących'
+                    ? 'Realizacja 7–30 dni · Bez listy oczekujących'
                     : 'Bezpłatna wycena · Dyskretna konsultacja'}
                 </p>
               </div>

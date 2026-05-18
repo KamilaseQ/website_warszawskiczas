@@ -7,7 +7,16 @@ import { z } from 'zod'
  * Zmiana wymaga bump wersji `/api/v1/` -> `/api/v2/`.
  */
 
-export const LeadTypeSchema = z.enum(['contact', 'inquiry', 'private-access'])
+/**
+ * Tylko dwa typy:
+ *  - `contact` — formularz na stronie /kontakt (ogólne zapytanie)
+ *  - `inquiry` — zapytanie kontekstowe (z karty produktu, z landinga, z sekcji
+ *    "Kolekcja Prywatna" — ta ostatnia to wizualny teaser, nie osobny segment)
+ *
+ * Źródło leada (np. landing, produkt, kolekcja prywatna) trafia w polu `source`,
+ * nie w `type`.
+ */
+export const LeadTypeSchema = z.enum(['contact', 'inquiry'])
 export type LeadType = z.infer<typeof LeadTypeSchema>
 
 export const LeadPayloadSchema = z.object({
