@@ -6,6 +6,7 @@ import { ContactLink } from '@/components/contact-link'
 import { Container, Section, Heading, Text, Button, FaqAccordion, type FaqItem } from '@/components/ui'
 import { RelatedGrid } from '@/components/products'
 import { ProductGallery } from '@/components/products/product-gallery'
+import { StickyProductCta } from '@/components/products/sticky-product-cta'
 import { faqJsonLd } from '@/components/seo/seo-landing'
 import {
   getAllProducts,
@@ -438,6 +439,13 @@ export default async function ProductPage({ params }: PageProps) {
           </Container>
         </Section>
       )}
+
+      <StickyProductCta
+        callAriaLabel={`Zadzwoń ${CONTACT_PHONE}`}
+        ctaLabel={ctaLabel}
+        ctaSource={ctaSource}
+        productLabel={productLabel}
+      />
 
       {/* Final CTA */}
       <Section spacing="lg">

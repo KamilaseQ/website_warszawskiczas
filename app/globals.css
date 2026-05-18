@@ -495,6 +495,16 @@
   border-color: rgba(201, 169, 98, 0.4);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
 }
+/* ===== STICKY MOBILE DOCK ↔ WHATSAPP =====
+   Gdy strona renderuje dolny mobilny pasek CTA (`body.wc-has-mobile-dock`),
+   WhatsApp button na mobile musi siedzieć POWYŻEJ paska, żeby się nie nakładał.
+   Desktop bez zmian — paska CTA tam nie ma. */
+@media (max-width: 640px) {
+  body.wc-has-mobile-dock .wc-whatsapp-button {
+    bottom: calc(5.5rem + env(safe-area-inset-bottom));
+  }
+}
+
 /* ===== LOADING SCREEN ===== */
 @keyframes wc-loading-fade-in {
   from { opacity: 0; transform: translateY(4px); }

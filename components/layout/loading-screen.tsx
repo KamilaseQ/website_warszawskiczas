@@ -25,6 +25,17 @@ export function LoadingScreen() {
       window.dispatchEvent(new Event('wc-loading-finish'))
     }
 
+    // `prefers-reduced-motion` → pomijamy loader całkowicie. Treść widoczna
+    // natychmiast; wideo startuje od razu.
+    const reduce =
+      typeof window !== 'undefined' &&
+      window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
+    if (reduce) {
+      setHidden(true)
+      markFinished()
+      return
+    }
+
     if (sessionStorage.getItem('wc-loaded') === '1') {
       setHidden(true)
       markFinished()

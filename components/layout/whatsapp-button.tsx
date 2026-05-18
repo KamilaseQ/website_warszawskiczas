@@ -26,7 +26,7 @@ export function WhatsAppButton() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Napisz do specjalisty na WhatsApp"
-      className="group fixed bottom-6 right-6 z-[90] flex h-14 w-14 items-center justify-center bg-[#0a0a0a] text-accent-gold shadow-[0_10px_30px_-10px_rgba(0,0,0,0.5)] transition-all duration-300 hover:bg-accent-gold hover:text-[#0a0a0a] hover:shadow-[0_10px_30px_-6px_rgba(201,169,98,0.45)] sm:h-[60px] sm:w-[60px]"
+      className="wc-whatsapp-button group fixed bottom-6 right-6 z-[90] flex h-14 w-14 items-center justify-center bg-[#0a0a0a] text-accent-gold shadow-[0_10px_30px_-10px_rgba(0,0,0,0.5)] transition-all duration-300 hover:bg-accent-gold hover:text-[#0a0a0a] hover:shadow-[0_10px_30px_-6px_rgba(201,169,98,0.45)] sm:h-[60px] sm:w-[60px]"
     >
       <span className="absolute inset-0 animate-[wc-wa-ring_2.8s_ease-out_infinite] border border-accent-gold/50 pointer-events-none" />
       <WhatsAppIcon className="h-6 w-6 sm:h-7 sm:w-7 transition-transform duration-300 group-hover:scale-110" />

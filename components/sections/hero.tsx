@@ -142,20 +142,20 @@ export function Hero() {
 
         <FadeIn delay={0.1} direction="up">
           {/* 1.1 — powiększony H1 na desktopie, H1 jako element wizualny */}
-          <h1 className="font-serif text-5xl font-medium tracking-tight text-white sm:text-6xl md:text-7xl lg:text-[7.5rem] xl:text-[8.5rem] drop-shadow-xl text-balance leading-[0.95]">
+          <h1 className="font-serif text-[2.75rem] font-medium tracking-tight text-white sm:text-6xl md:text-7xl lg:text-[7.5rem] xl:text-[8.5rem] drop-shadow-xl text-balance leading-[0.95]">
             {copy.h1a}{' '}<br />
             <span className="italic font-normal">{copy.h1b}</span>
           </h1>
         </FadeIn>
 
-        <FadeIn delay={0.2} direction="up" className="mt-8">
-          <p className="max-w-xl font-sans text-xs md:text-sm font-extralight tracking-[0.22em] uppercase text-white/70 text-balance leading-loose drop-shadow-sm">
+        <FadeIn delay={0.2} direction="up" className="mt-6 sm:mt-8">
+          <p className="max-w-xl font-sans text-[11px] md:text-sm font-extralight tracking-[0.22em] uppercase text-white/70 text-balance leading-loose drop-shadow-sm">
             {copy.lead}
           </p>
         </FadeIn>
 
         {/* CTA — primary: "Umów prywatną konsultację", secondary tekst-link "Odkryj kolekcję" */}
-        <FadeIn delay={0.4} direction="up" className="mt-12 sm:mt-12 flex items-center justify-center gap-6 sm:gap-8 relative flex-wrap hero-mobile-breathe">
+        <FadeIn delay={0.4} direction="up" className="mt-8 sm:mt-12 flex items-center justify-center gap-6 sm:gap-8 relative flex-wrap hero-mobile-breathe">
           <div className="absolute inset-y-[-2rem] left-0 right-0 bg-black/40 blur-2xl z-0 rounded-full pointer-events-none" />
 
           {/* PRIMARY — Umów prywatną konsultację (magnetic hover) */}

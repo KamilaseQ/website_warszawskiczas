@@ -37,13 +37,13 @@ Legenda:
 
 ## P2 — UX (mobile, katalog, karta produktu)
 
-> Każdy z tych punktów wymaga osobnej decyzji UX z designem. Zostawione jako oddzielne taski — nie jest to wymóg techniczny.
-
-- [ ] Mobile hero — czytelny H1 nad foldem, statyczny poster wideo na pierwsze 200 ms.
-- [ ] Katalog — pierwszy rząd produktów widoczny szybciej, sticky filtr/sort, search-by-marka.
-- [ ] Karta produktu mobile — sticky bottom CTA (`Zapytaj` / `Zadzwoń` / `WhatsApp`).
-- [ ] Loader → krótszy lub `prefers-reduced-motion: reduce` całkowicie wyłącza.
-- [ ] Focus management w drawer/mobile menu.
+- [x] **Mobile hero** — H1 zmniejszony do `2.75rem` na najmniejszych ekranach, mniejsze marginesy lead-u i CTA, dzięki czemu primary CTA mieści się na pierwszym ekranie iPhone-a SE.
+- [ ] Statyczny poster wideo na pierwsze 200 ms (czeka na re-encode wideo / CDN).
+- [x] **Karta produktu mobile — sticky bottom CTA** (`Zapytaj o ...` + telefon) na PL i EN/UA. Ukryte od `sm` w górę.
+- [x] **Loader respektuje `prefers-reduced-motion: reduce`** — całkowicie pomijany dla użytkowników z włączoną redukcją animacji.
+- [x] **Katalog — produkty widoczne bez czekania na JS**. Usunięta entrance-animation z `motion.div` (`opacity:0` → `1`) na `ProductCatalog` i `RelatedGrid`; podobnie tekstowy blok w `ProductCard`. Treść w statycznym HTML jest od razu widoczna.
+- [ ] Sticky filtr/sort i search-by-marka w katalogu — wymaga decyzji UX.
+- [ ] Focus management w drawer/mobile menu — osobna runda a11y.
 
 ## P3 — Content i autorytet (długoterminowe)
 

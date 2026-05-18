@@ -6,6 +6,7 @@ import { ContactLink } from '@/components/contact-link'
 import { ProductCatalog } from '@/components/products'
 import { RelatedGrid } from '@/components/products'
 import { ProductGallery } from '@/components/products/product-gallery'
+import { StickyProductCta } from '@/components/products/sticky-product-cta'
 import { SeoLanding, landingBreadcrumbJsonLd, serviceJsonLd } from '@/components/seo/seo-landing'
 import {
   BrandPositioning,
@@ -574,6 +575,13 @@ async function LocalizedProductDetail({ route, locale }: { route: string; locale
           </Container>
         </Section>
       )}
+
+      <StickyProductCta
+        callAriaLabel={`${locale === 'en' ? 'Call' : 'Зателефонувати'} ${CONTACT_PHONE}`}
+        ctaLabel={ctaLabel}
+        ctaSource={isUnavailable ? 'product-detail-sourcing' : 'product-detail'}
+        productLabel={productLabel}
+      />
     </>
   )
 }

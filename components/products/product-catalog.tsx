@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useMemo, useState } from 'react'
-import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown, SlidersHorizontal, X } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 import { ProductCard } from './product-card'
@@ -42,7 +42,6 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
   const pathname = usePathname()
   const locale = localeFromPathname(pathname)
   const t = ui[locale]
-  const reducedMotion = useReducedMotion()
   const [category, setCategory] = useState<'zegarki' | 'bizuteria'>('zegarki')
   const [selectedBrands, setSelectedBrands] = useState<string[]>([])
   const [status, setStatus] = useState<string>('Wszystkie')
@@ -274,32 +273,14 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
       </p>
 
       {filtered.length > 0 ? (
-        <motion.div
+        <div
           key={`${category}-${selectedBrands.join(',')}-${status}-${priceMin}-${priceMax}-${onlyOnRequest}-${sort}`}
-          initial="hidden"
-          animate="visible"
-          variants={{
-            hidden: {},
-            visible: { transition: { staggerChildren: reducedMotion ? 0 : 0.07, delayChildren: 0.05 } },
-          }}
           className="grid grid-cols-2 gap-x-3 gap-y-8 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-14 lg:grid-cols-3 lg:gap-y-16 xl:grid-cols-4"
         >
           {filtered.map((p) => (
-            <motion.div
-              key={p.id}
-              variants={{
-                hidden: { opacity: 0, y: 24 },
-                visible: {
-                  opacity: 1,
-                  y: 0,
-                  transition: { duration: 0.7, ease: [0.21, 0.47, 0.32, 0.98] },
-                },
-              }}
-            >
-              <ProductCard product={p} aspect="portrait" />
-            </motion.div>
+            <ProductCard key={p.id} product={p} aspect="portrait" />
           ))}
-        </motion.div>
+        </div>
       ) : (
         <div className="border border-dashed border-border py-24 text-center">
           <p className="font-serif italic text-lg text-muted-foreground">

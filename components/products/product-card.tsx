@@ -3,7 +3,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
-import { motion, useReducedMotion } from 'framer-motion'
 import { ImagePlaceholder } from '@/components/ui'
 import { cn } from '@/lib/utils'
 import { localeFromPathname, localizePath, ui } from '@/lib/i18n'
@@ -52,7 +51,6 @@ export function ProductCard({ product, className, aspect = 'portrait', layout = 
   const pathname = usePathname()
   const locale = localeFromPathname(pathname)
   const t = ui[locale]
-  const reducedMotion = useReducedMotion()
   const formattedPrice = product.price
     ? new Intl.NumberFormat(locale === 'ua' ? 'uk-UA' : locale === 'en' ? 'en-US' : 'pl-PL', {
       style: 'currency',
@@ -148,17 +146,9 @@ export function ProductCard({ product, className, aspect = 'portrait', layout = 
       )}
     >
       <div className={cn('relative overflow-hidden', aspectMap[aspect])}>
-        {/* Wewnętrzny "dolly" — zdjęcie startuje lekko zoomed-in i się ustawia,
-            a na hover jeszcze raz delikatnie się przybliża. */}
-        <motion.div
-          className="absolute inset-0"
-          variants={{
-            hidden: { scale: 1.08 },
-            visible: { scale: 1, transition: { duration: 1.1, ease: [0.21, 0.47, 0.32, 0.98] } },
-          }}
-        >
+        <div className="absolute inset-0">
           <CardImage product={product} />
-        </motion.div>
+        </div>
 
         <Badges product={product} statusColor={statusColor} statusLabel={statusLabel} labels={{ new: t.new, onRequest: t.onRequest }} />
 
@@ -178,37 +168,9 @@ export function ProductCard({ product, className, aspect = 'portrait', layout = 
         />
 
         <div className="pointer-events-none absolute inset-0 border border-transparent transition-colors duration-500 group-hover:border-accent-gold/30" />
-
-        {/* Kurtyna wejścia — odsłania TYLKO obszar zdjęcia, nigdy nie zasłania
-            tekstów pod kafelkiem. Płynie ku górze z cienką złotą krawędzią. */}
-        {!reducedMotion && (
-          <motion.div
-            aria-hidden="true"
-            variants={{
-              hidden: { y: '0%' },
-              visible: {
-                y: '-101%',
-                transition: { duration: 0.95, ease: [0.65, 0, 0.35, 1], delay: 0.1 },
-              },
-            }}
-            className="pointer-events-none absolute inset-0 z-30 origin-top bg-muted"
-          >
-            <span className="absolute inset-x-0 bottom-0 block h-px bg-accent-gold" />
-          </motion.div>
-        )}
       </div>
 
-      <motion.div
-        className="mt-3 sm:mt-4"
-        variants={{
-          hidden: { opacity: 0, y: 8 },
-          visible: {
-            opacity: 1,
-            y: 0,
-            transition: { duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98], delay: 0.45 },
-          },
-        }}
-      >
+      <div className="mt-3 sm:mt-4">
         <p className="font-sans text-[8px] font-bold uppercase tracking-[0.35em] text-accent-gold sm:text-[10px]">
           {product.brand}
         </p>
@@ -235,7 +197,7 @@ export function ProductCard({ product, className, aspect = 'portrait', layout = 
             <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
           </span>
         </div>
-      </motion.div>
+      </div>
     </Link>
   )
 }
