@@ -8,6 +8,8 @@
  * Runtime (przeglądarka):
  *  - leady wysyłają się przez `NEXT_PUBLIC_CMS_LEAD_URL` (publiczny endpoint,
  *    zabezpieczony CORS-em + rate-limitem po stronie CMS)
+ *  - działa niezależnie od `CMS_MODE`, więc produkty mogą zostać z fixtures,
+ *    a formularze mogą już trafiać do CMS-a
  *  - bez tej zmiennej formularze wracają do trybu mock (`console.info`)
  *  - sekretny token CMS-a NIE może trafić do bundle'a klienckiego
  *

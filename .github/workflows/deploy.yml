@@ -44,7 +44,8 @@ jobs:
           CMS_MODE: ${{ secrets.CMS_MODE || 'mock' }}
           CMS_API_URL: ${{ secrets.CMS_API_URL }}
           CMS_API_TOKEN: ${{ secrets.CMS_API_TOKEN }}
-          NEXT_PUBLIC_CDN_BASE_URL: ${{ secrets.NEXT_PUBLIC_CDN_BASE_URL || 'https://cdn.warszawskiczas.pl' }}
+          NEXT_PUBLIC_CMS_LEAD_URL: ${{ secrets.NEXT_PUBLIC_CMS_LEAD_URL || 'https://api.camalio.pl/api/v1/leads' }}
+          NEXT_PUBLIC_CDN_BASE_URL: ${{ secrets.NEXT_PUBLIC_CDN_BASE_URL || 'https://cdn.camalio.pl' }}
           NEXT_PUBLIC_PRIVATE_COLLECTION_CODE: ${{ secrets.NEXT_PUBLIC_PRIVATE_COLLECTION_CODE }}
 
       - name: Deploy przez FTP na Hostinger

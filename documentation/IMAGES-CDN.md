@@ -1,6 +1,6 @@
 # Obrazy produktów na CDN — instrukcja wdrożenia
 
-> Status: **niezrealizowane** — obrazy dziś nadal siedzą w `/public/products/<slug>/*.jpg`. Ten dokument opisuje plan migracji do **Cloudflare R2** + custom domain `cdn.warszawskiczas.pl`. Wymaga jednorazowego setupu zewnętrznego (Cloudflare konto, DNS), nie da się zrobić tylko zmianą kodu w repo.
+> Status: **niezrealizowane** — obrazy dziś nadal siedzą w `/public/products/<slug>/*.jpg`. Ten dokument opisuje plan migracji do **Cloudflare R2** + custom domain `CMS_CDN_HOST` z [CMS-CRM-ENVIRONMENT.md](CMS-CRM-ENVIRONMENT.md). Wymaga jednorazowego setupu zewnętrznego (Cloudflare konto, DNS), nie da się zrobić tylko zmianą kodu w repo.
 
 ## Dlaczego R2
 
@@ -18,9 +18,9 @@ Alternatywy rozważone: **Bunny Storage** (taniej za storage, płatne egress ~$0
 
 ### 1. Setup Cloudflare R2 (15 min)
 1. Załóż konto Cloudflare (jeśli nie masz)
-2. Dashboard → R2 → **Create bucket** `warszawskiczas-products`
-3. **Settings** → **Public access**: dodaj custom domain `cdn.warszawskiczas.pl`
-4. W DNS Cloudflare dodaj CNAME `cdn` → `<bucket>.r2.dev` (Cloudflare zaproponuje automatycznie)
+2. Dashboard → R2 → **Create bucket** `R2_PRODUCTS_BUCKET` z dokumentu środowiska
+3. **Settings** → **Public access**: dodaj custom domain `CMS_CDN_HOST`
+4. W DNS Cloudflare dodaj CNAME dla prefiksu z `CMS_CDN_HOST` → `<bucket>.r2.dev` (Cloudflare zaproponuje automatycznie)
 5. Wygeneruj **API token** (R2 → API → Manage API Tokens) — przyda się dla skryptu migracji
 
 ### 2. Skrypt jednorazowy upload `/public/products/**` → R2
@@ -40,7 +40,8 @@ const s3 = new S3Client({
     secretAccessKey: process.env.R2_SECRET_ACCESS_KEY,
   },
 })
-const BUCKET = 'warszawskiczas-products'
+const BUCKET = process.env.R2_PRODUCTS_BUCKET
+if (!BUCKET) throw new Error('Missing R2_PRODUCTS_BUCKET')
 const root = 'public/products'
 
 function* walk(dir) {
@@ -69,7 +70,7 @@ for (const file of walk(root)) {
 
 Uruchom z env:
 ```bash
-R2_ACCOUNT_ID=xxx R2_ACCESS_KEY_ID=xxx R2_SECRET_ACCESS_KEY=xxx \
+R2_PRODUCTS_BUCKET=<z CMS-CRM-ENVIRONMENT.md> R2_ACCOUNT_ID=xxx R2_ACCESS_KEY_ID=xxx R2_SECRET_ACCESS_KEY=xxx \
   node scripts/upload-images-to-r2.mjs
 ```
 
@@ -96,7 +97,7 @@ W każdym wpisie zamień:
 na:
 ```json
 "images": [
-  "https://cdn.warszawskiczas.pl/breitling-niebieski/front.jpg",
+  "${CMS_CDN_ORIGIN}/breitling-niebieski/front.jpg",
   ...
 ]
 ```
@@ -107,7 +108,8 @@ Skrypt jednorazowy `scripts/rewrite-image-urls-to-cdn.mjs`:
 import { readFileSync, writeFileSync } from 'node:fs'
 const path = 'from-cms/fixtures/products.json'
 const data = JSON.parse(readFileSync(path, 'utf8'))
-const CDN = 'https://cdn.warszawskiczas.pl'
+const CDN = process.env.NEXT_PUBLIC_CDN_BASE_URL
+if (!CDN) throw new Error('Missing NEXT_PUBLIC_CDN_BASE_URL')
 for (const p of data) {
   if (!p.images) continue
   p.images = p.images.map((src) =>
@@ -121,7 +123,7 @@ writeFileSync(path, JSON.stringify(data, null, 2) + '\n')
 
 ### 5. Usunięcie `/public/products/` z repo
 
-Po weryfikacji że R2 serwuje (otwórz `https://cdn.warszawskiczas.pl/breitling-niebieski/front.jpg` w przeglądarce):
+Po weryfikacji że R2 serwuje (otwórz `${CMS_CDN_ORIGIN}/breitling-niebieski/front.jpg` w przeglądarce):
 
 ```bash
 git rm -r public/products
@@ -132,7 +134,7 @@ Repo schudnie o setki MB.
 
 ### 6. Weryfikacja po deploy
 
-- [ ] Wszystkie strony produktów wyświetlają obrazy z `cdn.warszawskiczas.pl`
+- [ ] Wszystkie strony produktów wyświetlają obrazy z `CMS_CDN_HOST`
 - [ ] DevTools → Network: obrazy zwracają `200`, header `cf-cache-status: HIT`
 - [ ] Lighthouse LCP nie pogorszył się względem baseline
 - [ ] OG-image w karcie produktu (Twitter Card / FB share) ładuje CDN URL
@@ -144,7 +146,7 @@ Workflow uploadu obrazów przenosi się do CMS:
 1. Admin w panelu CMS wrzuca oryginalne JPG
 2. CMS używa `sharp` → 3 warianty WebP
 3. CMS uploaduje do R2 z kluczem `<product-slug>/<filename>-<variant>.webp`
-4. URL-e zapisane w DB jako pełne `https://cdn.warszawskiczas.pl/...`
+4. URL-e zapisane w DB jako pełne `CMS_CDN_ORIGIN/...`
 5. `GET /api/v1/products` zwraca te URL-e w polu `images`
 6. Strona przy buildzie pobiera, generuje HTML z gotowymi `<img src>`
 
@@ -152,7 +154,7 @@ Patrz **Sekcja B i A4** w `ARCHITECTURE-REVIEW.md` checklisty 2.
 
 ## CORS
 
-R2 musi pozwolić na hotlinking ze strony. Domyślnie publiczna domena pozwala. Jeśli włączysz custom CSP po stronie strony (`Content-Security-Policy: img-src 'self' cdn.warszawskiczas.pl`), aktualizuj `public/.htaccess`.
+R2 musi pozwolić na hotlinking ze strony. Domyślnie publiczna domena pozwala. Jeśli włączysz custom CSP po stronie strony (`Content-Security-Policy: img-src 'self' CMS_CDN_HOST` po podstawieniu realnego hosta), aktualizuj `public/.htaccess`.
 
 ## Koszt rzeczywisty
 

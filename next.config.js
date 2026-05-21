@@ -29,6 +29,7 @@ const nextConfig = {
     unoptimized: true,
     remotePatterns: [
       { protocol: 'https', hostname: 'cdn.warszawskiczas.pl' },
+      { protocol: 'https', hostname: 'cdn.camalio.pl' },
       { protocol: 'https', hostname: 'warszawskiczas.pl' },
     ],
   },

@@ -2,7 +2,8 @@
 
 > Status: dokument decyzyjny  
 > Data: 2026-05-18  
-> Zakres: wewnętrzna aplikacja webowa/PWA do zarządzania produktami, leadami, follow-upami, reelsami, prostymi treściami i statystykami.  
+> Zakres: wewnętrzna aplikacja webowa/PWA do zarządzania produktami, leadami, follow-upami, rolkami, prostymi treściami i statystykami.
+> Środowisko, hosty i lokalizacja danych: [CMS-CRM-ENVIRONMENT.md](CMS-CRM-ENVIRONMENT.md).
 > Zasada dokumentu: zapisujemy decyzje i schematy, bez opisywania wielu wariantów.
 
 ---
@@ -13,12 +14,13 @@
 - Aplikacja CMS/CRM będzie w osobnym repozytorium: `app_warszawskiczas`.
 - Nazwa aplikacji w UI: `WarszawskiCzas`.
 - Aplikacja ma być zbudowana w Next.js, nie w Vite.
-- Publiczna strona `warszawskiczas.pl` zostaje statyczna i hostowana na Hostinger Business.
-- Zdjęcia produktów będą publiczne i serwowane z Cloudflare R2 przez `cdn.warszawskiczas.pl`.
+- Publiczna strona docelowo zostaje statyczna i hostowana na Hostinger Business; stan przejściowy: demo działa na `https://demowarszawskiczas.vercel.app`.
+- Zdjęcia produktów będą publiczne i serwowane z Cloudflare R2 przez host `CMS_CDN_HOST` z dokumentu środowiska.
+- Hosty aplikacji, API i CDN nie są wpisywane na sztywno w planie; źródłem prawdy jest `CMS-CRM-ENVIRONMENT.md`.
 - CMS/CRM jest źródłem prawdy dla produktów, leadów i procesów operacyjnych.
 - Strona publiczna pobiera produkty z CMS-a podczas buildu.
-- Publikacja zmian w CMS uruchamia rebuild/deploy strony na Hostinger.
-- Publikacja działa przez koszyk zmian: użytkownik zapisuje zmiany, a potem publikuje je osobnym przyciskiem po sprawdzeniu podsumowania.
+- Publikacja z punktu kontrolnego w CMS docelowo uruchamia rebuild/deploy strony na Hostinger; w okresie przejściowym najpierw walidujemy formularze na Vercel demo.
+- Publikacja działa przez punkt kontrolny: zmiany trafiają od razu do bazy CMS, a osobny ekran pokazuje diff względem ostatniego opublikowanego stanu i pozwala uruchomić build jednym przyciskiem po sprawdzeniu podsumowania.
 - Panel wewnętrzny ma działać jako PWA na telefonie.
 - MVP ma być minimalistyczne i szybkie w obsłudze na telefonie.
 - Aplikacja jest tylko po polsku.
@@ -33,12 +35,12 @@
 
 ```mermaid
 flowchart LR
-  Customer["Klient strony"] --> Website["warszawskiczas.pl<br/>statyczna strona na Hostinger"]
-  Website --> CDN["cdn.warszawskiczas.pl<br/>Cloudflare R2"]
+  Customer["Klient strony"] --> Website["demowarszawskiczas.vercel.app teraz<br/>warszawskiczas.pl docelowo"]
+  Website --> CDN["CMS_CDN_HOST<br/>Cloudflare R2"]
   Website --> LeadApi["POST /api/v1/leads"]
 
-  Team["Zespół Warszawski Czas"] --> PWA["WarszawskiCzas PWA<br/>repo: app_warszawskiczas"]
-  PWA --> API["Cloudflare Workers API"]
+  Team["Zespół Warszawski Czas"] --> PWA["WarszawskiCzas PWA<br/>CMS_APP_HOST<br/>repo: app_warszawskiczas"]
+  PWA --> API["CMS_API_HOST<br/>Cloudflare Workers API"]
   API --> DB["Cloudflare D1"]
   API --> R2["Cloudflare R2"]
   API --> Jobs["Publish jobs / cron / kolejka"]
@@ -51,11 +53,12 @@ flowchart LR
 
 Adresy:
 
-- `warszawskiczas.pl` - strona publiczna,
-- `cdn.warszawskiczas.pl` - zdjęcia produktów,
-- adres panelu wewnętrznego jest do decyzji później,
-- panel nie musi być subdomeną `warszawskiczas.pl`,
-- na start może działać pod technicznym adresem deploymentu, jeśli będzie chroniony logowaniem.
+- `https://demowarszawskiczas.vercel.app` - tymczasowy frontend demo,
+- `warszawskiczas.pl` - docelowa strona publiczna,
+- adresy panelu, API i CDN są w [CMS-CRM-ENVIRONMENT.md](CMS-CRM-ENVIRONMENT.md),
+- tymczasowo panel działa pod `CMS_APP_HOST`, API pod `CMS_API_HOST`, a zdjęcia pod `CMS_CDN_HOST`,
+- panel nie musi być subdomeną `warszawskiczas.pl`; na start używamy hostów z dokumentu środowiska,
+- zmiana domeny ma wymagać podmiany jednego dokumentu środowiska i konfiguracji Cloudflare, nie edycji planu.
 
 ---
 
@@ -64,6 +67,7 @@ Adresy:
 Frontend panelu:
 
 - Next.js + React + TypeScript,
+- deployment Next.js do Cloudflare Workers przez `@opennextjs/cloudflare`,
 - PWA manifest + service worker,
 - mobile-first UI,
 - proste zakładki zamiast jednego dużego dashboardu,
@@ -82,19 +86,63 @@ Backend:
 
 Hosting panelu:
 
-- adres panelu wybieramy dopiero przy wdrożeniu,
-- nie zapisujemy na sztywno subdomeny `cms.warszawskiczas.pl`,
-- nie eksponujemy panelu jako oczywistej subdomeny marki, jeśli nie będzie takiej potrzeby,
-- dopuszczamy techniczny adres deploymentu Vercel dla panelu na start, jeśli wybierzemy Vercel,
-- jeśli panel będzie poza domeną `warszawskiczas.pl`, nadal musi być chroniony logowaniem i nie może być publicznym, otwartym panelem.
+- hosty panelu, API i CDN są trzymane w `CMS-CRM-ENVIRONMENT.md`,
+- tymczasowo używamy wartości hostów z dokumentu środowiska,
+- nie zapisujemy domen w kodzie ani dokumentach slice'ów poza źródłem prawdy,
+- panel poza domeną `warszawskiczas.pl` nadal musi być chroniony Cloudflare Access i nie może być publicznym, otwartym panelem.
 
 Ważne ograniczenia:
 
 - Nie robimy ciężkiej obróbki zdjęć po stronie Workera.
-- Nie przechowujemy filmów reelsów w aplikacji.
+- Nie przechowujemy filmów rolek w aplikacji.
 - Nie uruchamiamy długich zadań AI w requestach użytkownika.
 - Wszystkie większe zadania idą przez jobs/cron/kolejkę.
 - Publiczny kontrakt strony musi być wersjonowany jako `/api/v1`.
+
+### 3.1. Runtime produkcyjny - V8 isolates, nie Node.js
+
+Aplikacja jest pisana w TypeScripcie i Next.js, ale uruchamia się w V8 isolates (Cloudflare Workers runtime), nie w Node.js. Front Next.js wdrażamy przez `@opennextjs/cloudflare`, a API działa w tym samym runtime Workers. Hono może obsługiwać wewnętrzne i publiczne endpointy API, jeśli przy implementacji da najprostszy routing.
+
+Co działa bez zmian:
+
+- TypeScript, ESM, async/await, fetch, Request/Response, crypto.subtle,
+- Hono, Zod, date-fns, nanoid, Drizzle ORM dla D1,
+- React 19, Next.js 15.
+
+Co nie działa lub wymaga obejścia:
+
+- `fs` / `fs/promises` - brak filesystem (zamiast tego R2/D1/KV),
+- `child_process`, `cluster` - brak procesów,
+- `net` (TCP sockets) - tylko HTTP fetch (z ograniczonym `connect()`),
+- pakiety natywne C++ (`sharp`, `bcrypt`, `node-canvas`) - dla obrazów używamy Cloudflare Images,
+- `Buffer` - przez polyfill, natywnie używamy `Uint8Array`,
+- pełen `node:crypto` - większość działa, niektóre legacy API wymagają polyfilla.
+
+Mitigation: w `wrangler.toml` flaga `nodejs_compat = true` daje polyfille najczęściej używanych Node API. Większość npm packages "wymagających Node" działa po jej włączeniu.
+
+Skrypty jednorazowe vs. produkcja:
+
+- skrypty migracji (`scripts/import-products.ts`, `scripts/upload-images.ts`) uruchamiamy lokalnie w Node przez `npx tsx` - mogą używać `fs`, `sharp` itd.,
+- kod produkcyjny aplikacji CMS nigdy nie biegnie w Node - tylko w Cloudflare Workers runtime,
+- `wrangler dev` lokalnie emuluje Workers runtime, nie pełen Node.
+
+Spójność ze stroną - faktyczna sytuacja:
+
+- pozorna spójność "obie aplikacje w Node" jest mityczna, bo strona warszawskiczas.pl jest statycznie eksportowana (`output: 'export'`) i na produkcji u Hostingera serwuje ją Apache jako pliki HTML/CSS/JS,
+- żaden Node nie biegnie na produkcji strony,
+- Node jest używany tylko do buildu (Next.js, GitHub Actions) - tak samo jak w aplikacji CMS,
+- faktyczna spójność, która istnieje i ma znaczenie: TypeScript w obu projektach, Next.js w obu projektach, Zod jako kontrakt w obu projektach, React 19 w obu projektach, te same narzędzia developerskie,
+- co się różni: cel deploymentu (Apache static vs V8 isolates), ale source code w 95% identyczny.
+
+Dlaczego nie pełny Node host (Vercel, Fly.io, VPS):
+
+- brak porównywalnego free tier (Vercel free wyklucza projekty komercyjne regulaminowo, Fly.io kasuje przy małej skali, VPS to dodatkowy ops),
+- Cloudflare Access wymaga CF DNS i CF proxy - na Node hoście trzeba budować własny auth (NextAuth + 2FA),
+- D1 i R2 są natywnie dostępne tylko z Workers (z Node przez HTTP API z osobnym tokenem zarządzania),
+- dodatkowy provider = dodatkowy bill, dashboard, punkt awarii,
+- brak realnej korzyści, bo source code jest identyczny TypeScript.
+
+Decyzja: V8 isolates (Cloudflare Workers przez `@opennextjs/cloudflare`) dla aplikacji CMS. Strona nadal statycznie na Hostinger.
 
 ---
 
@@ -126,7 +174,7 @@ Założenie operacyjne:
 
 Role:
 
-- `user` - może dodawać, edytować i publikować produkty, obsługiwać leady, reelsy, kalendarz i powiadomienia,
+- `user` - może dodawać, edytować i publikować produkty, obsługiwać leady, rolki, kalendarz i powiadomienia,
 - `admin` - ma dodatkowo użytkowników, ustawienia integracji, audit log, limity AI i trwałe usuwanie.
 
 Każdy rekord edytowany przez użytkownika pokazuje w UI:
@@ -144,7 +192,7 @@ flowchart TD
   Dashboard --> Leads["Klienci"]
   Dashboard --> Products["Produkty"]
   Dashboard --> Calendar["Kalendarz"]
-  Dashboard --> Reels["Reelsy"]
+  Dashboard --> Reels["Rolki"]
   Dashboard --> Content["Treści"]
   Dashboard --> Stats["Statystyki"]
   Dashboard --> Notifications["Powiadomienia"]
@@ -169,14 +217,14 @@ flowchart TD
 
   Reels --> ReelScenarios["Scenariusze"]
   Reels --> ReelReview["Do weryfikacji"]
-  Reels --> ReelStats["Statystyki reelsów"]
+  Reels --> ReelStats["Statystyki rolek"]
 
   Content --> Blog["Blog"]
   Content --> GBP["Google Business Profile"]
   Content --> ContentDrafts["Drafty"]
 
   Stats --> LeadStats["Leady"]
-  Stats --> ReelStats2["Reelsy"]
+  Stats --> ReelStats2["Rolki"]
   Stats --> SiteStats["Strona<br/>po podpięciu GA/GSC"]
 
   Notifications --> NotificationList["Lista powiadomień"]
@@ -190,8 +238,8 @@ Decyzje UX:
 
 - `Kalendarz` pokazuje tylko follow-upy i własne dodane wydarzenia.
 - Treści do akceptacji nie są w kalendarzu.
-- Scenariusze reelsów do weryfikacji są w module `Reelsy`.
-- Scenariusz reelsa może zatwierdzić dowolna osoba z zespołu.
+- Scenariusze rolek do weryfikacji są w module `Rolki`.
+- Scenariusz rolki może zatwierdzić dowolna osoba z zespołu.
 - Drafty bloga i Google Business Profile są w module `Treści`.
 - Moduł `Treści` w MVP może istnieć jako pusta/przyszłościowa zakładka.
 
@@ -235,7 +283,7 @@ Zasada:
 
 - Teksty muszą być wyraźne na telefonie.
 - Unikamy bardzo małych etykiet i mikrotekstu.
-- Nagłówki ekranów są krótkie: `Dzisiaj`, `Produkty`, `Klient`, `Reelsy`.
+- Nagłówki ekranów są krótkie: `Dzisiaj`, `Produkty`, `Klient`, `Rolki`.
 - Przyciski mają proste czasowniki: `Dodaj`, `Publikuj`, `Zadzwoń`, `Zapisz`.
 - Statusy są krótkie i czytelne: `Do kontaktu`, `W trakcie`, `Follow-up`, `Zakończono`.
 
@@ -263,7 +311,7 @@ Podstawowy dolny pasek:
 
 Pozostałe moduły mogą być dostępne przez przycisk `Więcej` albo ekran startowy:
 
-- `Reelsy`,
+- `Rolki`,
 - `Treści`,
 - `Statystyki`,
 - `Powiadomienia`,
@@ -329,7 +377,7 @@ Strona główna pokazuje tylko rzeczy wymagające działania:
 - nowe leady,
 - follow-upy na dziś,
 - zaległe follow-upy,
-- scenariusze reelsów do weryfikacji,
+- scenariusze rolek do weryfikacji,
 - produkty zapisane jako ukryte,
 - ostatni status publikacji strony,
 - najważniejsze powiadomienia.
@@ -339,7 +387,7 @@ Skróty na stronie głównej:
 - `Dodaj produkt`,
 - `Dodaj klienta`,
 - `Dodaj wydarzenie`,
-- `Dodaj scenariusz reelsa`.
+- `Dodaj scenariusz rolki`.
 
 ---
 
@@ -375,6 +423,10 @@ Pola widoczne w formularzu/kartotece klienta:
 Reguły:
 
 - lead ze strony może mieć telefon i e-mail wymagane, zgodnie z obecnym formularzem,
+- publiczny endpoint `POST /api/v1/leads` przyjmuje obecny kontrakt strony z `from-cms/schemas/lead.ts` bez zmian,
+- `type` z formularza strony to tylko `contact` albo `inquiry`; kolekcja na zapytanie i landing trafiają do pola `source`, nie jako osobny typ leada,
+- obecny formularz kolekcji na zapytanie wysyła `type=inquiry` i `source=kolekcja-prywatna`,
+- pole `product` z payloadu strony jest mapowane w CMS na powiązanie produktu, jeśli da się je jednoznacznie dopasować,
 - lead dodany ręcznie w aplikacji wymaga numeru telefonu i nazwy klienta,
 - nazwa klienta powinna być imieniem i nazwiskiem, jeśli dane są znane,
 - jeśli nie znamy imienia i nazwiska, użytkownik musi wpisać inną krótką nazwę rozpoznawczą,
@@ -611,7 +663,7 @@ Każdy użytkownik może publikować.
 
 - Zdjęcia mogą być publiczne.
 - Zdjęcia produktów są przechowywane w Cloudflare R2.
-- Strona używa URL-i z `cdn.warszawskiczas.pl`.
+- Strona używa URL-i z `CMS_CDN_HOST` z dokumentu środowiska.
 - W MVP wystarczy upload zdjęć do R2 i ustawienie kolejności.
 - Oryginały zdjęć nie muszą być przechowywane w aplikacji w MVP.
 - Aplikacja powinna pozwalać ustawić kolejność zdjęć.
@@ -625,7 +677,7 @@ Docelowe rozmiary zdjęć po rozbudowie:
 
 ---
 
-## 11. Publikacja strony i koszyk zmian
+## 11. Publikacja strony - punkt kontrolny
 
 ```mermaid
 sequenceDiagram
@@ -638,31 +690,35 @@ sequenceDiagram
   participant Site as Strona
 
   User->>CMS: Zapis zmiany produktu
-  CMS->>DB: Zapis zmiany roboczej
+  CMS->>DB: Zapis zmiany na produkcie
   CMS->>R2: Zapis zdjęć, jeśli dotyczy
-  CMS->>DB: Dodanie pozycji do koszyka publikacji
-  User->>CMS: Otwiera koszyk publikacji
-  User->>CMS: Zatwierdza wybrane zmiany
-  CMS->>GH: Webhook rebuild
+  User->>CMS: Otwiera ekran "Publikacja"
+  CMS->>DB: Liczy diff względem ostatniego snapshotu
+  CMS-->>User: Lista zmian + status ostatniego buildu
+  User->>CMS: Klika "Opublikuj zmiany"
+  CMS->>DB: Zapis nowego publish_run + snapshot
+  CMS->>GH: repository_dispatch trigger
   GH->>CMS: GET /api/v1/products
   GH->>Host: Deploy statycznej strony
   Host->>Site: Nowa wersja strony
+  GH->>CMS: callback z wynikiem
   CMS->>DB: Status publikacji
 ```
 
-Wymagania:
+Model:
 
-- zapis produktu nie publikuje strony,
-- zapis zmiany dodaje ją do koszyka publikacji,
-- koszyk publikacji działa podobnie do koszyka w ecommerce,
-- koszyk pokazuje podsumowanie zmian przed publikacją,
-- z koszyka można usunąć pojedynczą zmianę i kontynuować pracę,
-- ukrycie produktu jest zmianą w koszyku i wymaga publikacji,
-- zmiana ceny, dostępności, opisu, zdjęć lub widoczności jest zmianą w koszyku,
-- publikacja koszyka uruchamia rebuild strony,
-- CMS pokazuje status ostatniej publikacji,
-- CMS pozwala ponowić nieudaną publikację,
-- rebuildy muszą mieć debounce, żeby seria edycji nie odpaliła wielu deployów.
+- zapis zmiany w produkcie trafia od razu do bazy CMS, nie jest kolejkowany do koszyka,
+- strona NIE buduje się automatycznie po zapisie,
+- ekran `Publikacja` to punkt kontrolny przed buildem, pokazujący diff względem ostatniego opublikowanego snapshotu,
+- diff obejmuje: dodane produkty, zmienione produkty (które pola), ukryte/odkryte, usunięte,
+- użytkownik widzi listę zmian, status ostatniego buildu, czas od ostatniej publikacji,
+- jeden przycisk "Opublikuj zmiany" uruchamia rebuild,
+- po kliknięciu zapisujemy nowy snapshot (hash JSON-a produktów), triggerujemy GitHub Actions przez `repository_dispatch` (`event_type: cms-publish`),
+- GitHub Actions po deployu wywołuje callback do CMS-a z wynikiem (success/fail),
+- CMS pokazuje status w czasie rzeczywistym (polling co 10s podczas buildu),
+- nieudaną publikację można ponowić jednym przyciskiem,
+- debounce: drugi trigger w ciągu 30 sekund zwraca 409, żeby seria kliknięć nie odpaliła wielu deployów,
+- pełny rebuild po każdym kliknięciu jest akceptowalny w MVP (czas buildu ok. 3 minut).
 
 ---
 
@@ -677,7 +733,7 @@ Kalendarz nie pokazuje:
 
 - draftów bloga,
 - treści do akceptacji,
-- scenariuszy reelsów do weryfikacji.
+- scenariuszy rolek do weryfikacji.
 
 Własne wydarzenie ma pola:
 
@@ -689,9 +745,9 @@ Własne wydarzenie ma pola:
 
 ---
 
-## 13. Reelsy
+## 13. Rolki
 
-Moduł reelsów służy do prostego planowania scenariuszy i statusów nagrań. Nie służy do przechowywania filmów.
+Moduł rolek służy do prostego planowania scenariuszy i statusów nagrań. Nie służy do przechowywania filmów.
 
 Pola scenariusza:
 
@@ -702,7 +758,7 @@ Pola scenariusza:
 - utworzone przez,
 - ostatnia edycja.
 
-Statusy reelsów:
+Statusy rolek:
 
 - `Do weryfikacji`,
 - `Do nagrania`,
@@ -719,7 +775,7 @@ Nie używamy statusów:
 - `Pomysł`,
 - `Archiwum`.
 
-Statystyki reelsów:
+Statystyki rolek:
 
 - scenariusze do weryfikacji,
 - scenariusze do nagrania,
@@ -757,7 +813,7 @@ Architektura ma jednak zostawić miejsce na:
 - drafty blogów,
 - drafty Google Business Profile,
 - research newsów zegarkowych,
-- sugestie scenariuszy reelsów,
+- sugestie scenariuszy rolek,
 - sugestie SEO.
 
 Zasady AI:
@@ -779,12 +835,14 @@ Minimalne tabele przygotowujące pod AI po MVP:
 
 ## 16. Powiadomienia
 
-MVP:
+Powiadomienia są bardzo ważne dla biznesu, ale schodzą z zakresu MVP, żeby nie blokować pierwszego deployu. Wchodzą jako Slice 11 zaraz po stabilnym MVP.
+
+Zakres po MVP:
 
 - powiadomienia w aplikacji,
 - licznik nieprzeczytanych,
 - ekran `Powiadomienia`,
-- powiadomienie na telefon dla osób z zainstalowaną aplikacją, jeśli web push działa poprawnie na ich urządzeniu.
+- powiadomienie push na telefon dla osób z zainstalowaną PWA.
 
 Powiadomienia dotyczą:
 
@@ -792,14 +850,16 @@ Powiadomienia dotyczą:
 - follow-upu na dziś,
 - zaległego follow-upu,
 - nieudanej publikacji strony,
-- scenariusza reelsa do weryfikacji.
+- scenariusza rolki do weryfikacji.
 
 Push na telefon:
 
 - nowy lead powinien dawać powiadomienie push i licznik w aplikacji,
 - follow-up powinien dawać powiadomienie push i licznik w aplikacji,
-- powiadomienia push są częścią MVP,
-- push nie może być jedynym miejscem informacji o ważnym zadaniu.
+- push nie może być jedynym miejscem informacji o ważnym zadaniu,
+- onboarding instalacji PWA (szczególnie na iOS - Safari wymaga aplikacji na ekranie głównym do push notifications).
+
+W MVP zakładka `Powiadomienia` w aplikacji jest widoczna jako placeholder, żeby nie trzeba było zmieniać nawigacji po dodaniu modułu.
 
 ---
 
@@ -815,7 +875,7 @@ Leady:
 - liczba zaległych follow-upów,
 - liczba zakończonych leadów.
 
-Reelsy:
+Rolki:
 
 - scenariusze do weryfikacji,
 - scenariusze do nagrania,
@@ -834,7 +894,7 @@ Strona:
 - sekcja statystyk strony ma pokazywać placeholder `Połącz GA/GSC`,
 - docelowo kliknięcia, konwersje, formularze, kliknięcia telefonu, top strony i top produkty.
 
-Statystyki operacyjne leadów, produktów i reelsów działają w MVP bez GA/GSC.
+Statystyki operacyjne leadów, produktów i rolek działają w MVP bez GA/GSC.
 
 Nie budujemy rozbudowanego systemu analitycznego w MVP.
 
@@ -852,17 +912,15 @@ erDiagram
 
   products ||--o{ product_images : has
   products ||--o{ product_translations : has
-  products ||--o{ publish_changes : changes
   products ||--o{ leads : referenced_by
   products ||--o{ reel_scenarios : used_in
 
   leads ||--o{ followups : has
   leads ||--o{ notifications : triggers
 
-  publish_batches ||--o{ publish_changes : contains
-  publish_batches ||--o{ publish_jobs : triggers
-  publish_batches }o--|| users : published_by
-  publish_jobs }o--|| users : triggered_by
+  publish_snapshots ||--o{ publish_runs : triggers
+  publish_snapshots }o--|| users : published_by
+  publish_runs }o--|| users : triggered_by
 ```
 
 ### `users`
@@ -947,26 +1005,24 @@ erDiagram
 - `updated_at`,
 - `updated_by`.
 
-### `publish_batches`
+### `publish_snapshots`
 
 - `id`,
-- `status`,
-- `summary`,
-- `published_by`,
-- `published_at`,
-- `created_at`.
+- `snapshot_hash`,
+- `products_json`,
+- `created_at`,
+- `published_by`.
 
-### `publish_changes`
+### `publish_runs`
 
 - `id`,
-- `batch_id`,
-- `entity_type`,
-- `entity_id`,
-- `change_type`,
-- `summary`,
+- `snapshot_id`,
 - `status`,
-- `created_by`,
-- `created_at`.
+- `triggered_by`,
+- `triggered_at`,
+- `finished_at`,
+- `github_run_url`,
+- `error_message`.
 
 ### `followups`
 
@@ -1011,15 +1067,6 @@ erDiagram
 - `read_at`,
 - `created_at`.
 
-### `publish_jobs`
-
-- `id`,
-- `status`,
-- `triggered_by`,
-- `started_at`,
-- `finished_at`,
-- `error_message`.
-
 ### `audit_log`
 
 - `id`,
@@ -1052,10 +1099,10 @@ Wewnętrzne API dla aplikacji:
 - `GET /internal/products`,
 - `POST /internal/products`,
 - `PATCH /internal/products/:id`,
-- `GET /internal/publish-cart`,
-- `POST /internal/publish-cart/changes`,
-- `DELETE /internal/publish-cart/changes/:id`,
-- `POST /internal/publish-cart/publish`,
+- `GET /internal/publish/diff`,
+- `POST /internal/publish`,
+- `GET /internal/publish/status/:runId`,
+- `POST /internal/publish/retry/:runId`,
 - `GET /internal/leads`,
 - `POST /internal/leads`,
 - `PATCH /internal/leads/:id`,
@@ -1071,12 +1118,16 @@ Wewnętrzne API dla aplikacji:
 - `GET /internal/stats`,
 - `GET /internal/audit-log`.
 
+Publiczny endpoint callbacku dla GitHub Actions:
+
+- `POST /api/v1/publish/callback` z sekretem `CMS_CALLBACK_SECRET`.
+
 Zasady API:
 
 - publiczne API strony jest stabilne i wersjonowane,
 - endpoint leadów ma rate limit i ochronę antyspamową,
 - wewnętrzne endpointy wymagają zalogowanego użytkownika,
-- każda mutacja zapisuje audit log.
+- w MVP mutacje zapisują `updated_by` / `created_by`, a pełny audit log jest rozszerzeniem po MVP.
 
 ---
 
@@ -1085,26 +1136,33 @@ Zasady API:
 MVP obejmuje:
 
 - osobne repo aplikacji CMS/CRM: `app_warszawskiczas`,
-- logowanie i dostęp dla 3 osób,
+- logowanie i dostęp dla 3 osób przez Cloudflare Access,
 - PWA na telefon,
 - zakładki aplikacji,
 - produkty z uploadem zdjęć do R2,
-- koszyk publikacji zmian i rebuild strony po zatwierdzeniu,
-- klientów/leady,
+- punkt kontrolny publikacji i rebuild strony po zatwierdzeniu,
+- klientów/leady z capture ze strony i ręcznym dodawaniem,
 - follow-upy,
 - kalendarz follow-upów i własnych wydarzeń,
-- proste reelsy,
-- powiadomienia w aplikacji i push na telefon,
+- proste rolki (scenariusze, bez przechowywania filmów),
 - krótkie statystyki operacyjne,
 - widoczny moduł `Treści` z komunikatem `Pracujemy nad tym modułem`,
-- placeholder `Połącz GA/GSC` w statystykach strony.
+- widoczny moduł `Powiadomienia` jako placeholder,
+- placeholder `Połącz GA/GSC` w statystykach strony,
+- migrację statusu produktu na stronie z `Dostępny/Zarezerwowany/Niedostępny` na `Dostępny/Na zamówienie`,
+- cutover strony publicznej na `CMS_MODE=live` dla produktów i leadów.
 
 MVP nie obejmuje:
 
+- powiadomień push i in-app (przesunięte na Slice 11, zaraz po MVP),
+- audit log (po MVP),
+- ról user/admin (po MVP, w MVP wszyscy widzą wszystko),
+- RODO formalne: retencja, eksport, hard delete (po MVP),
+- backup D1 (po MVP),
 - płatności online,
 - koszyka zakupowego,
 - pełnego inboxa WhatsApp,
-- przechowywania filmów reelsów,
+- przechowywania filmów rolek,
 - pełnego edytora bloga,
 - automatycznej publikacji AI,
 - rozbudowanego BI/analityki,
@@ -1113,24 +1171,307 @@ MVP nie obejmuje:
 
 ---
 
-## 21. Kolejność prac
+## 21. Kolejność wdrażania - vertical slices
 
-1. Założyć osobne repo `app_warszawskiczas`.
-   - docelowa lokalizacja: `C:\Users\212ka\source\repos\app_warszawskiczas`
-2. Przygotować fundament PWA i routing zakładek.
-3. Podłączyć Cloudflare Access.
-4. Zaprojektować D1 schema zgodnie z tym dokumentem.
-5. Zbudować produkty i upload zdjęć do R2.
-6. Zbudować publiczne `GET /api/v1/products`.
-7. Zbudować koszyk publikacji zmian.
-8. Podłączyć rebuild strony po zatwierdzeniu koszyka publikacji.
-9. Zbudować leady i `POST /api/v1/leads`.
-10. Zbudować follow-upy i kalendarz.
-11. Zbudować prosty moduł reelsów.
-12. Dodać powiadomienia w aplikacji i push.
-13. Dodać statystyki operacyjne.
-14. Zostawić widoczny moduł `Treści` z komunikatem o pracy nad modułem.
-15. Dopiero po stabilnym MVP wrócić do AI, bloga, GBP i integracji.
+Metodologia: **walking skeleton + vertical slices**. Każdy slice:
+
+- jest deployowalny na produkcję,
+- jest widoczny na telefonie właściciela od najwcześniejszego momentu,
+- ma testy automatyczne dla krytycznych ścieżek i checklistę walidacji manualnej,
+- nie blokuje kolejnych slice'ów.
+
+Lokalizacja repo CMS: `C:\Users\212ka\source\repos\app_warszawskiczas`.
+
+Estymacje czasowe są dla solo deva pracującego full-time, AI-driven.
+
+### Slice 0 - Walking skeleton (1-2 dni)
+
+Cel: PWA zainstalowana na iPhonie właściciela, chroniona Cloudflare Access, pokazuje "Hello [imię]".
+
+Zakres:
+- repo `app_warszawskiczas` na GitHubie,
+- Cloudflare Workers: deploy Next.js przez `@opennextjs/cloudflare`,
+- API w runtime Workers, z routerem Hono jeśli upraszcza implementację,
+- Cloudflare D1: baza `D1_DATABASE_NAME` utworzona z `CLOUDFLARE_JURISDICTION=eu`; location hint `eeur` tylko jeśli Cloudflare pozwala go użyć bez konfliktu z jurysdykcją, pierwsza migracja zaaplikowana,
+- Cloudflare R2: bucket `R2_PRODUCTS_BUCKET` utworzony z jurysdykcją `eu`,
+- Cloudflare Access: aplikacje dla `CMS_APP_HOST` i wewnętrznych endpointów `CMS_API_HOST`, allowlist 3 maile,
+- PWA manifest, service worker, ikony, instalowalna na iOS i Android,
+- endpoint `GET /api/v1/health` zwraca 200 i nazwę zalogowanego użytkownika,
+- ekran startowy w PWA pokazuje imię i status backendu.
+
+Testy automatyczne:
+- `tests/integration/health.test.ts` - health endpoint zwraca 200 z imieniem,
+- `tests/integration/access.test.ts` - bez ciasteczka Access endpoint zwraca 401.
+
+Walidacja manualna (`tests/manual/slice-0.md`):
+- otwieram adres panelu na iPhonie, dostaję ekran logowania CF Access,
+- po wpisaniu kodu z maila widzę swoje imię,
+- mogę dodać aplikację do ekranu głównego (Add to Home Screen),
+- po zamknięciu i ponownym otwarciu jestem nadal zalogowany,
+- wpisuję adres z innego maila spoza allowlisty - dostaję 403.
+
+### Slice 1 - Lead capture (2-4 dni)
+
+Cel: Lead wpisany w formularz na warszawskiczas.pl trafia do D1 i jest widoczny w PWA jako read-only lista.
+
+Zakres:
+- migracja D1: tabela `leads` (pełen kształt z section 18),
+- `POST /api/v1/leads` (CORS dla warszawskiczas.pl, Zod walidacja, honeypot, rate limit 5/min/IP, zapis do D1),
+- `GET /internal/leads` z auth (chronione Access),
+- ekran `/klienci` w PWA: lista leadów, najnowsze pierwsze, kliknięcie -> placeholder szczegółów,
+- redeploy demo Vercel, a później strony warszawskiczas.pl, z `NEXT_PUBLIC_CMS_LEAD_URL` wskazującym na nowy endpoint,
+- wszystkie 3 formularze strony muszą trafiać do CMS: kontakt (`type=contact`), zapytanie produktowe (`type=inquiry`), kolekcja na zapytanie (`type=inquiry`, `source=kolekcja-prywatna`).
+
+Testy automatyczne:
+- `tests/integration/leads-post.test.ts` - poprawny payload zapisuje do D1 i zwraca 200,
+- `tests/integration/leads-post-honeypot.test.ts` - payload z honeypotem zwraca 400 i nic nie zapisuje,
+- `tests/integration/leads-post-validation.test.ts` - bez telefonu zwraca 400 z czytelnym błędem,
+- `tests/integration/leads-rate-limit.test.ts` - 6 requestów w minutę zwraca 429 na 6-tym,
+- `tests/integration/leads-list.test.ts` - GET /internal/leads zwraca posortowaną listę,
+- `tests/unit/schemas/lead.test.ts` - Zod schema akceptuje payload strony, odrzuca śmieci.
+
+Walidacja manualna (`tests/manual/slice-1.md`):
+- wypełniam formularz /kontakt na produkcji - widzę lead w PWA w mniej niż 5 sekund,
+- wypełniam formularz z karty produktu - lead ma poprawny `product_id`,
+- wypełniam formularz kolekcji na zapytanie - lead ma poprawne źródło,
+- wysyłam 10 leadów w 30 sekund - 11. zwraca 429,
+- bot wypełnia honeypot - lead się nie zapisuje, w PWA nic nowego.
+
+### Slice 2 - Lead management (3-5 dni)
+
+Cel: Mogę z telefonu zmienić status leada, dodać notatkę, zaplanować follow-up.
+
+Zakres:
+- migracja D1: kolumny `status`, `note`, `close_reason`, `closed_at` w `leads`; tabela `followups`,
+- `PATCH /internal/leads/:id`, `POST /internal/followups`, `PATCH /internal/followups/:id/done`,
+- ekran karty leada: status dropdown, notatka z autosave, follow-up buttons (jutro/za 3 dni/za 7 dni/własna data), powody zamknięcia,
+- ekran startowy PWA: sekcja "Follow-upy na dziś" i "Zaległe follow-upy",
+- swipe na liście leadów: szybkie akcje "Zadzwoń" (tel: link) i "Follow-up".
+
+Testy automatyczne:
+- `tests/integration/lead-status-change.test.ts` - zmiana statusu zapisuje timestamp,
+- `tests/integration/followup-create.test.ts` - follow-up tworzony z poprawną datą w strefie Warsaw,
+- `tests/integration/followup-overdue.test.ts` - endpoint pobiera tylko zaległe (due_at < now AND done_at IS NULL),
+- `tests/unit/dates.test.ts` - helper "za 3 dni" liczy poprawnie z uwzględnieniem DST.
+
+Walidacja manualna (`tests/manual/slice-2.md`):
+- biorę 1 prawdziwego leada, zmieniam status -> dodaję notatkę -> follow-up jutro,
+- jutro o 9:00 sprawdzam dashboard - lead jest w "Follow-upy na dziś",
+- klikam "Zadzwoń" - telefon dzwoni,
+- przez tydzień prowadzę 3 leady do końca (status `Zakończono`),
+- nic w UI mnie nie zatrzymało, nic mi nie umknęło.
+
+### Slice 3 - Products read-only (3-5 dni)
+
+Cel: 65 produktów w D1, widoczne w PWA z filtrami i wyszukiwarką. Strona nadal serwuje produkty z fixtures.
+
+Zakres:
+- migracja D1: `products`, `product_images`, `product_translations`,
+- skrypt `scripts/import-products.ts` w repo CMS - czyta `from-cms/fixtures/products.json` ze strony, mapuje status (`Zarezerwowany` -> `Dostępny` ukryty, `Niedostępny` -> `Na zamówienie`), INSERT do D1,
+- skrypt `scripts/upload-images.ts` - przesyła `public/products/**` ze strony do R2, aktualizuje URL-e w D1 na `CMS_CDN_ORIGIN/...`,
+- `GET /internal/products` z filtrami (kategoria, marka, dostępność, widoczność),
+- ekran `/produkty` w PWA: lista z miniaturami, search, filtry, link do podglądu (read-only).
+
+Testy automatyczne:
+- `tests/integration/import-products.test.ts` - import 65 produktów, każdy ma slug, każdy ma status z nowego enuma,
+- `tests/integration/products-list-internal.test.ts` - zwraca też ukryte,
+- `tests/integration/products-filters.test.ts` - filtr po marce zwraca tylko Rolexy,
+- `tests/unit/schemas/product.test.ts` - Zod schema akceptuje wszystkie 65 produktów z fixtures.
+
+Walidacja manualna (`tests/manual/slice-3.md`):
+- otwieram /produkty - widzę 65 zegarków z miniaturami,
+- filtruję po marce Rolex - widzę tylko Rolexy,
+- klikam na zegarek - widzę pełne dane,
+- każde zdjęcie ładuje się z `CMS_CDN_HOST` (a nie z domeny strony),
+- żaden produkt nie ma statusu spoza nowego enuma.
+
+### Slice 4 - Migracja statusu na stronie (1 dzień, w repo strony)
+
+Cel: Strona warszawskiczas.pl używa `Dostępny`/`Na zamówienie` zamiast `Niedostępny/Zarezerwowany`.
+
+Zakres w repo `website_warszawskiczas`:
+- `from-cms/schemas/product.ts` - zmiana enuma,
+- mapowanie `from-cms/fixtures/products.json` tymi samymi regułami co skrypt importu,
+- aktualizacja badge produktu (`app/(public)/produkty/[slug]/page.tsx`),
+- aktualizacja JSON-LD: `InStock` dla `Dostępny`, `PreOrder` dla `Na zamówienie`,
+- aktualizacja filtrów SEO (`lib/seo-product-filters.ts`),
+- aktualizacja tłumaczeń statusów PL/EN/UA,
+- redeploy strony (nadal z fixtures, jeszcze bez live mode).
+
+Testy automatyczne (w repo strony):
+- `tests/integration/website-status-migration.test.ts` - build przechodzi, sitemap zawiera wszystkie produkty, JSON-LD ma poprawne availability.
+
+Walidacja manualna (`tests/manual/slice-4.md`):
+- otwieram 3 losowe produkty na produkcji - widzę nowe etykiety,
+- "Na zamówienie" pokazuje się zamiast "Cena na zapytanie" tam, gdzie powinno,
+- view-source: JSON-LD ma `PreOrder` dla "Na zamówienie", `InStock` dla "Dostępny",
+- sitemap ma wszystkie produkty (w tym "Na zamówienie"),
+- żaden produkt nie ma statusu `Zarezerwowany` ani `Niedostępny`.
+
+### Slice 5 - Products edit + R2 upload (5-7 dni)
+
+Cel: Mogę z telefonu edytować produkt, dodać zdjęcie, zmienić kolejność. Strona produkcyjna nadal niezmieniona (zmiany czekają na publikację).
+
+Zakres:
+- `POST /internal/products`, `PATCH /internal/products/:id`, `DELETE /internal/products/:id` (soft),
+- upload zdjęć: presigned URL do R2 albo direct upload przez Worker, zapis URL-i w `product_images`,
+- warianty WebP (Cloudflare Images albo prostsza resize - decyzja przy implementacji),
+- ekran edycji produktu w PWA: wszystkie pola z section 9.1, walidacja Zod w czasie rzeczywistym,
+- upload z aparatu lub galerii telefonu,
+- drag-drop kolejności zdjęć,
+- ekran tworzenia nowego produktu,
+- checklista publikacji (section 9.4) jako wskaźnik gotowości produktu.
+
+Testy automatyczne:
+- `tests/integration/product-create.test.ts` - tworzenie z minimalnym setem pól,
+- `tests/integration/product-validation.test.ts` - "Na zamówienie" + cena publiczna -> cena czyszczona albo walidator odrzuca,
+- `tests/integration/image-upload.test.ts` - upload + zapis do R2 + URL w D1,
+- `tests/integration/image-reorder.test.ts` - zmiana `sort_order` przez PATCH zachowuje spójność.
+
+Walidacja manualna (`tests/manual/slice-5.md`):
+- z telefonu w butiku dodaję nowy zegarek (5 zdjęć z aparatu) w mniej niż 3 minuty,
+- zmieniam kolejność zdjęć przeciągnięciem,
+- ustawiam "Na zamówienie" - pole ceny się czyści automatycznie,
+- ustawiam "Cena na zapytanie" - cena publiczna ukryta, status nadal `Dostępny`,
+- zmiana zapisała się w D1, ale strona produkcyjna jeszcze niezmieniona (nie kliknąłem publikacji).
+
+### Slice 6 - Punkt kontrolny publikacji (4-6 dni)
+
+Cel: Klikam jeden przycisk w PWA, czekam ok. 3 minuty, widzę zmianę na warszawskiczas.pl.
+
+Zakres:
+- migracja D1: tabele `publish_runs` i `publish_snapshots` (snapshot to hash + JSON aktualnego stanu produktów),
+- diff endpoint: porównaj aktualne produkty z ostatnim opublikowanym snapshotem,
+- `POST /internal/publish` - zapisz nowy snapshot, trigger GH `repository_dispatch` (`event_type: cms-publish`) w repo strony,
+- `POST /api/v1/publish/callback` - endpoint dla GH Actions, aktualizuje status `publish_runs`,
+- ekran `/publikacja` w PWA: lista zmian (dodane / zmienione / ukryte / usunięte), czas od ostatniej publikacji, status, przycisk "Opublikuj zmiany", przycisk "Ponów" przy błędzie,
+- polling statusu co 10s podczas buildu,
+- modyfikacja `.github/workflows/deploy.yml` w repo strony: trigger `repository_dispatch`, callback z wynikiem,
+- cutover strony na `CMS_MODE=live` dla produktów (env vars w GH Secrets),
+- smoke test po deployu strony w GH Actions: curl sitemap.xml zwraca min 50 URL-i, jeśli mniej -> callback z `failed`.
+
+Testy automatyczne:
+- `tests/integration/publish-diff.test.ts` - poprawnie liczy diff (dodane / zmienione / ukryte / usunięte),
+- `tests/integration/publish-trigger.test.ts` - endpoint triggeruje workflow (z mockowanym GH API),
+- `tests/integration/publish-callback.test.ts` - callback aktualizuje status z `Pending` na `Success` lub `Failed`,
+- `tests/integration/publish-debounce.test.ts` - drugi POST w ciągu 30s zwraca 409.
+
+Walidacja manualna (`tests/manual/slice-6.md`):
+- zmieniam opis zegarka w PWA,
+- otwieram /publikacja - widzę "1 zmiana: edycja produktu X",
+- klikam "Opublikuj" - status zmienia się na "Building",
+- po ok. 3 minutach status zmienia się na "Success",
+- otwieram zegarek na warszawskiczas.pl - widzę nowy opis,
+- powtarzam test z ukryciem produktu - znika ze strony,
+- powtarzam z dodaniem nowego - pojawia się na liście i ma własny URL.
+
+### Slice 7 - Kalendarz (2-3 dni)
+
+Cel: Widzę wszystkie follow-upy klientów + własne wydarzenia w jednym miejscu.
+
+Zakres:
+- migracja D1: `calendar_events`,
+- `GET /internal/calendar?from=X&to=Y` - łączy follow-upy + custom events,
+- `POST /internal/calendar-events`, `PATCH /internal/calendar-events/:id`,
+- ekran `/kalendarz` w PWA: domyślnie lista chronologiczna, opcjonalny widok miesięczny.
+
+Testy automatyczne:
+- `tests/integration/calendar-merge.test.ts` - endpoint zwraca posortowany mix follow-upów i własnych wydarzeń,
+- `tests/integration/calendar-event-create.test.ts`.
+
+Walidacja manualna (`tests/manual/slice-7.md`):
+- dodaję wydarzenie "Spotkanie z klientem A, 2026-05-25, 14:00",
+- pojawia się w kalendarzu obok follow-upów na ten sam dzień,
+- wydarzenie z `all_day=true` pokazuje się bez godziny.
+
+### Slice 8 - Rolki (2-3 dni)
+
+Cel: Lista scenariuszy rolek z 4 statusami, przesuwanie między nimi.
+
+Zakres:
+- migracja D1: `reel_scenarios` (nazwa techniczna pozostaje angielska, UI po polsku `Rolki`),
+- CRUD endpointy `/internal/reels`,
+- ekran `/rolki` w PWA z zakładkami statusów.
+
+Testy automatyczne:
+- `tests/integration/reel-status-transition.test.ts`.
+
+Walidacja manualna (`tests/manual/slice-8.md`):
+- tworzę 3 scenariusze rolek, przesuwam przez statusy,
+- przebieg "Do weryfikacji" -> "Do nagrania" -> "Nagrane" -> "Opublikowane" działa.
+
+### Slice 9 - Statystyki operacyjne (1-2 dni)
+
+Cel: Liczbowy przegląd działalności na jednym ekranie.
+
+Zakres:
+- `GET /internal/stats` - agreguje liczby leadów, produktów, rolek wg section 17,
+- ekran `/statystyki` w PWA.
+
+Testy automatyczne:
+- `tests/integration/stats.test.ts` - liczby zgadzają się z bezpośrednim COUNT() na D1.
+
+Walidacja manualna (`tests/manual/slice-9.md`):
+- otwieram /statystyki, liczby zgadzają się z tym, co widzę w listach,
+- po dodaniu leada liczba "nowe" rośnie.
+
+### Slice 10 - Treści placeholder + hardening (1-2 dni)
+
+Cel: MVP gotowe do codziennego użycia.
+
+Zakres:
+- ekran `/tresci` z komunikatem "Pracujemy nad tym modułem",
+- ekran `/powiadomienia` placeholder,
+- ekran `/ustawienia`: info o zalogowanym, link do logout (CF Access logout URL),
+- `Ostatnia edycja: [osoba], [data]` widoczne na każdym edytowalnym rekordzie,
+- README repo `app_warszawskiczas`,
+- runbook: jak dodać nowego użytkownika do Access, jak ponowić nieudaną publikację, jak ręcznie wyeksportować leady,
+- pełny przegląd aplikacji (golden path każdego modułu) - jeśli coś zatrzymuje, naprawiam.
+
+Walidacja manualna (`tests/manual/slice-10.md`):
+- spaceruję przez wszystkie ekrany - nic nie crashuje,
+- każdy widok ładuje się w mniej niż 1 sekundę na 4G,
+- runbook ma być wystarczający, żeby ktoś trzeci ogarnął obsługę aplikacji w 10 minut.
+
+### Po MVP
+
+Lista do priorytetyzacji wtedy, gdy MVP będzie produkcyjnie używane minimum 1 tydzień:
+
+- Slice 11 - powiadomienia push i in-app (ważne, ale po MVP):
+  - tabela `push_subscriptions`, web push z VAPID,
+  - Cron Trigger w Workerze dla codziennych powiadomień o follow-upach,
+  - onboarding instalacji PWA dla iOS,
+- audit log (`audit_log` + middleware logujący każdy mutating call),
+- role user/admin,
+- backup D1 codzienny do R2 (Cron Trigger + `wrangler d1 export`),
+- RODO formalne: polityka retencji leadów, eksport danych klienta, hard delete na żądanie, aktualizacja polityki prywatności na stronie,
+- moduł Treści: blog, GBP, drafty,
+- AI: drafty opisów produktów, drafty bloga, sugestie SEO,
+- PIN/biometria w PWA jako druga warstwa nad CF Access,
+- preview environment dla draftów produktów.
+
+### Sprawdzenie zależności - brak przestojów
+
+```
+Slice 0 (infra)
+   |
+   +-- Slice 1 (lead capture) -- Slice 2 (lead management) --+
+   |                                                          |
+   +-- Slice 3 (products read) -- Slice 5 (products edit) -- Slice 6 (publish)
+   |        |
+   |        +-- Slice 4 (website status migration) - niezależnie w repo strony, przed Slice 6
+   |
+   +-- Slice 8 (rolki) - może być po Slice 0, niezależnie od leadów/produktów
+
+Slice 2 ------+
+Slice 1 ------+--- Slice 7 (kalendarz - korzysta z followups z Slice 2)
+              |
+Slice 1, 3, 8 +--- Slice 9 (statystyki - liczy dane z poprzednich slice'ów)
+                          |
+                          +--- Slice 10 (hardening - ostatni)
+```
+
+Każdy slice ma wszystko, czego potrzebuje, z poprzednich. Jedyna zewnętrzna zależność to Slice 4 w repo strony - można go zrobić w dowolnym momencie po Slice 3, ale przed Slice 6 (cutover do live mode).
 
 ---
 
@@ -1143,5 +1484,100 @@ MVP nie obejmuje:
 - Dane publicznej strony mają pochodzić tylko z CMS-a.
 - Kod strony publicznej nie może znać wewnętrznych szczegółów CMS-a.
 - Zmiana kontraktu publicznego wymaga wersji API.
-- Każda publikacja i edycja ma być widoczna w audit logu.
+- Każda publikacja i edycja ma być widoczna w audit logu (po MVP).
 - Jeśli funkcja nie oszczędza czasu w codziennej pracy, nie wchodzi do MVP.
+
+---
+
+## 23. Strategia testów
+
+Filozofia:
+
+- testy mają wyłapywać regresje, nie podpierać tylko zielonego CI,
+- każdy plik testowy ma w nagłówku jednoliniowy komentarz `// Testuje X w sytuacji Y, bo Z`,
+- każdy `it` ma krótki opis tego, jakie zachowanie sprawdza,
+- testujemy ścieżki krytyczne: capture leadów, walidacja produktu, diff publikacji, callback, walidacja Zod, mapowanie statusów,
+- nie testujemy trywialnych komponentów UI (przyciski, layouty) - to zabija tempo solo deva,
+- preferujemy testy integracyjne nad unit - chcemy wiedzieć, że system działa end-to-end, nie że funkcja zwraca string.
+
+Struktura w repo `app_warszawskiczas`:
+
+```
+tests/
+├── unit/
+│   ├── schemas/        # Zod walidacje (produkt, lead, follow-up)
+│   ├── mappers/        # mapowanie statusów, dat, slugów
+│   └── dates.test.ts   # helpery dat w strefie Warsaw
+├── integration/
+│   ├── api/            # endpointy przez wrangler dev z testową D1
+│   ├── auth/           # Cloudflare Access middleware
+│   └── publish/        # diff, trigger, callback
+├── e2e/                # Playwright, tylko 2-3 smoke (po Slice 6)
+└── manual/             # checklisty walidacji per slice
+    ├── README.md       # jak czytać te checklisty
+    ├── slice-0.md
+    ├── slice-1.md
+    └── ...
+```
+
+Setup techniczny:
+
+- Vitest jako runner (`@cloudflare/vitest-pool-workers` do testów Workers),
+- testowa baza D1: `wrangler d1 create D1_TEST_DATABASE_NAME --jurisdiction=eu` zgodnie z dokumentem środowiska,
+- każdy test integracyjny czyści swoje dane w `beforeEach` (truncate),
+- husky + lint-staged: `vitest run --changed` przed commitem,
+- CI w GitHub Actions: `vitest run` + `tsc --noEmit` + `wrangler deploy --dry-run`.
+
+Zasady pisania testów:
+
+- testuj zachowania, nie implementacje (nie sprawdzaj, że funkcja wywołała inną - sprawdzaj wynik),
+- jeden test = jedno zachowanie (nie kumuluj 5 assertions w jednym `it`),
+- testuj wartości brzegowe (puste stringi, null, zero, granice walidacji, koniec miesiąca, zmiana DST),
+- jeśli musisz zamockować zewnętrzny serwis (GH API), mock zwraca realistyczny payload,
+- testy NIE są pisane "pod kod, żeby przeszły" - są pisane jako kontrakt sprawdzający rzeczywiste zachowanie biznesowe.
+
+---
+
+## 24. Walidacja manualna
+
+Walidacja manualna nie zastępuje testów automatycznych - uzupełnia je. Testy łapią regresje techniczne, walidacja łapie głupie/niepraktyczne UX.
+
+Każdy slice ma plik `tests/manual/slice-N.md` zawierający:
+
+- golden path - co właściciel ma zobaczyć i zrobić na telefonie krok po kroku,
+- "try to break it" - świadome próby zepsucia (zły payload, brak sieci, podwójne kliknięcia, sesja wygasła),
+- wymagania performance - ile czasu zajmuje typowa operacja,
+- raport - co działa, co nie działa, co zdziwiło.
+
+Szablon pliku `slice-N.md`:
+
+```
+# Slice N - Walidacja manualna
+
+## Golden path
+- [ ] krok 1
+- [ ] krok 2
+- [ ] krok 3
+
+## Try to break it
+- [ ] co się stanie gdy...
+- [ ] co się stanie gdy...
+
+## Performance
+- [ ] operacja X w mniej niż N sekund
+
+## Raport
+Co działa: ...
+Co nie działa: ...
+Co mnie zdziwiło: ...
+```
+
+Cykl pracy nad slice:
+
+1. Implementuję zakres slice,
+2. Piszę testy automatyczne dla krytycznych ścieżek (równolegle z implementacją, nie po),
+3. Deployuję na produkcję (Cloudflare Workers + własne hosty z dokumentu środowiska),
+4. Otwieram PWA na telefonie,
+5. Przechodzę checklistę walidacji manualnej,
+6. Jeśli coś nie działa - zapisuję w sekcji "Raport", naprawiam, wracam do punktu 4,
+7. Tylko zielony slice (testy + walidacja) zamyka temat i przechodzi do kolejnego.

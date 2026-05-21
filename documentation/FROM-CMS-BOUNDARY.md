@@ -24,7 +24,12 @@ from-cms/
 
 ### `CMS_MODE=mock` (default)
 
-Strona uruchamia się bez żadnej zewnętrznej zależności. Wszystkie 65 produktów widoczne, formularze wykonują `console.info('[from-cms:mock-lead]', payload)` zamiast realnego POSTa.
+Strona uruchamia się bez zewnętrznej zależności dla produktów. Wszystkie 65 produktów są widoczne z fixtures.
+
+Formularze zależą od `NEXT_PUBLIC_CMS_LEAD_URL`, a nie od `CMS_MODE`:
+
+- jeśli `NEXT_PUBLIC_CMS_LEAD_URL` jest ustawione, formularze robią realny `POST /api/v1/leads`,
+- jeśli nie jest ustawione, formularze wykonują `console.info('[from-cms:mock-lead]', payload)`.
 
 To jest tryb używany w lokalnym `npm run dev` i w buildach na PR-ach dopóki własny CMS nie zostanie zdeployowany.
 
@@ -34,8 +39,9 @@ Adaptery wykonują prawdziwe HTTP do CMS-a. Wymaga ustawienia:
 
 ```bash
 CMS_MODE=live
-CMS_API_URL=https://cms.warszawskiczas.pl
+CMS_API_URL=<CMS_API_ORIGIN z documentation/CMS-CRM-ENVIRONMENT.md>
 CMS_API_TOKEN=<token wygenerowany w CMS-ie, read-only>
+NEXT_PUBLIC_CMS_LEAD_URL=<NEXT_PUBLIC_CMS_LEAD_URL z documentation/CMS-CRM-ENVIRONMENT.md>
 ```
 
 `getAllProducts()` cache-uje w pamięci modułu w obrębie jednego procesu (build SSG `next build` woła setki razy podczas generowania ~120 stron — chcemy jeden fetch).
@@ -66,7 +72,7 @@ import type { Product } from '@/from-cms/schemas/product'
 import { mockProducts } from '@/data/mock-products'
 
 // Reszta projektu NIE robi fetch do CMS-a samodzielnie.
-const res = await fetch('https://cms.warszawskiczas.pl/api/v1/products')
+const res = await fetch(`${process.env.CMS_API_URL}/api/v1/products`)
 ```
 
 ## Migracja na żywy CMS
