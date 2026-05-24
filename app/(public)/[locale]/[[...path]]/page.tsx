@@ -30,6 +30,12 @@ import { CONTACT_PHONE, CONTACT_PHONE_RAW } from '@/lib/config'
 import { absoluteUrl, canonicalPath, isLocale, localizedAlternates, localizePath, publicRoutePaths, type Locale } from '@/lib/i18n'
 import { getLocalizedLanding, localizedLandingSlugs } from '@/lib/localized-landings'
 import { formatProductPrice, localizeProduct, localizeProductStatus } from '@/lib/localized-products'
+import {
+  isProductOnOrder,
+  isProductUnavailable,
+  productPublicPrice,
+  schemaOrgAvailability,
+} from '@/lib/product-availability'
 import { PrivateCollectionPage } from '@/components/pages/private-collection-page'
 import { AccessibilityStatementPage } from '@/components/pages/accessibility-statement-page'
 import { BoutiquePage } from '@/components/pages/boutique-page'
@@ -402,22 +408,32 @@ async function LocalizedProductDetail({ route, locale }: { route: string; locale
     .filter((p) => p.id !== source.id && p.category === source.category)
     .slice(0, 3)
     .map((p) => localizeProduct(p, locale))
-  const isUnavailable = source.status === 'Niedostępny'
+  const isOnOrder = isProductOnOrder(source)
+  const isUnavailable = isProductUnavailable(source)
   const statusBadge = localizeProductStatus(source.status, locale)
   const ctaLabel = isUnavailable
     ? locale === 'en'
-      ? 'Ask about this model'
+      ? 'Ask about a similar model'
       : 'Запитати про цю модель'
+    : isOnOrder
+      ? locale === 'en'
+        ? 'Ask about this model'
+        : 'Запитати про цю модель'
     : locale === 'en'
       ? 'Ask about availability'
       : 'Запитати про наявність'
   const subnote = isUnavailable
     ? locale === 'en'
-      ? 'Lead time 7–30 days · No waiting list'
-      : 'Виконання 7–30 днів · Без черги'
+      ? 'Unavailable piece · Ask about alternatives'
+      : 'Недоступний екземпляр · Запитайте про альтернативи'
+    : isOnOrder
+      ? locale === 'en'
+        ? 'Lead time 7–30 days · No waiting list'
+        : 'Виконання 7–30 днів · Без черги'
     : locale === 'en'
       ? 'Free valuation · Discreet consultation'
       : 'Безкоштовна оцінка · Дискретна консультація'
+  const offerPrice = productPublicPrice(source)
 
   const productJsonLd = {
     '@context': 'https://schema.org',
@@ -435,11 +451,8 @@ async function LocalizedProductDetail({ route, locale }: { route: string; locale
     offers: {
       '@type': 'Offer',
       url: productUrl,
-      ...(source.price ? { price: source.price, priceCurrency: 'PLN' } : {}),
-      availability:
-        source.status === 'Niedostępny'
-          ? 'https://schema.org/PreOrder'
-          : 'https://schema.org/InStock',
+      ...(offerPrice ? { price: offerPrice, priceCurrency: 'PLN' } : {}),
+      availability: schemaOrgAvailability(source.status),
       seller: { '@type': 'Organization', name: 'Warszawski Czas', url: absoluteUrl('/', locale) },
       areaServed: { '@type': 'Country', name: 'PL' },
     },

@@ -7,6 +7,7 @@ import { ImagePlaceholder } from '@/components/ui'
 import { cn } from '@/lib/utils'
 import { localeFromPathname, localizePath, ui } from '@/lib/i18n'
 import { productUrlSlug } from '@/lib/product-url'
+import { formatProductPrice, localizeProductStatus } from '@/lib/localized-products'
 import type { Product } from '@/from-cms/schemas/product'
 
 function CardImage({ product }: { product: Product }) {
@@ -51,32 +52,13 @@ export function ProductCard({ product, className, aspect = 'portrait', layout = 
   const pathname = usePathname()
   const locale = localeFromPathname(pathname)
   const t = ui[locale]
-  const formattedPrice = product.price
-    ? new Intl.NumberFormat(locale === 'ua' ? 'uk-UA' : locale === 'en' ? 'en-US' : 'pl-PL', {
-      style: 'currency',
-      currency: 'PLN',
-      minimumFractionDigits: 0,
-    }).format(product.price)
-    : product.priceOnRequest
-      ? t.priceOnRequest
-      : null
+  const formattedPrice = formatProductPrice(product, locale)
 
-  // Decyzja: status `Niedostępny` to operacyjny stan (sprowadzamy na zamówienie),
-  // NIE "sold out". Bez line-through, bez przygaszania — pełnoprawny cel SEO.
   const statusColor =
     product.status === 'Niedostępny'
-      ? 'text-foreground/80'
-      : product.status === 'Zarezerwowany'
-        ? 'text-muted-foreground/80'
-        : 'text-accent-gold'
-  const statusLabel =
-    product.status === 'Niedostępny'
-      ? t.unavailableSourcing
-      : product.status === 'Zarezerwowany'
-        ? t.reserved
-        : product.status === 'Dostępny'
-          ? t.available
-          : product.status
+      ? 'text-muted-foreground/80'
+      : 'text-accent-gold'
+  const statusLabel = localizeProductStatus(product.status, locale)
 
   // Feature layout: szeroka karta z obrazem po lewej, treścią po prawej.
   if (layout === 'feature') {

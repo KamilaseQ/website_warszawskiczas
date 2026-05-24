@@ -1,17 +1,19 @@
 import type { Product } from '@/from-cms/schemas/product'
 import { type Locale, ui } from '@/lib/i18n'
+import { productPublicPrice, productShowsPriceOnRequest } from '@/lib/product-availability'
 
 const intlLocale = (locale: Locale) => (locale === 'ua' ? 'uk-UA' : locale === 'en' ? 'en-US' : 'pl-PL')
 
 export function formatProductPrice(product: Product, locale: Locale) {
-  if (product.price) {
+  const publicPrice = productPublicPrice(product)
+  if (publicPrice) {
     return new Intl.NumberFormat(intlLocale(locale), {
       style: 'currency',
       currency: 'PLN',
       minimumFractionDigits: 0,
-    }).format(product.price)
+    }).format(publicPrice)
   }
-  if (product.priceOnRequest) return ui[locale].priceOnRequest
+  if (productShowsPriceOnRequest(product)) return ui[locale].priceOnRequest
   return null
 }
 
@@ -238,9 +240,8 @@ function replaceCommon(text: string, locale: Locale) {
 }
 
 /**
- * Tłumaczenie statusu produktu (`Dostępny` / `Zarezerwowany` / `Niedostępny`).
- * Używane w karcie produktu i na liście. Status `Niedostępny` ma specjalne,
- * dłuższe brzmienie zaakceptowane decyzją produktową — patrz `ui.unavailableSourcing`.
+ * Tłumaczenie statusu produktu (`Dostępny` / `Na zamówienie` / `Niedostępny`).
+ * `Na zamówienie` jest stanem operacyjnym, a `Niedostępny` oznacza brak sztuki.
  */
 export function localizeProductStatus(
   status: Product['status'],
@@ -250,8 +251,8 @@ export function localizeProductStatus(
   if (locale === 'pl') return status
   const t = ui[locale]
   if (status === 'Dostępny') return t.available
-  if (status === 'Zarezerwowany') return t.reserved
-  if (status === 'Niedostępny') return t.unavailableSourcing
+  if (status === 'Na zamówienie') return t.unavailableSourcing
+  if (status === 'Niedostępny') return t.unavailable
   return status
 }
 

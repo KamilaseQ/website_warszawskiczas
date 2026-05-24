@@ -16,6 +16,13 @@ import {
 } from '@/from-cms/adapters/products'
 import type { Product } from '@/from-cms/schemas/product'
 import { CONTACT_PHONE, CONTACT_PHONE_RAW } from '@/lib/config'
+import {
+  isProductOnOrder,
+  isProductUnavailable,
+  productPublicPrice,
+  productShowsPriceOnRequest,
+  schemaOrgAvailability,
+} from '@/lib/product-availability'
 
 interface PageProps {
   params: Promise<{ slug: string }>
@@ -82,15 +89,16 @@ const certificationFaq: FaqItem[] = [
   },
 ]
 
-function formatPrice(value?: number, onRequest?: boolean) {
-  if (value) {
+function formatPrice(product: Product) {
+  const publicPrice = productPublicPrice(product)
+  if (publicPrice) {
     return new Intl.NumberFormat('pl-PL', {
       style: 'currency',
       currency: 'PLN',
       minimumFractionDigits: 0,
-    }).format(value)
+    }).format(publicPrice)
   }
-  if (onRequest) return 'Cena na zapytanie'
+  if (productShowsPriceOnRequest(product)) return 'Cena na zapytanie'
   return null
 }
 
@@ -100,8 +108,9 @@ export default async function ProductPage({ params }: PageProps) {
   if (!product) notFound()
 
   const allProducts = await getAllProducts()
-  const price = formatPrice(product.price, product.priceOnRequest)
-  const isUnavailable = product.status === 'Niedostępny'
+  const price = formatPrice(product)
+  const isOnOrder = isProductOnOrder(product)
+  const isUnavailable = isProductUnavailable(product)
 
   const tokens = (s?: string) =>
     new Set(
@@ -129,7 +138,7 @@ export default async function ProductPage({ params }: PageProps) {
       if (ratio < 0.15) score += 3
       else if (ratio < 0.3) score += 2
       else if (ratio < 0.5) score += 1
-    } else if (current.priceOnRequest && p.priceOnRequest) {
+    } else if (productShowsPriceOnRequest(current) && productShowsPriceOnRequest(p)) {
       score += 1
     }
     if (p.isExclusive && current.isExclusive) score += 1
@@ -145,20 +154,20 @@ export default async function ProductPage({ params }: PageProps) {
 
   const productLabel = `${product.brand} ${product.name}`
 
-  const statusTone =
-    product.status === 'Niedostępny'
-      ? 'text-foreground/80'
-      : product.status === 'Zarezerwowany'
-        ? 'text-muted-foreground'
-        : 'text-accent-gold'
+  const statusTone = isUnavailable ? 'text-muted-foreground' : 'text-accent-gold'
 
-  const statusBadge =
-    product.status === 'Niedostępny'
-      ? 'Dostępny na zamówienie'
-      : product.status
+  const statusBadge = product.status
 
-  const ctaLabel = isUnavailable ? 'Zapytaj o ten model' : 'Zapytaj o dostępność'
-  const ctaSource = isUnavailable ? 'product-detail-sourcing' : 'product-detail'
+  const ctaLabel = isUnavailable
+    ? 'Zapytaj o podobny model'
+    : isOnOrder
+      ? 'Zapytaj o ten model'
+      : 'Zapytaj o dostępność'
+  const ctaSource = isUnavailable
+    ? 'product-detail-unavailable'
+    : isOnOrder
+      ? 'product-detail-on-order'
+      : 'product-detail'
 
   const canonicalSlug = productUrlSlug(product)
   const productUrl = `https://warszawskiczas.pl/produkty/${canonicalSlug}`
@@ -166,16 +175,8 @@ export default async function ProductPage({ params }: PageProps) {
     src.startsWith('http') ? src : `https://warszawskiczas.pl${src}`,
   )
 
-  /**
-   * `availability` w Offer:
-   * - `Niedostępny` → `PreOrder` (sprowadzamy na zamówienie — pełnoprawny cel SEO, NIE `SoldOut`)
-   * - `Zarezerwowany` → `InStock` (ostatni egzemplarz w rezerwacji, ale wciąż w obrocie)
-   * - `Dostępny` → `InStock`
-   */
-  const availability =
-    product.status === 'Niedostępny'
-      ? 'https://schema.org/PreOrder'
-      : 'https://schema.org/InStock'
+  const availability = schemaOrgAvailability(product.status)
+  const offerPrice = productPublicPrice(product)
 
   const productJsonLd = {
     '@context': 'https://schema.org',
@@ -198,8 +199,8 @@ export default async function ProductPage({ params }: PageProps) {
     offers: {
       '@type': 'Offer',
       url: productUrl,
-      ...(product.price
-        ? { price: product.price, priceCurrency: 'PLN' }
+      ...(offerPrice
+        ? { price: offerPrice, priceCurrency: 'PLN' }
         : {}),
       availability,
       itemCondition:
@@ -360,8 +361,10 @@ export default async function ProductPage({ params }: PageProps) {
                 </div>
                 <p className="mt-4 font-sans text-[11px] uppercase tracking-[0.18em] text-muted-foreground/80">
                   {isUnavailable
-                    ? 'Realizacja 7–30 dni · Bez listy oczekujących'
-                    : 'Bezpłatna wycena · Dyskretna konsultacja'}
+                    ? 'Egzemplarz niedostępny · Zapytaj o alternatywy'
+                    : isOnOrder
+                      ? 'Realizacja 7–30 dni · Bez listy oczekujących'
+                      : 'Bezpłatna wycena · Dyskretna konsultacja'}
                 </p>
               </div>
             </div>

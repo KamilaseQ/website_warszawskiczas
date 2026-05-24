@@ -19,7 +19,7 @@ Dokument operacyjny. Każdy slice ma własną sekcję z zakresem, testami automa
 
 **Założenia bazowe (potwierdzone):**
 - Hosting aplikacji na Cloudflare Workers + D1 + R2 + Access; hosty z `CMS-CRM-ENVIRONMENT.md`
-- Status produktu: `Dostępny` / `Na zamówienie`
+- Status produktu: `Dostępny` / `Na zamówienie` / `Niedostępny`; `Cena na zapytanie` jest osobnym stanem ceny.
 - Punkt kontrolny publikacji (nie kolejka zmian) - diff względem ostatniego snapshotu + jedno kliknięcie
 - Treści landingów zostają w kodzie strony (rzadko zmieniane, nie idą do CMS)
 - Powiadomienia, audit log, role, RODO formalne, backup D1: po MVP
@@ -239,7 +239,7 @@ Dokument operacyjny. Każdy slice ma własną sekcję z zakresem, testami automa
 - [ ] Indeks `products.slug` UNIQUE, `products.visibility`, `products.brand`
 - [ ] Skrypt `scripts/import-products.ts`:
   - [ ] Czyta `from-cms/fixtures/products.json` ze strony
-  - [ ] Mapuje status: `Niedostępny` -> `Na zamówienie`, `Zarezerwowany` -> `Dostępny` + `visibility: Ukryty`, `Dostępny` -> bez zmian
+  - [ ] Mapuje status: `Na zamówienie` -> `Na zamówienie` + `priceOnRequest`, `Niedostępny` -> `Niedostępny`, legacy `Zarezerwowany` -> `Dostępny` + `visibility: Ukryty`
   - [ ] Generuje slug jeśli brak
   - [ ] Wstawia tłumaczenia PL/EN/UA jeśli istnieją w fixtures
   - [ ] Idempotentny (powtórne uruchomienie nie duplikuje)
@@ -275,7 +275,8 @@ Dokument operacyjny. Każdy slice ma własną sekcję z zakresem, testami automa
 - [ ] `tests/integration/products-filter-brand.test.ts` - "Filtr brand=Rolex zwraca tylko Rolexy"
 - [ ] `tests/integration/products-search.test.ts` - "Search po referencji znajduje produkt po częściowym dopasowaniu"
 - [ ] `tests/unit/schemas/product.test.ts` - "Zod schema akceptuje każdy z 65 zaimportowanych produktów"
-- [ ] `tests/unit/mappers/status.test.ts` - "Mapper: Niedostępny -> Na zamówienie + visibility Publiczny"
+- [ ] `tests/unit/mappers/status.test.ts` - "Mapper: Na zamówienie -> Na zamówienie + cena na zapytanie"
+- [ ] `tests/unit/mappers/status.test.ts` - "Mapper: Niedostępny -> Niedostępny + cena bez zmian"
 - [ ] `tests/unit/mappers/status.test.ts` - "Mapper: Zarezerwowany -> Dostępny + visibility Ukryty"
 
 ### Walidacja manualna - `tests/manual/slice-3.md`
@@ -304,31 +305,33 @@ Dokument operacyjny. Każdy slice ma własną sekcję z zakresem, testami automa
 
 ## Slice 4 - Migracja statusu na stronie (1 dzień, w repo strony)
 
-**Cel:** Strona warszawskiczas.pl używa `Dostępny`/`Na zamówienie`.
+**Cel:** Strona warszawskiczas.pl używa trzech jawnych statusów: `Dostępny`, `Na zamówienie`, `Niedostępny`.
 
 ### Zmiany w repo website_warszawskiczas
 
-- [ ] Edycja [from-cms/schemas/product.ts](../from-cms/schemas/product.ts):
-  - [ ] Enum `availability`: usunąć `Zarezerwowany`, `Niedostępny`; dodać `Na zamówienie`
-- [ ] Mapowanie `from-cms/fixtures/products.json`:
-  - [ ] Wszystkie `Niedostępny` -> `Na zamówienie`
-  - [ ] Wszystkie `Zarezerwowany` -> `Dostępny` + ustawić `visibility: 'Ukryty'`
-- [ ] Aktualizacja widoków:
-  - [ ] Badge produktu w [app/(public)/produkty/[slug]/page.tsx](../app/(public)/produkty/[slug]/page.tsx)
-  - [ ] JSON-LD `Offer.availability`: `InStock` dla `Dostępny`, `PreOrder` dla `Na zamówienie`
-  - [ ] [lib/seo-product-filters.ts](../lib/seo-product-filters.ts)
-  - [ ] Catch-all `[locale]/[[...path]]/page.tsx`
-  - [ ] Tłumaczenia statusów PL/EN/UA (`Na zamówienie` / `Available on order` / `На замовлення`)
-- [ ] `npm run build` lokalnie - przechodzi
-- [ ] Smoke test lokalny: 5 losowych produktów ma poprawne badge i JSON-LD
+- [x] Edycja [from-cms/schemas/product.ts](../from-cms/schemas/product.ts):
+  - [x] Enum statusu: `Dostępny`, `Na zamówienie`, `Niedostępny`; usunąć `Zarezerwowany`
+- [x] Mapowanie `from-cms/fixtures/products.json`:
+  - [x] Fixtures nie zawierają dziś `Zarezerwowany` ani `Niedostępny` (65/65 ma `Dostępny`)
+  - [x] Reguła ceny: `Na zamówienie` zawsze pokazuje `Cena na zapytanie`; `Niedostępny` zachowuje ostatnią cenę publiczną, jeśli była podana
+- [x] Aktualizacja widoków:
+  - [x] Badge produktu w [app/(public)/produkty/[slug]/page.tsx](../app/(public)/produkty/[slug]/page.tsx)
+  - [x] JSON-LD `Offer.availability`: `InStock` dla `Dostępny`, `PreOrder` dla `Na zamówienie`, `OutOfStock` dla `Niedostępny`
+  - [x] [lib/seo-product-filters.ts](../lib/seo-product-filters.ts)
+  - [x] Catch-all `[locale]/[[...path]]/page.tsx`
+  - [x] Tłumaczenia statusów PL/EN/UA (`Na zamówienie` / `Available on order`; `Niedostępny` / `Unavailable`)
+- [x] `npm run lint` lokalnie - przechodzi
+- [x] `npm run build` lokalnie - przechodzi
+- [x] Smoke test lokalny: 5 losowych produktów z fixtures ma poprawne badge i JSON-LD `InStock`
 
 ### Testy automatyczne (w repo strony)
 
 - [ ] `tests/integration/website-status-migration.test.ts` - "Build statycznego exportu przechodzi z nowym enumem"
 - [ ] `tests/integration/website-jsonld.test.ts` - "Strona produktu Dostępny ma JSON-LD Offer.availability=InStock"
 - [ ] `tests/integration/website-jsonld.test.ts` - "Strona produktu Na zamówienie ma JSON-LD Offer.availability=PreOrder"
-- [ ] `tests/integration/website-sitemap.test.ts` - "Sitemap zawiera wszystkie produkty, w tym Na zamówienie"
-- [ ] `tests/unit/status-mapping.test.ts` - "Żaden produkt z fixtures nie ma już statusu Zarezerwowany ani Niedostępny"
+- [ ] `tests/integration/website-jsonld.test.ts` - "Strona produktu Niedostępny ma JSON-LD Offer.availability=OutOfStock i zachowuje cenę"
+- [ ] `tests/integration/website-sitemap.test.ts` - "Sitemap zawiera wszystkie produkty, w tym Na zamówienie i Niedostępny"
+- [ ] `tests/unit/status-mapping.test.ts` - "Żaden produkt z fixtures nie ma już statusu Zarezerwowany"
 
 ### Walidacja manualna - `tests/manual/slice-4.md`
 
@@ -337,8 +340,9 @@ Dokument operacyjny. Każdy slice ma własną sekcję z zakresem, testami automa
   - [ ] 3 losowe produkty na warszawskiczas.pl - nowe etykiety
   - [ ] Produkt "Na zamówienie" - tekst "Na zamówienie" (nie "Cena na zapytanie")
   - [ ] Produkt "Cena na zapytanie" (Dostępny) - tekst "Cena na zapytanie"
+  - [ ] Produkt "Niedostępny" - tekst "Niedostępny" i ostatnia znana cena, jeśli była podana
 - [ ] Try to break it:
-  - [ ] View-source: brak gdziekolwiek stringa "Zarezerwowany" lub "Niedostępny"
+  - [ ] View-source: brak stringa "Zarezerwowany"; `Niedostępny` może wystąpić jako jawny status
   - [ ] EN i UA wersje produktu mają przetłumaczony status
   - [ ] sitemap.xml zawiera URL-e produktów "Na zamówienie"
 
@@ -348,6 +352,11 @@ Dokument operacyjny. Każdy slice ma własną sekcję z zakresem, testami automa
 - [ ] Testy przechodzą
 - [ ] Walidacja manualna OK
 - [ ] Search Console nie zgłasza błędów strukturalnych (sprawdzić po 24h)
+
+### Odchylenia od planu
+
+- Repo strony nie ma jeszcze osobnego runnera testów automatycznych dla JSON-LD/sitemap. W tej iteracji walidacja Slice 4 to `npm run lint`, `npm run build`, sprawdzenie statusów fixtures (`65 x Dostępny`) i smoke 5 wygenerowanych stron HTML pod kątem `Product` JSON-LD + `InStock`.
+- Pełny smoke wariantów `Na zamówienie` i `Niedostępny` wymaga produktu testowego w fixtures albo testu jednostkowego helpera `lib/product-availability.ts`; kod ścieżek jest zaimplementowany, ale aktualne dane produkcyjne strony nie zawierają takich statusów.
 
 ---
 

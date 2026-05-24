@@ -48,8 +48,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   )
 
   const allProducts = await getAllProducts()
-  // Decyzja: produkty ze statusem `Niedostępny` POZOSTAJĄ w sitemap.
-  // Sprowadzamy je na zamówienie, więc są pełnoprawnymi celami SEO.
+  // Decyzja: wszystkie publiczne produkty pozostają w sitemap.
+  // `Na zamówienie` jest PreOrder, a `Niedostępny` zachowuje historyczną cenę i stan.
   const products: MetadataRoute.Sitemap = locales.flatMap((locale) =>
     allProducts.map((p) => {
       const path = `/produkty/${productUrlSlug(p)}`

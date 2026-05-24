@@ -296,7 +296,7 @@ export const ui = {
     available: 'Dostępny',
     reserved: 'Zarezerwowany',
     unavailable: 'Niedostępny',
-    unavailableSourcing: 'Dostępny na zamówienie',
+    unavailableSourcing: 'Na zamówienie',
     featured: 'Polecane',
     priceAsc: 'Cena rosnąco',
     priceDesc: 'Cena malejąco',

@@ -9,6 +9,7 @@ import { cn } from '@/lib/utils'
 import { useBodyScrollLock } from '@/lib/use-body-scroll-lock'
 import type { Product } from '@/from-cms/schemas/product'
 import { localeFromPathname, ui } from '@/lib/i18n'
+import { productPublicPrice, productShowsPriceOnRequest } from '@/lib/product-availability'
 
 interface ProductCatalogProps {
   products: Product[]
@@ -19,7 +20,7 @@ const CATEGORIES = [
   { value: 'bizuteria', label: 'Biżuteria' },
 ] as const
 
-const STATUSES = ['Wszystkie', 'Dostępny', 'Zarezerwowany', 'Niedostępny'] as const
+const STATUSES = ['Wszystkie', 'Dostępny', 'Na zamówienie', 'Niedostępny'] as const
 
 const SORTS = [
   { value: 'featured', label: 'Polecane' },
@@ -54,7 +55,7 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
   const statusLabels: Record<string, string> = {
     Wszystkie: t.all,
     Dostępny: t.available,
-    Zarezerwowany: t.reserved,
+    'Na zamówienie': t.unavailableSourcing,
     Niedostępny: t.unavailable,
   }
   const sortLabels: Record<string, string> = {
@@ -79,16 +80,17 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
     let out = products.filter((p) => p.category === category)
     if (selectedBrands.length > 0) out = out.filter((p) => selectedBrands.includes(p.brand))
     if (status !== 'Wszystkie') out = out.filter((p) => p.status === status)
-    if (onlyOnRequest) out = out.filter((p) => p.priceOnRequest)
+    if (onlyOnRequest) out = out.filter((p) => productShowsPriceOnRequest(p))
     out = out.filter((p) => {
-      if (!p.price) return true
-      return p.price >= priceMin && p.price <= priceMax
+      const publicPrice = productPublicPrice(p)
+      if (!publicPrice) return true
+      return publicPrice >= priceMin && publicPrice <= priceMax
     })
 
     if (sort === 'price-asc') {
-      out = [...out].sort((a, b) => (a.price ?? Infinity) - (b.price ?? Infinity))
+      out = [...out].sort((a, b) => (productPublicPrice(a) ?? Infinity) - (productPublicPrice(b) ?? Infinity))
     } else if (sort === 'price-desc') {
-      out = [...out].sort((a, b) => (b.price ?? -Infinity) - (a.price ?? -Infinity))
+      out = [...out].sort((a, b) => (productPublicPrice(b) ?? -Infinity) - (productPublicPrice(a) ?? -Infinity))
     } else if (sort === 'brand-asc') {
       out = [...out].sort((a, b) => a.brand.localeCompare(b.brand, 'pl'))
     } else if (sort === 'featured') {

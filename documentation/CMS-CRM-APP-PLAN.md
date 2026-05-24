@@ -566,12 +566,12 @@ Widoczność:
 Dostępność:
 
 - `Dostępny`,
-- `Na zamówienie`.
+- `Na zamówienie`,
+- `Niedostępny`.
 
 Nie używamy statusów:
 
-- `Zarezerwowany`,
-- `Niedostępny`.
+- `Zarezerwowany`.
 
 Reguła ceny:
 
@@ -579,15 +579,15 @@ Reguła ceny:
 - `Cena na zapytanie` dotyczy produktu dostępnego, którego ceny nie pokazujemy publicznie,
 - `Na zamówienie` dotyczy produktu sprowadzanego na zamówienie,
 - jeśli produkt ma dostępność `Na zamówienie`, publiczna cena jest czyszczona,
-- produkt `Na zamówienie` pokazuje na stronie tekst `Na zamówienie`, nie `Cena na zapytanie`,
-- `Na zamówienie` zastępuje obecne znaczenie `Niedostępny`,
+- produkt `Na zamówienie` pokazuje na stronie status `Na zamówienie` i cenę `Cena na zapytanie`,
 - `Dostępny` może mieć cenę publiczną albo `Cena na zapytanie`,
-- produkt `Na zamówienie` pozostaje widoczny w katalogu i sitemapie, tak jak obecne produkty `Niedostępny`, ale z nowym tekstem.
+- `Niedostępny` oznacza brak sztuki i zachowuje ostatnią znaną cenę publiczną, jeśli była podana,
+- produkty `Na zamówienie` i `Niedostępny` pozostają widoczne w katalogu i sitemapie, ale mają różne JSON-LD availability.
 
 Wymagana migracja względem obecnego kodu strony:
 
 - obecny kontrakt `from-cms/schemas/product.ts` ma statusy `Dostępny`, `Zarezerwowany`, `Niedostępny`,
-- docelowy CMS ma używać `Dostępny` i `Na zamówienie`,
+- docelowy CMS ma używać `Dostępny`, `Na zamówienie`, `Niedostępny`,
 - przed integracją live trzeba zmienić kontrakt strony i teksty UI.
 
 ### 9.3. Filtry produktów
@@ -1149,7 +1149,7 @@ MVP obejmuje:
 - widoczny moduł `Treści` z komunikatem `Pracujemy nad tym modułem`,
 - widoczny moduł `Powiadomienia` jako placeholder,
 - placeholder `Połącz GA/GSC` w statystykach strony,
-- migrację statusu produktu na stronie z `Dostępny/Zarezerwowany/Niedostępny` na `Dostępny/Na zamówienie`,
+- migrację statusu produktu na stronie z legacy `Zarezerwowany` do kontraktu `Dostępny/Na zamówienie/Niedostępny`,
 - cutover strony publicznej na `CMS_MODE=live` dla produktów i leadów.
 
 MVP nie obejmuje:
@@ -1267,7 +1267,7 @@ Cel: 65 produktów w D1, widoczne w PWA z filtrami i wyszukiwarką. Strona nadal
 
 Zakres:
 - migracja D1: `products`, `product_images`, `product_translations`,
-- skrypt `scripts/import-products.ts` w repo CMS - czyta `from-cms/fixtures/products.json` ze strony, mapuje status (`Zarezerwowany` -> `Dostępny` ukryty, `Niedostępny` -> `Na zamówienie`), INSERT do D1,
+- skrypt `scripts/import-products.ts` w repo CMS - czyta `from-cms/fixtures/products.json` ze strony, mapuje status (`Na zamówienie` -> `Na zamówienie` + cena na zapytanie, `Niedostępny` -> `Niedostępny`, legacy `Zarezerwowany` -> `Dostępny` ukryty), INSERT do D1,
 - skrypt `scripts/upload-images.ts` - przesyła `public/products/**` ze strony do R2, aktualizuje URL-e w D1 na `CMS_CDN_ORIGIN/...`,
 - `GET /internal/products` z filtrami (kategoria, marka, dostępność, widoczność),
 - ekran `/produkty` w PWA: lista z miniaturami, search, filtry, link do podglądu (read-only).
@@ -1287,13 +1287,13 @@ Walidacja manualna (`tests/manual/slice-3.md`):
 
 ### Slice 4 - Migracja statusu na stronie (1 dzień, w repo strony)
 
-Cel: Strona warszawskiczas.pl używa `Dostępny`/`Na zamówienie` zamiast `Niedostępny/Zarezerwowany`.
+Cel: Strona warszawskiczas.pl używa jawnych statusów `Dostępny` / `Na zamówienie` / `Niedostępny` zamiast mieszać `Niedostępny` ze sprowadzaniem na zamówienie.
 
 Zakres w repo `website_warszawskiczas`:
 - `from-cms/schemas/product.ts` - zmiana enuma,
-- mapowanie `from-cms/fixtures/products.json` tymi samymi regułami co skrypt importu,
+- potwierdzenie, że fixtures nie zawierają legacy `Zarezerwowany`; `Niedostępny` pozostaje legalnym statusem,
 - aktualizacja badge produktu (`app/(public)/produkty/[slug]/page.tsx`),
-- aktualizacja JSON-LD: `InStock` dla `Dostępny`, `PreOrder` dla `Na zamówienie`,
+- aktualizacja JSON-LD: `InStock` dla `Dostępny`, `PreOrder` dla `Na zamówienie`, `OutOfStock` dla `Niedostępny`,
 - aktualizacja filtrów SEO (`lib/seo-product-filters.ts`),
 - aktualizacja tłumaczeń statusów PL/EN/UA,
 - redeploy strony (nadal z fixtures, jeszcze bez live mode).
@@ -1303,10 +1303,11 @@ Testy automatyczne (w repo strony):
 
 Walidacja manualna (`tests/manual/slice-4.md`):
 - otwieram 3 losowe produkty na produkcji - widzę nowe etykiety,
-- "Na zamówienie" pokazuje się zamiast "Cena na zapytanie" tam, gdzie powinno,
-- view-source: JSON-LD ma `PreOrder` dla "Na zamówienie", `InStock` dla "Dostępny",
-- sitemap ma wszystkie produkty (w tym "Na zamówienie"),
-- żaden produkt nie ma statusu `Zarezerwowany` ani `Niedostępny`.
+- "Na zamówienie" pokazuje status `Na zamówienie` i cenę `Cena na zapytanie`,
+- "Niedostępny" pokazuje status `Niedostępny` i zachowuje ostatnią znaną cenę, jeśli była podana,
+- view-source: JSON-LD ma `PreOrder` dla "Na zamówienie", `InStock` dla "Dostępny", `OutOfStock` dla "Niedostępny",
+- sitemap ma wszystkie produkty (w tym "Na zamówienie" i "Niedostępny"),
+- żaden produkt nie ma legacy statusu `Zarezerwowany`.
 
 ### Slice 5 - Products edit + R2 upload (5-7 dni)
 

@@ -33,7 +33,7 @@ const breadcrumbJsonLd = {
 
 export default async function ProduktyPage() {
   const products = await getAllProducts()
-  // Decyzja: produkty `Niedostępny` zostają w katalogu i JSON-LD — sprowadzamy na zamówienie.
+  // Decyzja: katalog pokazuje trzy jawne statusy: Dostępny, Na zamówienie, Niedostępny.
   const watches = products.filter((p) => p.category === 'zegarki')
   const collectionJsonLd = {
     '@context': 'https://schema.org',

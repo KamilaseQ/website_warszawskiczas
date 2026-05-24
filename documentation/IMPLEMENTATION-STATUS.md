@@ -76,15 +76,17 @@ Hostinger Business              CMS_APP_HOST / CMS_API_HOST  CMS_CDN_HOST
 - [x] `app/favicon.ico` (kopia `icon.png`) — żeby `/favicon.ico` nie wpadał w catch-all
 - [x] Catch-all `generateStaticParams` zwraca raw UTF-8 segmenty (Apache obsługuje natywnie)
 
-### Etap 6 — Status "Niedostępny" jako pełnoprawny stan SEO
-- [x] JSON-LD `Offer.availability: PreOrder` dla Niedostępny (NIE `SoldOut`/`Discontinued`)
-- [x] Karta produktu PL: badge "Niedostępny — możemy sprowadzić", CTA "Zapytaj o sprowadzenie"
-- [x] Karta produktu EN/UA: lokalne tłumaczenia ("On request — we can source" / "На замовлення — можемо знайти")
-- [x] `product-card.tsx`: usunięte `line-through` i przygaszenie dla Niedostępny
-- [x] `lib/i18n.ts`: dodany klucz `unavailableSourcing` w 3 locale
+### Etap 6 — Statusy dostępności po korekcie kontraktu
+- [x] Statusy publiczne: `Dostępny`, `Na zamówienie`, `Niedostępny`
+- [x] JSON-LD `Offer.availability`: `InStock` dla `Dostępny`, `PreOrder` dla `Na zamówienie`, `OutOfStock` dla `Niedostępny`
+- [x] `Na zamówienie` wymusza cenę `Cena na zapytanie` i nie emituje publicznej ceny w JSON-LD
+- [x] `Niedostępny` pokazuje jawny status i zachowuje ostatnią znaną cenę publiczną, jeśli była podana
+- [x] Karta produktu EN/UA ma osobne tłumaczenia dla `Na zamówienie` i `Niedostępny`
+- [x] `product-card.tsx`: brak line-through i brak udawania, że `Niedostępny` oznacza zamówienie
+- [x] `lib/i18n.ts`: `unavailableSourcing` oznacza teraz `Na zamówienie`, a `unavailable` oznacza `Niedostępny`
 - [x] Sitemap zawiera wszystkie produkty bez względu na status (priority 0.7)
 - [x] Grep `sprzedan|sold|discontinued` w kodzie aplikacji → zero wystąpień
-- [x] CMS_API kontrakt nie ma "soft delete" — `Niedostępny` to operacyjny stan, nie koniec życia produktu
+- [x] Legacy `Zarezerwowany` usunięty z publicznego kontraktu produktu
 
 ### Etap 7 — Hardening SEO/UX
 - [x] Preconnect + dns-prefetch do hosta z `NEXT_PUBLIC_CDN_BASE_URL` w root layout
@@ -156,7 +158,7 @@ Lista do przejścia w głowie tuż przed pierwszym pushem na `main`:
 - [ ] `npm run build` — exit 0, ~300 stron w `out/`
 - [ ] `npx serve out` — strona statyczna działa, klikalna
 - [ ] Sprawdź view-source 3 stron (home, produkt, landing) — `<link rel="alternate" hreflang>`, JSON-LD, canonical
-- [ ] Sprawdź że niedostępny produkt: badge "Niedostępny — możemy sprowadzić", JSON-LD `PreOrder`
+- [ ] Sprawdź statusy: `Na zamówienie` ma JSON-LD `PreOrder` i cenę na zapytanie; `Niedostępny` ma JSON-LD `OutOfStock` i ostatnią znaną cenę
 - [ ] Hostinger FTP sekrety w GitHub Actions
 - [ ] DNS domeny `warszawskiczas.pl` wskazuje na Hostinger (już powinien)
 - [ ] `public/.htaccess` zostanie wgrany (sprawdź że plik jest w `out/.htaccess` po buildzie)
@@ -170,7 +172,7 @@ Lista do przejścia w głowie tuż przed pierwszym pushem na `main`:
 | Hosting | Hostinger Business (statyczny) — już opłacone | next.config.js + .htaccess |
 | CMS | własna aplikacja od zera, osobny projekt | kontrakt: from-cms/schemas |
 | Obrazy | Cloudflare R2 + `CMS_CDN_HOST` | IMAGES-CDN.md + CMS-CRM-ENVIRONMENT.md |
-| Status "Niedostępny" | indeksowany, `PreOrder` w JSON-LD, badge "możemy sprowadzić" | produkty/[slug]/page.tsx, product-card.tsx |
+| Statusy produktów | `Dostępny`=`InStock`, `Na zamówienie`=`PreOrder` + cena na zapytanie, `Niedostępny`=`OutOfStock` + ostatnia znana cena | lib/product-availability.ts, produkty/[slug]/page.tsx, product-card.tsx |
 | URL i18n | subfolder per locale (`/`, `/en/`, `/ua/`), translated slugs | lib/i18n.ts SEGMENT_TRANSLATIONS |
 | Auto-tłumaczenia | po stronie CMS (DeepL + Google, human-in-the-loop) | ARCHITECTURE-REVIEW.md sekcja H |
 | Bramka kodowa Private Collection | klient-side (`NEXT_PUBLIC_PRIVATE_COLLECTION_CODE`), teaser, nie zabezpieczenie | private-collection-{featured,gallery,registration}.tsx |

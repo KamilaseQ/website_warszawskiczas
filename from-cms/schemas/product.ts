@@ -10,7 +10,7 @@ import { z } from 'zod'
 export const ProductCategorySchema = z.enum(['zegarki', 'bizuteria', 'akcesoria'])
 export type ProductCategory = z.infer<typeof ProductCategorySchema>
 
-export const ProductStatusSchema = z.enum(['Dostępny', 'Zarezerwowany', 'Niedostępny'])
+export const ProductStatusSchema = z.enum(['Dostępny', 'Na zamówienie', 'Niedostępny'])
 export type ProductStatus = z.infer<typeof ProductStatusSchema>
 
 /**

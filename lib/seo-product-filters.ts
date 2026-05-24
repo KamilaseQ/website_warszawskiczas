@@ -1,4 +1,5 @@
 import type { Product } from '@/from-cms/schemas/product'
+import { productShowsPriceOnRequest } from '@/lib/product-availability'
 
 /**
  * Helpers do wybierania produktów pod sekcję "wybrane egzemplarze" na landing pages SEO.
@@ -6,9 +7,9 @@ import type { Product } from '@/from-cms/schemas/product'
  * Każdy filtr przyjmuje pełną listę produktów jako parametr (DI). Caller pobiera ją raz
  * przez `await getAllProducts()` z `@/from-cms/adapters/products` i przekazuje do filtrów.
  *
- * Wynik: dostępne (nie `Niedostępny`) zegarki, posortowane — najpierw featured, potem reszta.
- * Status `Niedostępny` jest pełnoprawnym stanem operacyjnym (sprowadzamy na zamówienie),
- * ale w preview na landingach pokazujemy domyślnie te z magazynu.
+ * Wynik: zegarki widoczne operacyjnie (`Dostępny` albo `Na zamówienie`),
+ * posortowane — najpierw featured, potem reszta. `Niedostępny` zostaje
+ * w katalogu produktu, ale nie trafia do preview landingów.
  */
 
 const isAvailable = (p: Product) => p.status !== 'Niedostępny'
@@ -16,8 +17,8 @@ const isAvailable = (p: Product) => p.status !== 'Niedostępny'
 const sortForPreview = (a: Product, b: Product) => {
   if (a.featured && !b.featured) return -1
   if (!a.featured && b.featured) return 1
-  if (a.priceOnRequest && !b.priceOnRequest) return -1
-  if (!a.priceOnRequest && b.priceOnRequest) return 1
+  if (productShowsPriceOnRequest(a) && !productShowsPriceOnRequest(b)) return -1
+  if (!productShowsPriceOnRequest(a) && productShowsPriceOnRequest(b)) return 1
   return 0
 }
 
