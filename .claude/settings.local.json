@@ -31,7 +31,9 @@
       "Bash(node -e ' *)",
       "Bash(node scripts/clean-next-cache.mjs)",
       "Bash(xargs grep -l \"rolex-submariner\\\\|products\")",
-      "WebFetch(domain:warszawskiczas.com)"
+      "WebFetch(domain:warszawskiczas.com)",
+      "WebSearch",
+      "WebFetch(domain:web.archive.org)"
     ]
   }
 }

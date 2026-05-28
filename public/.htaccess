@@ -17,6 +17,30 @@ RewriteRule ^(.*)$ https://warszawskiczas.pl/$1 [R=301,L]
 # Zsynchronizowane z dawnym `next.config.js` `redirects()`. Aktualizuj tylko
 # tutaj — `next.config.js` w trybie static export nie obsługuje `redirects()`.
 
+# --- Stary system PHP (wciąż w indeksie Google, np. /index.php?display=2) ---
+# Query stringi w .htaccess czyta się przez RewriteCond %{QUERY_STRING}.
+RewriteCond %{QUERY_STRING} (^|&)display=top_glowna(&|$)
+RewriteRule ^index\.php$ /? [R=301,L]
+RewriteCond %{QUERY_STRING} (^|&)display=1(&|$)
+RewriteRule ^index\.php$ /? [R=301,L]
+RewriteCond %{QUERY_STRING} (^|&)display=2(&|$)
+RewriteRule ^index\.php$ /skup-zegarkow-warszawa? [R=301,L]
+RewriteCond %{QUERY_STRING} (^|&)display=3(&|$)
+RewriteRule ^index\.php$ /uslugi/naprawa-i-serwis? [R=301,L]
+RewriteCond %{QUERY_STRING} (^|&)display=4(&|$)
+RewriteRule ^index\.php$ /komis-zegarkow-warszawa? [R=301,L]
+RewriteCond %{QUERY_STRING} (^|&)display=5(&|$)
+RewriteRule ^index\.php$ /produkty? [R=301,L]
+RewriteCond %{QUERY_STRING} (^|&)display=6(&|$)
+RewriteRule ^index\.php$ /o-nas? [R=301,L]
+RewriteCond %{QUERY_STRING} (^|&)display=7(&|$)
+RewriteRule ^index\.php$ /kontakt? [R=301,L]
+# Wszelkie inne /index.php?display=… → katalog produktów
+RewriteCond %{QUERY_STRING} (^|&)display=
+RewriteRule ^index\.php$ /produkty? [R=301,L]
+# Goły /index.php → strona główna
+RewriteRule ^index\.php$ /? [R=301,L]
+
 # --- Strony statyczne (stara struktura warszawskiczas.pl) ---
 RewriteRule ^skup-zegarkow/?$              /skup-zegarkow-warszawa        [R=301,L]
 RewriteRule ^skup/?$                       /skup-zegarkow-warszawa        [R=301,L]
