@@ -43,6 +43,11 @@ export type LeadPayload = z.infer<typeof LeadPayloadSchema>
 export const LeadResponseSchema = z.object({
   ok: z.boolean(),
   error: z.string().optional(),
+  delivery: z.object({
+    lead: z.boolean().optional(),
+    email: z.boolean().optional(),
+    whatsapp: z.boolean().optional(),
+  }).optional(),
 })
 
 export type LeadResponse = z.infer<typeof LeadResponseSchema>

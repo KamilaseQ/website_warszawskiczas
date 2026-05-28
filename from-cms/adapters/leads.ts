@@ -20,6 +20,12 @@ export async function submitLead(payload: LeadPayload): Promise<LeadResponse> {
   }
 
   if (!PUBLIC_LEAD_URL) {
+    if (!isLocalMockAllowed()) {
+      return {
+        ok: false,
+        error: 'Formularz nie ma skonfigurowanego endpointu CMS. Zadzwoń: +48 604 312 411.',
+      }
+    }
     if (typeof console !== 'undefined') {
       console.info('[from-cms:mock-lead]', parsed.data)
     }
@@ -33,7 +39,7 @@ export async function submitLead(payload: LeadPayload): Promise<LeadResponse> {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(parsed.data),
     })
-    const json: unknown = await res.json().catch(() => ({ ok: res.ok }))
+    const json: unknown = await res.json().catch(() => null)
     const validated = LeadResponseSchema.safeParse(json)
     if (!res.ok || !validated.success || !validated.data.ok) {
       return {
@@ -50,4 +56,11 @@ export async function submitLead(payload: LeadPayload): Promise<LeadResponse> {
       error: 'Chwilowy problem z wysłaniem. Zadzwoń: +48 604 312 411.',
     }
   }
+}
+
+function isLocalMockAllowed(): boolean {
+  if (process.env.NODE_ENV !== 'production') return true
+  if (typeof window === 'undefined') return false
+
+  return ['localhost', '127.0.0.1', '::1'].includes(window.location.hostname)
 }
