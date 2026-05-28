@@ -29,7 +29,9 @@
       "Bash(npm --version)",
       "WebFetch(domain:warszawskiczas.pl)",
       "Bash(node -e ' *)",
-      "Bash(node scripts/clean-next-cache.mjs)"
+      "Bash(node scripts/clean-next-cache.mjs)",
+      "Bash(xargs grep -l \"rolex-submariner\\\\|products\")",
+      "WebFetch(domain:warszawskiczas.com)"
     ]
   }
 }

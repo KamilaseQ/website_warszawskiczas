@@ -7,23 +7,72 @@
 # Zmiany w tym pliku trafiają na produkcję razem z resztą `out/` przez deploy.
 # ============================================================================
 
-# ---------------------- Wymuszenie HTTPS + non-www ------------------------
+# ---------------------- Wymuszenie HTTPS + kanoniczny host warszawskiczas.pl
 RewriteEngine On
 RewriteCond %{HTTPS} off [OR]
-RewriteCond %{HTTP_HOST} ^www\.warszawskiczas\.pl [NC]
+RewriteCond %{HTTP_HOST} !^warszawskiczas\.pl$ [NC]
 RewriteRule ^(.*)$ https://warszawskiczas.pl/$1 [R=301,L]
 
 # ---------------------- 301 redirects (migracje URL) ----------------------
 # Zsynchronizowane z dawnym `next.config.js` `redirects()`. Aktualizuj tylko
 # tutaj — `next.config.js` w trybie static export nie obsługuje `redirects()`.
+
+# --- Strony statyczne (stara struktura warszawskiczas.pl) ---
 RewriteRule ^skup-zegarkow/?$              /skup-zegarkow-warszawa        [R=301,L]
 RewriteRule ^skup/?$                       /skup-zegarkow-warszawa        [R=301,L]
+RewriteRule ^komis-zegarkow/?$             /komis-zegarkow-warszawa       [R=301,L]
 RewriteRule ^komis/?$                      /komis-zegarkow-warszawa       [R=301,L]
+RewriteRule ^serwis-zegarkow/?$            /uslugi/naprawa-i-serwis       [R=301,L]
 RewriteRule ^naprawa-i-serwis/?$           /uslugi/naprawa-i-serwis       [R=301,L]
 RewriteRule ^serwis/?$                     /uslugi/naprawa-i-serwis       [R=301,L]
 RewriteRule ^oferta/?$                     /produkty                      [R=301,L]
+RewriteRule ^kontakt-z-nami/?$             /kontakt                       [R=301,L]
 RewriteRule ^kontakt-lokalizacja/?$        /kontakt                       [R=301,L]
 RewriteRule ^lokalizacja/?$                /kontakt                       [R=301,L]
+RewriteRule ^ukryta-kolekcja/?$            /kolekcja-na-zapytanie         [R=301,L]
+RewriteRule ^informacje-o-butiku/?$        /o-nas                         [R=301,L]
+RewriteRule ^luxury-watches-warsaw/?$      /zegarki-luksusowe-warszawa    [R=301,L]
+
+# --- Stare blogi (brak odpowiednika → katalog) ---
+RewriteRule ^newBlogPost-.*$               /produkty                      [R=301,L]
+
+# --- Śmieci po szablonie Wix (brak odpowiednika) ---
+RewriteRule ^knitted-hat-.*$               /                              [R=301,L]
+RewriteRule ^bucket-hat-.*$                /                              [R=301,L]
+RewriteRule ^futuristic-floating-dome/?$   /                              [R=301,L]
+
+# --- Produkty (stary płaski URL → /produkty/[slug]) ---
+# Dopasowane 1:1 do slugów z from-cms/fixtures/products.json
+RewriteRule ^zenith-el-primero-espada/?$                          /produkty/zenith-el-primero-espada                          [R=301,L]
+RewriteRule ^chopard-chronometer/?$                               /produkty/chopard-chronometer-1-of-100                      [R=301,L]
+RewriteRule ^patek-philippe-perpetual-calender/?$                 /produkty/patek-philippe-perpetual-calendar                 [R=301,L]
+RewriteRule ^omega-seamaster/?$                                   /produkty/omega-seamaster-diver-300-m-chronograph           [R=301,L]
+RewriteRule ^audemars-piguet-code-1159/?$                         /produkty/audemars-piguet-code-11-59                        [R=301,L]
+RewriteRule ^rolex-sky-dweller/?$                                 /produkty/rolex-sky-dweller                                 [R=301,L]
+RewriteRule ^patek-philippe-calatrava-annual-calendar/?$          /produkty/patek-philippe-calatrava-annual-calendar          [R=301,L]
+RewriteRule ^rolex-submariner/?$                                  /produkty/rolex-submariner                                  [R=301,L]
+RewriteRule ^audemars-piguet-royal-oak/?$                         /produkty/audemars-piguet-royal-oak-automatic               [R=301,L]
+RewriteRule ^girard-perregaux-classic/?$                          /produkty/girard-perregaux-classic                          [R=301,L]
+RewriteRule ^bvlgari-bvlgari/?$                                   /produkty/bvlgari-bvlgari-103711                            [R=301,L]
+RewriteRule ^bvlgari-bvlgari1/?$                                  /produkty/bvlgari-bvlgari-bb23gl                            [R=301,L]
+RewriteRule ^audemars-piguet-royal-oak-red-dial/?$                /produkty/audemars-piguet-royal-oak-red-dial                [R=301,L]
+RewriteRule ^rolex-daytona/?$                                     /produkty/rolex-daytona-dial                                [R=301,L]
+RewriteRule ^cartier-panthere/?$                                  /produkty/cartier-panthere                                  [R=301,L]
+RewriteRule ^rolex-yacht-master-40-black-dial/?$                  /produkty/rolex-yacht-master-40-black-dial                  [R=301,L]
+RewriteRule ^rolex-day-date-rose-gold/?$                          /produkty/rolex-day-date-tridor                             [R=301,L]
+RewriteRule ^rolex-day-date-silver/?$                             /produkty/rolex-day-date-platinum                           [R=301,L]
+RewriteRule ^rolex-datejust-iced-out-custom-arabic-dial/?$        /produkty/rolex-datejust-iced-out-custom-arabic-dial        [R=301,L]
+RewriteRule ^cartier-santos-iced-out/?$                           /produkty/cartier-santos-wersja-iced-out                    [R=301,L]
+RewriteRule ^iwc-chronograph-automatic/?$                         /produkty/iwc-chronograph-portugieser                       [R=301,L]
+RewriteRule ^iwc-automatic/?$                                     /produkty/iwc-portugieser-7-days                            [R=301,L]
+RewriteRule ^omega-constellation/?$                               /produkty/omega-constellation                               [R=301,L]
+RewriteRule ^omega-speedmaster-moonwatch/?$                       /produkty/omega-speedmaster-moonwatch-professional          [R=301,L]
+RewriteRule ^audemars-piguet-royal-oak-blue-dial-boutique-edition/?$  /produkty/audemars-piguet-royal-oak-blue-dial-boutique-edition  [R=301,L]
+RewriteRule ^patek-philippe-twenty4/?$                            /produkty/patek-philippe-twenty-4                           [R=301,L]
+RewriteRule ^rolex-wimbledon/?$                                   /produkty/rolex-datejust-wimbledon                          [R=301,L]
+RewriteRule ^iwc-perpetual-calender/?$                            /produkty/iwc-perpetual-calendar-1-of-250                   [R=301,L]
+RewriteRule ^patek-philippe-annual-calendar-chronograph-5960r-001/?$  /produkty/patek-philippe-annual-calendar-chronograph     [R=301,L]
+RewriteRule ^vacheron-constantin-automatic/?$                     /produkty/vacheron-constantin-overseas                      [R=301,L]
 
 # ---------------------- Clean URLs → .html ---------------------------------
 # Next static export wypluwa `out/produkty.html`, `out/butik.html`, itd.
