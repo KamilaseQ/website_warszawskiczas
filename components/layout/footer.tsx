@@ -180,8 +180,8 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="h-4 w-4 flex-shrink-0 text-accent-gold" />
-                <a href="tel:+48604501000" className="text-sm text-white/60 transition-colors hover:text-accent-gold">
-                  +48 604 50 1000
+                <a href="tel:+48604312411" className="text-sm text-white/60 transition-colors hover:text-accent-gold">
+                  +48 604 312 411
                 </a>
               </li>
               <li className="flex items-center gap-3">

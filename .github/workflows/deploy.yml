@@ -48,6 +48,14 @@ jobs:
           NEXT_PUBLIC_CDN_BASE_URL: ${{ secrets.NEXT_PUBLIC_CDN_BASE_URL || 'https://cdn.camalio.pl' }}
           NEXT_PUBLIC_PRIVATE_COLLECTION_CODE: ${{ secrets.NEXT_PUBLIC_PRIVATE_COLLECTION_CODE }}
 
+      - name: Verify static redirect and header artifact
+        run: |
+          test -f out/.htaccess
+          grep -q "kontakt-z-nami" out/.htaccess
+          grep -q "ukryta-kolekcja" out/.htaccess
+          grep -q "skup-zegarkow" out/.htaccess
+          grep -q "Strict-Transport-Security" out/.htaccess
+
       - name: Deploy przez FTP na Hostinger
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:

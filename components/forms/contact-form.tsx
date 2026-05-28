@@ -20,7 +20,7 @@ const copy = {
     thanksTitle: 'Dziękujemy za wiadomość',
     thanksText: 'Odpowiadamy w ciągu 24 godzin w dni robocze.',
     urgent: 'W sprawach pilnych dzwoń na',
-    errorFallback: 'Nie udało się wysłać wiadomości. Spróbuj ponownie lub zadzwoń: +48 604 50 1000.',
+    errorFallback: 'Nie udało się wysłać wiadomości. Spróbuj ponownie lub zadzwoń: +48 604 312 411.',
     connectionError: 'Brak połączenia. Sprawdź internet i spróbuj ponownie.',
     honeypot: 'Nie wypełniaj tego pola',
     name: 'Imię i nazwisko *',
@@ -46,7 +46,7 @@ const copy = {
     thanksTitle: 'Thank you for your message',
     thanksText: 'We usually respond within 24 hours on business days.',
     urgent: 'For urgent matters call',
-    errorFallback: 'We could not send the message. Please try again or call: +48 604 50 1000.',
+    errorFallback: 'We could not send the message. Please try again or call: +48 604 312 411.',
     connectionError: 'No connection. Check your internet connection and try again.',
     honeypot: 'Do not fill in this field',
     name: 'Full name *',
@@ -71,7 +71,7 @@ const copy = {
     thanksTitle: 'Дякуємо за повідомлення',
     thanksText: 'Зазвичай ми відповідаємо протягом 24 годин у робочі дні.',
     urgent: 'У термінових питаннях телефонуйте',
-    errorFallback: 'Не вдалося надіслати повідомлення. Спробуйте ще раз або зателефонуйте: +48 604 50 1000.',
+    errorFallback: 'Не вдалося надіслати повідомлення. Спробуйте ще раз або зателефонуйте: +48 604 312 411.',
     connectionError: 'Немає з’єднання. Перевірте інтернет і спробуйте ще раз.',
     honeypot: 'Не заповнюйте це поле',
     name: 'Ім’я та прізвище *',
@@ -163,8 +163,8 @@ export function ContactForm({ variant = 'light', locale = 'pl' }: ContactFormPro
           {t.thanksText}
           <br />
           {t.urgent}{' '}
-          <a href="tel:+48604501000" className="whitespace-nowrap text-accent-gold">
-            +48 604 50 1000
+          <a href="tel:+48604312411" className="whitespace-nowrap text-accent-gold">
+            +48 604 312 411
           </a>
           .
         </p>
@@ -292,7 +292,7 @@ export function ContactForm({ variant = 'light', locale = 'pl' }: ContactFormPro
         {t.responseTime}
         <br />
         {t.urgentShort}{' '}
-        <a href="tel:+48604501000" className="whitespace-nowrap text-accent-gold">+48 604 50 1000</a>
+        <a href="tel:+48604312411" className="whitespace-nowrap text-accent-gold">+48 604 312 411</a>
       </p>
     </form>
   )

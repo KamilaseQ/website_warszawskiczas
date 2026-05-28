@@ -633,7 +633,7 @@ function simplePageCopy(route: string, locale: Exclude<Locale, 'pl'>): SimplePag
       h1: en ? 'Contact the boutique' : 'Зв’яжіться з бутіком',
       intro: en ? 'Write, call or visit us at Mokotowska 71. We respond to watch enquiries, valuations and sourcing requests.' : 'Напишіть, зателефонуйте або відвідайте нас на Mokotowska 71. Ми відповідаємо щодо годинників, оцінки та пошуку.',
       cta: en ? 'Send a message' : 'Надіслати повідомлення',
-      bullets: en ? ['Phone: +48 604 50 1000', 'Email: biuro@warszawskiczas.pl', 'Address: ul. Mokotowska 71, 00-530 Warsaw'] : ['Телефон: +48 604 50 1000', 'Email: biuro@warszawskiczas.pl', 'Адреса: ul. Mokotowska 71, 00-530 Варшава'],
+      bullets: en ? ['Phone: +48 604 312 411', 'Email: biuro@warszawskiczas.pl', 'Address: ul. Mokotowska 71, 00-530 Warsaw'] : ['Телефон: +48 604 312 411', 'Email: biuro@warszawskiczas.pl', 'Адреса: ul. Mokotowska 71, 00-530 Варшава'],
     },
     '/kontakt/dziekujemy': {
       title: en ? 'Thank you - Warszawski Czas' : 'Дякуємо - Warszawski Czas',
@@ -781,7 +781,7 @@ function SimpleLocalizedPage({
         <Section spacing="lg" variant="muted">
           <Container>
             <div className="grid gap-8 lg:grid-cols-3">
-              {['+48 604 50 1000', 'biuro@warszawskiczas.pl', 'ul. Mokotowska 71, 00-530 Warszawa'].map((item) => (
+              {['+48 604 312 411', 'biuro@warszawskiczas.pl', 'ul. Mokotowska 71, 00-530 Warszawa'].map((item) => (
                 <div key={item} className="border-l-2 border-accent-gold/50 pl-6">
                   <p className="font-serif text-xl text-foreground">{item}</p>
                 </div>

@@ -140,7 +140,7 @@ export default function RootLayout({
               contactPoint: [
                 {
                   '@type': 'ContactPoint',
-                  telephone: '+48604501000',
+                  telephone: '+48604312411',
                   contactType: 'customer service',
                   areaServed: 'PL',
                   availableLanguage: ['Polish', 'English', 'Ukrainian'],
@@ -162,7 +162,7 @@ export default function RootLayout({
               description:
                 'Butik zegarków premium w sercu Warszawy. Ekskluzywna kolekcja zegarków, profesjonalny serwis zegarmistrzowski, skup i komis.',
               url: 'https://warszawskiczas.pl',
-              telephone: '+48604501000',
+              telephone: '+48604312411',
               email: 'biuro@warszawskiczas.pl',
               image: 'https://warszawskiczas.pl/opengraph-image.jpg',
               logo: 'https://warszawskiczas.pl/icon.png',

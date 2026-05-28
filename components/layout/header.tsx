@@ -56,14 +56,14 @@ export function Header() {
           <div className="hidden items-center gap-5 lg:flex">
             <LanguageSwitcher isTransparent={!isSolid} />
             <a
-              href="tel:+48604501000"
+              href="tel:+48604312411"
               className={cn(
                 'group hidden items-center gap-2 text-[11px] font-normal uppercase tracking-[0.18em] transition-colors duration-500 ease-in-out xl:flex',
                 isSolid ? 'text-muted-foreground hover:text-accent-gold' : 'text-white/70 hover:text-white',
               )}
             >
               <Phone className="h-3.5 w-3.5 text-accent-gold transition-colors duration-500 ease-in-out" />
-              +48 604 50 1000
+              +48 604 312 411
             </a>
             <ContactLink
               source="nav-header"

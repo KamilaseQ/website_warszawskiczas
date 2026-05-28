@@ -24,7 +24,7 @@ const copy = {
     defaultSuccess: 'Dziękujemy za zapytanie. Skontaktujemy się wkrótce.',
     thanksTitle: 'Dziękujemy za wiadomość',
     urgent: 'W sprawach pilnych dzwoń:',
-    errorFallback: 'Nie udało się wysłać wiadomości. Spróbuj ponownie lub zadzwoń: +48 604 50 1000.',
+    errorFallback: 'Nie udało się wysłać wiadomości. Spróbuj ponownie lub zadzwoń: +48 604 312 411.',
     connectionError: 'Brak połączenia. Sprawdź internet i spróbuj ponownie.',
     honeypot: 'Nie wypełniaj',
     name: 'Imię i nazwisko',
@@ -44,7 +44,7 @@ const copy = {
     defaultSuccess: 'Thank you for your enquiry. We will contact you shortly.',
     thanksTitle: 'Thank you for your message',
     urgent: 'For urgent matters call:',
-    errorFallback: 'We could not send the message. Please try again or call: +48 604 50 1000.',
+    errorFallback: 'We could not send the message. Please try again or call: +48 604 312 411.',
     connectionError: 'No connection. Check your internet connection and try again.',
     honeypot: 'Do not fill in',
     name: 'Full name',
@@ -64,7 +64,7 @@ const copy = {
     defaultSuccess: 'Дякуємо за запит. Ми скоро зв’яжемося з вами.',
     thanksTitle: 'Дякуємо за повідомлення',
     urgent: 'У термінових питаннях телефонуйте:',
-    errorFallback: 'Не вдалося надіслати повідомлення. Спробуйте ще раз або зателефонуйте: +48 604 50 1000.',
+    errorFallback: 'Не вдалося надіслати повідомлення. Спробуйте ще раз або зателефонуйте: +48 604 312 411.',
     connectionError: 'Немає з’єднання. Перевірте інтернет і спробуйте ще раз.',
     honeypot: 'Не заповнюйте',
     name: 'Ім’я та прізвище',
@@ -154,8 +154,8 @@ export function InquiryForm({
           {successMessage ?? t.defaultSuccess}
           <br />
           {t.urgent}{' '}
-          <a href="tel:+48604501000" className="whitespace-nowrap text-accent-gold">
-            +48 604 50 1000
+          <a href="tel:+48604312411" className="whitespace-nowrap text-accent-gold">
+            +48 604 312 411
           </a>
           .
         </p>
@@ -178,7 +178,7 @@ export function InquiryForm({
         <FormField label={t.name} name="name" type="text" placeholder={t.namePlaceholder} required />
         <FormField label={t.email} name="email" type="email" placeholder={t.emailPlaceholder} required />
       </div>
-      <FormField label={t.phone} name="phone" type="tel" placeholder="+48 604 50 1000" required />
+      <FormField label={t.phone} name="phone" type="tel" placeholder="+48 604 312 411" required />
       <FormField
         as="textarea"
         label={t.details}

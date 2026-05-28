@@ -59,7 +59,7 @@ export default function Page() {
             paragraphs: [
               'Butik Warszawski Czas znajduje się przy ulicy Mokotowskiej 71 w Śródmieściu — na jednej z najbardziej rozpoznawalnych ulic luksusowej Warszawy, w sąsiedztwie ulic Pięknej, Wilczej i placu Trzech Krzyży. Najbliższa stacja metra: Politechnika (linia M1), kilka minut spacerem. Parking — strefa płatnego parkowania na Mokotowskiej oraz parkingi podziemne w okolicy placu Trzech Krzyży.',
               'Pracujemy w modelu butikowym z osobnym pomieszczeniem konsultacyjnym. Wizyty rekomendujemy umawiać wcześniej — pozwala to nam przygotować egzemplarze odpowiadające Twojemu briefowi i zarezerwować czas wyłącznie dla jednej rozmowy. Konsultacje trwają zwykle 30–90 minut. Możliwe są również wizyty poza standardowymi godzinami otwarcia po wcześniejszym umówieniu.',
-              'Kontakt: telefon +48 604 501 000, e-mail biuro@warszawskiczas.pl. Jesteśmy obecni na Facebooku, Instagramie i TikToku — tam publikujemy nowe egzemplarze trafiające do butiku oraz krótkie materiały edukacyjne o markach i modelach.',
+              'Kontakt: telefon +48 604 312 411, e-mail biuro@warszawskiczas.pl. Jesteśmy obecni na Facebooku, Instagramie i TikToku — tam publikujemy nowe egzemplarze trafiające do butiku oraz krótkie materiały edukacyjne o markach i modelach.',
             ],
           },
           {
@@ -76,7 +76,7 @@ export default function Page() {
           {
             heading: 'Jak pracujemy — proces od pierwszej rozmowy do zakupu',
             paragraphs: [
-              'Pierwszy kontakt — telefonicznie (+48 604 501 000), mailowo (biuro@warszawskiczas.pl) lub przez formularz kontaktowy na stronie. Krótko opisujesz, czego szukasz albo co masz — odpowiadamy zwykle w tym samym dniu roboczym z pierwszym krokiem.',
+              'Pierwszy kontakt — telefonicznie (+48 604 312 411), mailowo (biuro@warszawskiczas.pl) lub przez formularz kontaktowy na stronie. Krótko opisujesz, czego szukasz albo co masz — odpowiadamy zwykle w tym samym dniu roboczym z pierwszym krokiem.',
               'Wizyta w butiku — po umówieniu spotkania przygotowujemy egzemplarze odpowiadające Twojemu briefowi. Konsultacja w prywatnej atmosferze, bez presji decyzji od razu. Możesz wrócić do domu z notatkami i przemyśleć decyzję. Pełną dokumentację (zdjęcia, opis stanu, dane techniczne) wysyłamy mailowo po wizycie.',
               'Finalizacja — zakup w butiku albo zdalnie z ubezpieczonym kurierem, z fakturą VAT i kompletem dokumentacji. Wsparcie posprzedażowe (pytania techniczne, serwis, wymiana paska / bransolety, wycena pod ubezpieczenie) — bezterminowo.',
             ],
@@ -103,7 +103,7 @@ export default function Page() {
           'Pełen zakres usług: sprzedaż, sprowadzanie, skup, komis, serwis, biżuteria',
           'Główne marki: Rolex, Patek Philippe, Audemars Piguet, Omega, Cartier, Breitling, IWC, Chopard',
           'Konsultacje po polsku, angielsku i ukraińsku',
-          'Kontakt: +48 604 501 000, biuro@warszawskiczas.pl',
+          'Kontakt: +48 604 312 411, biuro@warszawskiczas.pl',
           'Obecność w sieci: Facebook, Instagram, TikTok @warszawskiczas',
         ]}
         stepsHeading="Jak umówić wizytę"
@@ -119,7 +119,7 @@ export default function Page() {
           { q: 'Czy można obejrzeć zegarki bez umówienia wizyty?', a: 'Możliwe, ale rekomendujemy wcześniejsze umówienie wizyty — pozwala to nam przygotować egzemplarze odpowiadające Twojemu briefowi i zarezerwować czas wyłącznie dla jednej rozmowy. Wizyty „z marszu" są możliwe w godzinach otwarcia, ale część egzemplarzy może być w danym momencie poza stałą ekspozycją.' },
           { q: 'Czy mogę sprzedać zegarek bez kupowania innego?', a: 'Tak. Skup zegarków jest niezależną usługą — wstępna wycena po zdjęciach w 15 minut, finalizacja tego samego dnia po wizycie w butiku, gotówką lub przelewem. Alternatywnie możesz przekazać zegarek do komisu — uzyskasz wyższą cenę, ale czas dotarcia do kupca jest dłuższy.' },
           { q: 'Czy obsługujecie klientów spoza Polski?', a: 'Tak. Konsultacje prowadzimy po polsku, angielsku i ukraińsku. Wysyłki realizujemy z ubezpieczonym kurierem na terenie UE oraz do Wielkiej Brytanii, Szwajcarii, Norwegii i Liechtensteinu.' },
-          { q: 'Jak skontaktować się z butikiem?', a: 'Telefon: +48 604 501 000. E-mail: biuro@warszawskiczas.pl. Formularz kontaktowy: na stronie /kontakt. Media społecznościowe: Facebook, Instagram i TikTok pod nazwą @warszawskiczas.' },
+          { q: 'Jak skontaktować się z butikiem?', a: 'Telefon: +48 604 312 411. E-mail: biuro@warszawskiczas.pl. Formularz kontaktowy: na stronie /kontakt. Media społecznościowe: Facebook, Instagram i TikTok pod nazwą @warszawskiczas.' },
         ]}
         closingHeading="Zapraszamy do butiku"
         closingText="Mokotowska 71, Warszawa — wizyty po wcześniejszym umówieniu. Konsultacje po polsku, angielsku i ukraińsku."

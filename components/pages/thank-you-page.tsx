@@ -65,9 +65,9 @@ export function ThankYouPage({ locale = 'pl' }: { locale?: Locale } = {}) {
 
         <FadeIn delay={0.3}>
           <div className="mt-12 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-            <a href="tel:+48604501000" className="inline-flex items-center gap-2 font-sans text-sm font-bold uppercase tracking-[0.3em] text-foreground/80 transition-colors hover:text-accent-gold">
+            <a href="tel:+48604312411" className="inline-flex items-center gap-2 font-sans text-sm font-bold uppercase tracking-[0.3em] text-foreground/80 transition-colors hover:text-accent-gold">
               <Phone className="h-4 w-4" />
-              +48 604 50 1000
+              +48 604 312 411
             </a>
             <span className="hidden text-muted-foreground/40 sm:inline">·</span>
             <a href="mailto:biuro@warszawskiczas.pl" className="inline-flex items-center gap-2 font-sans text-sm font-bold uppercase tracking-[0.3em] text-foreground/80 transition-colors hover:text-accent-gold">

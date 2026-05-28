@@ -34,7 +34,7 @@ const copy = {
       'Specjalista skontaktuje się z Tobą w ciągu 24 godzin na podany numer lub e-mail. Kod dostępu zostanie przekazany po krótkiej rozmowie.',
     since: 'Warszawski Czas  ·  od 2019',
     fallbackError:
-      'Nie udało się wysłać wiadomości. Spróbuj ponownie lub zadzwoń: +48 604 50 1000.',
+      'Nie udało się wysłać wiadomości. Spróbuj ponownie lub zadzwoń: +48 604 312 411.',
     networkError: 'Brak połączenia. Sprawdź internet i spróbuj ponownie.',
     aboutFallback: 'Prośba o dostęp do kolekcji prywatnej.',
     honeyLabel: 'Nie wypełniaj',
@@ -65,7 +65,7 @@ const copy = {
       'Our specialist will contact you within 24 hours via the number or email provided. The access code is passed on after a short conversation.',
     since: 'Warszawski Czas  ·  since 2019',
     fallbackError:
-      'Could not send the message. Please try again or call: +48 604 50 1000.',
+      'Could not send the message. Please try again or call: +48 604 312 411.',
     networkError: 'No connection. Check your network and try again.',
     aboutFallback: 'Private Collection access request.',
     honeyLabel: 'Do not fill in',
@@ -96,7 +96,7 @@ const copy = {
       'Спеціаліст зв’яжеться з вами протягом 24 годин за вказаним номером або e-mail. Код доступу передаємо після короткої розмови.',
     since: 'Warszawski Czas  ·  з 2019',
     fallbackError:
-      'Не вдалося надіслати повідомлення. Спробуйте ще раз або зателефонуйте: +48 604 50 1000.',
+      'Не вдалося надіслати повідомлення. Спробуйте ще раз або зателефонуйте: +48 604 312 411.',
     networkError: 'Немає з’єднання. Перевірте інтернет і спробуйте знову.',
     aboutFallback: 'Запит доступу до приватної колекції.',
     honeyLabel: 'Не заповнюйте',

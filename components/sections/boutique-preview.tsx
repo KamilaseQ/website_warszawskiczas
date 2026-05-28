@@ -106,10 +106,10 @@ export function BoutiquePreview() {
                   {copy.phone}
                 </p>
                 <a
-                  href="tel:+48604501000"
+                  href="tel:+48604312411"
                   className="mt-3 block font-serif text-2xl font-medium text-accent-gold transition-colors duration-300 hover:text-accent-gold/80"
                 >
-                  +48 604 50 1000
+                  +48 604 312 411
                 </a>
               </div>
 

@@ -425,7 +425,7 @@ export function serviceJsonLd(opts: {
       '@id': 'https://warszawskiczas.pl/#localbusiness',
       name: 'Warszawski Czas',
       url: 'https://warszawskiczas.pl',
-      telephone: '+48604501000',
+      telephone: '+48604312411',
       address: {
         '@type': 'PostalAddress',
         streetAddress: 'ul. Mokotowska 71',

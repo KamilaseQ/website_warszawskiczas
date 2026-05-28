@@ -40,14 +40,14 @@ export async function submitLead(payload: LeadPayload): Promise<LeadResponse> {
         ok: false,
         error:
           (validated.success ? validated.data.error : undefined) ??
-          'Chwilowy problem z wysłaniem. Zadzwoń: +48 604 50 1000.',
+          'Chwilowy problem z wysłaniem. Zadzwoń: +48 604 312 411.',
       }
     }
     return validated.data
   } catch {
     return {
       ok: false,
-      error: 'Chwilowy problem z wysłaniem. Zadzwoń: +48 604 50 1000.',
+      error: 'Chwilowy problem z wysłaniem. Zadzwoń: +48 604 312 411.',
     }
   }
 }

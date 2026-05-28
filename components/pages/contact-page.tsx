@@ -238,11 +238,11 @@ export function ContactPage({ locale = 'pl' }: { locale?: Locale } = {}) {
                     {t.direct}
                   </p>
 
-                  <a href="tel:+48604501000" className="group mt-4 flex items-center justify-between gap-4 border-b border-border py-5 transition-colors duration-300 hover:border-accent-gold">
+                  <a href="tel:+48604312411" className="group mt-4 flex items-center justify-between gap-4 border-b border-border py-5 transition-colors duration-300 hover:border-accent-gold">
                     <div className="flex items-center gap-4">
                       <Phone className="h-4 w-4 text-accent-gold" strokeWidth={1.5} />
                       <span className="font-serif text-xl font-medium text-foreground transition-colors duration-300 group-hover:text-accent-gold">
-                        +48 604 50 1000
+                        +48 604 312 411
                       </span>
                     </div>
                     <ArrowUpRight className="h-4 w-4 text-muted-foreground transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent-gold" />
@@ -258,7 +258,7 @@ export function ContactPage({ locale = 'pl' }: { locale?: Locale } = {}) {
                     <ArrowUpRight className="h-4 w-4 text-muted-foreground transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent-gold" />
                   </a>
 
-                  <a href="https://wa.me/48604501000" target="_blank" rel="noopener noreferrer" className="group mt-0 flex items-center justify-between gap-4 border-b border-border py-5 transition-colors duration-300 hover:border-accent-gold">
+                  <a href="https://wa.me/48604312411" target="_blank" rel="noopener noreferrer" className="group mt-0 flex items-center justify-between gap-4 border-b border-border py-5 transition-colors duration-300 hover:border-accent-gold">
                     <div className="flex items-center gap-4">
                       <svg className="h-4 w-4 text-accent-gold" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413A11.815 11.815 0 0012.05 0Z" />

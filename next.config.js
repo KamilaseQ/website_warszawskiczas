@@ -93,6 +93,17 @@ const serverRedirects = [
   ...legacyRedirects,
 ]
 
+const securityHeaders = [
+  { key: 'Strict-Transport-Security', value: 'max-age=31536000' },
+  { key: 'X-Content-Type-Options', value: 'nosniff' },
+  { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
+  { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+  { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=(), interest-cohort=()' },
+  { key: 'Content-Security-Policy', value: 'upgrade-insecure-requests' },
+  { key: 'X-DNS-Prefetch-Control', value: 'on' },
+  { key: 'X-Permitted-Cross-Domain-Policies', value: 'none' },
+]
+
 /**
  * Static export — strona wypluwa `out/` z czystym HTML/CSS/JS, deployowanym
  * na Hostinger Business przez FTP/GitHub Action.
@@ -108,8 +119,8 @@ const serverRedirects = [
  *    (patrz `from-cms/adapters/leads.ts`)
  *  - brak middleware — i18n przez per-page `metadata.alternates`
  *  - obrazy serwowane są z CDN R2 (`cdn.warszawskiczas.pl`)
- *  - `headers()` w `public/.htaccess` (Apache na Hostingerze)
- *  - redirecty URL-i legacy sa zdublowane tutaj dla runtime'u serwerowego Next
+ *  - headers i redirecty URL-i legacy sa zdublowane tutaj dla runtime'u serwerowego Next
+ *    oraz w `public/.htaccess` dla statycznego deployu Apache.
  */
 const isProductionBuild = process.env.NODE_ENV === 'production'
 
@@ -132,6 +143,14 @@ const nextConfig = {
   },
   async redirects() {
     return serverRedirects
+  },
+  async headers() {
+    return [
+      {
+        source: '/:path*',
+        headers: securityHeaders,
+      },
+    ]
   },
 }
 
