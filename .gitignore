@@ -5,6 +5,7 @@ out
 .env
 .env.local
 .env.*.local
+public/api/lead-mail-relay.config.php
 
 *.log
 *.tsbuildinfo
