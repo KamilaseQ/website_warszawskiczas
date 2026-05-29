@@ -102,6 +102,19 @@ export function LoadingScreen() {
 
   return (
     <>
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.setTimeout(function () {
+              var loader = document.querySelector('.wc-loading-screen');
+              if (!loader || window.__wcLoadingFinished) return;
+              loader.style.opacity = '0';
+              loader.style.visibility = 'hidden';
+              loader.style.pointerEvents = 'none';
+            }, ${HARD_TIMEOUT_MS + 1000});
+          `,
+        }}
+      />
       <noscript>
         <style>{`
           .wc-loading-screen {
