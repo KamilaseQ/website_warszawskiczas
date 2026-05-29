@@ -1,18 +1,18 @@
 # DNS / WWW / SSL checklist
 
-Stan sprawdzony: `warszawskiczas.pl` i `www.warszawskiczas.pl` wskazuja na rozne serwery.
+Stan sprawdzony: 2026-05-29.
 
-- `warszawskiczas.pl` -> `45.84.206.3`
-- `www.warszawskiczas.pl` -> `34.120.137.41`
-- `https://www.warszawskiczas.pl` ma blad certyfikatu dla hosta `www`.
-- `http://www.warszawskiczas.pl` zwraca `404` z innego serwera, zanim request trafi do aplikacji.
+- `www.warszawskiczas.pl` jest już `CNAME` do `warszawskiczas.pl`.
+- `warszawskiczas.pl` rozwiązuje się obecnie na `77.37.55.160` i `91.108.123.40` oraz dwa adresy IPv6 Hostingera.
+- `https://www.warszawskiczas.pl` nadal ma błąd certyfikatu dla hosta `www` (`SEC_E_WRONG_PRINCIPAL` / `NET::ERR_CERT_COMMON_NAME_INVALID`).
+- `https://warszawskiczas.pl/oferta` działa poprawnie i robi `308` do `/produkty`.
 
-W Hostingerze trzeba ustawic `www` jako alias tej samej strony co apex `warszawskiczas.pl`, a potem odnowic/wystawic SSL obejmujacy oba hosty:
+W Hostingerze trzeba odnowić/wystawić SSL obejmujący oba hosty:
 
 - `warszawskiczas.pl`
 - `www.warszawskiczas.pl`
 
-Po tej zmianie kodowe redirecty w `next.config.js` i Apache redirecty w `public/.htaccess` beda mogly przekierowac `www` na `https://warszawskiczas.pl`.
+Po tej zmianie kodowe redirecty w `next.config.js` będą mogły bezpiecznie przekierować `www` na `https://warszawskiczas.pl`. Bez poprawnego certyfikatu przeglądarka blokuje wejście zanim użytkownik zobaczy redirect.
 
 Szybka weryfikacja po zmianie DNS/SSL:
 

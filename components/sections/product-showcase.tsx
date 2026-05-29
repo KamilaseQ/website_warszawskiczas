@@ -100,7 +100,7 @@ export function ProductShowcase({ featured, others }: ProductShowcaseProps) {
             </div>
             <Link
               href={localizePath('/produkty', locale)}
-              prefetch
+              prefetch={false}
               className="group inline-flex items-center gap-2 text-[10px] font-sans font-bold uppercase tracking-[0.35em] text-muted-foreground transition-colors duration-300 hover:text-foreground"
             >
               {copy.full}
@@ -133,7 +133,6 @@ export function ProductShowcase({ featured, others }: ProductShowcaseProps) {
                     src={featured.images[0]}
                     alt={`${featured.brand} ${featured.name}`}
                     fill
-                    priority
                     sizes="(min-width: 1024px) 58vw, 100vw"
                     className="absolute inset-0 h-full w-full object-cover"
                   />
@@ -195,7 +194,7 @@ export function ProductShowcase({ featured, others }: ProductShowcaseProps) {
               <Magnetic className="mt-10 block w-full" strength={8}>
                 <ContactLink
                   source="product-showcase"
-                  prefetch
+                  prefetch={false}
                   className="btn-sharp w-full text-center"
                   style={{ display: 'block' }}
                 >

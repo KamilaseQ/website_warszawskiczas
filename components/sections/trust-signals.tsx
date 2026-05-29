@@ -161,6 +161,7 @@ function LocalizedTrustSignals({ locale }: { locale: Exclude<Locale, 'pl'> }) {
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground text-pretty">{copy.verifyText}</p>
               <Link
                 href={localizePath('/uslugi', locale)}
+                prefetch={false}
                 className="mt-6 inline-flex items-center gap-2 font-sans text-[10px] font-bold uppercase tracking-[0.3em] text-foreground/70 transition-colors duration-300 group-hover:text-accent-gold"
               >
                 {copy.verifyLink}
@@ -211,7 +212,7 @@ function LocalizedTrustSignals({ locale }: { locale: Exclude<Locale, 'pl'> }) {
                 <div>
                   <h3 className="font-serif text-2xl font-medium text-foreground">{copy.expert}</h3>
                   <p className="mt-4 text-sm leading-relaxed text-muted-foreground text-pretty">{copy.expertText}</p>
-                  <ContactLink source="trust-signals" prefetch className="mt-6 inline-flex items-center gap-2 font-sans text-[10px] font-bold uppercase tracking-[0.3em] text-foreground/80 transition-colors duration-300 hover:text-accent-gold">
+                  <ContactLink source="trust-signals" prefetch={false} className="mt-6 inline-flex items-center gap-2 font-sans text-[10px] font-bold uppercase tracking-[0.3em] text-foreground/80 transition-colors duration-300 hover:text-accent-gold">
                     {copy.consult}
                     <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
                   </ContactLink>
@@ -387,6 +388,7 @@ export function TrustSignals() {
               </p>
               <Link
                 href="/uslugi"
+                prefetch={false}
                 className="mt-6 inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.3em] text-foreground/70 transition-colors duration-300 group-hover:text-accent-gold"
               >
                 Jak weryfikujemy
@@ -473,7 +475,7 @@ export function TrustSignals() {
                   </p>
                   <ContactLink
                     source="trust-signals"
-                    prefetch
+                    prefetch={false}
                     className="mt-6 inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.3em] text-foreground/80 transition-colors duration-300 hover:text-accent-gold"
                   >
                     Umów konsultację

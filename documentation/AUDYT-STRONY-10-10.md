@@ -27,20 +27,26 @@ Legenda:
 
 ## P1 — porządki kodu i dług techniczny
 
-- [x] **Usunąć `nodemailer` z `package.json`**. Reszta po wyrzuconym `/api/contact`. `@types/nodemailer` z devDeps też.
+- [x] **`nodemailer` tylko po stronie serwera**. `/api/contact` nadal istnieje i używa mailera SMTP, więc dependency zostaje; nie wchodzi do client bundle i nie wpływa na LCP/mobile JS.
 - [x] **`BreadcrumbList` na landingach**. Sprawdzić każdy landing w `app/(public)/*` i upewnić się, że emituje `landingBreadcrumbJsonLd`. Część ma, część nie.
 - [x] **`WebSite` + `Organization` JSON-LD** w root layout. `LocalBusiness` już jest; dorzucić `Organization` (logo, sameAs, kontakt) i `WebSite` (z `SearchAction` jeśli kiedyś będzie wewnętrzny search).
 - [x] **Lazy-load Google Maps na `/kontakt`**. Dziś iframe ładuje się od razu. Użyć IntersectionObserver + injection iframe.
-- [ ] **`lastModified` w sitemap z `updatedAt` produktu/strony**. Dziś stała data. Dla produktów: użyj `product.updatedAt` (jeśli jest), dla landingów: data ostatniego commit-a pliku lub stała + revalidate strategia (przy SSG raz na build).
+- [x] **`lastModified` w sitemap z `updatedAt` produktu/strony**. Produkty używają `updatedAt` / `publishedAt` z CMS, a fallback treści statycznych jest ustawiony na ostatnią rundę optymalizacji.
+- [x] **Tymczasowa optymalizacja obrazów bez CDN**. Dopóki R2/CDN nie jest wdrożony, `next/image` działa przez serwer Next + `sharp`, generuje WebP i responsywne rozmiary z długim TTL.
+- [x] **Długie cache publicznych mediów**. `/products/*`, hero poster, MP4, logo i główne statyczne zdjęcia mają `Cache-Control: public, max-age=31536000, immutable`.
+- [x] **Ograniczenie route prefetch na mobile**. Linki z hero/sekcji strony głównej nie dociągają już `/produkty?_rsc` i chunków katalogu przed interakcją użytkownika.
+- [x] **CSS fade-in nie blokuje LCP**. Globalne `wc-fade-in` nie startuje już z `opacity: 0` ani `filter: blur(...)`; na mobile animacja jest wyłączona, więc treść above-the-fold jest widoczna od pierwszego renderu.
+- [x] **Mobilny hero H1 bez zależności od Playfair**. Na najmniejszych ekranach LCP-owy tytuł używa lokalnego fontu systemowego (`Georgia`/`Times New Roman`), żeby zimne wejście nie czekało na dekoracyjny webfont.
 - [skip-ext] Walidacja sitemap/hreflang/JSON-LD w CI.
 - [skip-ext] Lighthouse baseline (3 strony, zapisać `docs/lighthouse-baseline.md`).
 
 ## P2 — UX (mobile, katalog, karta produktu)
 
 - [x] **Mobile hero** — H1 zmniejszony do `2.75rem` na najmniejszych ekranach, mniejsze marginesy lead-u i CTA, dzięki czemu primary CTA mieści się na pierwszym ekranie iPhone-a SE.
-- [ ] Statyczny poster wideo na pierwsze 200 ms (czeka na re-encode wideo / CDN).
+- [x] Statyczny poster wideo na mobile i pierwsze wejście. Hero używa `/rolex-poster.jpg`; MP4 nie ładuje się na mobile, a na desktopie startuje dopiero po idle.
 - [x] **Karta produktu mobile — sticky bottom CTA** (`Zapytaj o ...` + telefon) na PL i EN/UA. Ukryte od `sm` w górę.
 - [x] **Loader respektuje `prefers-reduced-motion: reduce`** — całkowicie pomijany dla użytkowników z włączoną redukcją animacji.
+- [x] **Nie przywracać starej kurtyny ładowania ani Framer route curtain na first-load**. Lokalny pomiar mobile: obecny wariant Performance 92 / LCP 3.3 s; sam loader obniżał do 66 / LCP 4.5 s / TBT 540 ms; Framer wrapper przejścia obniżał do 70 / LCP 5.2 s.
 - [x] **Katalog — produkty widoczne bez czekania na JS**. Usunięta entrance-animation z `motion.div` (`opacity:0` → `1`) na `ProductCatalog` i `RelatedGrid`; podobnie tekstowy blok w `ProductCard`. Treść w statycznym HTML jest od razu widoczna.
 - [ ] Sticky filtr/sort i search-by-marka w katalogu — wymaga decyzji UX.
 - [ ] Focus management w drawer/mobile menu — osobna runda a11y.
@@ -92,7 +98,7 @@ Kod:
 - [x] `npm run lint` przechodzi.
 - [x] `npm run build` przechodzi.
 - [ ] Komponenty klienta nie importują z `from-cms/adapters/*` (tylko z `lib/*` i `from-cms/schemas/*`).
-- [x] Brak `nodemailer` po wyrzuconych route handlerach.
+- [x] `nodemailer` nie trafia do client bundle; zostaje wyłącznie dla serwerowego `/api/contact`.
 - [x] Animacje nie wymagają JS do pokazania treści.
 
 Integracje:

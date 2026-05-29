@@ -104,6 +104,34 @@ const securityHeaders = [
   { key: 'X-Permitted-Cross-Domain-Policies', value: 'none' },
 ]
 
+const immutableAssetHeaders = [
+  { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
+]
+
+const immutablePublicAssetSources = [
+  '/products/:path*',
+  '/rolex.mp4',
+  '/rolex-poster.jpg',
+  '/logo.png',
+  '/logo_blank.png',
+  '/Full_logo_blank.png',
+  '/icon_logo.png',
+  '/kontakt.webp',
+  '/butik1.webp',
+  '/butik2.webp',
+  '/butik3.webp',
+  '/grafikabutik.avif',
+  '/edek.webp',
+  '/butikmain.jpg',
+  '/patek.jpg',
+  '/chopard.jpg',
+  '/ap.jpg',
+  '/watch-31.jpg',
+  '/Rolex Wimbledon.jpg',
+  '/Patek Philippe Nautilus-12.jpg',
+  '/Franck Muller Vegas4.jpg',
+]
+
 /**
  * Tryb serwerowy Next.js — strona działa jako aplikacja Node na Hostingerze
  * (build importowany z GitHuba, `next build` + `next start`).
@@ -129,7 +157,10 @@ const nextConfig = {
   poweredByHeader: false,
   outputFileTracingRoot: __dirname,
   images: {
-    unoptimized: true,
+    formats: ['image/webp'],
+    deviceSizes: [360, 414, 640, 768, 1024, 1280, 1536],
+    imageSizes: [96, 128, 256, 384],
+    minimumCacheTTL: 31536000,
     remotePatterns: [
       { protocol: 'https', hostname: 'cdn.warszawskiczas.pl' },
       { protocol: 'https', hostname: 'cdn.camalio.pl' },
@@ -144,6 +175,10 @@ const nextConfig = {
   },
   async headers() {
     return [
+      ...immutablePublicAssetSources.map((source) => ({
+        source,
+        headers: immutableAssetHeaders,
+      })),
       {
         source: '/:path*',
         headers: securityHeaders,

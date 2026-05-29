@@ -21,7 +21,7 @@ interface ContactLinkProps extends Omit<ComponentProps<typeof Link>, 'href' | 'c
   onClick?: (e: MouseEvent<HTMLAnchorElement>) => void
 }
 
-export function ContactLink({ source, product, children, onClick, ...rest }: ContactLinkProps) {
+export function ContactLink({ source, product, children, onClick, prefetch = false, ...rest }: ContactLinkProps) {
   const pathname = usePathname()
   const locale = localeFromPathname(pathname)
 
@@ -37,7 +37,7 @@ export function ContactLink({ source, product, children, onClick, ...rest }: Con
   }
 
   return (
-    <Link href={localizePath('/kontakt', locale)} onClick={handleClick} {...rest}>
+    <Link href={localizePath('/kontakt', locale)} onClick={handleClick} prefetch={prefetch} {...rest}>
       {children}
     </Link>
   )

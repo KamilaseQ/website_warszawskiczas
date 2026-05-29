@@ -155,6 +155,7 @@ export function ServicesOverview() {
               <FadeIn key={service.num} delay={index * 0.08}>
                 <Link
                   href={localizePath(service.href, locale)}
+                  prefetch={false}
                   className="group relative block border-b border-accent-gold/15"
                 >
                   {/* Hover wash — slides in from left */}

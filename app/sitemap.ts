@@ -5,7 +5,7 @@ import { absoluteUrl, locales, publicRoutePaths, type Locale } from '@/lib/i18n'
 // Wymagane w static export, żeby sitemap wygenerował się przy buildzie.
 export const dynamic = 'force-static'
 
-const LAST_CONTENT_UPDATE = '2026-05-10'
+const LAST_CONTENT_UPDATE = '2026-05-29'
 
 const priorityForPath = (path: string) => {
   if (path === '/') return 1
@@ -56,6 +56,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       const firstImage = p.images?.[0]
       return {
         ...entry(path, locale, 0.7),
+        lastModified: p.updatedAt ?? p.publishedAt ?? LAST_CONTENT_UPDATE,
         changeFrequency: 'weekly' as const,
         images: firstImage ? [absoluteUrl(firstImage)] : undefined,
       }

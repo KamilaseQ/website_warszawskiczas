@@ -1,4 +1,4 @@
-import { Header, Footer, ScrollProgress, LoadingScreen, WhatsAppButton, PageTransition } from '@/components/layout'
+import { Header, Footer, ScrollProgress, WhatsAppButton, PageTransition } from '@/components/layout'
 
 // Layout-level metadata dla `alternates` była ustawiana z `x-wc-pathname` w
 // nagłówku middleware. Po przejściu na static export każda strona w drzewie
@@ -18,7 +18,6 @@ export default function PublicLayout({
       >
         Przejdź do treści
       </a>
-      <LoadingScreen />
       <ScrollProgress />
       <Header />
       <main id="main" className="flex-1">

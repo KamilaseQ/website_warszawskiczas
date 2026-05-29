@@ -16,21 +16,32 @@ export function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null)
 
   useEffect(() => {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const mobile = window.matchMedia('(max-width: 767px)').matches
+    const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection
+    if (reduce || mobile || connection?.saveData) return
+
+    let started = false
     const startVideo = () => {
+      if (started) return
       const v = videoRef.current
       if (!v) return
+      started = true
       const p = v.play()
       if (p && typeof p.catch === 'function') p.catch(() => {})
     }
 
-    const flag = (window as unknown as { __wcLoadingFinished?: boolean }).__wcLoadingFinished
-    if (flag) {
-      startVideo()
-      return
+    const idleWindow = window as Window & {
+      requestIdleCallback?: (callback: () => void, options?: { timeout: number }) => number
+      cancelIdleCallback?: (id: number) => void
     }
 
-    window.addEventListener('wc-loading-finish', startVideo, { once: true })
-    return () => window.removeEventListener('wc-loading-finish', startVideo)
+    const timeoutId = window.setTimeout(startVideo, 1800)
+    const idleId = idleWindow.requestIdleCallback?.(startVideo, { timeout: 2600 })
+    return () => {
+      window.clearTimeout(timeoutId)
+      if (idleId !== undefined) idleWindow.cancelIdleCallback?.(idleId)
+    }
   }, [])
 
   useEffect(() => {
@@ -90,8 +101,8 @@ export function Hero() {
           muted
           loop
           playsInline
-          autoPlay
-          preload="auto"
+          preload="none"
+          poster="/rolex-poster.jpg"
           className="h-full w-full object-cover"
           style={{ filter: 'saturate(1.15) contrast(1.1) brightness(0.88) sepia(0.12) hue-rotate(-8deg)' }}
         >
@@ -142,7 +153,7 @@ export function Hero() {
 
         <FadeIn delay={0.1} direction="up">
           {/* 1.1 — powiększony H1 na desktopie, H1 jako element wizualny */}
-          <h1 className="font-serif text-[2.75rem] font-medium tracking-tight text-white sm:text-6xl md:text-7xl lg:text-[7.5rem] xl:text-[8.5rem] drop-shadow-xl text-balance leading-[0.95]">
+          <h1 className="wc-hero-title font-serif text-[2.75rem] font-medium tracking-tight text-white sm:text-6xl md:text-7xl lg:text-[7.5rem] xl:text-[8.5rem] drop-shadow-xl text-balance leading-[0.95]">
             {copy.h1a}{' '}<br />
             <span className="italic font-normal">{copy.h1b}</span>
           </h1>
@@ -160,7 +171,7 @@ export function Hero() {
 
           {/* PRIMARY — Umów prywatną konsultację (magnetic hover) */}
           <Magnetic className="relative z-10" strength={10}>
-            <ContactLink source="home-hero" prefetch className="btn-premium-white inline-block">
+            <ContactLink source="home-hero" prefetch={false} className="btn-premium-white inline-block">
               {copy.consult}
             </ContactLink>
           </Magnetic>
@@ -168,7 +179,7 @@ export function Hero() {
           {/* TERTIARY — tekst-link z strzałką: Odkryj kolekcję */}
           <Link
             href={localizePath('/produkty', locale)}
-            prefetch
+            prefetch={false}
             className="relative z-10 inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.3em] text-white/70 transition-colors duration-300 hover:text-accent-gold group"
           >
             {copy.discover}

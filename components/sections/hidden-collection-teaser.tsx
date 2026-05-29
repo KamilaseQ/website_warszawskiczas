@@ -82,7 +82,7 @@ export function HiddenCollectionTeaser() {
 
               <Link
                 href={localizePath('/kolekcja-na-zapytanie', locale)}
-                prefetch
+                prefetch={false}
                 className="mt-10 inline-block btn-sharp"
                 style={{ backgroundColor: 'hsl(42 50% 45%)', color: '#0a0a0a' }}
               >

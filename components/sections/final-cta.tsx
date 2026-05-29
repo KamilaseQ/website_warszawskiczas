@@ -76,13 +76,13 @@ export function FinalCTA() {
         <FadeIn delay={0.15} direction="up">
           <div className="mt-10 flex flex-wrap justify-center gap-4">
             {/* PRIMARY */}
-            <ContactLink source="final-cta" prefetch className="btn-premium-white">
+            <ContactLink source="final-cta" prefetch={false} className="btn-premium-white">
               {copy.visit}
             </ContactLink>
             {/* SECONDARY — tertiary style */}
             <Link
               href={localizePath('/produkty', locale)}
-              prefetch
+              prefetch={false}
               className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.3em] text-white/50 hover:text-accent-gold transition-colors duration-300 group py-4"
             >
               {copy.collection}

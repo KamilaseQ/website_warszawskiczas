@@ -17,8 +17,8 @@ interface NavItem {
 function getNavItems(locale: ReturnType<typeof localeFromPathname>): NavItem[] {
   const t = ui[locale]
   return [
-    { href: '/produkty', label: t.products, prefetch: true },
-    { href: '/kolekcja-na-zapytanie', label: t.hiddenCollection, prefetch: true },
+    { href: '/produkty', label: t.products },
+    { href: '/kolekcja-na-zapytanie', label: t.hiddenCollection },
     {
       href: '/uslugi',
       label: t.services,
@@ -29,7 +29,7 @@ function getNavItems(locale: ReturnType<typeof localeFromPathname>): NavItem[] {
       ],
     },
     { href: '/butik', label: t.boutique },
-    { href: '/kontakt', label: t.contact, prefetch: true, contactSource: 'nav-desktop' },
+    { href: '/kontakt', label: t.contact, contactSource: 'nav-desktop' },
   ]
 }
 
@@ -54,6 +54,7 @@ export function Navigation({ className, isTransparent = false }: NavigationProps
             <div key={item.href} className="group relative">
               <Link
                 href={localizePath(item.href, locale)}
+                prefetch={false}
                 className={cn(
                   'nav-link inline-flex items-center px-4 py-2 font-medium transition-colors duration-500 ease-in-out',
                   isActive ? 'active' : '',
@@ -72,6 +73,7 @@ export function Navigation({ className, isTransparent = false }: NavigationProps
                     <Link
                       key={child.href}
                       href={localizePath(child.href, locale)}
+                      prefetch={false}
                       className={cn(
                         'block rounded px-4 py-2 text-sm transition-colors duration-500',
                         cleanPath === child.href
@@ -103,7 +105,7 @@ export function Navigation({ className, isTransparent = false }: NavigationProps
             <ContactLink
               key={item.href}
               source={item.contactSource}
-              prefetch={item.prefetch ?? undefined}
+              prefetch={false}
               className={linkClass}
             >
               {item.label}
@@ -115,7 +117,7 @@ export function Navigation({ className, isTransparent = false }: NavigationProps
           <Link
             key={item.href}
             href={localizePath(item.href, locale)}
-            prefetch={item.prefetch ?? undefined}
+            prefetch={false}
             className={linkClass}
           >
             {item.label}

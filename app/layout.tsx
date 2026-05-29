@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import { Suspense } from 'react'
-import { Playfair_Display, Inter, Cormorant_Garamond } from 'next/font/google'
+import { Playfair_Display, Inter } from 'next/font/google'
 import { SessionTracker } from '@/components/session-tracker'
 import { HtmlLangSync } from '@/components/html-lang-sync'
 import './globals.css'
@@ -15,14 +15,6 @@ const inter = Inter({
   subsets: ['latin', 'latin-ext'],
   variable: '--font-inter',
   display: 'swap',
-})
-
-const cormorant = Cormorant_Garamond({
-  subsets: ['latin', 'latin-ext'],
-  variable: '--font-cormorant',
-  display: 'swap',
-  weight: ['300', '400', '500', '600'],
-  style: ['normal', 'italic'],
 })
 
 export const metadata: Metadata = {
@@ -91,12 +83,7 @@ export default function RootLayout({
   // locale-specific route renderuje własną sekcję z localized metadata, ale
   // sam <html lang> zostaje domyślny dla PL (główny rynek butiku).
   return (
-    <html lang="pl" className={`${playfair.variable} ${inter.variable} ${cormorant.variable}`}>
-      <head>
-        {/* Preconnect do CDN obrazów produktów — LCP win na karcie produktu. */}
-        <link rel="preconnect" href="https://cdn.warszawskiczas.pl" crossOrigin="" />
-        <link rel="dns-prefetch" href="https://cdn.warszawskiczas.pl" />
-      </head>
+    <html lang="pl" className={`${playfair.variable} ${inter.variable}`}>
       <body className="font-sans">
         <Suspense fallback={null}>
           <SessionTracker />
