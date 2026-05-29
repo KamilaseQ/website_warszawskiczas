@@ -343,7 +343,7 @@ export function PrivateCollectionFeatured({ locale = 'pl' }: { locale?: Locale }
    * formularza rejestracji i kontakcie ze specjalistą.
    */
   const expectedCode = (
-    process.env.NEXT_PUBLIC_PRIVATE_COLLECTION_CODE ?? 'mokotowska2026'
+    process.env.NEXT_PUBLIC_PRIVATE_COLLECTION_CODE ?? 'mokotowska71'
   ).trim().toLowerCase()
   const handleUnlock = async (e: React.FormEvent) => {
     e.preventDefault()

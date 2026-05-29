@@ -443,12 +443,7 @@ export default async function ProductPage({ params }: PageProps) {
         </Section>
       )}
 
-      <StickyProductCta
-        callAriaLabel={`Zadzwoń ${CONTACT_PHONE}`}
-        ctaLabel={ctaLabel}
-        ctaSource={ctaSource}
-        productLabel={productLabel}
-      />
+      <StickyProductCta callAriaLabel={`Zadzwoń ${CONTACT_PHONE}`} />
 
       {/* Final CTA */}
       <Section spacing="lg">

@@ -1,70 +1,72 @@
 'use client'
 
-import { useEffect } from 'react'
-import { ContactLink } from '@/components/contact-link'
-import { Button } from '@/components/ui'
-import { CONTACT_PHONE_RAW } from '@/lib/config'
+import { useEffect, useState } from 'react'
+import { createPortal } from 'react-dom'
+import { CONTACT_PHONE, CONTACT_PHONE_RAW } from '@/lib/config'
 
 interface StickyProductCtaProps {
   /** ARIA label dla telefonu (lokalizowany). */
   callAriaLabel: string
-  /** Tekst głównego CTA — np. „Zapytaj o dostępność". */
-  ctaLabel: string
-  /** Source UTM-owy dla głównego CTA. */
-  ctaSource: string
-  /** Nazwa produktu do kontekstu w mailu / CMS. */
-  productLabel: string
+  /** Widoczny tekst przycisku przed numerem (lokalizowany). */
+  callLabel?: string
+  /** Krótka linijka budująca pilność nad przyciskiem (FOMO). */
+  fomoLabel?: string
 }
 
 /**
- * Sticky CTA na mobile dla karty produktu.
+ * Sticky CTA na mobile dla karty produktu — pojedynczy przycisk dzwoniący
+ * bezpośrednio na numer kontaktowy. Maksymalnie niskie tarcie: jedno tapnięcie =
+ * połączenie. Kto woli pisać, ma osobny przycisk WhatsApp.
  *
- * Pozycjonowanie: `position: fixed; bottom: 0` — w iOS Safari/Chrome
- * przyklejone do dolnej krawędzi VISUAL viewportu. Gdy chrome przeglądarki
- * się chowa przy scrollu, fixed-element zjeżdża w dół razem z viewportem.
- * `env(safe-area-inset-bottom)` dodaje padding pod home indicator iPhone-a.
+ * Pozycjonowanie: renderowane przez `createPortal` do `document.body`, ŻEBY
+ * uciec z drzewa `PageTransition`, którego `motion.div` (framer-motion) nakłada
+ * `transform` na wrapper. Transform na przodku tworzy containing block dla
+ * `position: fixed`, więc pasek przyklejał się do dołu animowanego kontenera, a
+ * nie do viewportu — stąd „podniesiony" pasek niezależnie od chrome przeglądarki.
+ * Portal do body omija ten problem.
  *
- * Komunikacja z WhatsApp button: klasa `wc-has-mobile-dock` na <body>
- * podnosi WA powyżej tego paska. Pozostałe strony bez sticky CTA dostają
- * WA w domyślnej pozycji.
+ * Rezerwę miejsca pod paskiem (żeby nie zasłaniał stopki) daje
+ * `body.wc-has-mobile-dock { padding-bottom }` w globals.css. Ta sama klasa
+ * podnosi przycisk WhatsApp ponad pasek.
  */
 export function StickyProductCta({
   callAriaLabel,
-  ctaLabel,
-  ctaSource,
-  productLabel,
+  callLabel = 'Zadzwoń',
+  fomoLabel = 'Duża rotacja oferty — zapytaj o ten egzemplarz',
 }: StickyProductCtaProps) {
+  const [mounted, setMounted] = useState(false)
+
   useEffect(() => {
+    setMounted(true)
     document.body.classList.add('wc-has-mobile-dock')
     return () => {
       document.body.classList.remove('wc-has-mobile-dock')
     }
   }, [])
 
-  return (
-    <>
-      <div
-        className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-background/95 px-4 pt-3 shadow-[0_-8px_24px_-12px_rgba(0,0,0,0.18)] backdrop-blur sm:hidden"
-        style={{ paddingBottom: 'max(0.75rem, env(safe-area-inset-bottom))' }}
+  if (!mounted) return null
+
+  return createPortal(
+    <div
+      className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-background/95 px-4 pt-2.5 shadow-[0_-8px_24px_-12px_rgba(0,0,0,0.18)] backdrop-blur sm:hidden"
+      style={{ paddingBottom: 'max(0.625rem, env(safe-area-inset-bottom))' }}
+    >
+      <p className="mb-2 flex items-center justify-center gap-1.5 whitespace-nowrap font-sans text-[9px] font-semibold uppercase tracking-[0.08em] text-muted-foreground">
+        <span
+          aria-hidden="true"
+          className="inline-block h-1.5 w-1.5 shrink-0 animate-pulse rounded-full bg-accent-gold"
+        />
+        <span className="truncate">{fomoLabel}</span>
+      </p>
+      <a
+        href={`tel:${CONTACT_PHONE_RAW}`}
+        aria-label={callAriaLabel}
+        className="flex h-12 w-full items-center justify-center gap-2 bg-[#0a0a0a] font-sans text-[11px] font-bold uppercase tracking-[0.25em] text-accent-gold transition-colors active:bg-accent-gold active:text-[#0a0a0a]"
       >
-        <div className="flex items-center gap-2">
-          <Button asChild size="sm" className="flex-1">
-            <ContactLink source={`${ctaSource}-sticky`} product={productLabel}>
-              {ctaLabel}
-            </ContactLink>
-          </Button>
-          <a
-            href={`tel:${CONTACT_PHONE_RAW}`}
-            aria-label={callAriaLabel}
-            className="inline-flex h-10 min-w-10 items-center justify-center border border-border px-3 font-sans text-[10px] font-bold uppercase tracking-[0.2em] text-foreground transition-colors hover:border-accent-gold hover:text-accent-gold"
-          >
-            ☎
-          </a>
-        </div>
-      </div>
-      {/* Spacer pod treścią, żeby ostatnia sekcja nie chowała się pod paskiem.
-          Wysokość ~ wysokość paska CTA + bezpieczna ramka. */}
-      <div aria-hidden="true" className="h-20 sm:hidden" />
-    </>
+        <span aria-hidden="true" className="text-sm">☎</span>
+        {callLabel} · {CONTACT_PHONE}
+      </a>
+    </div>,
+    document.body,
   )
 }

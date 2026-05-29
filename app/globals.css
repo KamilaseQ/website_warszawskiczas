@@ -500,8 +500,13 @@
    WhatsApp button na mobile musi siedzieć POWYŻEJ paska, żeby się nie nakładał.
    Desktop bez zmian — paska CTA tam nie ma. */
 @media (max-width: 640px) {
+  /* Rezerwa miejsca pod paskiem CTA — pasek jest `fixed`, więc bez tego
+     zasłaniałby stopkę przy przewinięciu na sam dół. */
+  body.wc-has-mobile-dock {
+    padding-bottom: calc(6rem + env(safe-area-inset-bottom));
+  }
   body.wc-has-mobile-dock .wc-whatsapp-button {
-    bottom: calc(5.5rem + env(safe-area-inset-bottom));
+    bottom: calc(6.75rem + env(safe-area-inset-bottom));
   }
 }
 

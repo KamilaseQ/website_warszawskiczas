@@ -41,6 +41,11 @@ interface ProductCardProps {
   priority?: boolean
 }
 
+// Tymczasowo wyłączone plakietki na kartach produktów (status „Dostępny",
+// „Nowość", „Na zapytanie"). Kod plakietek zostaje — wystarczy ustawić `true`,
+// gdy uporządkujemy które oznaczenia pasują do których zegarków.
+const SHOW_PRODUCT_BADGES = false
+
 const aspectMap = {
   portrait: 'aspect-[4/5] sm:aspect-[3/4]',
   square: 'aspect-square',
@@ -195,6 +200,8 @@ function Badges({
   statusLabel?: string
   labels: { new: string; onRequest: string }
 }) {
+  // Plakietki tymczasowo ukryte — patrz SHOW_PRODUCT_BADGES.
+  if (!SHOW_PRODUCT_BADGES) return null
   return (
     <>
       {product.status && (

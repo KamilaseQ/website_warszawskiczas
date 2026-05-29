@@ -48,9 +48,12 @@ import {
   WatchBuyingServicePage,
 } from '@/components/pages/services-pages'
 
-// Static export wymaga dynamicParams=false — wszystkie ścieżki muszą wyjść
-// z `generateStaticParams`, nieznane URL-e dostają 404 z hostingu.
-export const dynamicParams = false
+// Tryb serwerowy Next (`next start` na Hostingerze): znane ścieżki /en i /ua
+// pre-renderują się z `generateStaticParams`, a nieznane URL-e są renderowane
+// na żądanie i kończą czystym `notFound()` (404). `dynamicParams = false`
+// rzucał w trybie serwerowym `NoFallbackError` przy każdym żądaniu/rewalidacji
+// ścieżki spoza listy — dlatego musi tu być dozwolone renderowanie dynamiczne.
+export const dynamicParams = true
 
 interface PageProps {
   params: Promise<{ locale: string; path?: string[] }>
@@ -586,9 +589,12 @@ async function LocalizedProductDetail({ route, locale }: { route: string; locale
 
       <StickyProductCta
         callAriaLabel={`${locale === 'en' ? 'Call' : 'Зателефонувати'} ${CONTACT_PHONE}`}
-        ctaLabel={ctaLabel}
-        ctaSource={isUnavailable ? 'product-detail-sourcing' : 'product-detail'}
-        productLabel={productLabel}
+        callLabel={locale === 'en' ? 'Call' : 'Зателефонувати'}
+        fomoLabel={
+          locale === 'en'
+            ? 'High turnover — ask about this piece'
+            : 'Висока ротація — запитайте про цей екземпляр'
+        }
       />
     </>
   )

@@ -7,7 +7,8 @@
  *  2. APP   → `POST PUBLIC_LEAD_URL` (aplikacja CMS na Cloudflare): zapis leada
  *     w bazie + powiadomienie WhatsApp.
  *
- * Kolejność: najpierw mail, potem aplikacja/WhatsApp.
+ * Kanały lecą RÓWNOLEGLE i niezależnie — awaria/timeout maila nie wpływa na
+ * zapis leada i WhatsApp w aplikacji (i odwrotnie).
  * Wynik: jeśli zadziała chociaż jeden kanał → sukces (pokazujemy podziękowanie).
  * Jeśli nie zadziała żaden → błąd „zadzwoń”.
  *
@@ -26,10 +27,13 @@ export async function submitLead(payload: LeadPayload): Promise<LeadResponse> {
     return { ok: false, error: 'Sprawdź poprawność pól formularza.' }
   }
 
-  // 1) Mail najpierw.
-  const emailOk = await postOk(CONTACT_ENDPOINT, parsed.data)
-  // 2) Potem lead + WhatsApp w aplikacji.
-  const appOk = PUBLIC_LEAD_URL ? await postOk(PUBLIC_LEAD_URL, parsed.data) : false
+  // Oba kanały RÓWNOLEGLE i całkowicie niezależnie. App/WhatsApp (CMS) nie czeka
+  // na mail i nie jest blokowany jego błędem ani timeoutem nodemailera — to
+  // przywraca zachowanie sprzed integracji maila (lead leciał wprost do CMS).
+  const [emailOk, appOk] = await Promise.all([
+    postOk(CONTACT_ENDPOINT, parsed.data),
+    PUBLIC_LEAD_URL ? postOk(PUBLIC_LEAD_URL, parsed.data) : Promise.resolve(false),
+  ])
 
   if (emailOk || appOk) {
     return { ok: true, delivery: { email: emailOk, lead: appOk, whatsapp: appOk } }

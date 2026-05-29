@@ -31,7 +31,7 @@ export function PrivateCollectionGallery() {
   const [submitting, setSubmitting] = useState(false)
 
   const expectedCode = (
-    process.env.NEXT_PUBLIC_PRIVATE_COLLECTION_CODE ?? 'mokotowska2026'
+    process.env.NEXT_PUBLIC_PRIVATE_COLLECTION_CODE ?? 'mokotowska71'
   ).trim().toLowerCase()
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
