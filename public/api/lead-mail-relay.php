@@ -259,12 +259,27 @@ function bearer_token(): string
 
 function config_value(array $config, string $key, string $fallback): string
 {
-    $value = getenv($key);
+    $value = $config[$key] ?? null;
     if (is_string($value) && trim($value) !== '') {
         return trim($value);
     }
-    $value = $config[$key] ?? null;
-    return is_string($value) && trim($value) !== '' ? trim($value) : $fallback;
+    $value = env_value($key);
+    return $value !== '' ? $value : $fallback;
+}
+
+function env_value(string $key): string
+{
+    $candidates = [
+        $_ENV[$key] ?? null,
+        $_SERVER[$key] ?? null,
+        getenv($key),
+    ];
+    foreach ($candidates as $value) {
+        if (is_string($value) && trim($value) !== '') {
+            return trim($value);
+        }
+    }
+    return '';
 }
 
 function string_value($value): string

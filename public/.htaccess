@@ -112,6 +112,10 @@ RewriteRule ^(.+?)/?$ $1.html [L]
 ErrorDocument 404 /404.html
 
 # ---------------------- Security headers -----------------------------------
+<Files "lead-mail-relay.config.php">
+  Require all denied
+</Files>
+
 <IfModule mod_headers.c>
   Header always set Strict-Transport-Security "max-age=31536000"
   Header always set X-Content-Type-Options "nosniff"
