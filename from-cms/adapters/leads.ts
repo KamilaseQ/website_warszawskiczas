@@ -1,17 +1,24 @@
 /**
- * Adapter wysyłki leadów do CMS.
+ * Wysyłka zgłoszenia z formularza. Dwa niezależne kanały:
  *
- * - jeśli `NEXT_PUBLIC_CMS_LEAD_URL` jest ustawiony → POST na ten URL
- *   (przeglądarka, statyczny eksport — leady wychodzą bezpośrednio do CMS-a
- *   przez publiczny endpoint, zabezpieczony CORS-em + rate-limitem)
- * - jeśli nie → log do konsoli + symulacja opóźnienia (mock dev)
+ *  1. MAIL  → `POST /api/contact` (serwerowy route strony, nodemailer + SMTP ze
+ *     zmiennych środowiskowych). Wysyła powiadomienie do butiku, a po jego
+ *     sukcesie automatyczne potwierdzenie do klienta.
+ *  2. APP   → `POST PUBLIC_LEAD_URL` (aplikacja CMS na Cloudflare): zapis leada
+ *     w bazie + powiadomienie WhatsApp.
  *
- * Walidacja zod po stronie klienta jako pierwsza linia obrony przed śmieciem;
- * CMS musi walidować ten sam schemat po stronie serwera.
+ * Kolejność: najpierw mail, potem aplikacja/WhatsApp.
+ * Wynik: jeśli zadziała chociaż jeden kanał → sukces (pokazujemy podziękowanie).
+ * Jeśli nie zadziała żaden → błąd „zadzwoń”.
+ *
+ * Walidacja zod po stronie klienta to pierwsza linia obrony; serwer (route + CMS)
+ * waliduje ten sam schemat ponownie.
  */
 
 import { LeadPayloadSchema, LeadResponseSchema, type LeadPayload, type LeadResponse } from '../schemas/lead'
 import { PUBLIC_LEAD_URL } from '../mode'
+
+const CONTACT_ENDPOINT = '/api/contact'
 
 export async function submitLead(payload: LeadPayload): Promise<LeadResponse> {
   const parsed = LeadPayloadSchema.safeParse(payload)
@@ -19,42 +26,40 @@ export async function submitLead(payload: LeadPayload): Promise<LeadResponse> {
     return { ok: false, error: 'Sprawdź poprawność pól formularza.' }
   }
 
-  if (!PUBLIC_LEAD_URL) {
-    if (!isLocalMockAllowed()) {
-      return {
-        ok: false,
-        error: 'Formularz nie ma skonfigurowanego endpointu CMS. Zadzwoń: +48 604 312 411.',
-      }
-    }
-    if (typeof console !== 'undefined') {
-      console.info('[from-cms:mock-lead]', parsed.data)
-    }
-    await new Promise((r) => setTimeout(r, 400))
+  // 1) Mail najpierw.
+  const emailOk = await postOk(CONTACT_ENDPOINT, parsed.data)
+  // 2) Potem lead + WhatsApp w aplikacji.
+  const appOk = PUBLIC_LEAD_URL ? await postOk(PUBLIC_LEAD_URL, parsed.data) : false
+
+  if (emailOk || appOk) {
+    return { ok: true, delivery: { email: emailOk, lead: appOk, whatsapp: appOk } }
+  }
+
+  // Lokalny dev bez skonfigurowanego backendu — nie blokuj pracy nad UI.
+  if (!PUBLIC_LEAD_URL && isLocalMockAllowed()) {
+    if (typeof console !== 'undefined') console.info('[from-cms:mock-lead]', parsed.data)
     return { ok: true }
   }
 
+  return {
+    ok: false,
+    error: 'Nie udało się wysłać formularza. Zadzwoń: +48 604 312 411.',
+  }
+}
+
+/** POST JSON; true tylko gdy HTTP ok i `{ ok: true }` w odpowiedzi. Każdy błąd → false. */
+async function postOk(url: string, data: LeadPayload): Promise<boolean> {
   try {
-    const res = await fetch(PUBLIC_LEAD_URL, {
+    const res = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(parsed.data),
+      body: JSON.stringify(data),
     })
     const json: unknown = await res.json().catch(() => null)
     const validated = LeadResponseSchema.safeParse(json)
-    if (!res.ok || !validated.success || !validated.data.ok) {
-      return {
-        ok: false,
-        error:
-          (validated.success ? validated.data.error : undefined) ??
-          'Chwilowy problem z wysłaniem. Zadzwoń: +48 604 312 411.',
-      }
-    }
-    return validated.data
+    return res.ok && validated.success && validated.data.ok
   } catch {
-    return {
-      ok: false,
-      error: 'Chwilowy problem z wysłaniem. Zadzwoń: +48 604 312 411.',
-    }
+    return false
   }
 }
 

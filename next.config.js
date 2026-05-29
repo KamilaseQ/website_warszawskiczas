@@ -105,28 +105,20 @@ const securityHeaders = [
 ]
 
 /**
- * Static export — strona wypluwa `out/` z czystym HTML/CSS/JS, deployowanym
- * na Hostinger Business przez FTP/GitHub Action.
+ * Tryb serwerowy Next.js — strona działa jako aplikacja Node na Hostingerze
+ * (build importowany z GitHuba, `next build` + `next start`).
  *
- * `output: 'export'` aktywne TYLKO w produkcyjnym buildzie (NODE_ENV=production).
- * Dev mode (NODE_ENV=development) używa standardowego serwera Next, dzięki czemu:
- *  - `dynamicParams=true` w catch-all działa (strict matching encoded vs decoded
- *    UTF-8 URL-i znika)
- *  - HMR + fast refresh nie konfliktują z restrykcjami exportu
+ * Dzięki temu działają Route Handlery (`app/api/*`) i zmienne środowiskowe
+ * w runtime — formularz wysyła mail przez `app/api/contact/route.ts`
+ * (nodemailer + SMTP ze zmiennych środowiskowych), a lead/WhatsApp lecą
+ * osobno do aplikacji CMS (patrz `from-cms/adapters/leads.ts`).
  *
- * Konsekwencje stałe (w obu trybach):
- *  - brak Route Handlers (`app/api/*`) — formularze idą przez CMS webhook
- *    (patrz `from-cms/adapters/leads.ts`)
- *  - brak middleware — i18n przez per-page `metadata.alternates`
- *  - obrazy serwowane są z CDN R2 (`cdn.warszawskiczas.pl`)
- *  - headers i redirecty URL-i legacy sa zdublowane tutaj dla runtime'u serwerowego Next
- *    oraz w `public/.htaccess` dla statycznego deployu Apache.
+ * `redirects()` i `headers()` poniżej obsługuje runtime serwerowy Next
+ * (w trybie statycznym robił to `public/.htaccess`).
  */
-const isProductionBuild = process.env.NODE_ENV === 'production'
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  ...(isProductionBuild ? { output: 'export' } : {}),
   reactStrictMode: true,
   poweredByHeader: false,
   outputFileTracingRoot: __dirname,

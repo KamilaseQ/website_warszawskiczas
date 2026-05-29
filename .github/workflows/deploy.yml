@@ -1,25 +1,21 @@
-name: Build & deploy do Hostinger
+name: Build & verify (Next.js server)
 
-# Triggery:
-#  - push na `main` (kod się zmienił, build świeży)
-#  - `repository_dispatch` — webhook z CMS po zmianie produktu/treści
-#    (CMS robi: `POST /repos/<owner>/<repo>/dispatches` z `event_type: cms-update`)
-#  - `workflow_dispatch` — manualne uruchomienie z UI GitHuba
+# Strona działa jako aplikacja Next.js (server) na Hostingerze — Hostinger
+# importuje i buduje kod z GitHuba. Ten workflow tylko WERYFIKUJE, że build
+# przechodzi (typecheck + next build). Wdrożenie robi Hostinger ze swojego
+# integracyjnego pull-a z repozytorium.
 on:
   push:
     branches: [main]
-  repository_dispatch:
-    types: [cms-update]
+  pull_request:
   workflow_dispatch:
 
-# Tylko jeden deploy w danej chwili. Jeśli przyjdzie nowy webhook gdy poprzedni
-# build trwa — anulujemy stary, robimy świeży z najnowszym contentem.
 concurrency:
-  group: deploy-${{ github.ref }}
+  group: verify-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -35,71 +31,17 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Create Hostinger mail relay config
-        run: |
-          node <<'NODE'
-          const fs = require('fs')
-          const token = process.env.MAIL_RELAY_TOKEN
-          if (!token) {
-            console.error('Missing GitHub secret MAIL_RELAY_TOKEN.')
-            process.exit(1)
-          }
-          const phpString = `'${token.replace(/\\/g, '\\\\').replace(/'/g, "\\'")}'`
-          fs.mkdirSync('public/api', { recursive: true })
-          fs.writeFileSync(
-            'public/api/lead-mail-relay.config.php',
-            `<?php\nreturn [\n    'MAIL_RELAY_TOKEN' => ${phpString},\n];\n`,
-          )
-          NODE
-        env:
-          MAIL_RELAY_TOKEN: ${{ secrets.MAIL_RELAY_TOKEN }}
+      - name: Typecheck
+        run: npm run lint
 
-      - name: Build (static export)
+      - name: Build (Next.js server)
         run: npm run build
         env:
-          # Po wdrożeniu CMS przełącz `CMS_MODE` w GitHub Secrets na `live`
-          # i ustaw `CMS_API_URL` + `CMS_API_TOKEN`. Do tego czasu build
-          # używa atrapy z `from-cms/fixtures/`.
-          CMS_MODE: ${{ secrets.CMS_MODE || 'mock' }}
-          CMS_API_URL: ${{ secrets.CMS_API_URL }}
-          CMS_API_TOKEN: ${{ secrets.CMS_API_TOKEN }}
-          # Publiczny endpoint formularzy jest stały; nie bierzemy go z secreta,
-          # żeby literówka typu /API/V1/LEADS nie psuła produkcyjnego bundle'a.
+          # Publiczny endpoint leadów (lead + WhatsApp w aplikacji CMS).
+          # Wysyłka maili NIE zależy od tej zmiennej — robi to /api/contact (SMTP env).
           NEXT_PUBLIC_CMS_LEAD_URL: https://api.camalio.pl/api/v1/leads
           NEXT_PUBLIC_CDN_BASE_URL: ${{ secrets.NEXT_PUBLIC_CDN_BASE_URL || 'https://cdn.camalio.pl' }}
           NEXT_PUBLIC_PRIVATE_COLLECTION_CODE: ${{ secrets.NEXT_PUBLIC_PRIVATE_COLLECTION_CODE }}
 
-      - name: Verify static redirect and header artifact
-        run: |
-          test -f out/.htaccess
-          grep -q "kontakt-z-nami" out/.htaccess
-          grep -q "ukryta-kolekcja" out/.htaccess
-          grep -q "skup-zegarkow" out/.htaccess
-          grep -q "Strict-Transport-Security" out/.htaccess
-          grep -q "lead-mail-relay.config.php" out/.htaccess
-          test -f out/api/lead-mail-relay.php
-          test -f out/api/lead-mail-relay.config.php
-          grep -R -q "https://api.camalio.pl/api/v1/leads" out/_next/static/chunks
-          ! grep -R -q "/API/V1/LEADS" out/_next/static/chunks
-
-      - name: Deploy przez FTP na Hostinger
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_HOST }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          # Hostinger Business: katalog WWW to `public_html/`.
-          server-dir: public_html/
-          local-dir: ./out/
-          # Czyść stare pliki które już nie ma w nowym buildzie (sitemap itp.).
-          dangerous-clean-slate: false
-          # Wyklucz: .git, node_modules, plik logu wcześniejszego deployu.
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/node_modules/**
-            **/.DS_Store
-
-      - name: Notyfikacja sukcesu
-        if: success()
-        run: echo "Deploy gotowy. Trigger=${{ github.event_name }}"
+      - name: Verify server build artifact
+        run: test -d .next

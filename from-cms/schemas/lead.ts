@@ -46,6 +46,7 @@ export const LeadResponseSchema = z.object({
   delivery: z.object({
     lead: z.boolean().optional(),
     email: z.boolean().optional(),
+    confirmation: z.boolean().optional(),
     whatsapp: z.boolean().optional(),
   }).optional(),
 })
