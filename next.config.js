@@ -115,6 +115,12 @@ const securityHeaders = [
  *
  * `redirects()` i `headers()` poniżej obsługuje runtime serwerowy Next
  * (w trybie statycznym robił to `public/.htaccess`).
+ *
+ * ⚠️ NIE PRZYWRACAĆ trybu statycznego. `output: 'export'` + `public/.htaccess`
+ * łamią produkcję na Hostingerze: `.htaccess` (clean-URL → .html + 404.html)
+ * przechwytuje żądania o `/_next/static/*` i `/api/*`, zwraca HTML zamiast JS
+ * → ChunkLoadError i martwa strona. Mail (`/api/contact`) wymaga serwera Node.
+ * Szczegóły: documentation/HOSTINGER-DEPLOYMENT.md.
  */
 
 /** @type {import('next').NextConfig} */
