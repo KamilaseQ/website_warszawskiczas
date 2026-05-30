@@ -157,6 +157,11 @@ const nextConfig = {
   poweredByHeader: false,
   outputFileTracingRoot: __dirname,
   images: {
+    // Hostinger Business NIE ma `sharp`, więc serwerowy optymalizator Next
+    // (`/_next/image`) zwraca 404/500. Wyłączamy go — obrazy idą bez transformacji
+    // Next, a optymalizacją/cachowaniem zajmuje się wbudowany CDN Hostingera na
+    // brzegu. Bez tego zdjęcia padają w produkcji. NIE usuwać, dopóki brak sharp.
+    unoptimized: true,
     formats: ['image/webp'],
     deviceSizes: [360, 414, 640, 768, 1024, 1280, 1536],
     imageSizes: [96, 128, 256, 384],
