@@ -175,6 +175,15 @@ const nextConfig = {
   },
   async headers() {
     return [
+      // Dokumenty HTML i route'y API MUSZĄ być rewalidowane. Bez tego CDN/cache
+      // potrafi podać stary HTML wskazujący na chunki nieistniejące w nowym
+      // buildzie → ChunkLoadError. `_next/*` pomijamy (Next sam cache'uje statykę
+      // z hashem na stałe), a reguły `immutable` poniżej nadpisują tę dla swoich
+      // konkretnych assetów (zostają w kolejności PO tej regule).
+      {
+        source: '/((?!_next/).*)',
+        headers: [{ key: 'Cache-Control', value: 'no-cache' }],
+      },
       ...immutablePublicAssetSources.map((source) => ({
         source,
         headers: immutableAssetHeaders,
