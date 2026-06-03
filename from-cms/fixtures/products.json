@@ -165,6 +165,7 @@
     "condition": "Dobry / bardzo dobry",
     "priceOnRequest": true,
     "status": "Dostępny",
+    "featured": true,
     "images": [
       "/products/chopard-zielony/front.jpg",
       "/products/chopard-zielony/left.jpg",
@@ -374,7 +375,6 @@
     "caseSize": "49 mm",
     "condition": "Bardzo dobry",
     "priceOnRequest": true,
-    "featured": true,
     "status": "Dostępny",
     "images": [
       "/products/breitling-for-bentley-mulliner-perpetual-calendar/front.jpg",

@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { useRef } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { ContactLink } from '@/components/contact-link'
@@ -18,6 +18,24 @@ interface ProductShowcaseProps {
   others: Product[]
 }
 
+const MONTHS: Record<'pl' | 'en' | 'ua', string[]> = {
+  pl: ['Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień'],
+  en: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+  ua: ['Січень', 'Лютий', 'Березень', 'Квітень', 'Травень', 'Червень', 'Липень', 'Серпень', 'Вересень', 'Жовтень', 'Листопад', 'Грудень'],
+}
+
+/**
+ * Wyznacza numer „Zegarka Tygodnia" (tydzień miesiąca, 1–5) oraz etykietę
+ * „Miesiąc Rok" dla danej daty i języka. Numer = ceil(dzień / 7).
+ */
+function getShowcasePeriod(date: Date, locale: 'pl' | 'en' | 'ua') {
+  const week = Math.ceil(date.getDate() / 7)
+  return {
+    no: String(week).padStart(2, '0'),
+    label: `${MONTHS[locale][date.getMonth()]} ${date.getFullYear()}`,
+  }
+}
+
 export function ProductShowcase({ featured, others }: ProductShowcaseProps) {
   const pathname = usePathname()
   const locale = localeFromPathname(pathname)
@@ -26,7 +44,6 @@ export function ProductShowcase({ featured, others }: ProductShowcaseProps) {
   const copy = {
     pl: {
       week: 'Zegarek Tygodnia',
-      date: 'Kwiecień 2026',
       full: 'Pełna kolekcja',
       photoSoon: 'Zdjęcie wkrótce',
       askAvailability: 'Zapytaj o dostępność',
@@ -40,7 +57,6 @@ export function ProductShowcase({ featured, others }: ProductShowcaseProps) {
     },
     en: {
       week: 'Watch of the Week',
-      date: 'April 2026',
       full: 'Full collection',
       photoSoon: 'Photo coming soon',
       askAvailability: 'Ask about availability',
@@ -54,7 +70,6 @@ export function ProductShowcase({ featured, others }: ProductShowcaseProps) {
     },
     ua: {
       week: 'Годинник тижня',
-      date: 'Квітень 2026',
       full: 'Вся колекція',
       photoSoon: 'Фото незабаром',
       askAvailability: 'Запитати про наявність',
@@ -69,6 +84,13 @@ export function ProductShowcase({ featured, others }: ProductShowcaseProps) {
   }[locale]
   const localizedFeatured = localizeProduct(featured, locale)
 
+  // Numer + miesiąc aktualizują się automatycznie wg bieżącej daty.
+  // useState(build) → identyczny render SSR/hydratacja; useEffect odświeża
+  // na bieżącą datę po zamontowaniu (statyczny eksport pokaże aktualny tydzień).
+  const [now, setNow] = useState(() => new Date())
+  useEffect(() => setNow(new Date()), [])
+  const period = getShowcasePeriod(now, locale)
+
   const scrollBy = (dir: 'left' | 'right') => {
     const el = scrollerRef.current
     if (!el) return
@@ -82,8 +104,9 @@ export function ProductShowcase({ featured, others }: ProductShowcaseProps) {
       <div
         aria-hidden="true"
         className="pointer-events-none absolute -right-6 top-1/2 hidden -translate-y-1/2 select-none font-serif text-[28rem] font-medium leading-none text-accent-gold/[0.035] lg:block"
+        suppressHydrationWarning
       >
-        01
+        {period.no}
       </div>
 
       <Container>
@@ -94,8 +117,8 @@ export function ProductShowcase({ featured, others }: ProductShowcaseProps) {
               <p className="text-[10px] font-sans font-bold uppercase tracking-[0.5em] text-accent-gold">
                 I &nbsp;——&nbsp; {copy.week}
               </p>
-              <p className="mt-2 font-serif italic text-sm text-muted-foreground">
-                No. 01 · {copy.date}
+              <p className="mt-2 font-serif italic text-sm text-muted-foreground" suppressHydrationWarning>
+                No. {period.no} · {period.label}
               </p>
             </div>
             <Link
@@ -167,8 +190,8 @@ export function ProductShowcase({ featured, others }: ProductShowcaseProps) {
                 {copy.week}
               </p>
 
-              <p className="mt-3 font-serif italic text-sm text-muted-foreground">
-                No. 01 · {copy.date}
+              <p className="mt-3 font-serif italic text-sm text-muted-foreground" suppressHydrationWarning>
+                No. {period.no} · {period.label}
               </p>
 
               <h2 className="mt-6 font-serif text-4xl font-medium tracking-tight text-foreground sm:text-6xl lg:text-[4rem] leading-[1]">

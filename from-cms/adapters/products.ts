@@ -59,9 +59,32 @@ export async function getFeaturedProduct(): Promise<Product> {
   return all.find((p) => p.featured) ?? first
 }
 
+/**
+ * Kuratorowana lista do sekcji „Inne modele w butiku" — kolejność stała,
+ * topowe referencje (Rolex / AP / Patek / IWC / Omega). Brakujące slugi są
+ * pomijane, a lista jest uzupełniana pozostałymi zegarkami do `limit`.
+ */
+const OTHER_FEATURED_SLUGS = [
+  'rolex-submariner',
+  'rolex-yacht-master-40-black-dial',
+  'patek-philippe-annual-calendar-5396',
+  'omega-seamaster-diver-300-m-chronograph',
+  'audemars-piguet-royal-oak-automatic',
+  'iwc-chronograph-portugieser',
+]
+
 export async function getOtherFeaturedProducts(limit = 6): Promise<Product[]> {
   const all = await getAllProducts()
-  return all.filter((p) => !p.featured && p.category === 'zegarki').slice(0, limit)
+  const bySlug = new Map(all.map((p) => [p.slug, p]))
+  const curated = OTHER_FEATURED_SLUGS.map((slug) => bySlug.get(slug)).filter(
+    (p): p is Product => Boolean(p) && !p!.featured,
+  )
+  if (curated.length >= limit) return curated.slice(0, limit)
+  const used = new Set(curated.map((p) => p.slug))
+  const fill = all.filter(
+    (p) => !p.featured && p.category === 'zegarki' && !used.has(p.slug),
+  )
+  return [...curated, ...fill].slice(0, limit)
 }
 
 export async function getFeaturedProducts(limit = 4): Promise<Product[]> {

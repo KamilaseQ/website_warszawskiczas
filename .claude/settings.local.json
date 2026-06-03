@@ -77,7 +77,27 @@
       "Bash(git commit -o public/.htaccess -m '@ *)",
       "Bash(git commit *)",
       "Bash(git push *)",
-      "Bash(git add *)"
+      "Bash(git add *)",
+      "Bash(C:/Users/212ka/AppData/Local/OpenAI/Codex/bin/node.exe -e 'const c=require\\('\\\\''./next.config.js'\\\\''\\); console.log\\('\\\\''next.config OK, klucze:'\\\\'', Object.keys\\(c\\).join\\('\\\\'', '\\\\''\\)\\)')",
+      "Bash(echo \"=== typecheck ===\")",
+      "Bash(C:/Users/212ka/AppData/Local/OpenAI/Codex/bin/node.exe node_modules/typescript/bin/tsc -p tsconfig.lint.json --noEmit --pretty false)",
+      "Bash(echo \"EXIT: $?\")",
+      "PowerShell($node = \"C:\\\\Users\\\\212ka\\\\AppData\\\\Local\\\\OpenAI\\\\Codex\\\\bin\\\\node.exe\"; & $node -e \"const c=require\\('./next.config.js'\\); console.log\\('next.config OK, klucze:', Object.keys\\(c\\).join\\(', '\\)\\)\"; & $node \"node_modules\\\\typescript\\\\bin\\\\tsc\" -p tsconfig.lint.json --noEmit --pretty false; Write-Output \"TSC_EXIT: $LASTEXITCODE\")",
+      "PowerShell($node = \"C:\\\\Users\\\\212ka\\\\AppData\\\\Local\\\\OpenAI\\\\Codex\\\\bin\\\\node.exe\"; & $node -e \"const c=require\\('./next.config.js'\\); c.headers\\(\\).then\\(h=>console.log\\('headers OK, regul:', h.length\\)\\).catch\\(e=>{console.error\\('BLAD',e\\);process.exit\\(1\\)}\\)\")",
+      "PowerShell($node = \"C:\\\\Users\\\\212ka\\\\AppData\\\\Local\\\\OpenAI\\\\Codex\\\\bin\\\\node.exe\"; & $node -e \"const fs=require\\('fs'\\); const s=fs.readFileSync\\('./next.config.js','utf8'\\); const i=s.indexOf\\('async headers'\\); console.log\\('--- fragment headers\\(\\) ---'\\); console.log\\(JSON.stringify\\(s.slice\\(i, i+400\\)\\)\\);\")",
+      "PowerShell($node = \"C:\\\\Users\\\\212ka\\\\AppData\\\\Local\\\\OpenAI\\\\Codex\\\\bin\\\\node.exe\"; & $node -e \"const c=require\\('./next.config.js'\\); c.headers\\(\\).then\\(h=>{console.log\\('headers OK, regul:', h.length\\); console.log\\('pierwsza:', JSON.stringify\\(h[0]\\)\\);}\\).catch\\(e=>{console.error\\('BLAD',e.message\\);process.exit\\(1\\)}\\)\"; Write-Output \"EXIT: $LASTEXITCODE\")",
+      "PowerShell($node = \"C:\\\\Users\\\\212ka\\\\AppData\\\\Local\\\\OpenAI\\\\Codex\\\\bin\\\\node.exe\"; & $node -e \"const c=require\\('./next.config.js'\\); console.log\\('images.unoptimized =', c.images.unoptimized\\)\"; Write-Output \"---typecheck---\"; & $node \"node_modules\\\\typescript\\\\bin\\\\tsc\" -p tsconfig.lint.json --noEmit --pretty false 2>$null; Write-Output \"TSC_EXIT: $LASTEXITCODE\")",
+      "PowerShell($node = \"C:\\\\Users\\\\212ka\\\\AppData\\\\Local\\\\OpenAI\\\\Codex\\\\bin\\\\node.exe\"; & $node \"node_modules\\\\typescript\\\\bin\\\\tsc\" -p tsconfig.lint.json --noEmit --pretty false; Write-Output \"TSC_EXIT: $LASTEXITCODE\")",
+      "Bash(git fetch *)",
+      "PowerShell(Write-Output \"=== public/ tracked w git ===\"; git ls-files public/ ; Write-Output \"=== .gitignore ===\"; git show HEAD:.gitignore; Write-Output \"=== scripts z package.json ===\"; \\(git show HEAD:package.json | ConvertFrom-Json\\).scripts | Format-List)",
+      "PowerShell(Write-Output \"=== public/ pliki NIE-obrazowe \\(potencjalne konflikty\\) ===\"; git ls-files public/ | Where-Object { $_ -notmatch '\\\\.\\(jpg|jpeg|png|webp|avif|svg|mp4|ico|gif|woff2?\\)$' }; Write-Output \"=== pliki w katalogu glownym repo \\(tracked, top-level\\) ===\"; git ls-files | Where-Object { $_ -notmatch '/' }; Write-Output \"=== app/ pliki specjalne \\(route/sitemap/robots/manifest/middleware\\) ===\"; git ls-files | Where-Object { $_ -match '\\(middleware|sitemap|robots|manifest|sw|service-worker\\)' })",
+      "PowerShell(Write-Output \"=== .npmrc \\(raw\\) ===\"; Get-Content .npmrc -Raw -Encoding UTF8; Write-Output \"\"; Write-Output \"=== package.json.txt - pierwsze 5 linii ===\"; Get-Content package.json.txt -TotalCount 5; Write-Output \"=== czy package.json ma type:module? ===\"; \\(Get-Content package.json -Raw | ConvertFrom-Json\\).type)",
+      "PowerShell(Write-Output \"=== package.json.txt rozmiar i naglowek ===\"; $f = Get-Item package.json.txt; Write-Output \\(\"rozmiar: {0} B, zmodyfikowany: {1}\" -f $f.Length, $f.LastWriteTime\\); Write-Output \"--- pierwsza linia ---\"; \\(Get-Content package.json.txt -TotalCount 1\\); Write-Output \"=== diff vs package.json \\(czy to kopia\\)? ===\"; if \\(\\(Get-FileHash package.json.txt\\).Hash -eq \\(Get-FileHash package.json\\).Hash\\) { Write-Output \"IDENTYCZNY z package.json\" } else { Write-Output \"ROZNI sie od package.json\" })",
+      "Bash(command -v node)",
+      "Bash(command -v nodejs)",
+      "Read(//c/Program Files/**)",
+      "Read(//c/Program Files \\(x86\\)/**)",
+      "PowerShell($f = Get-Content \"from-cms/fixtures/products.json\" -Raw | ConvertFrom-Json; \"valid JSON, count: $\\($f.Count\\)\"; \"featured: \" + \\(\\($f | Where-Object {$_.featured}\\) | ForEach-Object {\"$\\($_.brand\\) $\\($_.name\\)\"}\\))"
     ]
   }
 }
