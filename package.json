@@ -6,6 +6,7 @@
     "clean:next": "node scripts/clean-next-cache.mjs",
     "dev": "node scripts/clean-next-cache.mjs && next dev",
     "build": "node scripts/clean-next-cache.mjs && next build",
+    "postbuild": "node scripts/publish-callback.mjs",
     "start": "next start",
     "lint": "tsc -p tsconfig.lint.json --noEmit --pretty false"
   },
