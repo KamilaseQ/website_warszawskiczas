@@ -19,7 +19,9 @@
 export type CmsMode = 'mock' | 'live'
 
 function readMode(): CmsMode {
-  const raw = process.env.CMS_MODE
+  // Tolerujemy spacje/wielkość liter, żeby literówka typu "Live" / "live "
+  // nie cofała builda po cichu do mock (i nie pokazywała starych fixtures).
+  const raw = process.env.CMS_MODE?.trim().toLowerCase()
   if (raw === 'live' || raw === 'mock') return raw
   return 'mock'
 }

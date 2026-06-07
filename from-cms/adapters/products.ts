@@ -34,9 +34,14 @@ export async function getAllProducts(): Promise<Product[]> {
   if (cache) return cache
   if (CMS_MODE === 'mock') {
     cache = ProductListSchema.parse(fixtures)
+    // Widoczne w logu builda Hostingera - jasny sygnał, że NIE czytamy z CMS-a.
+    console.log(
+      `[from-cms] MOCK: użyto ${cache.length} produktów z fixtures (CMS_MODE="${process.env.CMS_MODE ?? 'unset'}").`,
+    )
     return cache
   }
   cache = await fetchFromCms()
+  console.log(`[from-cms] LIVE: pobrano ${cache.length} produktów z CMS-a.`)
   return cache
 }
 
