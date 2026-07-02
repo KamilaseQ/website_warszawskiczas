@@ -1,12 +1,11 @@
 'use client'
 
-import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronLeft, ChevronRight, X } from 'lucide-react'
 import { ImagePlaceholder } from '@/components/ui'
 import { cn } from '@/lib/utils'
-import { cdnImageVariant } from '@/lib/cdn-image'
+import { ProductImage } from '@/components/products/product-image'
 import { useBodyScrollLock } from '@/lib/use-body-scroll-lock'
 
 interface ProductGalleryProps {
@@ -57,8 +56,9 @@ export function ProductGallery({ brand, name, images = [] }: ProductGalleryProps
           aria-label={hasImages ? `Powiększ zdjęcie ${brand} ${name}` : `${brand} ${name}`}
         >
           {hasImages ? (
-            <Image
-              src={cdnImageVariant(currentSrc, 'medium')!}
+            <ProductImage
+              original={currentSrc!}
+              variant="medium"
               alt={`${brand} ${name}`}
               fill
               priority
@@ -133,8 +133,9 @@ export function ProductGallery({ brand, name, images = [] }: ProductGalleryProps
                 aria-label={`Zdjęcie ${i + 1}`}
                 aria-current={isActive}
               >
-                <Image
-                  src={cdnImageVariant(src, 'thumb')!}
+                <ProductImage
+                  original={src}
+                  variant="thumb"
                   alt=""
                   fill
                   sizes="120px"
@@ -212,8 +213,9 @@ export function ProductGallery({ brand, name, images = [] }: ProductGalleryProps
               onClick={(e) => e.stopPropagation()}
             >
               <div className="relative aspect-[4/5] w-full">
-                <Image
-                  src={cdnImageVariant(currentSrc, 'medium')!}
+                <ProductImage
+                  original={currentSrc!}
+                  variant="medium"
                   alt={`${brand} ${name}`}
                   fill
                   sizes="80vw"

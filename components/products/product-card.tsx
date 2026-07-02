@@ -1,19 +1,18 @@
 'use client'
 
 import Link from 'next/link'
-import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { ImagePlaceholder } from '@/components/ui'
 import { cn } from '@/lib/utils'
 import { localeFromPathname, localizePath, ui } from '@/lib/i18n'
 import { productUrlSlug } from '@/lib/product-url'
 import { formatProductPrice, localizeProductStatus } from '@/lib/localized-products'
-import { cdnImageVariant } from '@/lib/cdn-image'
+import { ProductImage } from '@/components/products/product-image'
 import type { Product } from '@/from-cms/schemas/product'
 
 function CardImage({ product }: { product: Product }) {
-  const src = cdnImageVariant(product.images?.[0], 'thumb')
-  if (!src) {
+  const original = product.images?.[0]
+  if (!original) {
     return (
       <ImagePlaceholder
         className="absolute inset-0 transition-transform duration-[900ms] ease-out group-hover:scale-[1.05]"
@@ -22,8 +21,9 @@ function CardImage({ product }: { product: Product }) {
     )
   }
   return (
-    <Image
-      src={src}
+    <ProductImage
+      original={original}
+      variant="medium"
       alt={`${product.brand} ${product.name}`}
       fill
       sizes="(min-width: 1280px) 22vw, (min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"
@@ -76,8 +76,9 @@ export function ProductCard({ product, className, aspect = 'portrait', layout = 
       >
         <div className={cn('relative col-span-3 overflow-hidden', 'aspect-[4/3] sm:aspect-[5/4]')}>
           {product.images?.[0] ? (
-            <Image
-              src={cdnImageVariant(product.images[0], 'medium')!}
+            <ProductImage
+              original={product.images[0]}
+              variant="medium"
               alt={`${product.brand} ${product.name}`}
               fill
               sizes="(min-width: 1024px) 40vw, 90vw"

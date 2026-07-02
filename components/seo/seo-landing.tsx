@@ -6,7 +6,7 @@ import { Container, Section, Heading, Text, Button, FaqAccordion, type FaqItem }
 import { CONTACT_PHONE, CONTACT_PHONE_RAW, WHATSAPP_NUMBER, ADDRESS } from '@/lib/config'
 import { absoluteUrl, localizePath, type Locale, ui } from '@/lib/i18n'
 import { productUrlSlug } from '@/lib/product-url'
-import { cdnImageVariant } from '@/lib/cdn-image'
+import { ProductImage } from '@/components/products/product-image'
 import type { Product } from '@/from-cms/schemas/product'
 
 export interface LandingStep {
@@ -273,8 +273,9 @@ export function SeoLanding({
                   >
                     <div className="relative aspect-[4/5] overflow-hidden bg-muted">
                       {img ? (
-                        <Image
-                          src={cdnImageVariant(img, 'thumb')!}
+                        <ProductImage
+                          original={img}
+                          variant="medium"
                           alt={`${p.brand} ${p.name}`}
                           fill
                           sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"
