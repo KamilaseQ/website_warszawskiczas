@@ -4,6 +4,8 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Clock, Mail, MapPin, Phone } from 'lucide-react'
 import { ContactLink } from '@/components/contact-link'
+import { SeoLinkHub } from '@/components/seo/seo-link-hub'
+import { seoHubLinks } from '@/lib/related-links'
 import { localeFromPathname, localizePath, ui } from '@/lib/i18n'
 
 function InstagramIcon({ className }: { className?: string }) {
@@ -198,6 +200,19 @@ export function Footer() {
           </div>
         </div>
 
+        <div className="mt-14 border-t border-white/10 pt-10">
+          <p className="font-sans text-[10px] font-bold uppercase tracking-[0.4em] text-accent-gold">
+            {locale === 'en' ? 'Watches in Warsaw' : locale === 'ua' ? 'Годинники у Варшаві' : 'Zegarki w Warszawie'}
+          </p>
+          <div className="mt-6">
+            <SeoLinkHub
+              groups={seoHubLinks(locale)}
+              localizeHref={(href) => localizePath(href, locale)}
+              tone="dark"
+            />
+          </div>
+        </div>
+
         <div className="mt-12 flex flex-col items-center gap-4 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-center text-xs uppercase tracking-[0.25em] text-white/30 sm:text-left">
             &copy; {new Date().getFullYear()} Warszawski Czas
@@ -223,6 +238,14 @@ export function Footer() {
             >
               {t.accessibility}
             </Link>
+            <span className="h-1 w-1 rounded-full bg-white/20" aria-hidden />
+            <button
+              type="button"
+              onClick={() => window.dispatchEvent(new Event('wc-open-cookie-settings'))}
+              className="font-sans text-[10px] uppercase tracking-[0.3em] text-white/40 transition-colors hover:text-accent-gold"
+            >
+              {locale === 'en' ? 'Cookie settings' : locale === 'ua' ? 'Налаштування cookie' : 'Ustawienia cookies'}
+            </button>
           </nav>
         </div>
       </div>

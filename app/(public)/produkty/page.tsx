@@ -4,6 +4,8 @@ import Link from 'next/link'
 import { ContactLink } from '@/components/contact-link'
 import { Container, Section, Heading, Text, Button } from '@/components/ui'
 import { ProductCatalog } from '@/components/products'
+import { SeoLinkHub } from '@/components/seo/seo-link-hub'
+import { seoHubLinks } from '@/lib/related-links'
 import { getAllProducts, productUrlSlug } from '@/from-cms/adapters/products'
 
 export const metadata: Metadata = {
@@ -96,6 +98,25 @@ export default async function ProduktyPage() {
       <Section variant="muted" spacing="sm">
         <Container>
           <ProductCatalog products={products} />
+        </Container>
+      </Section>
+
+      {/* Hub linków wewnętrznych — marki / kategorie / usługi (SEO + nawigacja) */}
+      <Section spacing="lg">
+        <Container>
+          <p className="font-sans text-[10px] font-bold uppercase tracking-[0.4em] text-accent-gold">
+            Przeglądaj katalog
+          </p>
+          <Heading as="h2" size="md" className="mt-3">
+            Zegarki według marki i kategorii
+          </Heading>
+          <Text muted className="mt-3 max-w-2xl">
+            Wybierz markę lub kategorię, aby zobaczyć dedykowaną stronę z modelami dostępnymi
+            od ręki i na zamówienie w butiku przy Mokotowskiej 71.
+          </Text>
+          <div className="mt-10">
+            <SeoLinkHub groups={seoHubLinks('pl')} />
+          </div>
         </Container>
       </Section>
 

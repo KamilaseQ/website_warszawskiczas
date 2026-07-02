@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronLeft, ChevronRight, X } from 'lucide-react'
 import { ImagePlaceholder } from '@/components/ui'
 import { cn } from '@/lib/utils'
+import { cdnImageVariant } from '@/lib/cdn-image'
 import { useBodyScrollLock } from '@/lib/use-body-scroll-lock'
 
 interface ProductGalleryProps {
@@ -57,7 +58,7 @@ export function ProductGallery({ brand, name, images = [] }: ProductGalleryProps
         >
           {hasImages ? (
             <Image
-              src={currentSrc!}
+              src={cdnImageVariant(currentSrc, 'medium')!}
               alt={`${brand} ${name}`}
               fill
               priority
@@ -133,7 +134,7 @@ export function ProductGallery({ brand, name, images = [] }: ProductGalleryProps
                 aria-current={isActive}
               >
                 <Image
-                  src={src}
+                  src={cdnImageVariant(src, 'thumb')!}
                   alt=""
                   fill
                   sizes="120px"
@@ -212,7 +213,7 @@ export function ProductGallery({ brand, name, images = [] }: ProductGalleryProps
             >
               <div className="relative aspect-[4/5] w-full">
                 <Image
-                  src={currentSrc!}
+                  src={cdnImageVariant(currentSrc, 'medium')!}
                   alt={`${brand} ${name}`}
                   fill
                   sizes="80vw"

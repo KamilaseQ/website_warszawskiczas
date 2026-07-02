@@ -164,3 +164,33 @@ export function relatedLinksFor(
   }
   return items
 }
+
+/**
+ * Zgrupowane linki nawigacyjne SEO do „hubu” pokazywanego globalnie (stopka)
+ * i na stronie katalogu. Cel: każda strona-landing dostaje wewnętrzny link z
+ * całego serwisu (koniec ze stronami-sierotami), a użytkownik ma czytelny
+ * spis marek / kategorii / usług. Hrefy są kanoniczne (PL) — komponent
+ * renderujący lokalizuje je przez `localizePath`.
+ */
+export type SeoHubGroup = { heading: string; links: RelatedLink[] }
+
+const HUB_HEADINGS: Record<Locale, { brands: string; categories: string; services: string }> = {
+  pl: { brands: 'Marki', categories: 'Kategorie', services: 'Skup i usługi' },
+  en: { brands: 'Brands', categories: 'Categories', services: 'Buying & services' },
+  ua: { brands: 'Бренди', categories: 'Категорії', services: 'Викуп і послуги' },
+}
+
+const HUB_GROUPS: { key: keyof (typeof HUB_HEADINGS)['pl']; items: LinkKey[] }[] = [
+  { key: 'brands', items: ['rolex', 'patek', 'ap', 'omega', 'cartier', 'breitling'] },
+  { key: 'categories', items: ['luxury', 'preowned', 'collector', 'gold', 'diamond', 'ladies'] },
+  { key: 'services', items: ['skup', 'skupRolex', 'wycena', 'komis', 'serwis', 'onRequest'] },
+]
+
+export function seoHubLinks(locale: Locale = 'pl'): SeoHubGroup[] {
+  const lib = L[locale]
+  const headings = HUB_HEADINGS[locale]
+  return HUB_GROUPS.map((group) => ({
+    heading: headings[group.key],
+    links: group.items.map((key) => ({ href: lib[key].href, label: lib[key].label })),
+  }))
+}

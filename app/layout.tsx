@@ -3,6 +3,7 @@ import { Suspense } from 'react'
 import { Playfair_Display, Inter } from 'next/font/google'
 import { SessionTracker } from '@/components/session-tracker'
 import { HtmlLangSync } from '@/components/html-lang-sync'
+import { CookieConsent } from '@/components/cookie-consent'
 import './globals.css'
 
 const playfair = Playfair_Display({
@@ -66,6 +67,14 @@ export const metadata: Metadata = {
     address: true,
     telephone: true,
   },
+  // Weryfikacja Google Search Console metatagiem. Token wpisany na stałe;
+  // można go nadpisać zmienną GOOGLE_SITE_VERIFICATION (build-time). Next
+  // generuje <meta name="google-site-verification" ...>. Alternatywa: TXT w DNS.
+  verification: {
+    google:
+      process.env.GOOGLE_SITE_VERIFICATION ||
+      'sSAVprQBUEUPyWMJdrsSxVve02KGwqNKumftUbN29DE',
+  },
 }
 
 export const viewport: Viewport = {
@@ -92,6 +101,9 @@ export default function RootLayout({
           <HtmlLangSync />
         </Suspense>
         {children}
+        <Suspense fallback={null}>
+          <CookieConsent />
+        </Suspense>
         {/* Schema.org WebSite + Organization (uzupełnienie do LocalBusiness niżej) */}
         <script
           type="application/ld+json"

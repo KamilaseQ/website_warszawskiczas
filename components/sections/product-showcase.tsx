@@ -9,6 +9,7 @@ import { ContactLink } from '@/components/contact-link'
 import { Container, Section, ImagePlaceholder, KenBurns, Magnetic, ScrollDrift } from '@/components/ui'
 import { FadeIn } from '@/components/ui/fade-in'
 import { productUrlSlug } from '@/lib/product-url'
+import { cdnImageVariant } from '@/lib/cdn-image'
 import type { Product } from '@/from-cms/schemas/product'
 import { localeFromPathname, localizePath } from '@/lib/i18n'
 import { localizeProduct } from '@/lib/localized-products'
@@ -153,7 +154,7 @@ export function ProductShowcase({ featured, others }: ProductShowcaseProps) {
               >
                 {featured.images?.[0] ? (
                   <Image
-                    src={featured.images[0]}
+                    src={cdnImageVariant(featured.images[0], 'medium')!}
                     alt={`${featured.brand} ${featured.name}`}
                     fill
                     sizes="(min-width: 1024px) 58vw, 100vw"
@@ -284,7 +285,7 @@ export function ProductShowcase({ featured, others }: ProductShowcaseProps) {
               <div className="relative aspect-[3/4] overflow-hidden transition-all duration-500 group-hover:-translate-y-1">
                 {p.images?.[0] ? (
                   <Image
-                    src={p.images[0]}
+                    src={cdnImageVariant(p.images[0], 'thumb')!}
                     alt={`${p.brand} ${p.name}`}
                     fill
                     sizes="(min-width: 1024px) 22vw, (min-width: 640px) 44vw, 78vw"

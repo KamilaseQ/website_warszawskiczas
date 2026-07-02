@@ -8,10 +8,11 @@ import { cn } from '@/lib/utils'
 import { localeFromPathname, localizePath, ui } from '@/lib/i18n'
 import { productUrlSlug } from '@/lib/product-url'
 import { formatProductPrice, localizeProductStatus } from '@/lib/localized-products'
+import { cdnImageVariant } from '@/lib/cdn-image'
 import type { Product } from '@/from-cms/schemas/product'
 
 function CardImage({ product }: { product: Product }) {
-  const src = product.images?.[0]
+  const src = cdnImageVariant(product.images?.[0], 'thumb')
   if (!src) {
     return (
       <ImagePlaceholder
@@ -76,7 +77,7 @@ export function ProductCard({ product, className, aspect = 'portrait', layout = 
         <div className={cn('relative col-span-3 overflow-hidden', 'aspect-[4/3] sm:aspect-[5/4]')}>
           {product.images?.[0] ? (
             <Image
-              src={product.images[0]}
+              src={cdnImageVariant(product.images[0], 'medium')!}
               alt={`${product.brand} ${product.name}`}
               fill
               sizes="(min-width: 1024px) 40vw, 90vw"

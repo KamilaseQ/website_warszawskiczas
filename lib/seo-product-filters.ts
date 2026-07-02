@@ -7,12 +7,14 @@ import { productShowsPriceOnRequest } from '@/lib/product-availability'
  * Każdy filtr przyjmuje pełną listę produktów jako parametr (DI). Caller pobiera ją raz
  * przez `await getAllProducts()` z `@/from-cms/adapters/products` i przekazuje do filtrów.
  *
- * Wynik: zegarki widoczne operacyjnie (`Dostępny` albo `Na zamówienie`),
- * posortowane — najpierw featured, potem reszta. `Niedostępny` zostaje
- * w katalogu produktu, ale nie trafia do preview landingów.
+ * Wynik: TYLKO zegarki dostępne od ręki (`status === 'Dostępny'`),
+ * posortowane — najpierw featured, potem reszta. Egzemplarze `Na zamówienie`,
+ * `Niedostępny`, zarezerwowane i ukryte w CMS-ie (te ostatnie nie trafiają nawet
+ * do published snapshotu) NIE pokazują się na landingach — sekcje "wybrane
+ * egzemplarze" mają prezentować wyłącznie realnie dostępną ofertę butiku.
  */
 
-const isAvailable = (p: Product) => p.status !== 'Niedostępny'
+const isAvailable = (p: Product) => p.status === 'Dostępny'
 
 const sortForPreview = (a: Product, b: Product) => {
   if (a.featured && !b.featured) return -1

@@ -17,9 +17,11 @@ export function Hero() {
 
   useEffect(() => {
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    const mobile = window.matchMedia('(max-width: 767px)').matches
     const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection
-    if (reduce || mobile || connection?.saveData) return
+    // Odtwarzamy też na mobile (w tym iPhone). Wideo jest `muted` + `playsInline`,
+    // więc iOS Safari pozwala na programowe play() bez gestu użytkownika. Blokujemy
+    // tylko przy reduced-motion (dostępność) i data-saver (oszczędzanie transferu).
+    if (reduce || connection?.saveData) return
 
     let started = false
     const startVideo = () => {
@@ -27,6 +29,8 @@ export function Hero() {
       const v = videoRef.current
       if (!v) return
       started = true
+      // iOS wymaga jawnego load() gdy preload="none", zanim play() wystartuje.
+      if (v.preload === 'none' && v.readyState === 0) v.load()
       const p = v.play()
       if (p && typeof p.catch === 'function') p.catch(() => {})
     }
