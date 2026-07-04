@@ -26,7 +26,7 @@ import { localeFromPathname, localizePath } from '@/lib/i18n'
  * (event `wc-open-cookie-settings`).
  */
 const STORAGE_KEY = 'wc_cookie_consent'
-const GA_ID = process.env.NEXT_PUBLIC_GA_ID || 'G-TQ11D4HYXZ'
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID || 'G-FQZTY9KCEE'
 const CONSENT_VERSION = 1
 
 // Kategorie opcjonalne (bez „niezbędnych”, które są zawsze aktywne).
