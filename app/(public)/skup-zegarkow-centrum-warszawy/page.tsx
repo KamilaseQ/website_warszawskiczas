@@ -7,7 +7,7 @@ const SLUG = 'skup-zegarkow-centrum-warszawy'
 const URL = `https://warszawskiczas.pl/${SLUG}`
 const TITLE = 'Skup zegarków centrum Warszawy — Mokotowska 71'
 const DESCRIPTION =
-  'Skup zegarków w centrum Warszawy. Butik przy ulicy Mokotowskiej 71 — Śródmieście, 5 minut od Placu Zbawiciela. Wycena tego samego dnia, gotówka.'
+  'Skup zegarków centrum Warszawy: Mokotowska 71, Śródmieście. Wycena Rolex, Patek Philippe, Omega, Cartier, gotówka lub przelew tego samego dnia.'
 
 export const metadata: Metadata = {
   title: TITLE,

@@ -7,9 +7,9 @@ import { relatedLinksFor } from '@/lib/related-links'
 
 const SLUG = 'zegarki-patek-philippe-warszawa'
 const URL = `https://warszawskiczas.pl/${SLUG}`
-const TITLE = 'Patek Philippe Warszawa — używane zegarki Patek, Nautilus, Calatrava, Aquanaut'
+const TITLE = 'Patek Philippe Warszawa — Nautilus, Calatrava, Aquanaut'
 const DESCRIPTION =
-  'Patek Philippe w Warszawie — Nautilus, Aquanaut, Calatrava, Annual Calendar, Twenty~4. Sprzedaż, sprowadzanie konkretnych referencji oraz skup. Każdy egzemplarz zweryfikowany pod kątem autentyczności. Mokotowska 71.'
+  'Patek Philippe Warszawa: Nautilus, Aquanaut, Calatrava, Annual Calendar i Twenty~4. Nowe, nieużywane i używane egzemplarze, sourcing i skup.'
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -103,7 +103,7 @@ export default async function Page() {
         ]}
         faq={[
           { q: 'Czy są jakieś Patek Philippe dostępne od ręki w butiku?', a: 'Tak, część egzemplarzy znajduje się w stałej ekspozycji butiku przy Mokotowskiej 71. Listę aktualnych dostępnych Patek Philippe znajdziesz w katalogu, a egzemplarze można obejrzeć tego samego dnia po krótkim umówieniu wizyty.' },
-          { q: 'Czy jesteście autoryzowanym dealerem Patek Philippe?', a: 'Nie. Warszawski Czas działa wyłącznie na rynku wtórnym i nie jest autoryzowanym dilerem Patek Philippe SA. Sprowadzamy używane zegarki Patek Philippe od sprawdzonych dostawców europejskich i prywatnych właścicieli.' },
+          { q: 'Czy jesteście autoryzowanym dealerem Patek Philippe?', a: 'Warszawski Czas jest niezależnym butikiem i nie jest autoryzowanym dilerem Patek Philippe SA. Oferujemy zegarki Patek Philippe z rynku wtórnego, w tym egzemplarze nowe, nieużywane i używane, po weryfikacji pochodzenia.' },
           { q: 'Ile trwa sprowadzenie konkretnej referencji Patek Philippe?', a: 'Typowo 14–60 dni w zależności od dostępności modelu na rynku europejskim. Nautilus 5711, Aquanaut 5167 w niektórych konfiguracjach i rzadkie Grand Complications mogą wymagać dłuższego czasu — do 90 dni dla najbardziej poszukiwanych egzemplarzy.' },
           { q: 'Czy każdy używany Patek Philippe ma papiery i pudełko?', a: 'Większość tak. Egzemplarze bez kart, dokumentów lub pudełka są wyraźnie oznaczane i wyceniane odpowiednio niżej. W briefie możesz wskazać wymóg pełnego kompletu — sprowadzimy tylko zegarki, które ten warunek spełniają.' },
           { q: 'Czy oferujecie skup zegarków Patek Philippe w Warszawie?', a: 'Tak. Prowadzimy skup zegarków Patek Philippe — wstępna wycena każdej referencji w 15 minut po zdjęciach, finalizacja tego samego dnia gotówką lub przelewem po obejrzeniu egzemplarza w butiku.' },

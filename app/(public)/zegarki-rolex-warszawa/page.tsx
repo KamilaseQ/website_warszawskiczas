@@ -7,9 +7,9 @@ import { relatedLinksFor } from '@/lib/related-links'
 
 const SLUG = 'zegarki-rolex-warszawa'
 const URL = `https://warszawskiczas.pl/${SLUG}`
-const TITLE = 'Rolex Warszawa — używane zegarki Rolex, skup i modele na zamówienie'
+const TITLE = 'Rolex Warszawa — zegarki Rolex od ręki, na zamówienie i skup'
 const DESCRIPTION =
-  'Zegarki Rolex w Warszawie — Submariner, Daytona, Datejust, GMT-Master, Day-Date, Sky-Dweller, Yacht-Master. Modele dostępne od ręki, sprowadzanie konkretnych referencji bez listy oczekujących i skup Rolexów. Mokotowska 71.'
+  'Rolex Warszawa: nowe, nieużywane i używane Submariner, Daytona, Datejust, GMT-Master, Day-Date. Modele od ręki, na zamówienie i skup.'
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -96,7 +96,7 @@ export default async function Page() {
         ]}
         faq={[
           { q: 'Czy macie zegarki Rolex dostępne od ręki w butiku w Warszawie?', a: 'Tak. Część egzemplarzy znajduje się w stałej ekspozycji butiku przy Mokotowskiej 71 i można obejrzeć je tego samego dnia po krótkim umówieniu wizyty.' },
-          { q: 'Czy jesteście autoryzowanym dealerem Rolex?', a: 'Nie. Warszawski Czas działa wyłącznie na rynku wtórnym i nie jest autoryzowanym dealerem Rolex SA. Sprowadzamy używane Rolexy od sprawdzonych dostawców i prywatnych właścicieli.' },
+          { q: 'Czy jesteście autoryzowanym dealerem Rolex?', a: 'Warszawski Czas jest niezależnym butikiem i nie jest autoryzowanym dealerem Rolex SA. Oferujemy zegarki Rolex z rynku wtórnego, w tym egzemplarze nowe, nieużywane i używane, od sprawdzonych dostawców oraz prywatnych właścicieli.' },
           { q: 'Ile trwa sprowadzenie konkretnej referencji Rolex?', a: 'Najczęściej 7–30 dni w zależności od dostępności modelu na rynku europejskim. Modele bardzo poszukiwane (Daytona stalowa, Submariner Hulk) mogą wymagać dłuższego czasu.' },
           { q: 'Czy każdy używany Rolex w Warszawskim Czasie ma papiery i pudełko?', a: 'Większość tak. Egzemplarze bez kart lub pudełka oznaczamy wyraźnie i wyceniamy odpowiednio niżej. W briefie możesz wskazać wymóg pełnego kompletu — sprowadzimy tylko zegarki, które go spełniają.' },
           { q: 'Czy oferujecie skup Rolexów w Warszawie?', a: 'Tak — prowadzimy też skup Rolex Warszawa. Wstępna wycena każdej referencji w 15 minut po zdjęciach, finalizacja tego samego dnia gotówką lub przelewem.' },

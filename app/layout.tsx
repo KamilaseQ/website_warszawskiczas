@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     template: '%s | Warszawski Czas',
   },
   description:
-    'Butik zegarków premium w sercu Warszawy. Ekskluzywna kolekcja zegarków, profesjonalny serwis zegarmistrzowski, skup i komis. Mokotowska 71.',
+    'Nowe, nieużywane i używane zegarki luksusowe w Warszawie: Rolex, Patek Philippe, AP, Omega, Cartier. Butik Mokotowska 71, skup, komis i sourcing.',
   authors: [{ name: 'Warszawski Czas' }],
   metadataBase: new URL('https://warszawskiczas.pl'),
   alternates: {
@@ -42,14 +42,14 @@ export const metadata: Metadata = {
     siteName: 'Warszawski Czas',
     title: 'Warszawski Czas | Butik Zegarków Premium',
     description:
-      'Butik zegarków premium w sercu Warszawy. Mokotowska 71 — kolekcja, serwis, skup, komis.',
+      'Nowe, nieużywane i używane zegarki luksusowe w Warszawie. Mokotowska 71 — sprzedaż, skup, komis, sourcing.',
     url: 'https://warszawskiczas.pl',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Warszawski Czas | Butik Zegarków Premium',
     description:
-      'Butik zegarków premium w sercu Warszawy. Mokotowska 71 — kolekcja, serwis, skup, komis.',
+      'Nowe, nieużywane i używane zegarki luksusowe w Warszawie. Mokotowska 71 — sprzedaż, skup, komis, sourcing.',
   },
   robots: {
     index: true,
@@ -159,7 +159,7 @@ export default function RootLayout({
               name: 'Warszawski Czas',
               alternateName: 'Warszawski Czas — Butik Zegarków Premium',
               description:
-                'Butik zegarków premium w sercu Warszawy. Ekskluzywna kolekcja zegarków, profesjonalny serwis zegarmistrzowski, skup i komis.',
+                'Niezależny butik zegarków premium w Warszawie: nowe, nieużywane i używane zegarki luksusowe, skup, komis, sourcing i serwis.',
               url: 'https://warszawskiczas.pl',
               telephone: '+48604312411',
               email: 'biuro@warszawskiczas.pl',

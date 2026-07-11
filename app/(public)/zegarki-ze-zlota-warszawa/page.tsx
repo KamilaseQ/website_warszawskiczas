@@ -9,7 +9,7 @@ const SLUG = 'zegarki-ze-zlota-warszawa'
 const URL = `https://warszawskiczas.pl/${SLUG}`
 const TITLE = 'Zegarki ze złota Warszawa — żółte, różowe, białe 18K'
 const DESCRIPTION =
-  'Złote zegarki w Warszawie — Rolex Day-Date, Patek Philippe Calatrava, Cartier Tank, Audemars Piguet Royal Oak. 18K złoto żółte, różowe (Everose), białe i bicolor. Z gwarancją autentyczności i dokumentacją pochodzenia.'
+  'Złote zegarki Warszawa: Rolex Day-Date, Patek Calatrava, Cartier Tank i AP Royal Oak. 18K złoto żółte, różowe, białe; nowe i używane.'
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -55,7 +55,7 @@ export default async function Page() {
             heading: 'Co warto wiedzieć kupując złoty zegarek',
             paragraphs: [
               'Wartość złotego zegarka składa się z kilku elementów: marki i modelu, wagi i czystości złota (18K = 75% złota czystego), stanu koperty i bransolety, kompletu dokumentów i pudełka oraz historii serwisowej. W przypadku Rolexów i Patek Philippe sama wartość metalu szlachetnego stanowi typowo 15–35% ceny rynkowej — pozostała część to wartość marki, mechanizmu i historii.',
-              'Złoto w zegarkach klasy premium jest też dziś inwestycją: ceny złotych Rolex Day-Date i Patek Philippe Calatrava w 18K rosną szybciej niż ich stalowe odpowiedniki (z wyjątkiem segmentu sport-stal, gdzie Daytona, Submariner i Royal Oak ST notują własną dynamikę). Cartier Tank w 18K złocie różowym stał się jednym z modeli szybciej zyskujących na wartości w ostatnich latach.',
+              'Złoto w zegarkach klasy premium ma znaczenie estetyczne, wagowe i kolekcjonerskie. Rolex Day-Date, Patek Philippe Calatrava w 18K i Cartier Tank w złocie różowym są wybierane nie tylko ze względu na materiał, ale też rozpoznawalną linię, proporcje koperty i trwałość projektu.',
             ],
           },
         ]}
@@ -92,7 +92,7 @@ export default async function Page() {
         faq={[
           { q: 'Czym różni się złoto Everose od zwykłego różowego złota?', a: 'Everose to opatentowany przez Rolexa stop 18K złota różowego (76% złota, 22% miedzi, 2% platyny). Dodatek platyny stabilizuje kolor i zapobiega blaknięciu z czasem. „Zwykłe” złoto różowe innych marek (np. 5N) z czasem jaśnieje pod wpływem chloru i kosmetyków.' },
           { q: 'Co to jest Rolesor?', a: 'Rolesor to nazwa Rolexa dla wersji bicolor — stal Oystersteel (904L) z elementami z 18K złota żółtego (Rolesor żółty), Everose (Rolesor Everose) lub białego (Rolesor biały). Najczęściej spotykany w Datejust, Submariner Date i GMT-Master II Root Beer.' },
-          { q: 'Czy złote zegarki są inwestycją?', a: 'Tak, ale z zastrzeżeniami. Wartość złotych zegarków premium rośnie zwykle wolniej niż ceny złota fizycznego, ale szybciej niż depozyty bankowe. Najszybciej zyskują złote Patek Philippe i klasyczny Cartier Tank w 18K. Nie należy kupować zegarka jako pure investment — zysk pojawia się w 5–10 letnim horyzoncie.' },
+          { q: 'Czy złote zegarki dobrze trzymają wartość?', a: 'Wiele zależy od marki, referencji, stanu, kompletu dokumentów i popytu na rynku wtórnym. Złote Rolex Day-Date, Patek Philippe Calatrava czy Cartier Tank są cenione kolekcjonersko, ale każdy egzemplarz wyceniamy indywidualnie.' },
           { q: 'Czy można sprzedać złoty zegarek w skupie u Was?', a: 'Tak. Wstępna wycena po zdjęciach w 15 minut, finalizacja w butiku tego samego dnia gotówką lub przelewem.' },
         ]}
         closingHeading="Wybierz złoty zegarek"

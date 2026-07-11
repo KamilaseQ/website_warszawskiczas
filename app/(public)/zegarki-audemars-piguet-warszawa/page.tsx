@@ -7,9 +7,9 @@ import { relatedLinksFor } from '@/lib/related-links'
 
 const SLUG = 'zegarki-audemars-piguet-warszawa'
 const URL = `https://warszawskiczas.pl/${SLUG}`
-const TITLE = 'Audemars Piguet Warszawa — używane zegarki AP Royal Oak, Royal Oak Offshore, Code 11.59'
+const TITLE = 'Audemars Piguet Warszawa — Royal Oak, Offshore, Code 11.59'
 const DESCRIPTION =
-  'Audemars Piguet w Warszawie — Royal Oak 15500, 15510, 15400, Royal Oak Offshore, Royal Oak Concept, Code 11.59. Sprzedaż, sprowadzanie konkretnych referencji AP oraz skup. Pełna weryfikacja autentyczności. Mokotowska 71.'
+  'Audemars Piguet Warszawa: Royal Oak, Offshore, Concept i Code 11.59. Nowe, nieużywane i używane egzemplarze AP, sourcing, skup i weryfikacja.'
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -105,11 +105,11 @@ export default async function Page() {
         ]}
         faq={[
           { q: 'Czy są jakieś Audemars Piguet dostępne od ręki w butiku?', a: 'Tak, część egzemplarzy znajduje się w stałej ekspozycji butiku przy Mokotowskiej 71. Aktualną listę dostępnych Royal Oaków i innych AP znajdziesz w katalogu — można je obejrzeć tego samego dnia po krótkim umówieniu wizyty.' },
-          { q: 'Czy jesteście autoryzowanym dealerem Audemars Piguet?', a: 'Nie. Warszawski Czas działa wyłącznie na rynku wtórnym i nie jest autoryzowanym dilerem Audemars Piguet. Sprowadzamy używane zegarki AP od sprawdzonych dostawców europejskich i prywatnych właścicieli.' },
+          { q: 'Czy jesteście autoryzowanym dealerem Audemars Piguet?', a: 'Warszawski Czas jest niezależnym butikiem i nie jest autoryzowanym dilerem Audemars Piguet. Oferujemy egzemplarze AP z rynku wtórnego, w tym nowe, nieużywane i używane, od sprawdzonych dostawców europejskich oraz prywatnych właścicieli.' },
           { q: 'Ile trwa sprowadzenie konkretnej referencji Royal Oak?', a: 'Typowo 14–60 dni. Royal Oak 15500ST w klasycznych kolorach (niebieska, czarna) bywa dostępny w 14–30 dni; rzadsze konfiguracje (zielona, "Smoked Brown", Jumbo 16202) mogą wymagać 30–90 dni.' },
           { q: 'Czym różni się Royal Oak 15500 od 15510?', a: 'Royal Oak 15510 (od 2022) to ewolucja 15500 z drobnymi zmianami estetycznymi: nieco inny krój oznaczeń tarczy, zmieniony rotor z masywniejszą grawerą "Audemars Piguet" oraz nowsza wersja kalibru (4302 → 7121 w wybranych wariantach). Wymiary koperty 41 mm i estetyka zegarka pozostają praktycznie identyczne.' },
           { q: 'Czy oferujecie skup zegarków AP w Warszawie?', a: 'Tak. Prowadzimy skup zegarków Audemars Piguet — wstępna wycena każdej referencji w 15 minut po zdjęciach, finalizacja tego samego dnia gotówką lub przelewem po obejrzeniu egzemplarza w butiku.' },
-          { q: 'Czy Royal Oak to dobra inwestycja?', a: 'Royal Oak ST przez lata 2018–2022 systematycznie zyskiwał na wartości; rynek wtórny w latach 2023–2025 wykazał korektę. Royal Oak Jumbo 16202ST 50th Anniversary, edycje limitowane i wersje w 18K złocie różowym pozostają w pozytywnym trendzie wartości w 5–10 letnim horyzoncie.' },
+          { q: 'Czy Royal Oak dobrze trzyma wartość?', a: 'Royal Oak należy do najmocniejszych kolekcjonersko linii Audemars Piguet, ale wycena zależy od referencji, materiału, tarczy, kompletu dokumentów i stanu. Szczególnie poszukiwane są Jumbo, edycje limitowane oraz konfiguracje w 18K złocie.' },
         ]}
         closingHeading="Zapytaj o swój model Audemars Piguet"
         closingText="Royal Oak, Offshore, Jumbo, Code 11.59 — sprowadzimy konkretną referencję AP w 14–60 dni."

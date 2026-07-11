@@ -5,7 +5,7 @@ import { localizedAlternates } from '@/lib/i18n'
 export const metadata: Metadata = {
   title: 'Serwis zegarków Warszawa — naprawa, przegląd, renowacja',
   description:
-    'Profesjonalny serwis zegarmistrzowski w Warszawie. Przeglądy, naprawy, regulacje, renowacje zegarków mechanicznych — Rolex, Omega, Patek Philippe i inne marki premium.',
+    'Serwis zegarków Warszawa: przeglądy, naprawy, regulacje i renowacje Rolex, Omega, Patek Philippe, Cartier i innych marek premium.',
   alternates: localizedAlternates('/uslugi/naprawa-i-serwis', 'pl'),
   openGraph: {
     type: 'website',

@@ -7,9 +7,9 @@ import { relatedLinksFor } from '@/lib/related-links'
 
 const SLUG = 'zegarki-breitling-warszawa'
 const URL = `https://warszawskiczas.pl/${SLUG}`
-const TITLE = 'Breitling Warszawa — używane zegarki Navitimer, Superocean, Chronomat, Premier'
+const TITLE = 'Breitling Warszawa — Navitimer, Superocean, Chronomat, Premier'
 const DESCRIPTION =
-  'Breitling w Warszawie — Navitimer, Superocean, Chronomat, Premier, Avenger, Top Time. Sprzedaż używanych zegarków Breitling, sprowadzanie konkretnych referencji oraz skup. Pełna weryfikacja autentyczności i wsparcie posprzedażowe. Mokotowska 71.'
+  'Breitling Warszawa: Navitimer, Superocean, Chronomat, Premier i Avenger. Nowe, nieużywane i używane egzemplarze, sourcing i skup.'
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -105,11 +105,11 @@ export default async function Page() {
         ]}
         faq={[
           { q: 'Czy są jakieś Breitlingi dostępne od ręki w butiku?', a: 'Tak, znacząca część egzemplarzy znajduje się w stałej ekspozycji butiku przy Mokotowskiej 71. Aktualną listę dostępnych zegarków Breitling znajdziesz w katalogu, a egzemplarze można obejrzeć tego samego dnia po krótkim umówieniu wizyty.' },
-          { q: 'Czy jesteście autoryzowanym dealerem Breitling?', a: 'Nie. Warszawski Czas działa na rynku wtórnym i nie jest autoryzowanym dilerem Breitlinga. Sprzedajemy używane zegarki Breitling od sprawdzonych dostawców europejskich i prywatnych właścicieli, z pełną weryfikacją autentyczności i wsparciem posprzedażowym po zakupie.' },
+          { q: 'Czy jesteście autoryzowanym dealerem Breitling?', a: 'Warszawski Czas jest niezależnym butikiem i nie jest autoryzowanym dilerem Breitlinga. Oferujemy nowe, nieużywane i używane zegarki Breitling od sprawdzonych dostawców europejskich oraz prywatnych właścicieli, z pełną weryfikacją autentyczności.' },
           { q: 'Ile trwa sprowadzenie konkretnej referencji Breitling?', a: 'Typowo 7–30 dni w zależności od dostępności modelu. Klasyczne Navitimery, Superocean Heritage i Chronomaty są typowo dostępne w 7–14 dni; rzadkie wersje (zielony Chronomat, edycje limitowane Top Time, archiwalne Chronoliner) mogą wymagać 30–60 dni.' },
           { q: 'Czym różni się stary Navitimer (Valjoux 7750) od nowego z kalibrem B01?', a: 'Stare Navitimery (przed 2009) wyposażone w Valjoux 7750 — modularny chronograf 28800 vph z 48-godzinną rezerwą — są kolekcjonersko ciekawe, ale technicznie ustępują manufakturowemu B01 (kolumnowy chronograf 28800 vph, 70-godzinna rezerwa, COSC). Wartość rynkowa nowszych egzemplarzy z B01 jest typowo wyższa, ale starsze Valjoux 7750 mają wartość historyczną i mniejsze koszty serwisu.' },
           { q: 'Czy oferujecie skup zegarków Breitling w Warszawie?', a: 'Tak. Prowadzimy skup zegarków Breitling — wstępna wycena każdej referencji w 15 minut po zdjęciach, finalizacja tego samego dnia gotówką lub przelewem po obejrzeniu egzemplarza w butiku.' },
-          { q: 'Czy Breitling to dobra inwestycja?', a: 'Breitling nie jest typowym "wzrostowym" zegarkiem inwestycyjnym jak Rolex czy Patek — wartości rynkowe rosną wolno i bardziej zależą od konkretnego egzemplarza (referencja, kolor tarczy, kompletność dokumentów). Edycje limitowane (Top Time Classic Cars, Bentley Mulliner, kolaboracje z Outerknown) zyskują szybciej. Klasyczny Navitimer i Superocean Heritage to dobre zakupy z zachowaniem wartości w 5–10 letnim horyzoncie.' },
+          { q: 'Czy Breitling dobrze trzyma wartość?', a: 'To zależy od konkretnej referencji, koloru tarczy, kompletności dokumentów i stanu. Edycje limitowane, Navitimer, Superocean Heritage i modele z kalibrem B01 są zwykle najmocniejsze kolekcjonersko, ale każdy egzemplarz wymaga indywidualnej wyceny.' },
         ]}
         closingHeading="Zapytaj o swój model Breitling"
         closingText="Navitimer, Superocean, Chronomat, Premier — sprowadzimy konkretną referencję Breitling w 7–30 dni."

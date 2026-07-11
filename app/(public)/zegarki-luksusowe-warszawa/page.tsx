@@ -7,7 +7,7 @@ const SLUG = 'zegarki-luksusowe-warszawa'
 const URL = `https://warszawskiczas.pl/${SLUG}`
 const TITLE = 'Zegarki luksusowe Warszawa — butik premium, Mokotowska 71'
 const DESCRIPTION =
-  'Zegarki luksusowe w Warszawie. Certyfikowane egzemplarze Rolex, Patek Philippe, Audemars Piguet, Omega, Cartier — z gwarancją autentyczności. Mokotowska 71.'
+  'Zegarki luksusowe Warszawa: nowe, nieużywane i używane Rolex, Patek Philippe, AP, Omega, Cartier. Certyfikat, gwarancja butiku, Mokotowska 71.'
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -51,7 +51,7 @@ export default function Page() {
           { title: 'Finalizacja', description: 'Zakup w butiku albo zdalnie — z gwarancją i certyfikatem.' },
         ]}
         faq={[
-          { q: 'Czy zegarki są nowe czy używane?', a: 'Mamy oba rodzaje. Większość katalogu to certyfikowane egzemplarze z drugiej ręki w bardzo dobrym stanie.' },
+          { q: 'Czy zegarki są nowe czy używane?', a: 'Mamy oba rodzaje. W katalogu pojawiają się egzemplarze nowe, nieużywane i używane; każdy opisujemy zgodnie ze stanem, kompletem i historią serwisową.' },
           { q: 'Czy mogę zarezerwować zegarek przed wizytą?', a: 'Tak. Po krótkiej rozmowie odkładamy konkretny egzemplarz na 24–48 godzin.' },
           { q: 'Czy istnieje możliwość zwrotu?', a: 'Tak — w przypadku stwierdzenia rozbieżności ze stanem opisanym. Szczegóły omawiamy indywidualnie.' },
           { q: 'Czy sprowadzicie konkretną referencję?', a: 'Tak. Korzystamy z sieci sprawdzonych dostawców w Polsce i Europie. Czas zwykle 7–30 dni.' },

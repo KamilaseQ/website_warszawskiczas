@@ -9,7 +9,7 @@ const SLUG = 'chronografy-warszawa'
 const URL = `https://warszawskiczas.pl/${SLUG}`
 const TITLE = 'Chronografy Warszawa — Daytona, Speedmaster, Royal Oak Chronograph'
 const DESCRIPTION =
-  'Chronografy luksusowe w Warszawie — Rolex Daytona, Omega Speedmaster, Audemars Piguet Royal Oak Chronograph, Patek Philippe 5980, IWC Portugieser Chronograph, Breitling Chronomat. Z certyfikatem autentyczności i 12 m-cy gwarancji.'
+  'Chronografy Warszawa: Rolex Daytona, Omega Speedmaster, AP Royal Oak Chronograph, Patek 5980, IWC i Breitling. Nowe i używane, certyfikat butiku.'
 
 export const metadata: Metadata = {
   title: TITLE,

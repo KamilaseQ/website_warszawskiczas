@@ -7,7 +7,7 @@ const SLUG = 'zegarki-na-zamowienie'
 const URL = `https://warszawskiczas.pl/${SLUG}`
 const TITLE = 'Zegarki na zamówienie — sprowadzanie konkretnych referencji'
 const DESCRIPTION =
-  'Zegarki na zamówienie — sprowadzimy konkretną referencję Rolex, Patek Philippe, Audemars Piguet, Omega, Cartier. Polska, dyskretnie, z weryfikacją pochodzenia.'
+  'Zegarki na zamówienie: Rolex, Patek Philippe, AP, Omega i Cartier. Konkretna referencja, nowe i używane egzemplarze, sourcing w Polsce i Europie.'
 
 export const metadata: Metadata = {
   title: TITLE,

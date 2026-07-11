@@ -7,7 +7,7 @@ const SLUG = 'komis-zegarkow-warszawa'
 const URL = `https://warszawskiczas.pl/${SLUG}`
 const TITLE = 'Komis zegarków Warszawa — sprzedaż dyskretna i premium'
 const DESCRIPTION =
-  'Komis zegarków premium w Warszawie. Wyższa cena niż w skupie, prezentacja butikowa, dotarcie do kolekcjonerów. Rolex, Patek, AP, Omega — Mokotowska 71.'
+  'Komis zegarków Warszawa: sprzedaż Rolex, Patek Philippe, AP, Omega i Cartier przez butik. Prezentacja, dotarcie do kolekcjonerów, dyskrecja.'
 
 export const metadata: Metadata = {
   title: TITLE,

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { notFound } from 'next/navigation'
+import { notFound, redirect } from 'next/navigation'
 import { ContactLink } from '@/components/contact-link'
 import { ProductCatalog } from '@/components/products'
 import { RelatedGrid } from '@/components/products'
@@ -36,6 +36,12 @@ import {
   productPublicPrice,
   schemaOrgAvailability,
 } from '@/lib/product-availability'
+import {
+  productAdditionalProperties,
+  productCategoryName,
+  productItemCondition,
+  productReferenceIdentifier,
+} from '@/lib/product-structured-data'
 import { PrivateCollectionPage } from '@/components/pages/private-collection-page'
 import { AccessibilityStatementPage } from '@/components/pages/accessibility-statement-page'
 import { BoutiquePage } from '@/components/pages/boutique-page'
@@ -398,9 +404,13 @@ async function LocalizedProductDetail({ route, locale }: { route: string; locale
   const slug = route.replace('/produkty/', '')
   const source = await resolveProduct(slug)
   if (!source) notFound()
+  const canonicalSlug = productUrlSlug(source)
+  if (slug !== canonicalSlug) {
+    redirect(encodeURI(localizePath(`/produkty/${canonicalSlug}`, locale)))
+  }
+
   const product = localizeProduct(source, locale)
   const price = formatProductPrice(source, locale)
-  const canonicalSlug = productUrlSlug(source)
   const productLabel = `${product.brand} ${product.name}`
   const productUrl = absoluteUrl(`/produkty/${canonicalSlug}`, locale)
   const productImages = (source.images ?? []).map((src) =>
@@ -437,26 +447,41 @@ async function LocalizedProductDetail({ route, locale }: { route: string; locale
       ? 'Free valuation · Discreet consultation'
       : 'Безкоштовна оцінка · Дискретна консультація'
   const offerPrice = productPublicPrice(source)
+  const productIdentifier = productReferenceIdentifier(source)
+  const itemCondition = productItemCondition(source)
 
   const productJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Product',
+    '@id': `${productUrl}#product`,
     name: `${product.brand} ${product.name}`,
     brand: { '@type': 'Brand', name: product.brand },
     model: product.name,
-    category: locale === 'en' ? 'Luxury watches' : 'Люксові годинники',
+    category: productCategoryName(source.category, locale),
     description: product.description,
-    sku: product.reference,
-    mpn: product.reference,
+    ...(productIdentifier ? { sku: productIdentifier, mpn: productIdentifier } : {}),
     image: productImages.length ? productImages : undefined,
     url: productUrl,
+    mainEntityOfPage: productUrl,
+    inLanguage: locale === 'en' ? 'en-US' : 'uk-UA',
     material: product.material,
+    productionDate: source.year ? String(source.year).replace(/^#/, '') : undefined,
+    itemCondition,
+    additionalProperty: productAdditionalProperties(product),
     offers: {
       '@type': 'Offer',
+      '@id': `${productUrl}#offer`,
       url: productUrl,
       ...(offerPrice ? { price: offerPrice, priceCurrency: 'PLN' } : {}),
       availability: schemaOrgAvailability(source.status),
-      seller: { '@type': 'Organization', name: 'Warszawski Czas', url: absoluteUrl('/', locale) },
+      itemCondition,
+      seller: {
+        '@type': 'Organization',
+        '@id': 'https://warszawskiczas.pl/#organization',
+        name: 'Warszawski Czas',
+        url: absoluteUrl('/', locale),
+      },
+      availableAtOrFrom: { '@id': 'https://warszawskiczas.pl/#localbusiness' },
       areaServed: { '@type': 'Country', name: 'PL' },
     },
   }

@@ -7,7 +7,7 @@ const SLUG = 'skup-rolex-warszawa'
 const URL = `https://warszawskiczas.pl/${SLUG}`
 const TITLE = 'Skup Rolex Warszawa — sprzedaj Rolexa bez pośredników'
 const DESCRIPTION =
-  'Skup Rolex w Warszawie. Submariner, Daytona, Datejust, GMT-Master, Day-Date, Sky-Dweller — bezpłatna wycena, gotówka lub przelew tego samego dnia, pełna dyskrecja.'
+  'Skup Rolex Warszawa: Submariner, Daytona, Datejust, GMT-Master, Day-Date i Sky-Dweller. Bezpłatna wycena, płatność tego samego dnia.'
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -41,7 +41,7 @@ export default function Page() {
       <SeoLanding
         eyebrow="Skup Rolex · Warszawa"
         h1="Skup Rolex w Warszawie — szybko, dyskretnie, bez pośredników"
-        intro="Specjalizujemy się w skupie Rolexów. Wycena każdej referencji w 15 minut, oględziny w butiku przy Mokotowskiej 71, gotówka lub przelew tego samego dnia. Nie jesteśmy autoryzowanym dealerem Rolex — działamy na rynku wtórnym."
+        intro="Specjalizujemy się w skupie Rolexów. Wycena każdej referencji w 15 minut, oględziny w butiku przy Mokotowskiej 71, gotówka lub przelew tego samego dnia. Warszawski Czas jest niezależnym butikiem i nie jest autoryzowanym dealerem Rolex SA."
         primaryCtaLabel="Sprzedaj Rolexa"
         source="landing-skup-rolex-warszawa"
         highlights={[
@@ -72,7 +72,7 @@ export default function Page() {
           { q: 'Ile trwa wycena Rolexa?', a: 'Wstępna wycena po zdjęciach: 15 minut. Wycena ostateczna podczas oględzin: do 30 minut.' },
           { q: 'Czy wycena jest bezpłatna?', a: 'Tak. Wycena wstępna i wycena w butiku są bezpłatne, niezobowiązujące i nie wymagają sprzedaży.' },
           { q: 'Czy możliwa jest sprzedaż zdalna?', a: 'Tak — po wycenie wstępnej organizujemy ubezpieczonego kuriera. Płatność realizujemy po pozytywnej weryfikacji w butiku.' },
-          { q: 'Czy jesteście autoryzowanym dealerem Rolex?', a: 'Nie. Warszawski Czas działa na rynku wtórnym i nie jest autoryzowanym dealerem Rolex SA.' },
+          { q: 'Czy jesteście autoryzowanym dealerem Rolex?', a: 'Warszawski Czas jest niezależnym butikiem i nie jest autoryzowanym dealerem Rolex SA. Skup prowadzimy na rynku wtórnym, po weryfikacji autentyczności i stanu konkretnego egzemplarza.' },
         ]}
         closingHeading="Wyceń Rolexa bez zobowiązań"
         closingText="Wyślij zdjęcia i numer referencji — wstępną ofertę poznasz w 15 minut. Bez prowizji, bez aukcji, bez czekania."

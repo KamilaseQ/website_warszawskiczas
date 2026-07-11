@@ -7,7 +7,7 @@ const SLUG = 'audemars-piguet-na-zamowienie'
 const URL = `https://warszawskiczas.pl/${SLUG}`
 const TITLE = 'Audemars Piguet na zamówienie — Royal Oak, Offshore, Code 11.59'
 const DESCRIPTION =
-  'Audemars Piguet na zamówienie. Royal Oak 15500/15510/15400, Royal Oak Offshore, Code 11.59 — sourcing konkretnej referencji, weryfikacja autentyczności, sprzedaż w butiku.'
+  'Audemars Piguet na zamówienie: Royal Oak, Offshore i Code 11.59. Nowe, nieużywane i używane egzemplarze AP, sourcing i weryfikacja.'
 
 export const metadata: Metadata = {
   title: TITLE,

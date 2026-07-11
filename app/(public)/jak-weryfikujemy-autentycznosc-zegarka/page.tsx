@@ -6,7 +6,7 @@ const SLUG = 'jak-weryfikujemy-autentycznosc-zegarka'
 const URL = `https://warszawskiczas.pl/${SLUG}`
 const TITLE = 'Jak weryfikujemy autentyczność zegarka — proces ekspertyzy Warszawski Czas'
 const DESCRIPTION =
-  'Pełen proces weryfikacji autentyczności luksusowych zegarków w butiku Warszawski Czas — wizualna ocena, oznaczenia koperty, mechanizm, dokumenty, historia serwisowa, kompletność. Każdy zegarek sprawdzany przed wpisaniem do katalogu. Mokotowska 71.'
+  'Weryfikacja autentyczności zegarka: kontrola mechanizmu, numerów, koperty, dokumentów i historii serwisowej. Warszawski Czas, Mokotowska 71.'
 
 export const metadata: Metadata = {
   title: TITLE,

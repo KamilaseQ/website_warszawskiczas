@@ -7,7 +7,7 @@ const SLUG = 'rolex-na-zamowienie'
 const URL = `https://warszawskiczas.pl/${SLUG}`
 const TITLE = 'Rolex na zamówienie — Daytona, Submariner, GMT-Master, Datejust'
 const DESCRIPTION =
-  'Rolex na zamówienie — sprowadzimy konkretną referencję bez listy oczekujących u autoryzowanego dealera. Daytona, Submariner, GMT-Master, Datejust, Day-Date, Sky-Dweller.'
+  'Rolex na zamówienie: Daytona, Submariner, GMT-Master, Datejust, Day-Date i Sky-Dweller. Nowe, nieużywane i używane egzemplarze, sourcing 7-30 dni.'
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -25,7 +25,7 @@ export default function Page() {
       <SeoLanding
         eyebrow="Rolex · Na zamówienie"
         h1="Rolex na zamówienie — bez listy oczekujących"
-        intro="Każdy Rolex jest dziś trudno dostępny w autoryzowanym salonie. My działamy na rynku wtórnym i sprowadzamy konkretne referencje w 7–30 dni. Powiedz, jakiego modelu szukasz — przedstawimy egzemplarze do wyboru."
+        intro="Każdy Rolex jest dziś trudno dostępny w autoryzowanym salonie. Jako niezależny butik sprowadzamy konkretne referencje w 7–30 dni: nowe, nieużywane i używane egzemplarze po weryfikacji. Powiedz, jakiego modelu szukasz — przedstawimy egzemplarze do wyboru."
         primaryCtaLabel="Znajdź mi Rolexa"
         source="landing-rolex-na-zamowienie"
         highlights={[
@@ -50,7 +50,7 @@ export default function Page() {
           { title: 'Odbiór', description: 'Po akceptacji i weryfikacji — odbiór w butiku lub kurier.' },
         ]}
         faq={[
-          { q: 'Czy jesteście autoryzowanym dealerem Rolex?', a: 'Nie. Działamy na rynku wtórnym i sprowadzamy egzemplarze od sprawdzonych dostawców i właścicieli prywatnych.' },
+          { q: 'Czy jesteście autoryzowanym dealerem Rolex?', a: 'Warszawski Czas jest niezależnym butikiem i nie jest autoryzowanym dealerem Rolex SA. Sprowadzamy egzemplarze nowe, nieużywane i używane od sprawdzonych dostawców oraz prywatnych właścicieli.' },
           { q: 'Ile trwa sprowadzenie Rolexa?', a: 'Najczęściej 7–30 dni. Konkretne, popularne referencje — szybciej. Rzadkie modele — dłużej.' },
           { q: 'Czy każdy Rolex będzie z papierami?', a: 'Wskazujesz wymagania w briefie — sprowadzamy tylko egzemplarze spełniające Twoje kryteria.' },
           { q: 'Czy oferujecie gwarancję?', a: 'Tak — 12 miesięcy gwarancji butiku na pracę mechanizmu i certyfikat autentyczności.' },

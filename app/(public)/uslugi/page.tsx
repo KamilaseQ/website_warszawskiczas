@@ -5,7 +5,7 @@ import { localizedAlternates } from '@/lib/i18n'
 export const metadata: Metadata = {
   title: 'Usługi',
   description:
-    'Profesjonalne usługi zegarmistrzowskie: serwis i naprawa, skup zegarków, komis. Wieloletnie doświadczenie, uczciwe podejście.',
+    'Usługi zegarkowe Warszawa: skup, komis, wycena, serwis i sprowadzanie Rolex, Patek Philippe, AP, Omega, Cartier. Mokotowska 71.',
   alternates: localizedAlternates('/uslugi', 'pl'),
 }
 

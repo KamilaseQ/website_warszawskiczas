@@ -11,7 +11,11 @@
 import { ProductListSchema, type Product } from '../schemas/product'
 import { CMS_MODE, assertLiveConfig } from '../mode'
 import fixtures from '../fixtures/products.json'
-import { productUrlSlug as productUrlSlugPure } from '@/lib/product-url'
+import {
+  productBaseUrlSlug,
+  productUrlSlug as productUrlSlugPure,
+  withProductUrlSlugs,
+} from '@/lib/product-url'
 
 /** @deprecated Importuj z `@/lib/product-url`. Reeksport dla zgodności. */
 export const productUrlSlug = productUrlSlugPure
@@ -33,14 +37,14 @@ async function fetchFromCms(): Promise<Product[]> {
 export async function getAllProducts(): Promise<Product[]> {
   if (cache) return cache
   if (CMS_MODE === 'mock') {
-    cache = ProductListSchema.parse(fixtures)
+    cache = withProductUrlSlugs(ProductListSchema.parse(fixtures))
     // Widoczne w logu builda Hostingera - jasny sygnał, że NIE czytamy z CMS-a.
     console.log(
       `[from-cms] MOCK: użyto ${cache.length} produktów z fixtures (CMS_MODE="${process.env.CMS_MODE ?? 'unset'}").`,
     )
     return cache
   }
-  cache = await fetchFromCms()
+  cache = withProductUrlSlugs(await fetchFromCms())
   console.log(`[from-cms] LIVE: pobrano ${cache.length} produktów z CMS-a.`)
   return cache
 }
@@ -52,7 +56,12 @@ export async function getProductBySlug(slug: string): Promise<Product | null> {
 
 export async function findProductByUrlSlug(urlSlug: string): Promise<Product | null> {
   const all = await getAllProducts()
-  return all.find((p) => productUrlSlugPure(p) === urlSlug) ?? null
+  return (
+    all.find((p) => productUrlSlugPure(p) === urlSlug) ??
+    all.find((p) => productBaseUrlSlug(p) === urlSlug) ??
+    all.find((p) => p.slug === urlSlug) ??
+    null
+  )
 }
 
 export async function getFeaturedProduct(): Promise<Product> {

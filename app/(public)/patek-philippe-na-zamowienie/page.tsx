@@ -7,7 +7,7 @@ const SLUG = 'patek-philippe-na-zamowienie'
 const URL = `https://warszawskiczas.pl/${SLUG}`
 const TITLE = 'Patek Philippe na zamówienie — Nautilus, Aquanaut, Calatrava'
 const DESCRIPTION =
-  'Patek Philippe na zamówienie. Sprowadzimy konkretną referencję — Nautilus 5711/5712, Aquanaut 5167/5168, Calatrava, Complications. Dyskretny sourcing, weryfikacja pochodzenia.'
+  'Patek Philippe na zamówienie: Nautilus, Aquanaut, Calatrava i Complications. Nowe, nieużywane i używane egzemplarze z weryfikacją pochodzenia.'
 
 export const metadata: Metadata = {
   title: TITLE,

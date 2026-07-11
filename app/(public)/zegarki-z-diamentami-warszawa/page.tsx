@@ -9,7 +9,7 @@ const SLUG = 'zegarki-z-diamentami-warszawa'
 const URL = `https://warszawskiczas.pl/${SLUG}`
 const TITLE = 'Zegarki z diamentami Warszawa — bezel diamentowy, indeksy, iced out'
 const DESCRIPTION =
-  'Zegarki z diamentami w Warszawie — Rolex Datejust z bezelem diamentowym, Cartier Panthère i Tank z brylantami, Chopard Happy Sport, Patek Philippe Twenty~4, Bvlgari z diamentami. Wersje fabryczne i custom iced out z certyfikatem.'
+  'Zegarki z diamentami Warszawa: Rolex Datejust, Cartier Panthère, Chopard Happy Sport, Patek Twenty~4. Fabryczne i custom, nowe i używane.'
 
 export const metadata: Metadata = {
   title: TITLE,

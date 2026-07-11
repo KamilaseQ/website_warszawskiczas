@@ -9,7 +9,7 @@ const SLUG = 'zegarki-cartier-warszawa'
 const URL = `https://warszawskiczas.pl/${SLUG}`
 const TITLE = 'Zegarki Cartier Warszawa — Tank, Santos, Panthère, Ballon Bleu, Baignoire'
 const DESCRIPTION =
-  'Zegarki Cartier w Warszawie. Tank Louis, Tank Française, Santos de Cartier, Panthère, Ballon Bleu, Baignoire — modele dla niej i dla niego, w stali, złocie żółtym, różowym i białym, z diamentami. Z gwarancją autentyczności butiku.'
+  'Cartier Warszawa: Tank, Santos, Panthère, Ballon Bleu i Baignoire. Nowe, nieużywane i używane zegarki Cartier z certyfikatem butiku.'
 
 export const metadata: Metadata = {
   title: TITLE,

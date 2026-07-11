@@ -5,7 +5,7 @@ import { localizedAlternates } from '@/lib/i18n'
 export const metadata: Metadata = {
   title: 'Skup zegarków Warszawa — Rolex, Omega, Patek Philippe',
   description:
-    'Skup zegarków premium w Warszawie. Uczciwa wycena, natychmiastowa płatność, dyskrecja. Rolex, Omega, Patek Philippe, Audemars Piguet i inne marki — Mokotowska 71.',
+    'Skup zegarków premium Warszawa: Rolex, Omega, Patek Philippe, Audemars Piguet i Cartier. Uczciwa wycena, szybka płatność, Mokotowska 71.',
   alternates: localizedAlternates('/uslugi/skup', 'pl'),
   openGraph: {
     type: 'website',

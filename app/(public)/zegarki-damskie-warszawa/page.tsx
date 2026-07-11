@@ -9,7 +9,7 @@ const SLUG = 'zegarki-damskie-warszawa'
 const URL = `https://warszawskiczas.pl/${SLUG}`
 const TITLE = 'Zegarki damskie luksusowe Warszawa — Cartier Panthère, Rolex Lady-Datejust'
 const DESCRIPTION =
-  'Damskie zegarki luksusowe w Warszawie — Cartier Panthère i Tank, Rolex Lady-Datejust 28/31, Patek Philippe Twenty~4, Chopard Happy Sport, Bvlgari Serpenti, Piaget Limelight. Z gwarancją autentyczności butiku i 12 m-cy gwarancji. Mokotowska 71.'
+  'Zegarki damskie luksusowe Warszawa: Cartier Panthère, Tank, Rolex Lady-Datejust, Patek Twenty~4, Chopard i Bvlgari. Nowe, nieużywane i używane.'
 
 export const metadata: Metadata = {
   title: TITLE,

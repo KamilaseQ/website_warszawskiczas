@@ -4,7 +4,7 @@ import { PrivateCollectionPage } from '@/components/pages/private-collection-pag
 export const metadata: Metadata = {
   title: 'Kolekcja Prywatna',
   description:
-    'Ekskluzywna kolekcja zegarków dostępna po weryfikacji. Rzadkie modele, prywatne kolekcje, indywidualne podejście.',
+    'Kolekcja prywatna zegarków: rzadkie Rolex, Patek Philippe, AP, Cartier i Omega dostępne po konsultacji. Egzemplarze od ręki i na zamówienie.',
 }
 
 export default function Page() {

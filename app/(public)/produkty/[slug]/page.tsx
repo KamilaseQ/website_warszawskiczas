@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { localizedAlternates } from '@/lib/i18n'
 import Link from 'next/link'
-import { notFound } from 'next/navigation'
+import { notFound, redirect } from 'next/navigation'
 import { ContactLink } from '@/components/contact-link'
 import { Container, Section, Heading, Text, Button, FaqAccordion, type FaqItem } from '@/components/ui'
 import { RelatedGrid } from '@/components/products'
@@ -23,6 +23,12 @@ import {
   productShowsPriceOnRequest,
   schemaOrgAvailability,
 } from '@/lib/product-availability'
+import {
+  productAdditionalProperties,
+  productCategoryName,
+  productItemCondition,
+  productReferenceIdentifier,
+} from '@/lib/product-structured-data'
 
 interface PageProps {
   params: Promise<{ slug: string }>
@@ -107,6 +113,9 @@ export default async function ProductPage({ params }: PageProps) {
   const product = await resolveProduct(slug)
   if (!product) notFound()
 
+  const canonicalSlug = productUrlSlug(product)
+  if (slug !== canonicalSlug) redirect(`/produkty/${canonicalSlug}`)
+
   const allProducts = await getAllProducts()
   const price = formatPrice(product)
   const isOnOrder = isProductOnOrder(product)
@@ -169,7 +178,6 @@ export default async function ProductPage({ params }: PageProps) {
       ? 'product-detail-on-order'
       : 'product-detail'
 
-  const canonicalSlug = productUrlSlug(product)
   const productUrl = `https://warszawskiczas.pl/produkty/${canonicalSlug}`
   const productImages = (product.images ?? []).map((src) =>
     src.startsWith('http') ? src : `https://warszawskiczas.pl${src}`,
@@ -177,37 +185,43 @@ export default async function ProductPage({ params }: PageProps) {
 
   const availability = schemaOrgAvailability(product.status)
   const offerPrice = productPublicPrice(product)
+  const productIdentifier = productReferenceIdentifier(product)
+  const itemCondition = productItemCondition(product)
 
   const productJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Product',
+    '@id': `${productUrl}#product`,
     name: `${product.brand} ${product.name}`,
     brand: { '@type': 'Brand', name: product.brand },
     model: product.name,
-    category: 'Zegarki luksusowe',
+    category: productCategoryName(product.category, 'pl'),
     description: product.description,
-    sku: product.reference,
-    mpn: product.reference,
+    ...(productIdentifier ? { sku: productIdentifier, mpn: productIdentifier } : {}),
     image: productImages.length ? productImages : undefined,
     url: productUrl,
+    mainEntityOfPage: productUrl,
+    inLanguage: 'pl-PL',
     material: product.material,
     productionDate: product.year ? String(product.year).replace(/^#/, '') : undefined,
-    itemCondition:
-      product.condition && /nowy/i.test(product.condition)
-        ? 'https://schema.org/NewCondition'
-        : 'https://schema.org/UsedCondition',
+    itemCondition,
+    additionalProperty: productAdditionalProperties(product),
     offers: {
       '@type': 'Offer',
+      '@id': `${productUrl}#offer`,
       url: productUrl,
       ...(offerPrice
         ? { price: offerPrice, priceCurrency: 'PLN' }
         : {}),
       availability,
-      itemCondition:
-        product.condition && /nowy/i.test(product.condition)
-          ? 'https://schema.org/NewCondition'
-          : 'https://schema.org/UsedCondition',
-      seller: { '@type': 'Organization', name: 'Warszawski Czas', url: 'https://warszawskiczas.pl' },
+      itemCondition,
+      seller: {
+        '@type': 'Organization',
+        '@id': 'https://warszawskiczas.pl/#organization',
+        name: 'Warszawski Czas',
+        url: 'https://warszawskiczas.pl',
+      },
+      availableAtOrFrom: { '@id': 'https://warszawskiczas.pl/#localbusiness' },
       areaServed: { '@type': 'Country', name: 'PL' },
     },
   }

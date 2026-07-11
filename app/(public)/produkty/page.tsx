@@ -11,14 +11,14 @@ import { getAllProducts, productUrlSlug } from '@/from-cms/adapters/products'
 export const metadata: Metadata = {
   title: 'Zegarki luksusowe w Warszawie — katalog Warszawski Czas',
   description:
-    'Katalog zegarków luksusowych dostępnych w butiku przy Mokotowskiej 71. Rolex, Patek Philippe, Audemars Piguet, Omega, Cartier, Breitling — certyfikowane egzemplarze z gwarancją autentyczności.',
+    'Katalog zegarków luksusowych w Warszawie: nowe, nieużywane i używane Rolex, Patek Philippe, AP, Omega, Cartier. Weryfikacja autentyczności.',
   alternates: localizedAlternates('/produkty', 'pl'),
   openGraph: {
     type: 'website',
     url: 'https://warszawskiczas.pl/produkty',
     title: 'Zegarki luksusowe w Warszawie — katalog Warszawski Czas',
     description:
-      'Certyfikowane zegarki premium dostępne od ręki. Rolex, Patek Philippe, Audemars Piguet, Omega, Cartier i więcej — Mokotowska 71.',
+      'Nowe, nieużywane i używane zegarki premium dostępne od ręki i na zamówienie. Rolex, Patek Philippe, AP, Omega, Cartier — Mokotowska 71.',
     siteName: 'Warszawski Czas',
     locale: 'pl_PL',
   },

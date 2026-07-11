@@ -7,7 +7,7 @@ const SLUG = 'skup-zegarkow-warszawa'
 const URL = `https://warszawskiczas.pl/${SLUG}`
 const TITLE = 'Skup zegarków Warszawa — wycena w 15 minut, gotówka lub przelew'
 const DESCRIPTION =
-  'Skup zegarków premium w Warszawie. Bezpłatna wycena w 15 minut, natychmiastowa płatność, pełna dyskrecja. Rolex, Patek Philippe, AP, Omega — Mokotowska 71.'
+  'Skup zegarków Warszawa: Rolex, Patek Philippe, AP, Omega i Cartier. Bezpłatna wycena w 15 minut, gotówka lub przelew, dyskrecja.'
 
 export const metadata: Metadata = {
   title: TITLE,

@@ -5,9 +5,9 @@ import { relatedLinksFor } from '@/lib/related-links'
 
 const SLUG = 'zegarki-kolekcjonerskie'
 const URL = `https://warszawskiczas.pl/${SLUG}`
-const TITLE = 'Zegarki kolekcjonerskie — vintage, edycje limitowane, inwestycyjne'
+const TITLE = 'Zegarki kolekcjonerskie — vintage i edycje limitowane'
 const DESCRIPTION =
-  'Zegarki kolekcjonerskie i inwestycyjne — vintage Rolex, Omega Speedmaster, Patek Philippe, Audemars Piguet. Konsultacja kolekcjonerska, weryfikacja pochodzenia.'
+  'Zegarki kolekcjonerskie Warszawa: rzadkie Rolex, Patek Philippe, AP i Omega, edycje limitowane, vintage oraz nowe i używane egzemplarze z weryfikacją.'
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -24,14 +24,14 @@ export default function Page() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(landingBreadcrumbJsonLd(SLUG, 'Zegarki kolekcjonerskie')) }} />
       <SeoLanding
         eyebrow="Kolekcjonerskie · Inwestycyjne"
-        h1="Zegarki kolekcjonerskie i inwestycyjne"
+        h1="Zegarki kolekcjonerskie i rzadkie referencje"
         intro="Vintage Rolex, Omega Speedmaster Pre-Moon, Patek Philippe Calatrava, Audemars Piguet Royal Oak Jumbo. Doradzamy w budowaniu kolekcji i sourcujemy egzemplarze z udokumentowanym pochodzeniem oraz historią serwisową."
         primaryCtaLabel="Konsultacja kolekcjonerska"
         source="landing-zegarki-kolekcjonerskie"
         highlights={[
           { title: 'Vintage z historią', description: 'Egzemplarze z lat 50.–80. z udokumentowaną historią serwisową i papierami.' },
           { title: 'Edycje limitowane', description: 'Modele wycofane, wyprodukowane w niskich nakładach, anniversary edycje.' },
-          { title: 'Inwestycja', description: 'Doradztwo przy budowaniu portfela: która marka, model, referencja, stan, dokumenty.' },
+          { title: 'Selekcja referencji', description: 'Doradztwo przy wyborze marki, modelu, referencji, stanu i kompletu dokumentów.' },
         ]}
         bulletsHeading="Modele najczęściej w obrocie kolekcjonerskim"
         bullets={[
@@ -43,7 +43,7 @@ export default function Page() {
         ]}
         stepsHeading="Współpraca z kolekcjonerem"
         steps={[
-          { title: 'Konsultacja', description: 'Rozmowa o celu — kolekcja, inwestycja, jeden konkretny zegarek.' },
+          { title: 'Konsultacja', description: 'Rozmowa o celu — kolekcja, rzadka referencja, jeden konkretny zegarek.' },
           { title: 'Selekcja', description: 'Definiujemy modele i konkretne referencje warte uwagi.' },
           { title: 'Sourcing', description: 'Poszukiwanie egzemplarzy z udokumentowaną historią.' },
           { title: 'Weryfikacja', description: 'Autentyczność, zgodność części, ekspertyzy zewnętrzne.' },

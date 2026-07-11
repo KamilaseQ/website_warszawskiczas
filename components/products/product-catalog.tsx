@@ -32,13 +32,6 @@ const SORTS = [
 const PRICE_MIN = 0
 const PRICE_MAX = 500000
 
-// Marki preferowane w sortowaniu "Polecane" — kolejność ma znaczenie
-const FEATURED_BRAND_ORDER = ['Rolex', 'Cartier', 'Patek Philippe', 'Audemars Piguet', 'Breitling']
-const featuredBrandRank = (brand: string) => {
-  const idx = FEATURED_BRAND_ORDER.findIndex((b) => b.toLowerCase() === brand.toLowerCase())
-  return idx === -1 ? FEATURED_BRAND_ORDER.length : idx
-}
-
 export function ProductCatalog({ products }: ProductCatalogProps) {
   const pathname = usePathname()
   const locale = localeFromPathname(pathname)
@@ -93,33 +86,10 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
       out = [...out].sort((a, b) => (productPublicPrice(b) ?? -Infinity) - (productPublicPrice(a) ?? -Infinity))
     } else if (sort === 'brand-asc') {
       out = [...out].sort((a, b) => a.brand.localeCompare(b.brand, 'pl'))
-    } else if (sort === 'featured') {
-      // Top 4 marki przeplecione round-robin (Rolex / Cartier / Patek / AP),
-      // potem Breitling, potem reszta alfabetycznie. Stabilne — nie miesza się
-      // przy każdym renderze.
-      const TOP_N = 4
-      const buckets: Product[][] = FEATURED_BRAND_ORDER.slice(0, TOP_N).map((brand) =>
-        out.filter((p) => p.brand.toLowerCase() === brand.toLowerCase()),
-      )
-      const rest = out
-        .filter((p) => featuredBrandRank(p.brand) >= TOP_N)
-        .sort((a, b) => {
-          const ra = featuredBrandRank(a.brand)
-          const rb = featuredBrandRank(b.brand)
-          if (ra !== rb) return ra - rb
-          return a.brand.localeCompare(b.brand, 'pl')
-        })
-
-      const interleaved: Product[] = []
-      let i = 0
-      while (buckets.some((b) => i < b.length)) {
-        for (const b of buckets) {
-          if (i < b.length) interleaved.push(b[i]!)
-        }
-        i++
-      }
-      out = [...interleaved, ...rest]
     }
+    // sort === 'featured' → zachowujemy kolejność źródłową z CMS-a, czyli ręczną
+    // kolejność katalogu (sort_position) ustawianą w aplikacji. Dzięki temu
+    // domyślny widok na stronie jest identyczny jak w panelu.
 
     return out
   }, [products, category, selectedBrands, status, sort, priceMin, priceMax, onlyOnRequest])

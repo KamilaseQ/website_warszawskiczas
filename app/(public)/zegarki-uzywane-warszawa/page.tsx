@@ -7,7 +7,7 @@ const SLUG = 'zegarki-uzywane-warszawa'
 const URL = `https://warszawskiczas.pl/${SLUG}`
 const TITLE = 'Zegarki używane Warszawa — certyfikowane, z gwarancją'
 const DESCRIPTION =
-  'Używane zegarki luksusowe w Warszawie. Każdy egzemplarz przechodzi wieloetapową weryfikację autentyczności i otrzymuje 12-miesięczną gwarancję butiku.'
+  'Używane zegarki luksusowe Warszawa: Rolex, Patek Philippe, AP, Omega i Cartier po weryfikacji autentyczności, z gwarancją butiku.'
 
 export const metadata: Metadata = {
   title: TITLE,

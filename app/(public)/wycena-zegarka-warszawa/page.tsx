@@ -7,7 +7,7 @@ const SLUG = 'wycena-zegarka-warszawa'
 const URL = `https://warszawskiczas.pl/${SLUG}`
 const TITLE = 'Wycena zegarka Warszawa — bezpłatnie w 15 minut'
 const DESCRIPTION =
-  'Profesjonalna wycena zegarka w Warszawie. Bezpłatnie, niezobowiązująco, na podstawie zdjęć lub w butiku. Rolex, Patek, AP, Omega, Cartier — Mokotowska 71.'
+  'Wycena zegarka Warszawa: Rolex, Patek Philippe, AP, Omega i Cartier. Bezpłatnie po zdjęciach lub w butiku, bez zobowiązań, Mokotowska 71.'
 
 export const metadata: Metadata = {
   title: TITLE,

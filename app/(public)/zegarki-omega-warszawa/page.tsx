@@ -9,7 +9,7 @@ const SLUG = 'zegarki-omega-warszawa'
 const URL = `https://warszawskiczas.pl/${SLUG}`
 const TITLE = 'Zegarki Omega Warszawa — Speedmaster, Seamaster, Constellation, De Ville'
 const DESCRIPTION =
-  'Zegarki Omega w Warszawie. Speedmaster Moonwatch Professional, Seamaster Diver 300M, Aqua Terra, Constellation Manhattan, De Ville Prestige — używane i kolekcjonerskie egzemplarze, w komplecie z papierami, z 12 miesiącami gwarancji butiku. Mokotowska 71.'
+  'Omega Warszawa: Speedmaster, Seamaster, Aqua Terra, Constellation i De Ville. Nowe, nieużywane i używane zegarki z gwarancją butiku.'
 
 export const metadata: Metadata = {
   title: TITLE,

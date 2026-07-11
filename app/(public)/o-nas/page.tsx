@@ -6,7 +6,7 @@ const SLUG = 'o-nas'
 const URL = `https://warszawskiczas.pl/${SLUG}`
 const TITLE = 'O nas — butik zegarków premium Warszawski Czas, Mokotowska 71'
 const DESCRIPTION =
-  'O butiku Warszawski Czas — niezależny butik zegarków luksusowych w sercu Warszawy od 2019 roku. Sprzedaż, sprowadzanie, skup, komis oraz serwis. Rolex, Patek Philippe, Audemars Piguet, Omega, Cartier, Breitling i inne renomowane marki. Mokotowska 71.'
+  'Warszawski Czas: niezależny butik zegarków premium w Warszawie. Nowe, nieużywane i używane Rolex, Patek Philippe, AP, Omega, Cartier; skup i komis.'
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -49,8 +49,8 @@ export default function Page() {
           {
             heading: 'Niezależny butik zegarków luksusowych w Warszawie',
             paragraphs: [
-              'Warszawski Czas jest niezależnym butikiem zegarków premium. Nie jesteśmy autoryzowanym dilerem żadnej marki — działamy na rynku wtórnym i dobieramy egzemplarze samodzielnie. Dla klienta oznacza to dwie istotne rzeczy: po pierwsze, nie obowiązują nas listy oczekujących u autoryzowanych dealerów (Rolex, Patek Philippe, Audemars Piguet są dziś w salonach autoryzowanych w Warszawie praktycznie nieosiągalne od ręki); po drugie, mamy pełną swobodę wyboru egzemplarzy z całej Europy.',
-              'Nasza oferta obejmuje zarówno modele kolekcjonerskie i inwestycyjne, jak i zegarki klasy podstawowej — z myślą o klientach zaczynających przygodę z mechanicznymi zegarkami luksusowymi. W ofercie znajdziesz męskie i damskie zegarki premium, biżuterię oraz dostęp do tzw. ukrytej kolekcji — egzemplarzy dostępnych tylko po krótkiej, prywatnej konsultacji.',
+              'Warszawski Czas jest niezależnym butikiem zegarków premium. Nie jesteśmy autoryzowanym dilerem żadnej marki — działamy na rynku wtórnym i dobieramy egzemplarze samodzielnie: nowe, nieużywane i używane, z dokumentacją oraz po weryfikacji. Dla klienta oznacza to dwie istotne rzeczy: po pierwsze, nie obowiązują nas listy oczekujących u autoryzowanych dealerów (Rolex, Patek Philippe, Audemars Piguet są dziś w salonach autoryzowanych w Warszawie praktycznie nieosiągalne od ręki); po drugie, mamy pełną swobodę wyboru egzemplarzy z całej Europy.',
+              'Nasza oferta obejmuje zarówno modele kolekcjonerskie i rzadkie referencje, jak i zegarki klasy podstawowej — z myślą o klientach zaczynających przygodę z mechanicznymi zegarkami luksusowymi. W ofercie znajdziesz męskie i damskie zegarki premium, biżuterię oraz dostęp do tzw. ukrytej kolekcji — egzemplarzy dostępnych tylko po krótkiej, prywatnej konsultacji.',
               'Klienci wracają do nas latami, bo wiedzą, że za każdym zegarkiem stoi rzeczywista, prywatna obsługa w fizycznym lokalu, weryfikacja autentyczności przed sprzedażą oraz wsparcie po zakupie — w tym serwis i konserwacja mechanizmu.',
             ],
           },
@@ -84,7 +84,7 @@ export default function Page() {
           {
             heading: 'Marki i obszary specjalizacji',
             paragraphs: [
-              'Główne marki obsługiwane w butiku: Rolex (wszystkie kolekcje sportowe i dress), Patek Philippe (Nautilus, Aquanaut, Calatrava, komplikacje), Audemars Piguet (Royal Oak, Offshore, Concept, Code 11.59). Te trzy marki stanowią rdzeń obrotu w segmencie inwestycyjnym i kolekcjonerskim.',
+              'Główne marki obsługiwane w butiku: Rolex (wszystkie kolekcje sportowe i dress), Patek Philippe (Nautilus, Aquanaut, Calatrava, komplikacje), Audemars Piguet (Royal Oak, Offshore, Concept, Code 11.59). Te trzy marki stanowią rdzeń obrotu w segmencie kolekcjonerskim i wśród najrzadziej dostępnych referencji.',
               'Pełna lista marek w obrocie: Omega, Cartier, Breitling, IWC, Chopard, Vacheron Constantin, Hublot, Panerai, Jaeger-LeCoultre, Tudor, Zenith, TAG Heuer, Bvlgari, Piaget, Franck Muller, Girard-Perregaux i inne. Dla wybranych rzadszych marek (haute horlogerie niezależne, kolaboracje limitowane) prowadzimy konsultacje przy szczególnie wartościowych egzemplarzach.',
               'Specjalizacje merytoryczne: chronografy lotnicze (Daytona, Speedmaster, Navitimer), zegarki nurkowe (Submariner, Sea-Dweller, Aquanaut, Seamaster), sportowa stal premium (Nautilus, Royal Oak, Aquanaut, Overseas), klasyczne dress watches (Calatrava, Reverso, Saxonia, Tank), edycje limitowane i kolekcjonerskie.',
             ],
@@ -114,7 +114,7 @@ export default function Page() {
           { title: 'Decyzja bez presji', description: 'Nie musisz decydować od razu. Pełną dokumentację dostarczymy mailowo po wizycie.' },
         ]}
         faq={[
-          { q: 'Czy Warszawski Czas jest autoryzowanym dilerem Rolexa / Patek Philippe / Audemars Piguet?', a: 'Nie. Warszawski Czas jest niezależnym butikiem działającym na rynku wtórnym. Sprzedajemy używane zegarki luksusowe i sprowadzamy konkretne referencje od sprawdzonych dilerów europejskich oraz prywatnych właścicieli. Dla klienta oznacza to brak konieczności wpisu na listę oczekujących u autoryzowanego dealera.' },
+          { q: 'Czy Warszawski Czas jest autoryzowanym dilerem Rolexa / Patek Philippe / Audemars Piguet?', a: 'Warszawski Czas jest niezależnym butikiem i nie jest autoryzowanym dilerem marek Rolex, Patek Philippe ani Audemars Piguet. Oferujemy zegarki z rynku wtórnego, w tym egzemplarze nowe, nieużywane i używane, od sprawdzonych dostawców oraz prywatnych właścicieli.' },
           { q: 'Od kiedy działa butik?', a: 'Warszawski Czas działa od 2019 roku w stałej, fizycznej lokalizacji przy ulicy Mokotowskiej 71 w Śródmieściu Warszawy.' },
           { q: 'Czy można obejrzeć zegarki bez umówienia wizyty?', a: 'Możliwe, ale rekomendujemy wcześniejsze umówienie wizyty — pozwala to nam przygotować egzemplarze odpowiadające Twojemu briefowi i zarezerwować czas wyłącznie dla jednej rozmowy. Wizyty „z marszu" są możliwe w godzinach otwarcia, ale część egzemplarzy może być w danym momencie poza stałą ekspozycją.' },
           { q: 'Czy mogę sprzedać zegarek bez kupowania innego?', a: 'Tak. Skup zegarków jest niezależną usługą — wstępna wycena po zdjęciach w 15 minut, finalizacja tego samego dnia po wizycie w butiku, gotówką lub przelewem. Alternatywnie możesz przekazać zegarek do komisu — uzyskasz wyższą cenę, ale czas dotarcia do kupca jest dłuższy.' },
