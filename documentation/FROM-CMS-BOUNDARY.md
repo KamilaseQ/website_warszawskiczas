@@ -54,7 +54,7 @@ Schematy w `schemas/` są **wiążące** dla CMS-a:
 - `POST /api/v1/leads` musi przyjąć body walidujące się przez `LeadPayloadSchema` i zwrócić odpowiedź walidującą się przez `LeadResponseSchema`
 - `GET /api/v1/translations?locale=...` musi zwrócić obiekt walidujący się przez `TranslationBundleSchema`
 
-Zmiana któregoś schematu → bump wersji `/api/v1/` → `/api/v2/` + zachowanie obu endpointów w CMS przez okres przejściowy.
+Kontrakt obrazów jest rozszerzony zgodnie wstecz: preferowane `imageAssets[]` zawiera jawne `original`, opcjonalną parę `thumb`/`medium` i `alt`, a dotychczasowe `images[]` pozostaje podczas okresu przejściowego. Dodanie pola opcjonalnego nie wymaga `/api/v2/`; zmiana lub usunięcie istniejącego pola nadal wymaga nowej wersji endpointu.
 
 ## Reguły użycia w reszcie projektu
 

@@ -52,8 +52,10 @@ Liczba URL-i produkcyjnych zależy od liczby produktów pobranych z CMS-u. Stał
 
 ### Obrazy i wydajność
 
-- [ ] Zlikwidować zapytania do nieistniejących wariantów `_variants`.
-- [ ] Ustalić jawny kontrakt `original/thumb/medium` albo przetestować optymalizator Next.js na Hostingerze.
+- [x] Kod strony nie zgaduje wariantów dla nowego kontraktu i nie wysyła zbędnych 404; stary `images[]` zachowuje fallback na czas migracji.
+- [x] Jawny, zgodny wstecz kontrakt `imageAssets: original/thumb/medium/alt` jest zaimplementowany lokalnie po obu stronach granicy CMS.
+- [ ] Wdrożyć oba repozytoria, opublikować nowy snapshot i wykonać journalowany backfill historycznych `has_variants=0`.
+- [x] Dodany odczytowy `npm run audit:cdn-images`; baseline 2026-07-21: 49 stron produktów, 156/156 dostępnych oryginałów oraz 97 błędów 404 wśród 193 żądanych wariantów starego deployu.
 - [ ] Zmniejszyć koszt filmu hero i ciężkich obrazów produktów.
 - [ ] Ponownie zmierzyć Lighthouse po zmianach obrazów.
 
