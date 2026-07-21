@@ -1,92 +1,92 @@
-# Warszawski Czas — strona internetowa
+# Warszawski Czas — dokumentacja projektu
 
-Statyczny widok ekspozycji butiku zegarków premium (Mokotowska 71, Warszawa). Dane produktów i obsługa leadów żyją w osobnym CMS-ie — strona jest read-only powierzchnią dostarczania treści.
+> Stan architektury: 2026-07-21.
 
-## Architektura
+Strona `warszawskiczas.pl` jest aplikacją Next.js 15 uruchamianą jako serwer Node.js na Hostingerze. Publiczna witryna pobiera produkty z osobnego CMS-u, a formularz kontaktowy korzysta z lokalnego Route Handlera i SMTP.
 
-- **Next.js 15 + React 19** w trybie `output: 'export'` — wynik buildu (`out/`) to czysty HTML/CSS/JS gotowy na dowolny statyczny hosting
-- **Hosting produkcyjny:** Hostinger Business (Apache + `public/.htaccess`)
-- **CMS:** osobna aplikacja, komunikacja przez `from-cms/adapters/*` (tryb `mock` na fixtures lub `live` przez HTTPS)
-- **Obrazy produktów:** Cloudflare R2 + custom host `CMS_CDN_HOST` z [CMS-CRM-ENVIRONMENT.md](CMS-CRM-ENVIRONMENT.md)
-- **i18n:** PL/EN/UA — PL na root (`/produkty`), EN/UA jako subfolder (`/en/products`, `/ua/products`), wszystko prerenderowane przy buildzie przez catch-all `app/(public)/[locale]/[[...path]]/page.tsx`
-- **Formularze:** POST przez `from-cms/adapters/leads.ts` → CMS webhook (w `mock` tryb logują do konsoli)
+## Aktualna architektura
 
-Detal w [from-cms/README.md](from-cms/README.md).
+- **Frontend:** Next.js 15 App Router + React 19 + TypeScript.
+- **Runtime produkcyjny:** `next build` + `next start`; projekt nie używa już `output: 'export'`.
+- **Hosting:** Hostinger Business z procesem Node.js.
+- **Produkty:** `from-cms/adapters/products.ts`; tryb `mock` z fixtures lub `live` przez HTTPS.
+- **Formularz kontaktowy:** `app/api/contact/route.ts` + `lib/contact/*` + SMTP.
+- **Leady/WhatsApp:** publiczny endpoint aplikacji CMS konfigurowany przez `NEXT_PUBLIC_CMS_LEAD_URL`.
+- **Obrazy produktów:** zewnętrzny CDN (`cdn.camalio.pl`) oraz lokalne fixtures w trybie mock.
+- **Języki:** PL pod `/`, EN pod `/en`, UA pod `/ua`; wersje EN/UA są prerenderowane przez `app/(public)/[locale]/[[...path]]/page.tsx`.
+- **Deploy:** Hostinger pobiera repozytorium i buduje aplikację. GitHub Actions wykonuje niezależny build i kontrole jakości, ale nie wysyła plików przez FTP.
+
+Szczegóły hostingu znajdują się w [HOSTINGER-DEPLOYMENT.md](HOSTINGER-DEPLOYMENT.md), a granica z CMS-em w [FROM-CMS-BOUNDARY.md](FROM-CMS-BOUNDARY.md).
 
 ## Wymagania
 
-- Node.js 20+
-- npm
+- Node.js 20 (wersja używana przez CI),
+- npm,
+- opcjonalnie dane CMS/SMTP w lokalnych plikach `.env*`.
 
 ## Praca lokalna
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
-Strona startuje na `http://localhost:3000`. Domyślnie `CMS_MODE=mock` — wszystkie 65 produktów widoczne z fixtures, formularze logują do konsoli przeglądarki.
+Domyślnie, bez `CMS_MODE=live`, adapter produktów korzysta z `from-cms/fixtures/products.json`.
 
-## Build produkcyjny
+## Kontrole przed commitem
+
+Pełna kontrola lokalna:
+
+```bash
+npm run verify
+```
+
+Polecenie wykonuje kolejno:
+
+1. typecheck,
+2. produkcyjny build Next.js,
+3. uruchomienie lokalnego `next start`,
+4. crawl wszystkich URL-i z lokalnej sitemapy,
+5. walidację canonical, hreflang, linków, obrazów i JSON-LD.
+
+Jeżeli build już istnieje, wystarczy:
+
+```bash
+npm run verify:seo
+```
+
+Kontrole cząstkowe wymagają działającego serwera pod `http://localhost:3000` albo ustawienia `CHECK_BASE_URL`:
+
+```bash
+npm run check:seo
+npm run check:links
+npm run check:images
+npm run check:product-urls
+```
+
+Dokładne reguły i sposób obsługi znanych problemów opisuje [SEO-QUALITY-GATES.md](SEO-QUALITY-GATES.md).
+
+## Build i uruchomienie produkcyjne
 
 ```bash
 npm run build
+npm run start
 ```
 
-Wynik w `out/`. Można obejrzeć lokalnie:
+Artefaktem jest katalog `.next/`. Katalog `out/` i konfiguracja `.htaccess` nie są częścią aktualnej ścieżki wdrożeniowej.
 
-```bash
-npx serve out
+## Najważniejsze katalogi
+
+```text
+app/                 App Router, metadata, sitemap, robots i API
+components/          komponenty UI, sekcje, formularze i nawigacja
+from-cms/            schematy i adaptery granicy strona ↔ CMS
+lib/                 i18n, SEO, dane strukturalne i integracje
+scripts/             build helpers i automatyczne kontrole jakości
+documentation/       aktualna dokumentacja operacyjna
+memory/              krótkie notatki projektowe i decyzje historyczne
 ```
 
-## Deploy
+## Zasada aktualności dokumentacji
 
-Automatyczny przez GitHub Action `.github/workflows/deploy.yml`:
-
-- **Push na `main`** → build + FTP deploy na Hostinger
-- **Punkt kontrolny publikacji z CMS** (`repository_dispatch` `event_type: cms-publish`) → identyczny pipeline; CMS triggeruje dopiero po kliknięciu "Opublikuj zmiany", nie po samym zapisie produktu
-- **Manualnie** z GitHub UI (`workflow_dispatch`)
-
-Sekrety GitHub potrzebne do działania:
-
-| Sekret | Cel |
-|---|---|
-| `FTP_HOST`, `FTP_USERNAME`, `FTP_PASSWORD` | Hostinger FTP (panel Hostingera → SFTP) |
-| `CMS_MODE` (opcjonalnie) | `live` jeśli CMS dostępny, inaczej `mock` |
-| `CMS_API_URL`, `CMS_API_TOKEN` | Tylko przy `CMS_MODE=live` |
-| `NEXT_PUBLIC_CDN_BASE_URL` | Wartość `CMS_CDN_ORIGIN` z [CMS-CRM-ENVIRONMENT.md](CMS-CRM-ENVIRONMENT.md) |
-| `NEXT_PUBLIC_PRIVATE_COLLECTION_CODE` | Kod do teaser-bramki (default fallback w kodzie) |
-
-## Struktura katalogu
-
-```
-.
-├── app/                      # App Router (Next.js)
-│   ├── (public)/             # Wszystkie publiczne route'y (PL na root + catch-all EN/UA)
-│   ├── layout.tsx            # Root layout (<html lang="pl">, JSON-LD LocalBusiness)
-│   ├── sitemap.ts            # sitemap.xml (force-static)
-│   └── robots.ts             # robots.txt (force-static)
-├── components/               # UI, sekcje, formularze (komponenty domeny strony)
-├── from-cms/                 # Granica strona ↔ CMS — adaptery, schemas zod, fixtures
-├── lib/                      # i18n, utils, SEO product filters
-├── public/                   # Statyczne assety + .htaccess dla Apache
-└── scripts/                  # Skrypty pomocnicze (migracje, czyszczenie cache)
-```
-
-## CMS_MODE
-
-Strona obsługuje dwa tryby pracy adapterów `from-cms/`:
-
-| `CMS_MODE` | Źródło produktów | Formularze | Użycie |
-|---|---|---|---|
-| `mock` (default) | `from-cms/fixtures/products.json` | `console.info('[from-cms:mock-lead]', payload)` | Lokalny dev, build na PR-ach, demo bez CMS |
-| `live` | `GET ${CMS_API_URL}/api/v1/products` | `POST ${CMS_API_URL}/api/v1/leads` | Produkcja po wdrożeniu CMS |
-
-Przełącznik jest read-only po inicjalizacji procesu. Adapter waliduje odpowiedź CMS przez zod — jeśli kontrakt się rozjedzie, build padnie z czytelnym błędem.
-
-## Linki
-
-- Plan aplikacji CMS/CRM: [CMS-CRM-APP-PLAN.md](CMS-CRM-APP-PLAN.md)
-- Środowisko CMS/CRM: [CMS-CRM-ENVIRONMENT.md](CMS-CRM-ENVIRONMENT.md)
-- Plan przebudowy: [ARCHITECTURE-REVIEW.md](ARCHITECTURE-REVIEW.md)
-- Granica strona ↔ CMS: [from-cms/README.md](from-cms/README.md)
+Zmiana architektury, sposobu deployu, polityki indeksowania albo kontraktu CMS musi aktualizować odpowiedni dokument w tym samym commicie. Dokument historyczny powinien być oznaczony jako historyczny; nie może udawać bieżącej instrukcji operacyjnej.

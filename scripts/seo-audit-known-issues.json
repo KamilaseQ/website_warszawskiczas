@@ -1,0 +1,33 @@
+{
+  "canonicalMismatchPaths": [
+    "/kolekcja-na-zapytanie",
+    "/polityka-prywatnosci",
+    "/regulamin"
+  ],
+  "nonReciprocalHreflangCount": 24,
+  "orphanPaths": [
+    "/skup-zegarkow-centrum-warszawy",
+    "/o-nas",
+    "/en/watch-buying-central-warsaw",
+    "/en/chronographs-warsaw",
+    "/en/rolex-on-request",
+    "/en/patek-philippe-on-request",
+    "/en/audemars-piguet-on-request",
+    "/ua/викуп-годинників-центр-варшави",
+    "/ua/хронографи-варшава",
+    "/ua/rolex-на-замовлення",
+    "/ua/patek-philippe-на-замовлення",
+    "/ua/audemars-piguet-на-замовлення"
+  ],
+  "disconnectedLocaleRoots": [
+    "/ -> /en",
+    "/ -> /ua",
+    "/en -> /",
+    "/en -> /ua",
+    "/ua -> /",
+    "/ua -> /en"
+  ],
+  "unreachableFromDefaultCount": 204,
+  "overDepthCount": 0,
+  "malformedImageCount": 0
+}

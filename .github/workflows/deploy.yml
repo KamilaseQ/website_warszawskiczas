@@ -45,3 +45,6 @@ jobs:
 
       - name: Verify server build artifact
         run: test -d .next
+
+      - name: Crawl and verify SEO invariants
+        run: npm run verify:seo

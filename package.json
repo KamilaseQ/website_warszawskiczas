@@ -9,7 +9,12 @@
     "postbuild": "node scripts/publish-callback.mjs",
     "start": "next start",
     "lint": "tsc -p tsconfig.lint.json --noEmit --pretty false",
-    "check:product-urls": "node scripts/check-product-url-slugs.mjs"
+    "check:seo": "node scripts/seo-audit.mjs --scope seo",
+    "check:links": "node scripts/seo-audit.mjs --scope links",
+    "check:images": "node scripts/seo-audit.mjs --scope images",
+    "check:product-urls": "node scripts/seo-audit.mjs --scope products",
+    "verify:seo": "node scripts/verify-built-site.mjs",
+    "verify": "npm run lint && npm run build && npm run verify:seo"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.4",
