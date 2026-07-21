@@ -7,11 +7,16 @@ import { ImagePlaceholder } from '@/components/ui'
 import { cn } from '@/lib/utils'
 import { ProductImage } from '@/components/products/product-image'
 import { useBodyScrollLock } from '@/lib/use-body-scroll-lock'
+import {
+  productImageAlt,
+  productImageOriginal,
+  type ProductImageSource,
+} from '@/lib/product-images'
 
 interface ProductGalleryProps {
   brand: string
   name: string
-  images?: string[]
+  images?: ProductImageSource[]
 }
 
 export function ProductGallery({ brand, name, images = [] }: ProductGalleryProps) {
@@ -57,9 +62,9 @@ export function ProductGallery({ brand, name, images = [] }: ProductGalleryProps
         >
           {hasImages ? (
             <ProductImage
-              original={currentSrc!}
+              image={currentSrc!}
               variant="medium"
-              alt={`${brand} ${name}`}
+              alt={productImageAlt(currentSrc!, `${brand} ${name}`)}
               fill
               priority
               sizes="(min-width: 1024px) 58vw, 100vw"
@@ -121,7 +126,7 @@ export function ProductGallery({ brand, name, images = [] }: ProductGalleryProps
             const isActive = i === safeActive
             return (
               <button
-                key={src}
+                key={productImageOriginal(src)}
                 type="button"
                 onClick={() => setActive(i)}
                 className={cn(
@@ -134,7 +139,7 @@ export function ProductGallery({ brand, name, images = [] }: ProductGalleryProps
                 aria-current={isActive}
               >
                 <ProductImage
-                  original={src}
+                  image={src}
                   variant="thumb"
                   alt=""
                   fill
@@ -214,9 +219,9 @@ export function ProductGallery({ brand, name, images = [] }: ProductGalleryProps
             >
               <div className="relative aspect-[4/5] w-full">
                 <ProductImage
-                  original={currentSrc!}
+                  image={currentSrc!}
                   variant="medium"
-                  alt={`${brand} ${name}`}
+                  alt={productImageAlt(currentSrc!, `${brand} ${name}`)}
                   fill
                   sizes="80vw"
                   className="object-contain"
@@ -226,7 +231,7 @@ export function ProductGallery({ brand, name, images = [] }: ProductGalleryProps
                 <div className="mt-4 flex items-center justify-center gap-3">
                   {images.map((src, i) => (
                     <button
-                      key={src}
+                      key={productImageOriginal(src)}
                       type="button"
                       onClick={() => setActive(i)}
                       className={cn(

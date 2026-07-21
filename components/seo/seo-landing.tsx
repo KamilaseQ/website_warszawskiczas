@@ -8,6 +8,7 @@ import { absoluteUrl, localizePath, type Locale, ui } from '@/lib/i18n'
 import { productUrlSlug } from '@/lib/product-url'
 import { ProductImage } from '@/components/products/product-image'
 import type { Product } from '@/from-cms/schemas/product'
+import { productImageAlt, productImageSources } from '@/lib/product-images'
 
 export interface LandingStep {
   title: string
@@ -264,7 +265,7 @@ export function SeoLanding({
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {productPreview.products.slice(0, 6).map((p) => {
                 const slug = productUrlSlug(p)
-                const img = p.images?.[0]
+                const img = productImageSources(p)[0]
                 return (
                   <Link
                     key={p.id}
@@ -274,9 +275,9 @@ export function SeoLanding({
                     <div className="relative aspect-[4/5] overflow-hidden bg-muted">
                       {img ? (
                         <ProductImage
-                          original={img}
+                          image={img}
                           variant="medium"
-                          alt={`${p.brand} ${p.name}`}
+                          alt={productImageAlt(img, `${p.brand} ${p.name}`)}
                           fill
                           sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"
                           className="object-cover transition-transform duration-700 group-hover:scale-105"

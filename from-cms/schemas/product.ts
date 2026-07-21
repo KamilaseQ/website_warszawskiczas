@@ -13,14 +13,26 @@ export type ProductCategory = z.infer<typeof ProductCategorySchema>
 export const ProductStatusSchema = z.enum(['Dostępny', 'Na zamówienie', 'Niedostępny'])
 export type ProductStatus = z.infer<typeof ProductStatusSchema>
 
-/**
- * Pre-live format obrazu: lista absolutnych URL-i (na razie path-style w `/products/<slug>/...`,
- * po migracji do R2 absolutne URL-e CDN typu `https://cdn.warszawskiczas.pl/<slug>/...`).
- *
- * Po wdrożeniu live CMS schemat tej tablicy przejdzie na obiekt `ProductImage`
- * z wariantami rozmiaru — patrz checklista CMS sekcja A4.
- */
+/** Legacy image list retained while old CMS snapshots are still accepted. */
 export const ProductImageUrlSchema = z.string().min(1)
+const ExplicitProductImageUrlSchema = z
+  .string()
+  .url()
+  .refine((value) => /^https?:\/\//i.test(value), 'Product image URL must use HTTP or HTTPS')
+
+/**
+ * Explicit CDN contract. Missing variants mean "use original" and never mean
+ * "guess a URL". This prevents a speculative request and 404 for older images.
+ */
+export const ProductImageAssetSchema = z.object({
+  original: ExplicitProductImageUrlSchema,
+  thumb: ExplicitProductImageUrlSchema.optional(),
+  medium: ExplicitProductImageUrlSchema.optional(),
+  alt: z.string().trim().min(1).optional(),
+}).refine((image) => Boolean(image.thumb) === Boolean(image.medium), {
+  message: 'Product image must provide both thumb and medium variants, or neither',
+})
+export type ProductImageAsset = z.infer<typeof ProductImageAssetSchema>
 
 export const ProductSchema = z.object({
   id: z.string().min(1),
@@ -39,6 +51,7 @@ export const ProductSchema = z.object({
   isExclusive: z.boolean().optional(),
   featured: z.boolean().optional(),
   status: ProductStatusSchema.optional(),
+  imageAssets: z.array(ProductImageAssetSchema).optional(),
   images: z.array(ProductImageUrlSchema).optional(),
   description: z.string().min(1),
   editorial: z.string().optional(),

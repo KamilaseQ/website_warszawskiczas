@@ -9,10 +9,11 @@ import { productUrlSlug } from '@/lib/product-url'
 import { formatProductPrice, localizeProductStatus } from '@/lib/localized-products'
 import { ProductImage } from '@/components/products/product-image'
 import type { Product } from '@/from-cms/schemas/product'
+import { productImageAlt, productImageSources } from '@/lib/product-images'
 
 function CardImage({ product }: { product: Product }) {
-  const original = product.images?.[0]
-  if (!original) {
+  const image = productImageSources(product)[0]
+  if (!image) {
     return (
       <ImagePlaceholder
         className="absolute inset-0 transition-transform duration-[900ms] ease-out group-hover:scale-[1.05]"
@@ -22,9 +23,9 @@ function CardImage({ product }: { product: Product }) {
   }
   return (
     <ProductImage
-      original={original}
+      image={image}
       variant="medium"
-      alt={`${product.brand} ${product.name}`}
+      alt={productImageAlt(image, `${product.brand} ${product.name}`)}
       fill
       sizes="(min-width: 1280px) 22vw, (min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"
       className="object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.05]"
@@ -59,6 +60,7 @@ export function ProductCard({ product, className, aspect = 'portrait', layout = 
   const locale = localeFromPathname(pathname)
   const t = ui[locale]
   const formattedPrice = formatProductPrice(product, locale)
+  const primaryImage = productImageSources(product)[0]
 
   const statusColor =
     product.status === 'Niedostępny'
@@ -75,11 +77,11 @@ export function ProductCard({ product, className, aspect = 'portrait', layout = 
         className={cn('group relative grid grid-cols-5 gap-4 sm:gap-6', className)}
       >
         <div className={cn('relative col-span-3 overflow-hidden', 'aspect-[4/3] sm:aspect-[5/4]')}>
-          {product.images?.[0] ? (
+          {primaryImage ? (
             <ProductImage
-              original={product.images[0]}
+              image={primaryImage}
               variant="medium"
-              alt={`${product.brand} ${product.name}`}
+              alt={productImageAlt(primaryImage, `${product.brand} ${product.name}`)}
               fill
               sizes="(min-width: 1024px) 40vw, 90vw"
               className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"

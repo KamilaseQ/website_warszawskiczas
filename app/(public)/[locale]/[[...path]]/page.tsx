@@ -42,6 +42,12 @@ import {
   productItemCondition,
   productReferenceIdentifier,
 } from '@/lib/product-structured-data'
+import {
+  productImageAlt,
+  productImageOriginal,
+  productImageSources,
+  productOriginalUrls,
+} from '@/lib/product-images'
 import { PrivateCollectionPage } from '@/components/pages/private-collection-page'
 import { AccessibilityStatementPage } from '@/components/pages/accessibility-statement-page'
 import { BoutiquePage } from '@/components/pages/boutique-page'
@@ -130,7 +136,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     if (!source) return { title: locale === 'en' ? 'Product not found' : 'Товар не знайдено', robots: { index: false, follow: true } }
     const product = localizeProduct(source, locale)
     const canonicalSlug = productUrlSlug(source)
-    const image = source.images?.[0] ? absoluteUrl(source.images[0]) : absoluteUrl('/opengraph-image.jpg')
+    const primaryImage = productImageSources(source)[0]
+    const image = primaryImage
+      ? absoluteUrl(productImageOriginal(primaryImage))
+      : absoluteUrl('/opengraph-image.jpg')
+    const imageAlt = primaryImage
+      ? productImageAlt(primaryImage, `${product.brand} ${product.name}`)
+      : `${product.brand} ${product.name}`
     const title =
       locale === 'en'
         ? `${product.brand} ${product.name}${product.reference ? ` · ref. ${product.reference}` : ''} - luxury watch Warsaw`
@@ -146,7 +158,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         description: product.description,
         siteName: 'Warszawski Czas',
         locale: locale === 'en' ? 'en_US' : 'uk_UA',
-        images: [{ url: image, alt: `${product.brand} ${product.name}` }],
+        images: [{ url: image, alt: imageAlt }],
       },
       twitter: { card: 'summary_large_image', title, description: product.description, images: [image] },
     }
@@ -415,7 +427,7 @@ async function LocalizedProductDetail({ route, locale }: { route: string; locale
   const price = formatProductPrice(source, locale)
   const productLabel = `${product.brand} ${product.name}`
   const productUrl = absoluteUrl(`/produkty/${canonicalSlug}`, locale)
-  const productImages = (source.images ?? []).map((src) =>
+  const productImages = productOriginalUrls(source).map((src) =>
     src.startsWith('http') ? src : absoluteUrl(src),
   )
   const allProducts = await getAllProducts()
@@ -519,7 +531,11 @@ async function LocalizedProductDetail({ route, locale }: { route: string; locale
         <Container>
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-7">
-              <ProductGallery brand={product.brand} name={product.name} images={source.images} />
+              <ProductGallery
+                brand={product.brand}
+                name={product.name}
+                images={productImageSources(source)}
+              />
             </div>
             <div className="flex flex-col lg:col-span-5 lg:py-4">
               <p className="font-sans text-[10px] font-bold uppercase tracking-[0.4em] text-accent-gold">{product.brand}</p>

@@ -12,6 +12,7 @@ import { ProductImage } from '@/components/products/product-image'
 import type { Product } from '@/from-cms/schemas/product'
 import { localeFromPathname, localizePath } from '@/lib/i18n'
 import { localizeProduct } from '@/lib/localized-products'
+import { productImageAlt, productImageSources } from '@/lib/product-images'
 
 interface ProductShowcaseProps {
   featured: Product
@@ -83,6 +84,7 @@ export function ProductShowcase({ featured, others }: ProductShowcaseProps) {
     },
   }[locale]
   const localizedFeatured = localizeProduct(featured, locale)
+  const featuredImage = productImageSources(featured)[0]
 
   // Numer + miesiąc aktualizują się automatycznie wg bieżącej daty.
   // useState(build) → identyczny render SSR/hydratacja; useEffect odświeża
@@ -151,11 +153,11 @@ export function ProductShowcase({ featured, others }: ProductShowcaseProps) {
                 offset={['start 85%', 'end 15%']}
                 className="relative aspect-[4/5] w-full sm:aspect-[3/4]"
               >
-                {featured.images?.[0] ? (
+                {featuredImage ? (
                   <ProductImage
-                    original={featured.images[0]}
+                    image={featuredImage}
                     variant="medium"
-                    alt={`${featured.brand} ${featured.name}`}
+                    alt={productImageAlt(featuredImage, `${featured.brand} ${featured.name}`)}
                     fill
                     sizes="(min-width: 1024px) 58vw, 100vw"
                     className="absolute inset-0 h-full w-full object-cover"
@@ -275,7 +277,9 @@ export function ProductShowcase({ featured, others }: ProductShowcaseProps) {
           ref={scrollerRef}
           className="no-scrollbar mt-2 flex snap-x snap-mandatory gap-6 overflow-x-auto px-6 pb-4 scroll-pl-6 lg:px-[max(1.5rem,calc((100vw-80rem)/2+1.5rem))] lg:scroll-pl-[max(1.5rem,calc((100vw-80rem)/2+1.5rem))]"
         >
-          {others.map((p, i) => (
+          {others.map((p, i) => {
+            const image = productImageSources(p)[0]
+            return (
             <Link
               key={p.id}
               href={localizePath(`/produkty/${productUrlSlug(p)}`, locale)}
@@ -283,11 +287,11 @@ export function ProductShowcase({ featured, others }: ProductShowcaseProps) {
               className="group relative block w-[58vw] flex-shrink-0 snap-start sm:w-[44vw] lg:w-[22vw]"
             >
               <div className="relative aspect-[3/4] overflow-hidden transition-all duration-500 group-hover:-translate-y-1">
-                {p.images?.[0] ? (
+                {image ? (
                   <ProductImage
-                    original={p.images[0]}
+                    image={image}
                     variant="medium"
-                    alt={`${p.brand} ${p.name}`}
+                    alt={productImageAlt(image, `${p.brand} ${p.name}`)}
                     fill
                     sizes="(min-width: 1024px) 22vw, (min-width: 640px) 44vw, 78vw"
                     className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
@@ -313,7 +317,8 @@ export function ProductShowcase({ featured, others }: ProductShowcaseProps) {
               </div>
               <span className="sr-only">{copy.item} {i + 1}</span>
             </Link>
-          ))}
+            )
+          })}
         </div>
       </FadeIn>
     </Section>

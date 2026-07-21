@@ -29,6 +29,12 @@ import {
   productItemCondition,
   productReferenceIdentifier,
 } from '@/lib/product-structured-data'
+import {
+  productImageAlt,
+  productImageOriginal,
+  productImageSources,
+  productOriginalUrls,
+} from '@/lib/product-images'
 
 interface PageProps {
   params: Promise<{ slug: string }>
@@ -54,9 +60,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const url = `https://warszawskiczas.pl/produkty/${canonicalSlug}`
   const title = `${product.brand} ${product.name}${product.reference ? ` · ref. ${product.reference}` : ''} — Warszawa`
   const description = product.description
-  const image = product.images?.[0]
-    ? absoluteUrl(product.images[0])
+  const primaryImage = productImageSources(product)[0]
+  const image = primaryImage
+    ? absoluteUrl(productImageOriginal(primaryImage))
     : absoluteUrl('/opengraph-image.jpg')
+  const imageAlt = primaryImage
+    ? productImageAlt(primaryImage, `${product.brand} ${product.name}`)
+    : `${product.brand} ${product.name}`
 
   return {
     title,
@@ -69,7 +79,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description,
       siteName: 'Warszawski Czas',
       locale: 'pl_PL',
-      images: [{ url: image, alt: `${product.brand} ${product.name}` }],
+      images: [{ url: image, alt: imageAlt }],
     },
     twitter: {
       card: 'summary_large_image',
@@ -179,7 +189,7 @@ export default async function ProductPage({ params }: PageProps) {
       : 'product-detail'
 
   const productUrl = `https://warszawskiczas.pl/produkty/${canonicalSlug}`
-  const productImages = (product.images ?? []).map((src) =>
+  const productImages = productOriginalUrls(product).map((src) =>
     src.startsWith('http') ? src : `https://warszawskiczas.pl${src}`,
   )
 
@@ -269,7 +279,11 @@ export default async function ProductPage({ params }: PageProps) {
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             {/* Gallery */}
             <div className="lg:col-span-7">
-              <ProductGallery brand={product.brand} name={product.name} images={product.images} />
+              <ProductGallery
+                brand={product.brand}
+                name={product.name}
+                images={productImageSources(product)}
+              />
             </div>
 
             {/* Details */}

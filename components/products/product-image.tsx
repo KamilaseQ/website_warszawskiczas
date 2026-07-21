@@ -2,30 +2,38 @@
 
 import Image, { type ImageProps } from 'next/image'
 import { useState } from 'react'
-import { cdnImageVariant, type CdnImageVariant } from '@/lib/cdn-image'
+import type { CdnImageVariant } from '@/lib/cdn-image'
+import {
+  productImageOriginal,
+  productImageVariantUrl,
+  type ProductImageSource,
+} from '@/lib/product-images'
 
 /**
  * Obraz produktu z wariantem CDN (WebP) i REALNYM fallbackiem do oryginału.
  *
- * `cdnImageVariant` podmienia URL na lekki wariant (`thumb`/`medium`). Gdy taki
- * wariant nie istnieje na CDN (404 — np. świeży produkt bez wygenerowanych
- * wariantów), `onError` wraca do oryginału zamiast pokazywać połamane zdjęcie.
- * Fallback wykonuje się raz; jeśli oryginał też padnie, zostaje `alt`.
+ * Nowy kontrakt podaje jawne URL-e wariantów; brak wariantu od razu wybiera
+ * oryginał bez żądania 404. Stare snapshoty nadal korzystają z wyliczanego URL-a
+ * i jednorazowego fallbacku do oryginału.
  */
 type ProductImageProps = Omit<ImageProps, 'src'> & {
-  original: string
+  image: ProductImageSource
   variant: CdnImageVariant
 }
 
-export function ProductImage({ original, variant, ...props }: ProductImageProps) {
-  const [src, setSrc] = useState(() => cdnImageVariant(original, variant) ?? original)
+export function ProductImage({ image, variant, onError, ...props }: ProductImageProps) {
+  const original = productImageOriginal(image)
+  const preferred = productImageVariantUrl(image, variant)
+  const [failedPreferred, setFailedPreferred] = useState<string | null>(null)
+  const src = failedPreferred === preferred ? original : preferred
 
   return (
     <Image
       {...props}
       src={src}
-      onError={() => {
-        if (src !== original) setSrc(original)
+      onError={(event) => {
+        if (src !== original) setFailedPreferred(preferred)
+        onError?.(event)
       }}
     />
   )
