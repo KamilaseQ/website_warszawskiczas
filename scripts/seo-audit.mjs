@@ -21,6 +21,9 @@ if (!validScopes.has(scope)) {
 const knownIssues = JSON.parse(
   await readFile(new URL('./seo-audit-known-issues.json', import.meta.url), 'utf8'),
 )
+const auditPolicy = JSON.parse(
+  await readFile(new URL('./seo-audit-policy.json', import.meta.url), 'utf8'),
+)
 
 function normalizePath(value) {
   const url = value instanceof URL ? value : new URL(value, PRODUCTION_ORIGIN)
@@ -255,6 +258,15 @@ const sitemapPaths = new Set(pathToPage.keys())
 const issues = []
 
 if (scope === 'all' || scope === 'seo' || scope === 'products') {
+  if (/<priority>/i.test(sitemapResponse.body)) addIssue(issues, 'unsupported-sitemap-priority', {})
+  if (/<changefreq>/i.test(sitemapResponse.body)) addIssue(issues, 'unsupported-sitemap-changefreq', {})
+  for (const match of sitemapResponse.body.matchAll(/<lastmod>([\s\S]*?)<\/lastmod>/gi)) {
+    const value = match[1].trim()
+    const timestamp = Date.parse(value)
+    if (!Number.isFinite(timestamp) || timestamp > Date.now() + 86_400_000) {
+      addIssue(issues, 'invalid-sitemap-lastmod', { message: value })
+    }
+  }
   for (const duplicate of duplicates(sitemapUrls.map(normalizeUrl))) {
     addIssue(issues, 'duplicate-sitemap-url', { url: duplicate })
   }
@@ -292,6 +304,28 @@ if (scope === 'all' || scope === 'seo' || scope === 'products') {
     if (duplicates(languages).length) addIssue(issues, 'duplicate-hreflang', { path: page.path })
     for (const error of page.jsonLdErrors) {
       addIssue(issues, 'invalid-json-ld', { path: page.path, message: error })
+    }
+  }
+
+  const noindexPages = await mapConcurrent(auditPolicy.noindexPaths, 6, async (path) => {
+    const productionUrl = `${PRODUCTION_ORIGIN}${encodeURI(path)}`
+    return inspectPage(productionUrl, await fetchText(`${baseUrl}${encodeURI(path)}`, 'text/html'))
+  })
+  for (const page of noindexPages) {
+    if (sitemapPaths.has(page.path)) addIssue(issues, 'noindex-url-in-sitemap', { path: page.path })
+    if (page.response.status !== 200) {
+      addIssue(issues, 'noindex-url-not-200', { path: page.path, message: `HTTP ${page.response.status}` })
+      continue
+    }
+    if (!page.noindex) addIssue(issues, 'missing-noindex', { path: page.path })
+    if (page.canonicals.length !== 1 || normalizeUrl(page.canonicals[0]) !== normalizeUrl(page.productionUrl)) {
+      addIssue(issues, 'invalid-noindex-canonical', {
+        path: page.path,
+        message: page.canonicals.join(', ') || 'missing',
+      })
+    }
+    if (page.alternates.length !== 0) {
+      addIssue(issues, 'hreflang-on-noindex', { path: page.path, message: `found ${page.alternates.length}` })
     }
   }
 

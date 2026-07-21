@@ -40,6 +40,7 @@ CHECK_BASE_URL=http://localhost:3000 npm run check:product-urls
 - dokument HTML,
 - dokładnie jeden niepusty `title`, description i H1,
 - brak `noindex` w sitemapie,
+- zgodność jawnej listy stron `noindex` (200, self-canonical, brak hreflang i brak w sitemapie),
 - dokładnie jeden self-canonical,
 - cztery unikalne wpisy hreflang,
 - wzajemność hreflang,
@@ -67,13 +68,17 @@ CHECK_BASE_URL=http://localhost:3000 npm run check:product-urls
 
 Plik `scripts/seo-audit-known-issues.json` przechowuje wyłącznie dokładnie rozpoznane problemy istniejące przed wdrożeniem napraw. Znany problem jest ostrzeżeniem, ale każda nowa regresja zatrzymuje test.
 
-Baseline z 2026-07-21 obejmuje:
+Po naprawie canonicali i polityki sitemapy baseline obejmuje już tylko problemy
+linkowania przeznaczone do następnego commita:
 
-- 3 błędne canonicale,
-- 24 konsekwencje niespójnego hreflang tych stron,
 - 12 stron osieroconych,
 - 6 brakujących połączeń pomiędzy głównymi wersjami językowymi,
-- 204 URL-e nieosiągalne od polskiej strony głównej w buildzie mock.
+- 202 URL-e nieosiągalne od polskiej strony głównej w buildzie mock.
+
+Oczekiwane publiczne strony `noindex` znajdują się w
+`scripts/seo-audit-policy.json`. Nie są wyjątkami od błędu — test wymaga, aby
+każda z nich miała 200, `noindex,follow`, self-canonical, zero hreflang i nie
+znajdowała się w sitemapie.
 
 Wyjątek musi zostać usunięty z pliku w tym samym commicie, w którym naprawiany jest problem. Skrypt traktuje nieaktualny wyjątek jako błąd, dlatego baseline nie może ukrywać już naprawionych problemów.
 

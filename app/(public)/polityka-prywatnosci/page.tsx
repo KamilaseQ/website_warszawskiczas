@@ -3,11 +3,13 @@ import Link from 'next/link'
 import { ContactLink } from '@/components/contact-link'
 import { Container, Section, Heading, Text } from '@/components/ui'
 import { ADDRESS, CONTACT_EMAIL, CONTACT_PHONE, CONTACT_PHONE_RAW } from '@/lib/config'
+import { localizedAlternates } from '@/lib/i18n'
 
 export const metadata: Metadata = {
   title: 'Polityka prywatności',
   description:
     'Informacja o przetwarzaniu danych osobowych przez butik Warszawski Czas zgodnie z RODO.',
+  alternates: localizedAlternates('/polityka-prywatnosci', 'pl'),
 }
 
 const LAST_UPDATED = '2026-05-09'

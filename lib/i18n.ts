@@ -200,13 +200,18 @@ function encodePathname(path: string): string {
 }
 
 export function absoluteUrl(path: string, locale?: Locale): string {
-  const localized = locale ? localizePath(path, locale) : path
+  // Dane z CMS-u mogą już zawierać pełny URL CDN. Nie wolno dołączać do niego
+  // domeny witryny ani kodować `https://` jako segmentu ścieżki.
+  if (/^https?:\/\//i.test(path)) return path
+  if (path.startsWith('//')) return `https:${path}`
+  const sitePath = path.startsWith('/') ? path : `/${path}`
+  const localized = locale ? localizePath(sitePath, locale) : sitePath
   const encoded = encodePathname(localized)
   return `${baseUrl}${encoded === '/' ? '' : encoded}`
 }
 
-/** Build hreflang alternates. `path` may be canonical (PL) or localized (when so, pass `fromLocale`). */
-export function alternateLanguages(path: string, fromLocale: Locale = 'pl'): NonNullable<Metadata['alternates']>['languages'] {
+/** Silnie typowane URL-e hreflang, używane również przez sitemapę. */
+export function alternateLanguageUrls(path: string, fromLocale: Locale = 'pl'): Record<string, string> {
   const canonical = canonicalPath(path, fromLocale)
   return {
     pl: absoluteUrl(canonical, 'pl'),
@@ -216,12 +221,23 @@ export function alternateLanguages(path: string, fromLocale: Locale = 'pl'): Non
   }
 }
 
+/** Build hreflang alternates. `path` may be canonical (PL) or localized (when so, pass `fromLocale`). */
+export function alternateLanguages(path: string, fromLocale: Locale = 'pl'): NonNullable<Metadata['alternates']>['languages'] {
+  return alternateLanguageUrls(path, fromLocale)
+}
+
 export function localizedAlternates(path: string, locale: Locale): Metadata['alternates'] {
   const canonical = canonicalPath(path, locale)
   return {
     canonical: absoluteUrl(canonical, locale),
     languages: alternateLanguages(canonical, 'pl'),
   }
+}
+
+/** Self-canonical bez hreflang — dla publicznych stron oznaczonych `noindex`. */
+export function localizedCanonical(path: string, locale: Locale): Metadata['alternates'] {
+  const canonical = canonicalPath(path, locale)
+  return { canonical: absoluteUrl(canonical, locale) }
 }
 
 export const publicRoutePaths = [

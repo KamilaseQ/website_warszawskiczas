@@ -1,10 +1,6 @@
 {
-  "canonicalMismatchPaths": [
-    "/kolekcja-na-zapytanie",
-    "/polityka-prywatnosci",
-    "/regulamin"
-  ],
-  "nonReciprocalHreflangCount": 24,
+  "canonicalMismatchPaths": [],
+  "nonReciprocalHreflangCount": 0,
   "orphanPaths": [
     "/skup-zegarkow-centrum-warszawy",
     "/o-nas",
@@ -27,7 +23,7 @@
     "/ua -> /",
     "/ua -> /en"
   ],
-  "unreachableFromDefaultCount": 204,
+  "unreachableFromDefaultCount": 202,
   "overDepthCount": 0,
   "malformedImageCount": 0
 }

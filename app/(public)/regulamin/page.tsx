@@ -2,10 +2,13 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ContactLink } from '@/components/contact-link'
 import { Container, Section, Heading, Text } from '@/components/ui'
+import { localizedCanonical } from '@/lib/i18n'
 
 export const metadata: Metadata = {
   title: 'Regulamin',
   description: 'Regulamin świadczenia usług butiku Warszawski Czas.',
+  alternates: localizedCanonical('/regulamin', 'pl'),
+  robots: { index: false, follow: true },
 }
 
 export default function RegulaminPage() {

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { localizedAlternates } from '@/lib/i18n'
+import { absoluteUrl, localizedAlternates } from '@/lib/i18n'
 import Link from 'next/link'
 import { notFound, redirect } from 'next/navigation'
 import { ContactLink } from '@/components/contact-link'
@@ -55,8 +55,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const title = `${product.brand} ${product.name}${product.reference ? ` · ref. ${product.reference}` : ''} — Warszawa`
   const description = product.description
   const image = product.images?.[0]
-    ? `https://warszawskiczas.pl${product.images[0]}`
-    : 'https://warszawskiczas.pl/opengraph-image.jpg'
+    ? absoluteUrl(product.images[0])
+    : absoluteUrl('/opengraph-image.jpg')
 
   return {
     title,

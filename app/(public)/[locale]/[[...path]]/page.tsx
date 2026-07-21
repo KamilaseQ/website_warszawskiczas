@@ -27,7 +27,7 @@ import {
 } from '@/from-cms/adapters/products'
 import type { Product } from '@/from-cms/schemas/product'
 import { CONTACT_PHONE, CONTACT_PHONE_RAW } from '@/lib/config'
-import { absoluteUrl, canonicalPath, isLocale, localizedAlternates, localizePath, publicRoutePaths, type Locale } from '@/lib/i18n'
+import { absoluteUrl, canonicalPath, isLocale, localizedAlternates, localizedCanonical, localizePath, publicRoutePaths, type Locale } from '@/lib/i18n'
 import { getLocalizedLanding, localizedLandingSlugs } from '@/lib/localized-landings'
 import { formatProductPrice, localizeProduct, localizeProductStatus } from '@/lib/localized-products'
 import {
@@ -180,7 +180,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return {
       title: simple.title,
       description: simple.description,
-      alternates: localizedAlternates(route, locale),
+      alternates: simple.noIndex
+        ? localizedCanonical(route, locale)
+        : localizedAlternates(route, locale),
       openGraph: {
         type: 'website',
         url: absoluteUrl(route, locale),
@@ -723,6 +725,7 @@ function legalCopy(locale: Exclude<Locale, 'pl'>, type: 'privacy' | 'terms'): Si
     bullets: en
       ? ['Data is processed to respond to enquiries and provide boutique services.', 'Clients may request access, correction or deletion of personal data.', 'Commercial terms are agreed individually before each transaction.']
       : ['Дані обробляються для відповіді на запити та надання послуг бутіка.', 'Клієнти можуть запросити доступ, виправлення або видалення персональних даних.', 'Комерційні умови узгоджуються індивідуально перед кожною угодою.'],
+    noIndex: !privacy,
   }
 }
 

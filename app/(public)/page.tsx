@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import {
   Hero,
   BrandPositioning,
@@ -9,6 +10,11 @@ import {
   FinalCTA,
 } from '@/components/sections'
 import { getFeaturedProduct, getOtherFeaturedProducts } from '@/from-cms/adapters/products'
+import { localizedAlternates } from '@/lib/i18n'
+
+export const metadata: Metadata = {
+  alternates: localizedAlternates('/', 'pl'),
+}
 
 export default async function HomePage() {
   const [featured, others] = await Promise.all([

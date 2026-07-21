@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next'
 
-// Wymagane w static export, żeby Next wygenerował plik przy buildzie.
+// Stabilny artefakt buildu aplikacji Next.js działającej w trybie serwerowym.
 export const dynamic = 'force-static'
 
 const searchAndAiBots = [

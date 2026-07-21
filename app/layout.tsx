@@ -27,15 +27,6 @@ export const metadata: Metadata = {
     'Nowe, nieużywane i używane zegarki luksusowe w Warszawie: Rolex, Patek Philippe, AP, Omega, Cartier. Butik Mokotowska 71, skup, komis i sourcing.',
   authors: [{ name: 'Warszawski Czas' }],
   metadataBase: new URL('https://warszawskiczas.pl'),
-  alternates: {
-    canonical: 'https://warszawskiczas.pl/',
-    languages: {
-      pl: 'https://warszawskiczas.pl/',
-      en: 'https://warszawskiczas.pl/en',
-      'uk-UA': 'https://warszawskiczas.pl/ua',
-      'x-default': 'https://warszawskiczas.pl/',
-    },
-  },
   openGraph: {
     type: 'website',
     locale: 'pl_PL',

@@ -1,63 +1,40 @@
 import { MetadataRoute } from 'next'
 import { getAllProducts, productUrlSlug } from '@/from-cms/adapters/products'
-import { absoluteUrl, locales, publicRoutePaths, type Locale } from '@/lib/i18n'
+import { absoluteUrl, alternateLanguageUrls, locales, type Locale } from '@/lib/i18n'
+import { indexablePublicRoutePaths } from '@/lib/seo-routes'
 
-// Wymagane w static export, żeby sitemap wygenerował się przy buildzie.
+// Sitemap jest stabilnym artefaktem buildu i korzysta z tego samego snapshotu
+// produktów co prerenderowane strony.
 export const dynamic = 'force-static'
 
-const LAST_CONTENT_UPDATE = '2026-05-29'
-
-const priorityForPath = (path: string) => {
-  if (path === '/') return 1
-  if (path === '/produkty') return 0.9
-  if (path.includes('skup') || path.includes('zegarki-')) return 0.85
-  if (path === '/butik') return 0.8
-  if (path.startsWith('/uslugi')) return 0.75
-  if (path === '/kontakt') return 0.6
-  return 0.55
+function validLastModified(value: string | undefined): Date | undefined {
+  if (!value) return undefined
+  const timestamp = Date.parse(value)
+  return Number.isFinite(timestamp) ? new Date(timestamp) : undefined
 }
 
-const frequencyForPath = (path: string): MetadataRoute.Sitemap[number]['changeFrequency'] => {
-  if (path === '/produkty') return 'daily'
-  if (path === '/') return 'weekly'
-  return 'monthly'
-}
-
-function entry(path: string, locale: Locale, priority = priorityForPath(path)): MetadataRoute.Sitemap[number] {
+function pageEntry(path: string, locale: Locale): MetadataRoute.Sitemap[number] {
   return {
     url: absoluteUrl(path, locale),
-    lastModified: LAST_CONTENT_UPDATE,
-    changeFrequency: frequencyForPath(path),
-    priority,
-    alternates: {
-      languages: {
-        pl: absoluteUrl(path, 'pl'),
-        en: absoluteUrl(path, 'en'),
-        'uk-UA': absoluteUrl(path, 'ua'),
-        'x-default': absoluteUrl(path, 'pl'),
-      },
-    },
+    alternates: { languages: alternateLanguageUrls(path) },
   }
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const routes = publicRoutePaths.filter((path) => path !== '/kontakt/dziekujemy')
-
   const pages: MetadataRoute.Sitemap = locales.flatMap((locale) =>
-    routes.map((path) => entry(path, locale)),
+    indexablePublicRoutePaths.map((path) => pageEntry(path, locale)),
   )
 
   const allProducts = await getAllProducts()
-  // Decyzja: wszystkie publiczne produkty pozostają w sitemap.
-  // `Na zamówienie` jest PreOrder, a `Niedostępny` zachowuje historyczną cenę i stan.
+  // Dostępny, Na zamówienie i Niedostępny są pełnoprawnymi stronami produktu.
+  // Dostępność opisuje Offer.availability, a nie obecność URL-a w sitemapie.
   const products: MetadataRoute.Sitemap = locales.flatMap((locale) =>
-    allProducts.map((p) => {
-      const path = `/produkty/${productUrlSlug(p)}`
-      const firstImage = p.images?.[0]
+    allProducts.map((product) => {
+      const path = `/produkty/${productUrlSlug(product)}`
+      const firstImage = product.images?.[0]
       return {
-        ...entry(path, locale, 0.7),
-        lastModified: p.updatedAt ?? p.publishedAt ?? LAST_CONTENT_UPDATE,
-        changeFrequency: 'weekly' as const,
+        ...pageEntry(path, locale),
+        lastModified: validLastModified(product.updatedAt ?? product.publishedAt),
         images: firstImage ? [absoluteUrl(firstImage)] : undefined,
       }
     }),
