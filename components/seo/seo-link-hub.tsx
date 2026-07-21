@@ -26,7 +26,7 @@ export function SeoLinkHub({
       : 'text-muted-foreground hover:text-accent-gold'
 
   return (
-    <div className="grid gap-8 sm:grid-cols-3">
+    <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
       {groups.map((group) => (
         <div key={group.heading}>
           <h3

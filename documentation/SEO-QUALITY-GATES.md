@@ -56,6 +56,7 @@ CHECK_BASE_URL=http://localhost:3000 npm run check:product-urls
 
 - brak stron osieroconych,
 - zwykłe linki HTML pomiędzy stronami głównymi PL/EN/UA,
+- trzy unikalne cele przełącznika języka zgodne z hreflang bieżącej strony,
 - osiągalność wszystkich URL-i z polskiej strony głównej,
 - maksymalna głębokość trzech linków.
 
@@ -68,12 +69,10 @@ CHECK_BASE_URL=http://localhost:3000 npm run check:product-urls
 
 Plik `scripts/seo-audit-known-issues.json` przechowuje wyłącznie dokładnie rozpoznane problemy istniejące przed wdrożeniem napraw. Znany problem jest ostrzeżeniem, ale każda nowa regresja zatrzymuje test.
 
-Po naprawie canonicali i polityki sitemapy baseline obejmuje już tylko problemy
-linkowania przeznaczone do następnego commita:
-
-- 12 stron osieroconych,
-- 6 brakujących połączeń pomiędzy głównymi wersjami językowymi,
-- 202 URL-e nieosiągalne od polskiej strony głównej w buildzie mock.
+Po naprawie canonicali, sitemapy i linkowania baseline nie zawiera żadnego
+zaakceptowanego problemu. Wszystkie tablice i liczniki w
+`seo-audit-known-issues.json` mają wartość pustą lub zero. Każde nowe naruszenie
+zatrzymuje kontrolę.
 
 Oczekiwane publiczne strony `noindex` znajdują się w
 `scripts/seo-audit-policy.json`. Nie są wyjątkami od błędu — test wymaga, aby

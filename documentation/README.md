@@ -90,3 +90,17 @@ memory/              krótkie notatki projektowe i decyzje historyczne
 ## Zasada aktualności dokumentacji
 
 Zmiana architektury, sposobu deployu, polityki indeksowania albo kontraktu CMS musi aktualizować odpowiedni dokument w tym samym commicie. Dokument historyczny powinien być oznaczony jako historyczny; nie może udawać bieżącej instrukcji operacyjnej.
+
+## Dokumenty operacyjne
+
+- [IMPLEMENTATION-STATUS.md](IMPLEMENTATION-STATUS.md) — bieżący stan i pozostałe prace,
+- [HOSTINGER-DEPLOYMENT.md](HOSTINGER-DEPLOYMENT.md) — aktualny model Hostinger Node,
+- [SEO-QUALITY-GATES.md](SEO-QUALITY-GATES.md) — testy regresji,
+- [SEO-INDEXATION.md](SEO-INDEXATION.md) — sitemap, canonical i `noindex`,
+- [INTERNAL-LINKING.md](INTERNAL-LINKING.md) — linkowanie i wersje językowe,
+- [IMAGES-CDN.md](IMAGES-CDN.md) — obrazy produkcyjne i ograniczenia wariantów,
+- [FROM-CMS-BOUNDARY.md](FROM-CMS-BOUNDARY.md) — granica witryny i CMS-u.
+
+`ARCHITECTURE-REVIEW.md`, `AUDYT-STRONY-10-10.md` oraz `CMS-CRM-APP-PLAN.md`
+są materiałami historycznymi lub planistycznymi. Nie należy na ich podstawie
+przywracać statycznego eksportu ani wdrożenia FTP.

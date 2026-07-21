@@ -130,7 +130,7 @@ type LinkKey = keyof typeof L['pl']
 const TEMPLATES: Record<LandingCategory, LinkKey[]> = {
   'brand-hub': ['catalogue', 'rolex', 'patek', 'ap', 'breitling', 'omega', 'cartier', 'auth', 'about'],
   'category-hub': ['catalogue', 'luxury', 'rolex', 'patek', 'chronos', 'gold', 'diamond', 'ladies', 'auth', 'about'],
-  'service-hub': ['skup', 'skupRolex', 'wycena', 'komis', 'serwis', 'rolex', 'auth', 'about'],
+  'service-hub': ['skup', 'skupRolex', 'skupCentrum', 'wycena', 'komis', 'serwis', 'rolex', 'auth', 'about'],
   'on-request': ['onRequest', 'rolexOR', 'patekOR', 'apOR', 'rolex', 'patek', 'ap', 'auth', 'about'],
   process: ['catalogue', 'luxury', 'rolex', 'patek', 'ap', 'serwis', 'wycena', 'about'],
   about: ['catalogue', 'luxury', 'rolex', 'patek', 'ap', 'boutique', 'auth', 'contact'],
@@ -140,7 +140,8 @@ const TEMPLATES: Record<LandingCategory, LinkKey[]> = {
  * Zwraca listę 6 linków powiązanych dla danego slug-a i kategorii.
  *
  * - Wyklucza sam siebie (po href === `/${slug}`)
- * - Bierze pierwsze 6 z szablonu po wykluczeniu
+ * - Zawsze zachowuje linki do procesu autentyczności i strony „O nas”
+ * - Pozostałe miejsca wypełnia najbardziej kontekstowymi linkami z szablonu
  * - W razie potrzeby caller może dorzucić dodatkowe linki kontekstowe
  *
  * @param slug — slug bieżącego landinga (bez `/`), np. `zegarki-rolex-warszawa`
@@ -155,14 +156,14 @@ export function relatedLinksFor(
   const lib = L[locale]
   const keys = TEMPLATES[category]
   const selfHref = `/${slug}`
-  const items: RelatedLink[] = []
-  for (const key of keys) {
-    const link = lib[key]
-    if (link.href === selfHref) continue
-    items.push({ href: link.href, label: link.label })
-    if (items.length >= 6) break
-  }
-  return items
+  const candidates = keys
+    .map((key) => ({ key, link: lib[key] }))
+    .filter(({ link }) => link.href !== selfHref)
+  const required = candidates.filter(({ key }) => key === 'auth' || key === 'about')
+  const contextual = candidates.filter(({ key }) => key !== 'auth' && key !== 'about')
+  return [...contextual.slice(0, Math.max(0, 6 - required.length)), ...required].map(
+    ({ link }) => ({ href: link.href, label: link.label }),
+  )
 }
 
 /**
@@ -174,16 +175,17 @@ export function relatedLinksFor(
  */
 export type SeoHubGroup = { heading: string; links: RelatedLink[] }
 
-const HUB_HEADINGS: Record<Locale, { brands: string; categories: string; services: string }> = {
-  pl: { brands: 'Marki', categories: 'Kategorie', services: 'Skup i usługi' },
-  en: { brands: 'Brands', categories: 'Categories', services: 'Buying & services' },
-  ua: { brands: 'Бренди', categories: 'Категорії', services: 'Викуп і послуги' },
+const HUB_HEADINGS: Record<Locale, { brands: string; categories: string; services: string; expertise: string }> = {
+  pl: { brands: 'Marki', categories: 'Kategorie', services: 'Skup i usługi', expertise: 'Eksperci i butik' },
+  en: { brands: 'Brands', categories: 'Categories', services: 'Buying & services', expertise: 'Expertise & boutique' },
+  ua: { brands: 'Бренди', categories: 'Категорії', services: 'Викуп і послуги', expertise: 'Експерти та бутік' },
 }
 
 const HUB_GROUPS: { key: keyof (typeof HUB_HEADINGS)['pl']; items: LinkKey[] }[] = [
-  { key: 'brands', items: ['rolex', 'patek', 'ap', 'omega', 'cartier', 'breitling'] },
-  { key: 'categories', items: ['luxury', 'preowned', 'collector', 'gold', 'diamond', 'ladies'] },
-  { key: 'services', items: ['skup', 'skupRolex', 'wycena', 'komis', 'serwis', 'onRequest'] },
+  { key: 'brands', items: ['rolex', 'patek', 'ap', 'omega', 'cartier', 'breitling', 'rolexOR', 'patekOR', 'apOR'] },
+  { key: 'categories', items: ['luxury', 'preowned', 'collector', 'chronos', 'gold', 'diamond', 'ladies'] },
+  { key: 'services', items: ['skup', 'skupRolex', 'skupCentrum', 'wycena', 'komis', 'serwis', 'onRequest'] },
+  { key: 'expertise', items: ['auth', 'about', 'boutique', 'contact'] },
 ]
 
 export function seoHubLinks(locale: Locale = 'pl'): SeoHubGroup[] {

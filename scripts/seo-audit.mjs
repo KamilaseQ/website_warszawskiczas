@@ -149,12 +149,22 @@ function inspectPage(productionUrl, response) {
     .filter(({ attrs }) => ['robots', 'googlebot'].includes((attrs.name || '').toLowerCase()))
     .map(({ attrs }) => (attrs.content || '').toLowerCase())
   const internalLinks = []
+  const languageLinks = []
   for (const { attrs } of anchors) {
     const href = attrs.href
     if (!href || href.startsWith('#') || /^(?:mailto:|tel:|sms:|javascript:)/i.test(href)) continue
     try {
       const url = new URL(href, productionUrl)
-      if (url.origin === PRODUCTION_ORIGIN) internalLinks.push(normalizePath(url))
+      if (url.origin === PRODUCTION_ORIGIN) {
+        internalLinks.push(normalizePath(url))
+        if (attrs.hreflang) {
+          languageLinks.push({
+            hreflang: attrs.hreflang.toLowerCase(),
+            lang: (attrs.lang || '').toLowerCase(),
+            path: normalizePath(url),
+          })
+        }
+      }
     } catch {
       // Invalid href is reported by the page-level URL checks below.
     }
@@ -197,6 +207,7 @@ function inspectPage(productionUrl, response) {
     h1Count: tags(html, 'h1').length,
     noindex: robots.some((value) => value.split(',').map((item) => item.trim()).includes('noindex')),
     internalLinks: [...new Set(internalLinks)],
+    languageLinks,
     jsonLdErrors,
     imageUrls,
   }
@@ -304,6 +315,28 @@ if (scope === 'all' || scope === 'seo' || scope === 'products') {
     if (duplicates(languages).length) addIssue(issues, 'duplicate-hreflang', { path: page.path })
     for (const error of page.jsonLdErrors) {
       addIssue(issues, 'invalid-json-ld', { path: page.path, message: error })
+    }
+
+    const expectedLanguageTargets = page.alternates
+      .filter(({ hreflang }) => hreflang !== 'x-default')
+      .map(({ href }) => normalizePath(href))
+      .sort()
+    const switcherTargets = [...new Set(page.languageLinks.map(({ path }) => path))].sort()
+    const expectedSwitcherLanguages = page.alternates
+      .filter(({ hreflang }) => hreflang !== 'x-default')
+      .map(({ hreflang }) => hreflang)
+      .sort()
+    const switcherLanguages = [...new Set(page.languageLinks.map(({ hreflang }) => hreflang))].sort()
+    if (
+      page.languageLinks.length < 3 ||
+      expectedLanguageTargets.join('|') !== switcherTargets.join('|') ||
+      expectedSwitcherLanguages.join('|') !== switcherLanguages.join('|') ||
+      page.languageLinks.some(({ hreflang, lang }) => !hreflang || !lang)
+    ) {
+      addIssue(issues, 'invalid-language-switcher-links', {
+        path: page.path,
+        message: `expected ${expectedLanguageTargets.join(', ')}, found ${switcherTargets.join(', ')}`,
+      })
     }
   }
 

@@ -1,14 +1,20 @@
 ---
 name: seo-orphan-landings-fix
-description: Why brand/city SEO landing pages weren't ranking and the internal-linking + analytics fix applied
+description: Current internal-linking design that keeps every indexable landing reachable
 metadata:
   type: project
+  updated: 2026-07-21
 ---
 
-Audit 2026-07-02 (website_warszawskiczas). The `zegarki-*-warszawa` / brand landing pages exist, are in sitemap.xml, deployed, and technically correct — but were **orphan pages**: no link from header nav, footer, mobile menu, or homepage. Only cross-linked among themselves via `lib/related-links.ts` + sitemap. Google index (`site:` search) showed homepage/produkty/skup-zegarkow-warszawa but NOT the brand landings. Pages created 2026-05-11, site mid-migration from legacy PHP (old /index.php?display= URLs still indexed).
+Audit 2026-07-20/21 confirmed that 12 sitemap pages had no incoming HTML links and 204 mock-build URLs were unreachable from the Polish homepage. The language switcher was a client-side `<select>` using `router.push`, so PL/EN/UA were separate crawl silos.
 
-**Fix applied (working tree, typecheck green):** added `seoHubLinks()` to [[related-links]] and a pure `components/seo/seo-link-hub.tsx`; wired a site-wide link hub into the footer and an in-content hub on /produkty. Added GSC verification via `GOOGLE_SITE_VERIFICATION` env (meta tag in app/layout.tsx metadata) and GA4 scaffold `components/analytics.tsx` gated on `NEXT_PUBLIC_GA_ID`. Both env vars documented in .env.example. Both NEXT_PUBLIC/verification need a rebuild to take effect.
+Resolved on `codex/seo-indexation-foundations`:
 
-**Still needs the OWNER (can't be automated):** create Google Search Console account → verify (paste token to `GOOGLE_SITE_VERIFICATION` or DNS TXT) → submit sitemap → URL-inspect + Request indexing for landings. Create GA4 → set `NEXT_PUBLIC_GA_ID`. There is currently NO web analytics, so real per-page visit stats are unavailable until GA4/GSC exist. Head term "zegarki rolex warszawa" is long-term (needs backlinks + time); target long-tail first.
+- the language switcher is a native `<details>` containing real Next `<Link>` anchors for PL/EN/UA;
+- the global footer hub includes chronographs, central-Warsaw buying, brand-specific on-request pages, authentication and about-us;
+- contextual landing links always reserve space for authentication and about-us;
+- a build crawler fails on any orphan, disconnected locale root, URL unreachable from `/`, or depth greater than three.
 
-Related: [[cms-website-publish-boundary]].
+Current mock-build invariant: 300 sitemap URLs, zero orphans, every URL reachable from `/` within at most three links. Do not add a public indexable route without placing it in a global/contextual hub and running `npm run verify`.
+
+External follow-up remains: deploy, resubmit sitemap in GSC, inspect representative URLs and monitor crawl/index coverage.
