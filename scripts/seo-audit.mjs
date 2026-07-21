@@ -180,8 +180,10 @@ function inspectPage(productionUrl, response) {
     }
   }
   const imageUrls = []
+  const imagesWithoutAlt = []
   for (const { attrs } of tags(html, 'img')) {
     if (attrs.src) imageUrls.push({ kind: 'img', url: attrs.src })
+    if (!Object.hasOwn(attrs, 'alt')) imagesWithoutAlt.push(attrs.src || '(missing src)')
     if (attrs.srcset) {
       for (const entry of attrs.srcset.split(',')) {
         const candidate = entry.trim().split(/\s+/)[0]
@@ -210,6 +212,7 @@ function inspectPage(productionUrl, response) {
     languageLinks,
     jsonLdErrors,
     imageUrls,
+    imagesWithoutAlt,
   }
 }
 
@@ -461,6 +464,13 @@ if (scope === 'all' || scope === 'images') {
     if (malformedImageUrl(url)) addIssue(issues, 'malformed-image-url', { url, message: 'sitemap image' })
   }
   for (const page of pages) {
+    for (const url of page.imagesWithoutAlt) {
+      addIssue(issues, 'missing-image-alt', {
+        path: page.path,
+        url,
+        message: 'img has no alt attribute',
+      })
+    }
     for (const image of page.imageUrls) {
       if (malformedImageUrl(image.url)) {
         addIssue(issues, 'malformed-image-url', {
