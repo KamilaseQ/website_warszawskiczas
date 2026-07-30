@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     description: DESCRIPTION,
     siteName: 'Warszawski Czas',
     locale: 'pl_PL',
-    images: [{ url: 'https://warszawskiczas.pl/Patek Philippe Nautilus-12.jpg', alt: 'Chronografy luksusowe — Warszawski Czas' }],
+    images: [{ url: 'https://warszawskiczas.pl/patek-philippe-nautilus-v2.webp', alt: 'Chronografy luksusowe — Warszawski Czas' }],
   },
   twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION },
 }

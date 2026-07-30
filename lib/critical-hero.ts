@@ -3,8 +3,8 @@ import { canonicalPath, localeFromPathname } from '@/lib/i18n'
 export const CRITICAL_HERO_READY_EVENT = 'wc-critical-hero-ready'
 
 const CRITICAL_HERO_BY_ROUTE: Record<string, string> = {
-  '/butik': '/butikmain.jpg',
-  '/kolekcja-na-zapytanie': '/watch-31.jpg',
+  '/butik': '/butikmain-v2.webp',
+  '/kolekcja-na-zapytanie': '/watch-31-v2.webp',
 }
 
 declare global {

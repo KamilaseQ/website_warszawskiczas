@@ -22,9 +22,9 @@ export const metadata: Metadata = {
     description: DESCRIPTION,
     siteName: 'Warszawski Czas',
     locale: 'pl_PL',
-    images: [{ url: 'https://warszawskiczas.pl/Rolex Wimbledon.jpg', alt: 'Rolex Datejust Wimbledon — Warszawski Czas' }],
+    images: [{ url: 'https://warszawskiczas.pl/rolex-wimbledon-v2.webp', alt: 'Rolex Datejust Wimbledon — Warszawski Czas' }],
   },
-  twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION, images: ['https://warszawskiczas.pl/Rolex Wimbledon.jpg'] },
+  twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION, images: ['https://warszawskiczas.pl/rolex-wimbledon-v2.webp'] },
 }
 
 export default async function Page() {
@@ -43,7 +43,7 @@ export default async function Page() {
         intro="Submariner, Daytona, Datejust, GMT-Master, Day-Date, Sky-Dweller, Yacht-Master, Explorer, Sea-Dweller, Air-King — szeroki wybór używanych zegarków Rolex w Warszawie. Sprowadzamy konkretne referencje na zamówienie i kupujemy zegarki Rolex."
         primaryCtaLabel="Zapytaj o model Rolex"
         source="landing-zegarki-rolex"
-        heroImage={{ src: '/Rolex Wimbledon.jpg', alt: 'Rolex Datejust Wimbledon — butik Warszawski Czas, Mokotowska 71' }}
+        heroImage={{ src: '/rolex-wimbledon-v2.webp', alt: 'Rolex Datejust Wimbledon — butik Warszawski Czas, Mokotowska 71' }}
         body={[
           {
             heading: 'Rolex w Warszawie — dlaczego rynek wtórny',

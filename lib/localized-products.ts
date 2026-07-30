@@ -4,7 +4,10 @@ import { productPublicPrice, productShowsPriceOnRequest } from '@/lib/product-av
 
 const intlLocale = (locale: Locale) => (locale === 'ua' ? 'uk-UA' : locale === 'en' ? 'en-US' : 'pl-PL')
 
-export function formatProductPrice(product: Product, locale: Locale) {
+export function formatProductPrice(
+  product: Pick<Product, 'status' | 'price' | 'priceOnRequest'>,
+  locale: Locale,
+) {
   const publicPrice = productPublicPrice(product)
   if (publicPrice) {
     return new Intl.NumberFormat(intlLocale(locale), {
@@ -256,22 +259,70 @@ export function localizeProductStatus(
   return status
 }
 
+const categoryCopy = {
+  zegarki: {
+    en: {
+      item: 'a premium watch',
+      collection: 'luxury watches',
+      verification: 'authenticity, documentation and condition',
+      focus: 'provenance and mechanical condition',
+    },
+    ua: {
+      item: 'преміальний годинник, доступний',
+      collection: 'люксові годинники',
+      verification: 'автентичність, документи та стан',
+      focus: 'походженні та механічному стані',
+    },
+  },
+  bizuteria: {
+    en: {
+      item: 'a piece of fine jewellery',
+      collection: 'luxury jewellery',
+      verification: 'authenticity, materials, gemstones and condition',
+      focus: 'provenance, materials and craftsmanship',
+    },
+    ua: {
+      item: 'преміальна ювелірна прикраса, доступна',
+      collection: 'люксові ювелірні вироби',
+      verification: 'автентичність, матеріали, камені та стан',
+      focus: 'походженні, матеріалах і майстерності виконання',
+    },
+  },
+  akcesoria: {
+    en: {
+      item: 'a luxury accessory',
+      collection: 'luxury accessories',
+      verification: 'authenticity, materials and condition',
+      focus: 'provenance, materials and craftsmanship',
+    },
+    ua: {
+      item: 'преміальний аксесуар, доступний',
+      collection: 'люксові аксесуари',
+      verification: 'автентичність, матеріали та стан',
+      focus: 'походженні, матеріалах і майстерності виконання',
+    },
+  },
+} as const
+
 export function localizeProduct(product: Product, locale: Locale): Product {
   if (locale === 'pl') return product
 
   const material = product.material ? replaceCommon(product.material, locale) : undefined
   const condition = product.condition ? replaceCommon(product.condition, locale) : undefined
+  const gemstone = product.gemstone ? replaceCommon(product.gemstone, locale) : undefined
   const reference = product.reference ? ` ref. ${product.reference}` : ''
   const year = product.year ? `, ${product.year}` : ''
+  const copy = categoryCopy[product.category]
 
   if (locale === 'en') {
     return {
       ...product,
       material,
       condition,
-      description: `${product.brand} ${product.name}${reference} is a premium watch available through Warszawski Czas in Warsaw. ${material ? `Configuration: ${material}. ` : ''}${condition ? `Condition: ${condition}. ` : ''}The piece can be viewed in our boutique at Mokotowska 71 or discussed remotely with a private consultant.`,
-      editorial: `A carefully selected ${product.brand} piece for collectors looking for luxury watches in Warsaw. We verify authenticity, documentation and condition before presenting each watch in the catalogue.`,
-      story: `${product.brand} ${product.name}${year} is presented as part of the Warszawski Czas curated collection. We focus on provenance, mechanical condition and discreet service for clients buying exclusive watches in Warsaw.`,
+      gemstone,
+      description: `${product.brand} ${product.name}${reference} is ${copy.en.item} available through Warszawski Czas in Warsaw. ${material ? `Configuration: ${material}. ` : ''}${gemstone ? `Gemstone: ${gemstone}. ` : ''}${condition ? `Condition: ${condition}. ` : ''}The piece can be viewed in our boutique at Mokotowska 71 or discussed remotely with a private consultant.`,
+      editorial: `A carefully selected ${product.brand} piece for clients looking for ${copy.en.collection} in Warsaw. We verify ${copy.en.verification} before presenting each item in the catalogue.`,
+      story: `${product.brand} ${product.name}${year} is presented as part of the Warszawski Czas curated collection. We focus on ${copy.en.focus} and discreet service for clients buying ${copy.en.collection} in Warsaw.`,
     }
   }
 
@@ -279,8 +330,9 @@ export function localizeProduct(product: Product, locale: Locale): Product {
     ...product,
     material,
     condition,
-    description: `${product.brand} ${product.name}${reference} — преміальний годинник, доступний у Warszawski Czas у Варшаві. ${material ? `Конфігурація: ${material}. ` : ''}${condition ? `Стан: ${condition}. ` : ''}Екземпляр можна переглянути в бутіку на Mokotowska 71 або обговорити дистанційно з приватним консультантом.`,
-    editorial: `Ретельно відібраний екземпляр ${product.brand} для клієнтів, які шукають люксові годинники у Варшаві. Перед презентацією ми перевіряємо автентичність, документи та стан.`,
-    story: `${product.brand} ${product.name}${year} входить до кураторської колекції Warszawski Czas. Ми зосереджуємося на походженні, механічному стані та дискретному сервісі для клієнтів, які купують ексклюзивні годинники у Варшаві.`,
+    gemstone,
+    description: `${product.brand} ${product.name}${reference} — ${copy.ua.item} у Warszawski Czas у Варшаві. ${material ? `Конфігурація: ${material}. ` : ''}${gemstone ? `Камінь: ${gemstone}. ` : ''}${condition ? `Стан: ${condition}. ` : ''}Позицію можна переглянути в бутіку на Mokotowska 71 або обговорити дистанційно з приватним консультантом.`,
+    editorial: `Ретельно відібрана позиція ${product.brand} для клієнтів, які шукають ${copy.ua.collection} у Варшаві. Перед презентацією ми перевіряємо ${copy.ua.verification}.`,
+    story: `${product.brand} ${product.name}${year} входить до кураторської колекції Warszawski Czas. Ми зосереджуємося на ${copy.ua.focus} та дискретному сервісі для клієнтів, які купують ${copy.ua.collection} у Варшаві.`,
   }
 }

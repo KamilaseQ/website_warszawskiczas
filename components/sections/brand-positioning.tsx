@@ -123,7 +123,7 @@ export function BrandPositioning() {
                     label={copy.imageLabel}
                   />
                   <Image
-                    src="/Patek Philippe Nautilus-12.jpg"
+                    src="/patek-philippe-nautilus-v2.webp"
                     alt="Patek Philippe Nautilus"
                     fill
                     sizes="(min-width: 1024px) 52vw, 100vw"

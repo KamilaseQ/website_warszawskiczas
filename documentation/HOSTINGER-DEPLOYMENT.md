@@ -76,6 +76,10 @@ Commit `53bd31e` przełączył kod na **tryb serwerowy** (żeby wysyłać mail p
 
 ## Zmienne środowiskowe — build vs runtime
 
+- **`CMS_MODE=live`**, **`CMS_API_URL`** i **`CMS_API_TOKEN`** są wymagane w
+  środowisku builda Hostingera. Token powinien być tylko do odczytu. Brak
+  którejkolwiek wartości celowo przerywa produkcyjny build; nie ma cichego
+  fallbacku do fixtures.
 - **`NEXT_PUBLIC_*`** (np. `NEXT_PUBLIC_PRIVATE_COLLECTION_CODE`,
   `NEXT_PUBLIC_CMS_LEAD_URL`) — wmurowują się **przy `next build`**. Zmiana
   wartości wymaga **przebudowy**. Muszą być dostępne w środowisku builda.

@@ -22,9 +22,9 @@ export const metadata: Metadata = {
     description: DESCRIPTION,
     siteName: 'Warszawski Czas',
     locale: 'pl_PL',
-    images: [{ url: 'https://warszawskiczas.pl/patek.jpg', alt: 'Patek Philippe — Warszawski Czas, Mokotowska 71' }],
+    images: [{ url: 'https://warszawskiczas.pl/patek-v2.webp', alt: 'Patek Philippe — Warszawski Czas, Mokotowska 71' }],
   },
-  twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION, images: ['https://warszawskiczas.pl/patek.jpg'] },
+  twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION, images: ['https://warszawskiczas.pl/patek-v2.webp'] },
 }
 
 export default async function Page() {
@@ -43,7 +43,7 @@ export default async function Page() {
         intro="Patek Philippe Nautilus 5711, 5712, 5811, Aquanaut 5167 i 5168, Calatrava 6119, Annual Calendar 5396, Twenty~4 Automatic, Grand Complications 5270, World Time 5230 — szeroki wybór używanych zegarków Patek Philippe w Warszawie. Sprowadzamy konkretne referencje na zamówienie oraz prowadzimy skup egzemplarzy Patek Philippe."
         primaryCtaLabel="Zapytaj o model Patek"
         source="landing-zegarki-patek-philippe"
-        heroImage={{ src: '/patek.jpg', alt: 'Patek Philippe — butik Warszawski Czas, Mokotowska 71' }}
+        heroImage={{ src: '/patek-v2.webp', alt: 'Patek Philippe — butik Warszawski Czas, Mokotowska 71' }}
         body={[
           {
             heading: 'Patek Philippe w Warszawie — rynek wtórny zamiast wieloletniej listy oczekujących',

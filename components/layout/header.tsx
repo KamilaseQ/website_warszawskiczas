@@ -19,11 +19,21 @@ export function Header() {
   const t = ui[locale]
 
   useEffect(() => {
+    let frame: number | null = null
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
+      if (frame !== null) return
+      frame = window.requestAnimationFrame(() => {
+        const next = window.scrollY > 50
+        setIsScrolled((current) => (current === next ? current : next))
+        frame = null
+      })
     }
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => {
+      if (frame !== null) window.cancelAnimationFrame(frame)
+      window.removeEventListener('scroll', handleScroll)
+    }
   }, [])
 
   const isHome = canonicalPath(pathname ?? '/', locale) === '/'
@@ -82,7 +92,7 @@ export function Header() {
             <LanguageSwitcher isTransparent={!isSolid} />
             <button
               type="button"
-              className="relative z-[60] inline-flex h-8 w-8 flex-col items-center justify-center gap-1.5 p-2"
+              className="relative z-[60] inline-flex h-11 w-11 flex-col items-center justify-center gap-1.5 p-2"
               onClick={(e) => {
                 e.preventDefault()
                 e.stopPropagation()

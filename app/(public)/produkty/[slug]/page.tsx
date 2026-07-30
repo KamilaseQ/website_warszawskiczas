@@ -24,6 +24,7 @@ import {
   schemaOrgAvailability,
 } from '@/lib/product-availability'
 import {
+  formatProductWeight,
   productAdditionalProperties,
   productCategoryName,
   productItemCondition,
@@ -31,9 +32,9 @@ import {
 } from '@/lib/product-structured-data'
 import {
   productImageAlt,
-  productImageOriginal,
   productImageSources,
-  productOriginalUrls,
+  productSeoImageUrl,
+  productSeoImageUrls,
 } from '@/lib/product-images'
 
 interface PageProps {
@@ -62,7 +63,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const description = product.description
   const primaryImage = productImageSources(product)[0]
   const image = primaryImage
-    ? absoluteUrl(productImageOriginal(primaryImage))
+    ? absoluteUrl(productSeoImageUrl(primaryImage, 'medium'))
     : absoluteUrl('/opengraph-image.jpg')
   const imageAlt = primaryImage
     ? productImageAlt(primaryImage, `${product.brand} ${product.name}`)
@@ -90,20 +91,40 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 }
 
-const certificationFaq: FaqItem[] = [
-  {
-    q: 'Co zawiera certyfikat autentyczności?',
-    a: 'Pełny opis egzemplarza, numer referencyjny, rok produkcji, opis stanu mechanizmu i koperty, datę i podpis zegarmistrza odpowiedzialnego za weryfikację. Dokument trafia do nabywcy w wersji papierowej oraz cyfrowej.',
-  },
-  {
-    q: 'Jak weryfikujecie autentyczność?',
-    a: 'Każdy zegarek przechodzi wieloetapową kontrolę: weryfikacja oznaczeń mechanizmu, pomiary chronometryczne, ocena pochodzenia (papiery, pudełko, historia serwisowa) oraz porównanie z bazą referencji.',
-  },
-  {
-    q: 'Czy oferujecie gwarancję?',
-    a: 'Tak — 12 miesięcy gwarancji butiku na pracę mechanizmu. Niezależnie od pozostałej gwarancji producenta, jeśli istnieje.',
-  },
-]
+function certificationFaq(product: Pick<Product, 'category'>): FaqItem[] {
+  if (product.category === 'zegarki') {
+    return [
+      {
+        q: 'Co zawiera certyfikat autentyczności?',
+        a: 'Pełny opis egzemplarza, numer referencyjny, rok produkcji, opis stanu mechanizmu i koperty, datę i podpis zegarmistrza odpowiedzialnego za weryfikację. Dokument trafia do nabywcy w wersji papierowej oraz cyfrowej.',
+      },
+      {
+        q: 'Jak weryfikujecie autentyczność?',
+        a: 'Każdy zegarek przechodzi wieloetapową kontrolę: weryfikacja oznaczeń mechanizmu, pomiary chronometryczne, ocena pochodzenia (papiery, pudełko, historia serwisowa) oraz porównanie z bazą referencji.',
+      },
+      {
+        q: 'Czy oferujecie gwarancję?',
+        a: 'Tak — 12 miesięcy gwarancji butiku na pracę mechanizmu. Niezależnie od pozostałej gwarancji producenta, jeśli istnieje.',
+      },
+    ]
+  }
+
+  const itemName = product.category === 'bizuteria' ? 'biżuterii' : 'akcesorium'
+  return [
+    {
+      q: 'Co zawiera certyfikat autentyczności?',
+      a: `Pełny opis ${itemName}, numer referencyjny, informacje o materiałach i kamieniach, jeśli występują, opis stanu oraz datę weryfikacji. Dokument trafia do nabywcy w wersji papierowej oraz cyfrowej.`,
+    },
+    {
+      q: 'Jak weryfikujecie autentyczność?',
+      a: 'Sprawdzamy oznaczenia, zgodność materiałów, jakość wykonania, kamienie, jeśli występują, dokumenty, pochodzenie oraz zgodność egzemplarza z opisem i referencją.',
+    },
+    {
+      q: 'Czy oferujecie gwarancję?',
+      a: 'Warunki gwarancji podajemy indywidualnie dla danego egzemplarza. Zawsze potwierdzamy jego autentyczność, materiały i stan opisany w ofercie.',
+    },
+  ]
+}
 
 function formatPrice(product: Product) {
   const publicPrice = productPublicPrice(product)
@@ -130,6 +151,7 @@ export default async function ProductPage({ params }: PageProps) {
   const price = formatPrice(product)
   const isOnOrder = isProductOnOrder(product)
   const isUnavailable = isProductUnavailable(product)
+  const isWatch = product.category === 'zegarki'
 
   const tokens = (s?: string) =>
     new Set(
@@ -172,15 +194,20 @@ export default async function ProductPage({ params }: PageProps) {
     .map((x) => x.p)
 
   const productLabel = `${product.brand} ${product.name}`
+  const formattedWeight = formatProductWeight(product.weightG)
 
   const statusTone = isUnavailable ? 'text-muted-foreground' : 'text-accent-gold'
 
   const statusBadge = product.status
 
   const ctaLabel = isUnavailable
-    ? 'Zapytaj o podobny model'
+    ? isWatch
+      ? 'Zapytaj o podobny model'
+      : 'Zapytaj o podobną pozycję'
     : isOnOrder
-      ? 'Zapytaj o ten model'
+      ? isWatch
+        ? 'Zapytaj o ten model'
+        : 'Zapytaj o tę pozycję'
       : 'Zapytaj o dostępność'
   const ctaSource = isUnavailable
     ? 'product-detail-unavailable'
@@ -189,7 +216,7 @@ export default async function ProductPage({ params }: PageProps) {
       : 'product-detail'
 
   const productUrl = `https://warszawskiczas.pl/produkty/${canonicalSlug}`
-  const productImages = productOriginalUrls(product).map((src) =>
+  const productImages = productSeoImageUrls(product, 'medium').map((src) =>
     src.startsWith('http') ? src : `https://warszawskiczas.pl${src}`,
   )
 
@@ -207,7 +234,8 @@ export default async function ProductPage({ params }: PageProps) {
     model: product.name,
     category: productCategoryName(product.category, 'pl'),
     description: product.description,
-    ...(productIdentifier ? { sku: productIdentifier, mpn: productIdentifier } : {}),
+    sku: product.id,
+    ...(productIdentifier ? { mpn: productIdentifier } : {}),
     image: productImages.length ? productImages : undefined,
     url: productUrl,
     mainEntityOfPage: productUrl,
@@ -241,7 +269,7 @@ export default async function ProductPage({ params }: PageProps) {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Strona główna', item: 'https://warszawskiczas.pl' },
-      { '@type': 'ListItem', position: 2, name: 'Zegarki', item: 'https://warszawskiczas.pl/produkty' },
+      { '@type': 'ListItem', position: 2, name: 'Katalog', item: 'https://warszawskiczas.pl/produkty' },
       { '@type': 'ListItem', position: 3, name: `${product.brand} ${product.name}`, item: productUrl },
     ],
   }
@@ -258,7 +286,7 @@ export default async function ProductPage({ params }: PageProps) {
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(certificationFaq)) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(certificationFaq(product))) }}
       />
 
       {/* Breadcrumb / nav back */}
@@ -359,12 +387,46 @@ export default async function ProductPage({ params }: PageProps) {
                     <dd className="mt-1 font-serif text-lg text-foreground">{product.reference}</dd>
                   </div>
                 )}
-                {product.caseSize && (
+                {product.category === 'zegarki' && product.caseSize && (
                   <div>
                     <dt className="font-sans text-[9px] font-bold uppercase tracking-[0.3em] text-muted-foreground/70">
                       Rozmiar
                     </dt>
                     <dd className="mt-1 font-serif text-lg text-foreground">{product.caseSize}</dd>
+                  </div>
+                )}
+                {product.category === 'bizuteria' && product.fineness && (
+                  <div>
+                    <dt className="font-sans text-[9px] font-bold uppercase tracking-[0.3em] text-muted-foreground/70">
+                      Próba
+                    </dt>
+                    <dd className="mt-1 font-serif text-lg text-foreground">{product.fineness}</dd>
+                  </div>
+                )}
+                {product.category === 'bizuteria' && product.gemstone && (
+                  <div>
+                    <dt className="font-sans text-[9px] font-bold uppercase tracking-[0.3em] text-muted-foreground/70">
+                      Kamień
+                    </dt>
+                    <dd className="mt-1 font-serif text-lg text-foreground">{product.gemstone}</dd>
+                  </div>
+                )}
+                {product.category === 'bizuteria' && formattedWeight && (
+                  <div>
+                    <dt className="font-sans text-[9px] font-bold uppercase tracking-[0.3em] text-muted-foreground/70">
+                      Waga
+                    </dt>
+                    <dd className="mt-1 font-serif text-lg text-foreground">{formattedWeight}</dd>
+                  </div>
+                )}
+                {product.category === 'bizuteria' && product.jewelrySize && (
+                  <div>
+                    <dt className="font-sans text-[9px] font-bold uppercase tracking-[0.3em] text-muted-foreground/70">
+                      Rozmiar biżuterii
+                    </dt>
+                    <dd className="mt-1 font-serif text-lg text-foreground">
+                      {product.jewelrySize}
+                    </dd>
                   </div>
                 )}
               </dl>
@@ -440,7 +502,7 @@ export default async function ProductPage({ params }: PageProps) {
           </div>
 
           <div className="mt-12">
-            <FaqAccordion items={certificationFaq} />
+            <FaqAccordion items={certificationFaq(product)} />
           </div>
         </Container>
       </Section>
@@ -455,7 +517,7 @@ export default async function ProductPage({ params }: PageProps) {
                   Może Cię zainteresować
                 </p>
                 <Heading as="h2" size="md" className="mt-4">
-                  Podobne modele
+                  {isWatch ? 'Podobne modele' : 'Podobne pozycje'}
                 </Heading>
               </div>
               <Link

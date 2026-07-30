@@ -92,7 +92,7 @@ export function ProductGallery({ brand, name, images = [] }: ProductGalleryProps
               type="button"
               onClick={prev}
               aria-label="Poprzednie zdjęcie"
-              className="absolute left-3 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center bg-[#0a0a0a]/60 text-white/85 opacity-0 backdrop-blur-sm transition-all duration-300 hover:bg-[#0a0a0a]/80 hover:text-accent-gold group-hover:opacity-100"
+              className="absolute left-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center bg-[#0a0a0a]/60 text-white/85 opacity-100 backdrop-blur-sm transition-all duration-300 hover:bg-[#0a0a0a]/80 hover:text-accent-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-gold sm:opacity-0 sm:group-hover:opacity-100 sm:group-focus-within:opacity-100"
             >
               <ChevronLeft className="h-5 w-5" />
             </button>
@@ -100,7 +100,7 @@ export function ProductGallery({ brand, name, images = [] }: ProductGalleryProps
               type="button"
               onClick={next}
               aria-label="Następne zdjęcie"
-              className="absolute right-3 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center bg-[#0a0a0a]/60 text-white/85 opacity-0 backdrop-blur-sm transition-all duration-300 hover:bg-[#0a0a0a]/80 hover:text-accent-gold group-hover:opacity-100"
+              className="absolute right-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center bg-[#0a0a0a]/60 text-white/85 opacity-100 backdrop-blur-sm transition-all duration-300 hover:bg-[#0a0a0a]/80 hover:text-accent-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-gold sm:opacity-0 sm:group-hover:opacity-100 sm:group-focus-within:opacity-100"
             >
               <ChevronRight className="h-5 w-5" />
             </button>

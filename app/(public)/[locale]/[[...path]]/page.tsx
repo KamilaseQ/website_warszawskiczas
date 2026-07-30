@@ -7,6 +7,7 @@ import { ProductCatalog } from '@/components/products'
 import { RelatedGrid } from '@/components/products'
 import { ProductGallery } from '@/components/products/product-gallery'
 import { StickyProductCta } from '@/components/products/sticky-product-cta'
+import { toCatalogProduct } from '@/lib/catalog-product'
 import { SeoLanding, landingBreadcrumbJsonLd, serviceJsonLd } from '@/components/seo/seo-landing'
 import {
   BrandPositioning,
@@ -37,6 +38,7 @@ import {
   schemaOrgAvailability,
 } from '@/lib/product-availability'
 import {
+  formatProductWeight,
   productAdditionalProperties,
   productCategoryName,
   productItemCondition,
@@ -44,9 +46,9 @@ import {
 } from '@/lib/product-structured-data'
 import {
   productImageAlt,
-  productImageOriginal,
   productImageSources,
-  productOriginalUrls,
+  productSeoImageUrl,
+  productSeoImageUrls,
 } from '@/lib/product-images'
 import { PrivateCollectionPage } from '@/components/pages/private-collection-page'
 import { AccessibilityStatementPage } from '@/components/pages/accessibility-statement-page'
@@ -138,15 +140,24 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     const canonicalSlug = productUrlSlug(source)
     const primaryImage = productImageSources(source)[0]
     const image = primaryImage
-      ? absoluteUrl(productImageOriginal(primaryImage))
+      ? absoluteUrl(productSeoImageUrl(primaryImage, 'medium'))
       : absoluteUrl('/opengraph-image.jpg')
     const imageAlt = primaryImage
       ? productImageAlt(primaryImage, `${product.brand} ${product.name}`)
       : `${product.brand} ${product.name}`
-    const title =
-      locale === 'en'
-        ? `${product.brand} ${product.name}${product.reference ? ` · ref. ${product.reference}` : ''} - luxury watch Warsaw`
-        : `${product.brand} ${product.name}${product.reference ? ` · ref. ${product.reference}` : ''} - люксовий годинник Варшава`
+    const categoryTitle =
+      source.category === 'zegarki'
+        ? locale === 'en'
+          ? 'luxury watch in Warsaw'
+          : 'люксовий годинник у Варшаві'
+        : source.category === 'bizuteria'
+          ? locale === 'en'
+            ? 'luxury jewellery in Warsaw'
+            : 'люксова прикраса у Варшаві'
+          : locale === 'en'
+            ? 'luxury accessory in Warsaw'
+            : 'люксовий аксесуар у Варшаві'
+    const title = `${product.brand} ${product.name}${product.reference ? ` · ref. ${product.reference}` : ''} - ${categoryTitle}`
     return {
       title,
       description: product.description,
@@ -309,11 +320,14 @@ async function renderLocalizedHome() {
 }
 
 function productListMetadata(locale: Exclude<Locale, 'pl'>): Metadata {
-  const title = locale === 'en' ? 'Luxury watches in Warsaw - Warszawski Czas catalogue' : 'Люксові годинники у Варшаві - каталог Warszawski Czas'
+  const title =
+    locale === 'en'
+      ? 'Luxury watches, jewellery and accessories in Warsaw - Warszawski Czas'
+      : 'Люксові годинники, прикраси та аксесуари у Варшаві - Warszawski Czas'
   const description =
     locale === 'en'
-      ? 'Catalogue of certified luxury watches available in the boutique at Mokotowska 71: Rolex, Patek Philippe, Audemars Piguet, Omega, Cartier and more.'
-      : 'Каталог перевірених люксових годинників у бутіку на Mokotowska 71: Rolex, Patek Philippe, Audemars Piguet, Omega, Cartier та інші.'
+      ? 'Catalogue of authenticated luxury watches, jewellery and accessories available through Warszawski Czas at Mokotowska 71.'
+      : 'Каталог перевірених люксових годинників, прикрас та аксесуарів у Warszawski Czas на Mokotowska 71.'
   return {
     title,
     description,
@@ -332,24 +346,73 @@ function productListMetadata(locale: Exclude<Locale, 'pl'>): Metadata {
 async function LocalizedProducts({ locale }: { locale: Exclude<Locale, 'pl'> }) {
   const all = await getAllProducts()
   const products = all.map((p) => localizeProduct(p, locale))
-  const title = locale === 'en' ? 'Available watches in the boutique' : 'Годинники доступні в бутіку'
+  const title =
+    locale === 'en'
+      ? 'Watches, jewellery and accessories in the boutique'
+      : 'Годинники, прикраси та аксесуари у бутику'
   const intro =
     locale === 'en'
-      ? 'Every piece is checked for authenticity and condition before it enters the catalogue.'
-      : 'Кожен екземпляр перевіряється на автентичність і стан перед додаванням до каталогу.'
+      ? 'Every item is checked for authenticity, materials and condition before it enters the catalogue.'
+      : 'Кожну позицію перевіряють на автентичність, матеріали та стан перед додаванням до каталогу.'
   const quote =
     locale === 'en'
-      ? 'The most beautiful watches are not the loudest. They are the ones that stay with us discreetly for decades.'
-      : 'Найкрасивіші годинники не найгучніші. Це ті, що дискретно супроводжують нас десятиліттями.'
+      ? 'The finest objects do not need to be loud. They stay with us discreetly for decades.'
+      : 'Найцінніші речі не мають бути гучними. Вони непомітно залишаються з нами на десятиліття.'
+  const catalogueLabel = locale === 'en' ? 'Catalogue' : 'Каталог'
+  const catalogueUrl = absoluteUrl('/produkty', locale)
+  const collectionJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: title,
+    description: intro,
+    url: catalogueUrl,
+    inLanguage: locale === 'en' ? 'en-US' : 'uk-UA',
+    mainEntity: {
+      '@type': 'ItemList',
+      numberOfItems: products.length,
+      itemListElement: products.map((product, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        url: absoluteUrl(`/produkty/${productUrlSlug(product)}`, locale),
+        name: `${product.brand} ${product.name}`,
+      })),
+    },
+  }
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: locale === 'en' ? 'Home' : 'Головна',
+        item: absoluteUrl('/', locale),
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: catalogueLabel,
+        item: catalogueUrl,
+      },
+    ],
+  }
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <Section variant="muted" spacing="sm" className="border-b border-border pt-28 lg:pt-32">
         <Container>
           <div className="grid items-end gap-6 lg:grid-cols-12 lg:gap-12">
             <div className="lg:col-span-7">
-              <p className="font-sans text-[10px] font-bold uppercase tracking-[0.4em] text-accent-gold">
-                {locale === 'en' ? 'Catalogue' : 'Каталог'} · {all.filter((p) => p.category === 'zegarki').length}
+              <p className="font-sans text-[10px] font-bold uppercase tracking-[0.4em] text-accent-gold-dark">
+                {catalogueLabel} · {products.length}
               </p>
               <h1 className="mt-3 font-serif text-3xl font-medium leading-[1.05] tracking-tight text-foreground sm:text-4xl lg:text-5xl">
                 {title}
@@ -368,13 +431,13 @@ async function LocalizedProducts({ locale }: { locale: Exclude<Locale, 'pl'> }) 
 
       <Section variant="muted" spacing="sm">
         <Container>
-          <ProductCatalog products={products} />
+          <ProductCatalog products={products.map(toCatalogProduct)} />
         </Container>
       </Section>
 
       <Section spacing="lg">
         <Container size="narrow" className="text-center">
-          <p className="font-sans text-[10px] font-bold uppercase tracking-[0.4em] text-accent-gold">
+          <p className="font-sans text-[10px] font-bold uppercase tracking-[0.4em] text-accent-gold-dark">
             {locale === 'en' ? 'Still looking?' : 'Не знайшли?'}
           </p>
           <Heading as="h2" size="md" className="mt-4">
@@ -382,8 +445,8 @@ async function LocalizedProducts({ locale }: { locale: Exclude<Locale, 'pl'> }) 
           </Heading>
           <Text muted className="mx-auto mt-4 max-w-xl">
             {locale === 'en'
-              ? 'Private collection pieces, on-request watches and models reserved for returning clients are available after a short conversation.'
-              : 'Годинники з приватних колекцій, моделі за запитом і позиції для постійних клієнтів доступні після короткої розмови.'}
+              ? 'Private collection pieces and items reserved for returning clients are available after a short conversation.'
+              : 'Позиції з приватних колекцій та вироби, зарезервовані для постійних клієнтів, доступні після короткої розмови.'}
           </Text>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Button asChild>
@@ -401,18 +464,36 @@ async function LocalizedProducts({ locale }: { locale: Exclude<Locale, 'pl'> }) 
   )
 }
 
-const certificationFaq = (locale: Exclude<Locale, 'pl'>): FaqItem[] =>
-  locale === 'en'
+function certificationFaq(
+  locale: Exclude<Locale, 'pl'>,
+  category: Product['category'],
+): FaqItem[] {
+  if (category === 'zegarki') {
+    return locale === 'en'
+      ? [
+          { q: 'What does the authenticity certificate include?', a: 'A description of the watch, reference number, production year where available, condition notes and the verification date.' },
+          { q: 'How do you verify authenticity?', a: 'We check markings, movement, case, bracelet, documents, service history and reference consistency.' },
+          { q: 'Do you offer a guarantee?', a: 'Yes. Boutique warranty is available for the movement unless stated otherwise for a specific piece.' },
+        ]
+      : [
+          { q: 'Що містить сертифікат автентичності?', a: 'Опис годинника, номер референсу, рік виробництва за наявності, примітки щодо стану та дату перевірки.' },
+          { q: 'Як ви перевіряєте автентичність?', a: 'Ми перевіряємо маркування, механізм, корпус, браслет, документи, сервісну історію та відповідність референсу.' },
+          { q: 'Чи надаєте гарантію?', a: 'Так. Гарантія бутіка на механізм доступна, якщо для конкретного екземпляра не зазначено інше.' },
+        ]
+  }
+
+  return locale === 'en'
     ? [
-        { q: 'What does the authenticity certificate include?', a: 'A description of the watch, reference number, production year where available, condition notes and the verification date.' },
-        { q: 'How do you verify authenticity?', a: 'We check markings, movement, case, bracelet, documents, service history and reference consistency.' },
-        { q: 'Do you offer a guarantee?', a: 'Yes. Boutique warranty is available for the movement unless stated otherwise for a specific piece.' },
+        { q: 'What does the authenticity certificate include?', a: 'A description of the piece, reference number, materials and gemstones where applicable, condition notes and the verification date.' },
+        { q: 'How do you verify authenticity?', a: 'We check markings, materials, workmanship, gemstones where applicable, documents, provenance and consistency with the listing and reference.' },
+        { q: 'Do you offer a guarantee?', a: 'Warranty terms are stated for each piece. We always confirm authenticity, materials and the condition described in the listing.' },
       ]
     : [
-        { q: 'Що містить сертифікат автентичності?', a: 'Опис годинника, номер референсу, рік виробництва за наявності, примітки щодо стану та дату перевірки.' },
-        { q: 'Як ви перевіряєте автентичність?', a: 'Ми перевіряємо маркування, механізм, корпус, браслет, документи, сервісну історію та відповідність референсу.' },
-        { q: 'Чи надаєте гарантію?', a: 'Так. Гарантія бутіка на механізм доступна, якщо для конкретного екземпляра не зазначено інше.' },
+        { q: 'Що містить сертифікат автентичності?', a: 'Опис виробу, номер референсу, матеріали й камені за наявності, примітки щодо стану та дату перевірки.' },
+        { q: 'Як ви перевіряєте автентичність?', a: 'Ми перевіряємо маркування, матеріали, якість виготовлення, камені за наявності, документи, походження та відповідність опису й референсу.' },
+        { q: 'Чи надаєте гарантію?', a: 'Умови гарантії зазначаються окремо для кожного виробу. Ми завжди підтверджуємо автентичність, матеріали та стан, описаний у пропозиції.' },
       ]
+}
 
 async function LocalizedProductDetail({ route, locale }: { route: string; locale: Exclude<Locale, 'pl'> }) {
   const slug = route.replace('/produkty/', '')
@@ -426,8 +507,9 @@ async function LocalizedProductDetail({ route, locale }: { route: string; locale
   const product = localizeProduct(source, locale)
   const price = formatProductPrice(source, locale)
   const productLabel = `${product.brand} ${product.name}`
+  const formattedWeight = formatProductWeight(product.weightG)
   const productUrl = absoluteUrl(`/produkty/${canonicalSlug}`, locale)
-  const productImages = productOriginalUrls(source).map((src) =>
+  const productImages = productSeoImageUrls(source, 'medium').map((src) =>
     src.startsWith('http') ? src : absoluteUrl(src),
   )
   const allProducts = await getAllProducts()
@@ -437,15 +519,24 @@ async function LocalizedProductDetail({ route, locale }: { route: string; locale
     .map((p) => localizeProduct(p, locale))
   const isOnOrder = isProductOnOrder(source)
   const isUnavailable = isProductUnavailable(source)
+  const isWatch = source.category === 'zegarki'
   const statusBadge = localizeProductStatus(source.status, locale)
   const ctaLabel = isUnavailable
-    ? locale === 'en'
-      ? 'Ask about a similar model'
-      : 'Запитати про цю модель'
-    : isOnOrder
+    ? isWatch
       ? locale === 'en'
-        ? 'Ask about this model'
-        : 'Запитати про цю модель'
+        ? 'Ask about a similar model'
+        : 'Запитати про схожу модель'
+      : locale === 'en'
+        ? 'Ask about a similar item'
+        : 'Запитати про схожий виріб'
+    : isOnOrder
+      ? isWatch
+        ? locale === 'en'
+          ? 'Ask about this model'
+          : 'Запитати про цю модель'
+        : locale === 'en'
+          ? 'Ask about this item'
+          : 'Запитати про цей виріб'
     : locale === 'en'
       ? 'Ask about availability'
       : 'Запитати про наявність'
@@ -473,7 +564,8 @@ async function LocalizedProductDetail({ route, locale }: { route: string; locale
     model: product.name,
     category: productCategoryName(source.category, locale),
     description: product.description,
-    ...(productIdentifier ? { sku: productIdentifier, mpn: productIdentifier } : {}),
+    sku: source.id,
+    ...(productIdentifier ? { mpn: productIdentifier } : {}),
     image: productImages.length ? productImages : undefined,
     url: productUrl,
     mainEntityOfPage: productUrl,
@@ -501,7 +593,7 @@ async function LocalizedProductDetail({ route, locale }: { route: string; locale
   }
 
   const homeName = locale === 'en' ? 'Home' : 'Головна'
-  const catalogueName = locale === 'en' ? 'Watches' : 'Годинники'
+  const catalogueName = locale === 'en' ? 'Catalogue' : 'Каталог'
   const breadcrumbJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -562,7 +654,24 @@ async function LocalizedProductDetail({ route, locale }: { route: string; locale
                 {product.condition && <Spec label={locale === 'en' ? 'Condition' : 'Стан'} value={product.condition} />}
                 {product.material && <Spec label={locale === 'en' ? 'Material' : 'Матеріал'} value={product.material} />}
                 {product.reference && <Spec label={locale === 'en' ? 'Reference' : 'Референс'} value={product.reference} />}
-                {product.caseSize && <Spec label={locale === 'en' ? 'Size' : 'Розмір'} value={product.caseSize} />}
+                {source.category === 'zegarki' && product.caseSize && (
+                  <Spec label={locale === 'en' ? 'Size' : 'Розмір'} value={product.caseSize} />
+                )}
+                {source.category === 'bizuteria' && product.fineness && (
+                  <Spec label={locale === 'en' ? 'Fineness' : 'Проба'} value={product.fineness} />
+                )}
+                {source.category === 'bizuteria' && product.gemstone && (
+                  <Spec label={locale === 'en' ? 'Gemstone' : 'Камінь'} value={product.gemstone} />
+                )}
+                {source.category === 'bizuteria' && formattedWeight && (
+                  <Spec label={locale === 'en' ? 'Weight' : 'Вага'} value={formattedWeight} />
+                )}
+                {source.category === 'bizuteria' && product.jewelrySize && (
+                  <Spec
+                    label={locale === 'en' ? 'Jewellery size' : 'Розмір прикраси'}
+                    value={product.jewelrySize}
+                  />
+                )}
               </dl>
               <div className="mt-8">
                 {price && <p className="font-serif text-3xl font-medium text-foreground">{price}</p>}
@@ -601,13 +710,17 @@ async function LocalizedProductDetail({ route, locale }: { route: string; locale
               {locale === 'en' ? 'Authenticity confirmed' : 'Автентичність підтверджена'}
             </Heading>
             <Text muted className="mx-auto mt-4 max-w-xl">
-              {locale === 'en'
-                ? 'Every watch in our boutique is verified before it enters the catalogue.'
-                : 'Кожен годинник у нашому бутіку проходить перевірку перед додаванням до каталогу.'}
+              {source.category === 'zegarki'
+                ? locale === 'en'
+                  ? 'Every watch in our boutique is verified before it enters the catalogue.'
+                  : 'Кожен годинник у нашому бутіку проходить перевірку перед додаванням до каталогу.'
+                : locale === 'en'
+                  ? 'Every piece is verified for authenticity, materials and condition before it enters the catalogue.'
+                  : 'Кожен виріб перевіряється на автентичність, матеріали та стан перед додаванням до каталогу.'}
             </Text>
           </div>
           <div className="mt-12">
-            <FaqAccordion items={certificationFaq(locale)} />
+            <FaqAccordion items={certificationFaq(locale, source.category)} />
           </div>
         </Container>
       </Section>
@@ -621,7 +734,13 @@ async function LocalizedProductDetail({ route, locale }: { route: string; locale
                   {locale === 'en' ? 'You may also like' : 'Вас також може зацікавити'}
                 </p>
                 <Heading as="h2" size="md" className="mt-4">
-                  {locale === 'en' ? 'Similar models' : 'Подібні моделі'}
+                  {isWatch
+                    ? locale === 'en'
+                      ? 'Similar models'
+                      : 'Подібні моделі'
+                    : locale === 'en'
+                      ? 'Similar items'
+                      : 'Схожі вироби'}
                 </Heading>
               </div>
             </div>

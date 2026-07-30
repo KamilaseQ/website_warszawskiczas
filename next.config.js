@@ -108,7 +108,16 @@ const immutableAssetHeaders = [
   { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
 ]
 
-const immutablePublicAssetSources = [
+const revalidatedAssetHeaders = [
+  {
+    key: 'Cache-Control',
+    value: 'public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800',
+  },
+]
+
+// Nazwy bez hasha/wersji mogą zostać podmienione przy deployu, więc nie wolno
+// blokować starej kopii w cache przeglądarki na rok.
+const revalidatedPublicAssetSources = [
   '/products/:path*',
   '/rolex.mp4',
   '/rolex-poster.jpg',
@@ -122,14 +131,18 @@ const immutablePublicAssetSources = [
   '/butik3.webp',
   '/grafikabutik.avif',
   '/edek.webp',
-  '/butikmain.jpg',
-  '/patek.jpg',
-  '/chopard.jpg',
-  '/ap.jpg',
-  '/watch-31.jpg',
-  '/Rolex Wimbledon.jpg',
-  '/Patek Philippe Nautilus-12.jpg',
-  '/Franck Muller Vegas4.jpg',
+]
+
+// Jawnie wersjonowane URL-e — bezpieczne dla immutable.
+const immutablePublicAssetSources = [
+  '/watch-31-v2.webp',
+  '/rolex-wimbledon-v2.webp',
+  '/patek-philippe-nautilus-v2.webp',
+  '/franck-muller-vegas4-v2.webp',
+  '/butikmain-v2.webp',
+  '/chopard-v2.webp',
+  '/patek-v2.webp',
+  '/ap-v2.webp',
 ]
 
 /**
@@ -189,6 +202,10 @@ const nextConfig = {
         source: '/((?!_next/).*)',
         headers: [{ key: 'Cache-Control', value: 'no-cache' }],
       },
+      ...revalidatedPublicAssetSources.map((source) => ({
+        source,
+        headers: revalidatedAssetHeaders,
+      })),
       ...immutablePublicAssetSources.map((source) => ({
         source,
         headers: immutableAssetHeaders,

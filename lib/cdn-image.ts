@@ -17,17 +17,39 @@
  */
 export type CdnImageVariant = 'thumb' | 'medium'
 
+const PRODUCT_CDN_HOSTS = new Set([
+  'cdn.camalio.pl',
+  'cdn.warszawskiczas.pl',
+  configuredCdnHost(),
+].filter((host): host is string => Boolean(host)))
+
 export function cdnImageVariant(
   url: string | undefined,
   variant: CdnImageVariant,
 ): string | undefined {
   if (!url) return url
-  // Tylko absolutne URL-e CDN mają warianty. Lokalne `/products/...` (mock/dev) zostają.
-  if (!/^https?:\/\//i.test(url)) return url
+  let parsed: URL
+  try {
+    parsed = new URL(url)
+  } catch {
+    return url
+  }
+  if (!['http:', 'https:'].includes(parsed.protocol)) return url
+  if (!PRODUCT_CDN_HOSTS.has(parsed.hostname.toLowerCase())) return url
   // Już wariant — nie zagnieżdżamy `_variants/_variants`.
-  if (url.includes('/_variants/')) return url
-  const match = url.match(/^(.*\/)([^/]+)\.(?:jpe?g|png|webp)$/i)
+  if (parsed.pathname.includes('/_variants/')) return url
+  const match = parsed.pathname.match(/^(.*\/)([^/]+)\.(?:jpe?g|png|webp)$/i)
   if (!match) return url
   const [, dir, base] = match
-  return `${dir}_variants/${base}-${variant}.webp`
+  parsed.pathname = `${dir}_variants/${base}-${variant}.webp`
+  return parsed.toString()
+}
+
+function configuredCdnHost(): string | null {
+  try {
+    const configured = process.env.NEXT_PUBLIC_CDN_BASE_URL
+    return configured ? new URL(configured).hostname.toLowerCase() : null
+  } catch {
+    return null
+  }
 }

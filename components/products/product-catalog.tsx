@@ -1,23 +1,24 @@
 'use client'
 
-import { useEffect, useMemo, useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import { ChevronDown, SlidersHorizontal, X } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 import { ProductCard } from './product-card'
 import { cn } from '@/lib/utils'
 import { useBodyScrollLock } from '@/lib/use-body-scroll-lock'
-import type { Product } from '@/from-cms/schemas/product'
 import { localeFromPathname, ui } from '@/lib/i18n'
 import { productPublicPrice, productShowsPriceOnRequest } from '@/lib/product-availability'
+import type { CatalogProduct } from '@/lib/catalog-product'
 
 interface ProductCatalogProps {
-  products: Product[]
+  products: CatalogProduct[]
 }
 
 const CATEGORIES = [
   { value: 'zegarki', label: 'Zegarki' },
   { value: 'bizuteria', label: 'Biżuteria' },
+  { value: 'akcesoria', label: 'Akcesoria' },
 ] as const
 
 const STATUSES = ['Wszystkie', 'Dostępny', 'Na zamówienie', 'Niedostępny'] as const
@@ -30,21 +31,45 @@ const SORTS = [
 ] as const
 
 const PRICE_MIN = 0
-const PRICE_MAX = 500000
+const MIN_PRICE_CEILING = 500000
+const PRICE_CEILING_STEP = 50000
+
+function normalizedBrand(value: string) {
+  return value.trim().toLocaleLowerCase('pl-PL')
+}
 
 export function ProductCatalog({ products }: ProductCatalogProps) {
   const pathname = usePathname()
   const locale = localeFromPathname(pathname)
   const t = ui[locale]
-  const [category, setCategory] = useState<'zegarki' | 'bizuteria'>('zegarki')
+  const reducedMotion = useReducedMotion()
+  const filterTriggerRef = useRef<HTMLButtonElement>(null)
+  const filterDrawerRef = useRef<HTMLElement>(null)
+  const filterCloseRef = useRef<HTMLButtonElement>(null)
+  const priceCeiling = useMemo(() => {
+    const highestPrice = products.reduce(
+      (highest, product) => Math.max(highest, productPublicPrice(product) ?? 0),
+      0,
+    )
+    return Math.max(
+      MIN_PRICE_CEILING,
+      Math.ceil(highestPrice / PRICE_CEILING_STEP) * PRICE_CEILING_STEP,
+    )
+  }, [products])
+  const [category, setCategory] = useState<CatalogProduct['category']>('zegarki')
   const [selectedBrands, setSelectedBrands] = useState<string[]>([])
   const [status, setStatus] = useState<string>('Wszystkie')
   const [sort, setSort] = useState<string>('featured')
   const [priceMin, setPriceMin] = useState<number>(PRICE_MIN)
-  const [priceMax, setPriceMax] = useState<number>(PRICE_MAX)
+  const [priceMax, setPriceMax] = useState<number>(priceCeiling)
   const [onlyOnRequest, setOnlyOnRequest] = useState<boolean>(false)
   const [drawerOpen, setDrawerOpen] = useState(false)
-  const categoryLabels: Record<string, string> = { zegarki: t.products, bizuteria: t.jewelry }
+  const categoryLabels: Record<string, string> = {
+    zegarki: locale === 'pl' ? 'Zegarki' : locale === 'en' ? 'Watches' : 'Годинники',
+    bizuteria: t.jewelry,
+    akcesoria:
+      locale === 'pl' ? 'Akcesoria' : locale === 'en' ? 'Accessories' : 'Аксесуари',
+  }
   const statusLabels: Record<string, string> = {
     Wszystkie: t.all,
     Dostępny: t.available,
@@ -57,21 +82,30 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
     'price-desc': t.priceDesc,
     'brand-asc': t.brandAsc,
   }
+  const itemPluralRules = new Intl.PluralRules(
+    locale === 'ua' ? 'uk-UA' : locale === 'en' ? 'en-US' : 'pl-PL',
+  )
 
   // Marki z aktualnych danych — skaluje się automatycznie wraz z rozbudową katalogu
   const brandsForCategory = useMemo(() => {
-    const set = new Set<string>()
-    products.filter((p) => p.category === category).forEach((p) => set.add(p.brand))
-    return Array.from(set).sort((a, b) => a.localeCompare(b, 'pl'))
+    const labelsByKey = new Map<string, string>()
+    products
+      .filter((p) => p.category === category)
+      .forEach((p) => {
+        const key = normalizedBrand(p.brand)
+        if (!labelsByKey.has(key)) labelsByKey.set(key, p.brand.trim())
+      })
+    return Array.from(labelsByKey.values()).sort((a, b) =>
+      a.localeCompare(b, 'pl', { sensitivity: 'base' }),
+    )
   }, [products, category])
-
-  const toggleBrand = (b: string) => {
-    setSelectedBrands((prev) => (prev.includes(b) ? prev.filter((x) => x !== b) : [...prev, b]))
-  }
 
   const filtered = useMemo(() => {
     let out = products.filter((p) => p.category === category)
-    if (selectedBrands.length > 0) out = out.filter((p) => selectedBrands.includes(p.brand))
+    if (selectedBrands.length > 0) {
+      const selectedKeys = new Set(selectedBrands.map(normalizedBrand))
+      out = out.filter((p) => selectedKeys.has(normalizedBrand(p.brand)))
+    }
     if (status !== 'Wszystkie') out = out.filter((p) => p.status === status)
     if (onlyOnRequest) out = out.filter((p) => productShowsPriceOnRequest(p))
     out = out.filter((p) => {
@@ -85,7 +119,9 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
     } else if (sort === 'price-desc') {
       out = [...out].sort((a, b) => (productPublicPrice(b) ?? -Infinity) - (productPublicPrice(a) ?? -Infinity))
     } else if (sort === 'brand-asc') {
-      out = [...out].sort((a, b) => a.brand.localeCompare(b.brand, 'pl'))
+      out = [...out].sort((a, b) =>
+        a.brand.localeCompare(b.brand, 'pl', { sensitivity: 'base' }),
+      )
     }
     // sort === 'featured' → zachowujemy kolejność źródłową z CMS-a, czyli ręczną
     // kolejność katalogu (sort_position) ustawianą w aplikacji. Dzięki temu
@@ -93,18 +129,28 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
 
     return out
   }, [products, category, selectedBrands, status, sort, priceMin, priceMax, onlyOnRequest])
+  const itemPluralCategory = itemPluralRules.select(filtered.length)
+  const categoryHasProducts = products.some((product) => product.category === category)
+
+  const toggleBrand = (brand: string) => {
+    setSelectedBrands((previous) =>
+      previous.includes(brand)
+        ? previous.filter((candidate) => candidate !== brand)
+        : [...previous, brand],
+    )
+  }
 
   const activeFilterCount =
     (selectedBrands.length > 0 ? 1 : 0) +
     (status !== 'Wszystkie' ? 1 : 0) +
-    (priceMin !== PRICE_MIN || priceMax !== PRICE_MAX ? 1 : 0) +
+    (priceMin !== PRICE_MIN || priceMax !== priceCeiling ? 1 : 0) +
     (onlyOnRequest ? 1 : 0)
 
   const clearFilters = () => {
     setSelectedBrands([])
     setStatus('Wszystkie')
     setPriceMin(PRICE_MIN)
-    setPriceMax(PRICE_MAX)
+    setPriceMax(priceCeiling)
     setOnlyOnRequest(false)
   }
 
@@ -117,14 +163,40 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
 
   useBodyScrollLock(drawerOpen)
 
-  // Esc zamyka drawer
+  // Esc, focus trap i przywrócenie fokusu po zamknięciu drawera.
   useEffect(() => {
     if (!drawerOpen) return
+    const previouslyFocused = document.activeElement
+    const focusTimer = window.requestAnimationFrame(() => filterCloseRef.current?.focus())
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setDrawerOpen(false)
+      if (e.key === 'Escape') {
+        setDrawerOpen(false)
+        return
+      }
+      if (e.key !== 'Tab') return
+
+      const focusable = filterDrawerRef.current?.querySelectorAll<HTMLElement>(
+        'button:not([disabled]), input:not([disabled]), select:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])',
+      )
+      if (!focusable?.length) return
+      const first = focusable[0]
+      const last = focusable[focusable.length - 1]
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault()
+        last.focus()
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault()
+        first.focus()
+      }
     }
     window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
+    return () => {
+      window.cancelAnimationFrame(focusTimer)
+      window.removeEventListener('keydown', onKey)
+      const focusTarget =
+        previouslyFocused instanceof HTMLElement ? previouslyFocused : filterTriggerRef.current
+      focusTarget?.focus()
+    }
   }, [drawerOpen])
 
   return (
@@ -138,12 +210,13 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
               <button
                 key={c.value}
                 type="button"
+                aria-pressed={isActive}
                 onClick={() => {
-                  setCategory(c.value as 'zegarki' | 'bizuteria')
+                  setCategory(c.value)
                   setSelectedBrands([])
                 }}
                 className={cn(
-                  'relative pb-3 font-serif text-xs uppercase tracking-[0.3em] transition-colors duration-300 sm:text-sm',
+                  'relative min-h-11 pb-3 font-serif text-xs uppercase tracking-[0.3em] transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-gold/50 sm:text-sm',
                   isActive ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'
                 )}
               >
@@ -162,12 +235,13 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
         {/* Akcje */}
         <div className="flex items-center gap-2 sm:gap-4">
           <button
+            ref={filterTriggerRef}
             type="button"
             onClick={() => setDrawerOpen(true)}
             aria-label={t.filters}
             aria-expanded={drawerOpen}
             aria-controls="catalog-filters"
-            className="group inline-flex items-center gap-2 border border-foreground/15 bg-transparent px-3 py-2 font-sans text-[10px] font-bold uppercase tracking-[0.3em] text-foreground transition-colors duration-300 hover:border-accent-gold hover:text-accent-gold sm:px-4"
+            className="group inline-flex min-h-11 items-center gap-2 border border-foreground/15 bg-transparent px-3 py-2 font-sans text-[10px] font-bold uppercase tracking-[0.3em] text-foreground transition-colors duration-300 hover:border-accent-gold hover:text-accent-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-gold/50 sm:px-4"
           >
             <SlidersHorizontal className="h-3.5 w-3.5" />
             <span>{t.filters}</span>
@@ -183,7 +257,7 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
               value={sort}
               onChange={(e) => setSort(e.target.value)}
               aria-label={t.sort}
-              className="appearance-none border border-foreground/15 bg-transparent py-2 pl-3 pr-8 font-sans text-[10px] font-bold uppercase tracking-[0.3em] text-foreground transition-colors duration-300 hover:border-accent-gold focus:outline-none focus:ring-0 sm:pl-4 sm:pr-9"
+              className="min-h-11 appearance-none border border-foreground/15 bg-transparent py-2 pl-3 pr-8 font-sans text-[10px] font-bold uppercase tracking-[0.3em] text-foreground transition-colors duration-300 hover:border-accent-gold focus-visible:border-accent-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-gold/40 sm:pl-4 sm:pr-9"
             >
               {SORTS.map((s) => (
                 <option key={s.value} value={s.value} className="bg-background">
@@ -203,7 +277,10 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: [0.21, 0.47, 0.32, 0.98] }}
+            transition={{
+              duration: reducedMotion ? 0 : 0.3,
+              ease: [0.21, 0.47, 0.32, 0.98],
+            }}
             className="overflow-hidden"
           >
             <div className="mb-6 flex flex-wrap items-center gap-2">
@@ -211,27 +288,41 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
                 {t.active}
               </span>
               {selectedBrands.map((b) => (
-                <FilterChip key={b} label={b} onClear={() => toggleBrand(b)} />
+                <FilterChip
+                  key={b}
+                  label={b}
+                  removeLabel={t.removeFilter}
+                  onClear={() => toggleBrand(b)}
+                />
               ))}
               {status !== 'Wszystkie' && (
-                <FilterChip label={statusLabels[status] ?? status} onClear={() => setStatus('Wszystkie')} />
+                <FilterChip
+                  label={statusLabels[status] ?? status}
+                  removeLabel={t.removeFilter}
+                  onClear={() => setStatus('Wszystkie')}
+                />
               )}
-              {(priceMin !== PRICE_MIN || priceMax !== PRICE_MAX) && (
+              {(priceMin !== PRICE_MIN || priceMax !== priceCeiling) && (
                 <FilterChip
                   label={`${fmt(priceMin)} – ${fmt(priceMax)}`}
+                  removeLabel={t.removeFilter}
                   onClear={() => {
                     setPriceMin(PRICE_MIN)
-                    setPriceMax(PRICE_MAX)
+                    setPriceMax(priceCeiling)
                   }}
                 />
               )}
               {onlyOnRequest && (
-                <FilterChip label={t.priceOnRequest} onClear={() => setOnlyOnRequest(false)} />
+                <FilterChip
+                  label={t.priceOnRequest}
+                  removeLabel={t.removeFilter}
+                  onClear={() => setOnlyOnRequest(false)}
+                />
               )}
               <button
                 type="button"
                 onClick={clearFilters}
-                className="ml-1 font-sans text-[9px] font-bold uppercase tracking-[0.3em] text-muted-foreground transition-colors hover:text-accent-gold"
+                className="ml-1 inline-flex min-h-11 items-center px-2 font-sans text-[10px] font-bold uppercase tracking-[0.28em] text-muted-foreground transition-colors hover:text-accent-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-gold/50"
               >
                 {t.clearAll}
               </button>
@@ -240,28 +331,53 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
         )}
       </AnimatePresence>
 
-      <p className="mb-6 font-sans text-[11px] uppercase tracking-[0.3em] text-muted-foreground">
-        {filtered.length} {filtered.length === 1 ? t.itemSingular : filtered.length < 5 ? t.itemFew : t.itemMany}
-      </p>
+      <div
+        id="catalog-results"
+        data-catalog-count={filtered.length}
+        aria-live="polite"
+        aria-atomic="true"
+        className="mb-6 font-sans text-[11px] uppercase tracking-[0.24em] text-muted-foreground"
+      >
+        {filtered.length}{' '}
+        {itemPluralCategory === 'one'
+          ? t.itemSingular
+          : itemPluralCategory === 'few'
+            ? t.itemFew
+            : t.itemMany}
+      </div>
 
       {filtered.length > 0 ? (
         <div
-          key={`${category}-${selectedBrands.join(',')}-${status}-${priceMin}-${priceMax}-${onlyOnRequest}-${sort}`}
           className="grid grid-cols-2 gap-x-3 gap-y-8 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-14 lg:grid-cols-3 lg:gap-y-16 xl:grid-cols-4"
         >
-          {filtered.map((p) => (
-            <ProductCard key={p.id} product={p} aspect="portrait" />
+          {filtered.map((p, index) => (
+            <ProductCard
+              key={p.id}
+              product={p}
+              aspect="portrait"
+              imageVariant="thumb"
+              priority={index === 0}
+              catalogItem
+            />
           ))}
         </div>
       ) : (
         <div className="border border-dashed border-border py-24 text-center">
           <p className="font-serif italic text-lg text-muted-foreground">
-            {category === 'bizuteria'
+            {activeFilterCount > 0 || categoryHasProducts
+              ? t.noMatchingItems
+              : category === 'bizuteria'
               ? locale === 'pl'
                 ? 'Kolekcja biżuterii pojawi się wkrótce.'
                 : locale === 'en'
                   ? 'The jewellery collection will appear soon.'
                   : 'Колекція ювелірних виробів з’явиться незабаром.'
+              : category === 'akcesoria'
+                ? locale === 'pl'
+                  ? 'Kolekcja akcesoriów pojawi się wkrótce.'
+                  : locale === 'en'
+                    ? 'The accessories collection will appear soon.'
+                    : 'Колекція аксесуарів з’явиться незабаром.'
               : t.noMatchingItems}
           </p>
           {activeFilterCount > 0 && (
@@ -284,20 +400,24 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: reducedMotion ? 0 : 0.3 }}
               onClick={() => setDrawerOpen(false)}
               className="fixed inset-0 z-[300] bg-[#0a0a0a]/40 backdrop-blur-[2px]"
               aria-hidden="true"
             />
             <motion.aside
+              ref={filterDrawerRef}
               id="catalog-filters"
               role="dialog"
               aria-modal="true"
-              aria-label={t.filters}
+              aria-labelledby="catalog-filters-title"
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
-              transition={{ duration: 0.45, ease: [0.76, 0, 0.24, 1] }}
+              transition={{
+                duration: reducedMotion ? 0 : 0.35,
+                ease: [0.76, 0, 0.24, 1],
+              }}
               className="fixed inset-y-0 right-0 z-[301] flex w-full max-w-md flex-col bg-background shadow-[-20px_0_60px_-20px_rgba(0,0,0,0.25)]"
             >
               <header className="flex items-center justify-between border-b border-border px-6 py-5 lg:px-8">
@@ -305,15 +425,19 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
                   <p className="font-sans text-[9px] font-bold uppercase tracking-[0.4em] text-accent-gold">
                     {locale === 'pl' ? 'Selekcja' : locale === 'en' ? 'Selection' : 'Добірка'}
                   </p>
-                  <h3 className="mt-1 font-serif text-2xl font-medium tracking-tight text-foreground">
+                  <h3
+                    id="catalog-filters-title"
+                    className="mt-1 font-serif text-2xl font-medium tracking-tight text-foreground"
+                  >
                     {t.filters}
                   </h3>
                 </div>
                 <button
+                  ref={filterCloseRef}
                   type="button"
                   onClick={() => setDrawerOpen(false)}
                   aria-label={t.closeFilters}
-                  className="flex h-9 w-9 items-center justify-center text-foreground transition-colors hover:text-accent-gold"
+                  className="flex h-11 w-11 items-center justify-center text-foreground transition-colors hover:text-accent-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-gold/50"
                 >
                   <X className="h-5 w-5" />
                 </button>
@@ -331,7 +455,7 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
                           <li key={b}>
                             <label
                               htmlFor={id}
-                              className="flex cursor-pointer items-center gap-3 py-1.5 font-sans text-[12px] uppercase tracking-[0.18em] text-foreground transition-colors hover:text-accent-gold"
+                              className="flex min-h-11 cursor-pointer items-center gap-3 py-2 font-sans text-[12px] uppercase tracking-[0.18em] text-foreground transition-colors hover:text-accent-gold focus-within:ring-2 focus-within:ring-accent-gold/50"
                             >
                               <span
                                 className={cn(
@@ -371,9 +495,10 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
                           <button
                             key={s}
                             type="button"
+                            aria-pressed={isActive}
                             onClick={() => setStatus(s)}
                             className={cn(
-                              'border px-3 py-2 font-sans text-[10px] font-bold uppercase tracking-[0.25em] transition-all duration-300',
+                              'min-h-11 border px-3 py-2 font-sans text-[10px] font-bold uppercase tracking-[0.25em] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-gold/50',
                               isActive
                                 ? 'border-accent-gold bg-accent-gold text-[#0a0a0a]'
                                 : 'border-foreground/15 text-foreground hover:border-accent-gold hover:text-accent-gold'
@@ -388,20 +513,20 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
 
                   {/* Cena — widełki min/max */}
                   <FilterSection label={`${t.price} · ${fmt(priceMin)} – ${fmt(priceMax)}`}>
-                    <div className="dual-range relative h-6">
+                    <div className="dual-range relative h-11">
                       <span aria-hidden className="absolute left-0 right-0 top-1/2 h-px -translate-y-1/2 bg-foreground/20" />
                       <span
                         aria-hidden
                         className="absolute top-1/2 h-px -translate-y-1/2 bg-accent-gold"
                         style={{
-                          left: `${(priceMin / PRICE_MAX) * 100}%`,
-                          right: `${100 - (priceMax / PRICE_MAX) * 100}%`,
+                          left: `${(priceMin / priceCeiling) * 100}%`,
+                          right: `${100 - (priceMax / priceCeiling) * 100}%`,
                         }}
                       />
                       <input
                         type="range"
                         min={PRICE_MIN}
-                        max={PRICE_MAX}
+                        max={priceCeiling}
                         step={1000}
                         value={priceMin}
                         onChange={(e) => {
@@ -414,20 +539,20 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
                       <input
                         type="range"
                         min={PRICE_MIN}
-                        max={PRICE_MAX}
+                        max={priceCeiling}
                         step={1000}
                         value={priceMax}
                         onChange={(e) => {
                           const v = Math.max(Number(e.target.value), priceMin + 1000)
-                          setPriceMax(Math.min(PRICE_MAX, v))
+                          setPriceMax(Math.min(priceCeiling, v))
                         }}
                         aria-label={t.priceMax}
                         className="dual-range-input"
                       />
                     </div>
                     <div className="mt-4 flex items-center justify-between gap-3 font-sans text-[10px] uppercase tracking-[0.25em] text-muted-foreground/80">
-                      <span>od&nbsp;<strong className="font-bold text-foreground">{fmt(priceMin)}</strong></span>
-                      <span>do&nbsp;<strong className="font-bold text-foreground">{fmt(priceMax)}{priceMax === PRICE_MAX ? '+' : ''}</strong></span>
+                      <span>{t.priceMin}&nbsp;<strong className="font-bold text-foreground">{fmt(priceMin)}</strong></span>
+                      <span>{t.priceMax}&nbsp;<strong className="font-bold text-foreground">{fmt(priceMax)}{priceMax === priceCeiling ? '+' : ''}</strong></span>
                     </div>
                     <p className="mt-3 font-sans text-[10px] uppercase tracking-[0.2em] text-muted-foreground/60">
                       {t.onRequestNotFiltered}
@@ -435,8 +560,8 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
                   </FilterSection>
 
                   {/* Toggle: tylko cena na zapytanie */}
-                  <FilterSection label={t.featuredFilter}>
-                    <label className="flex cursor-pointer items-center gap-3 select-none">
+                  <FilterSection label={t.priceOnRequest}>
+                    <label className="flex min-h-11 cursor-pointer select-none items-center gap-3 focus-within:ring-2 focus-within:ring-accent-gold/50">
                       <input
                         type="checkbox"
                         checked={onlyOnRequest}
@@ -473,14 +598,14 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
                   type="button"
                   onClick={clearFilters}
                   disabled={activeFilterCount === 0}
-                  className="flex-1 border border-foreground/15 px-4 py-3 font-sans text-[10px] font-bold uppercase tracking-[0.3em] text-foreground transition-colors hover:border-accent-gold hover:text-accent-gold disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-foreground/15 disabled:hover:text-foreground"
+                  className="min-h-11 flex-1 border border-foreground/15 px-4 py-3 font-sans text-[10px] font-bold uppercase tracking-[0.3em] text-foreground transition-colors hover:border-accent-gold hover:text-accent-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-gold/50 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-foreground/15 disabled:hover:text-foreground"
                 >
                   {t.clear}
                 </button>
                 <button
                   type="button"
                   onClick={() => setDrawerOpen(false)}
-                  className="btn-sharp flex-[2] text-center"
+                  className="btn-sharp min-h-11 flex-[2] text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-gold/50"
                 >
                   {locale === 'pl' ? 'Pokaż' : locale === 'en' ? 'Show' : 'Показати'} {filtered.length}
                 </button>
@@ -551,17 +676,25 @@ function FilterSection({ label, children }: { label: string; children: React.Rea
   )
 }
 
-function FilterChip({ label, onClear }: { label: string; onClear: () => void }) {
+function FilterChip({
+  label,
+  removeLabel,
+  onClear,
+}: {
+  label: string
+  removeLabel: string
+  onClear: () => void
+}) {
   return (
-    <span className="inline-flex items-center gap-1.5 border border-foreground/15 bg-background px-2.5 py-1 font-sans text-[10px] font-bold uppercase tracking-[0.2em] text-foreground">
+    <span className="inline-flex min-h-11 items-center gap-1 border border-foreground/15 bg-background py-1 pl-3 pr-1 font-sans text-[10px] font-bold uppercase tracking-[0.2em] text-foreground">
       {label}
       <button
         type="button"
         onClick={onClear}
-        aria-label={`Usuń filtr ${label}`}
-        className="text-muted-foreground transition-colors hover:text-accent-gold"
+        aria-label={`${removeLabel}: ${label}`}
+        className="flex h-9 w-9 items-center justify-center text-muted-foreground transition-colors hover:text-accent-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-gold/50"
       >
-        <X className="h-3 w-3" />
+        <X className="h-3.5 w-3.5" />
       </button>
     </span>
   )

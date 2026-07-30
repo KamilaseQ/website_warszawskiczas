@@ -1,3 +1,5 @@
+import 'server-only'
+
 /**
  * Przełącznik źródła danych CMS.
  *
@@ -23,44 +25,16 @@ function readMode(): CmsMode {
   // nie cofała builda po cichu do mock (i nie pokazywała starych fixtures).
   const raw = process.env.CMS_MODE?.trim().toLowerCase()
   if (raw === 'live' || raw === 'mock') return raw
-  return 'mock'
+  if (!raw && process.env.NODE_ENV !== 'production') return 'mock'
+  throw new Error(
+    `[from-cms] Invalid or missing CMS_MODE${raw ? `="${raw}"` : ''}. ` +
+      'Production must explicitly use CMS_MODE=live (or CMS_MODE=mock only for a deliberate fixture build).',
+  )
 }
 
 export const CMS_MODE: CmsMode = readMode()
 export const CMS_API_URL: string | undefined = process.env.CMS_API_URL
 export const CMS_API_TOKEN: string | undefined = process.env.CMS_API_TOKEN
-
-const DEFAULT_PUBLIC_LEAD_URL = 'https://api.camalio.pl/api/v1/leads'
-
-/**
- * Publiczny URL endpointu leadów — dostępny w przeglądarce.
- * W produkcyjnym buildzie domyślnie wskazuje na CMS API.
- * Pusty / undefined w lokalnym dev → formularze logują do konsoli (mock).
- */
-export const PUBLIC_LEAD_URL: string | undefined = readPublicLeadUrl()
-
-function readPublicLeadUrl(): string | undefined {
-  const configured = process.env.NEXT_PUBLIC_CMS_LEAD_URL?.trim()
-  if (configured) return normalizePublicLeadUrl(configured)
-
-  return process.env.NODE_ENV === 'production' ? DEFAULT_PUBLIC_LEAD_URL : undefined
-}
-
-function normalizePublicLeadUrl(value: string): string {
-  try {
-    const url = new URL(value)
-    if (url.hostname.toLowerCase() === 'api.camalio.pl' && url.pathname.toLowerCase() === '/api/v1/leads') {
-      url.protocol = 'https:'
-      url.hostname = 'api.camalio.pl'
-      url.pathname = '/api/v1/leads'
-      return url.toString()
-    }
-  } catch {
-    // Fall through and let fetch/reporting handle an invalid custom URL.
-  }
-
-  return value
-}
 
 /** Wspólny helper rzucający czytelny błąd, gdy live-mode bez pełnej konfiguracji. */
 export function assertLiveConfig(): { url: string; token: string } {

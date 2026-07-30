@@ -18,6 +18,7 @@ const config: Config = {
         accent: {
           green: 'hsl(var(--accent-gold))',
           gold: 'hsl(var(--accent-gold))',
+          'gold-dark': 'hsl(var(--accent-gold-dark))',
         },
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',

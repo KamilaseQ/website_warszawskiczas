@@ -6,7 +6,8 @@ To jest **jedyna** warstwa kodu strony, która rozmawia z CMS-em. Reszta projekt
 
 ```
 from-cms/
-├── mode.ts                 — przełącznik CMS_MODE: 'mock' | 'live'
+├── mode.ts                 — wyłącznie serwerowy przełącznik CMS_MODE + sekrety
+├── public-lead.ts          — client-safe NEXT_PUBLIC_CMS_LEAD_URL
 ├── schemas/                — zod schemas + TS types (SSOT kontraktu)
 │   ├── product.ts
 │   ├── lead.ts
@@ -22,7 +23,7 @@ from-cms/
 
 ## Tryby pracy
 
-### `CMS_MODE=mock` (default)
+### `CMS_MODE=mock` (jawny w buildzie, domyślny tylko w dev)
 
 Strona uruchamia się bez zewnętrznej zależności dla produktów. Wszystkie 65 produktów są widoczne z fixtures.
 
@@ -31,7 +32,9 @@ Formularze zależą od `NEXT_PUBLIC_CMS_LEAD_URL`, a nie od `CMS_MODE`:
 - jeśli `NEXT_PUBLIC_CMS_LEAD_URL` jest ustawione, formularze robią realny `POST /api/v1/leads`,
 - jeśli nie jest ustawione, formularze wykonują `console.info('[from-cms:mock-lead]', payload)`.
 
-To jest tryb używany w lokalnym `npm run dev` i w buildach na PR-ach dopóki własny CMS nie zostanie zdeployowany.
+To jest tryb używany automatycznie w lokalnym `npm run dev` i jawnie przez
+`CMS_MODE=mock` w buildach weryfikacyjnych na PR-ach. W `NODE_ENV=production`
+brak `CMS_MODE` lub nieznana wartość przerywa build.
 
 ### `CMS_MODE=live`
 

@@ -19,7 +19,7 @@ export function SeoLinkHub({
   tone?: 'light' | 'dark'
 }) {
   const headingClass =
-    tone === 'dark' ? 'text-white/40' : 'text-muted-foreground/70'
+    tone === 'dark' ? 'text-white/70' : 'text-muted-foreground'
   const linkClass =
     tone === 'dark'
       ? 'text-white/55 hover:text-accent-gold'

@@ -19,6 +19,8 @@ interface LanguageSwitcherProps {
 export function LanguageSwitcher({ isTransparent = false, className, onChange }: LanguageSwitcherProps) {
   const pathname = usePathname()
   const locale = localeFromPathname(pathname)
+  const languageLabel =
+    locale === 'pl' ? 'wybór języka' : locale === 'en' ? 'language selector' : 'вибір мови'
 
   return (
     <details className={cn('group relative inline-block', className)}>
@@ -30,7 +32,7 @@ export function LanguageSwitcher({ isTransparent = false, className, onChange }:
             ? 'border-accent-gold/60 text-white hover:border-accent-gold focus-visible:ring-offset-black'
             : 'border-accent-gold/60 text-foreground hover:border-accent-gold focus-visible:ring-offset-background',
         )}
-        aria-label="Language"
+        aria-label={`${localeConfig[locale].label} — ${languageLabel}`}
       >
         <span>{localeConfig[locale].label}</span>
         <ChevronDown

@@ -104,7 +104,7 @@ export function HiddenCollectionTeaser() {
                       showDial={true}
                     />
                     <Image
-                      src="/Franck Muller Vegas4.jpg"
+                      src="/franck-muller-vegas4-v2.webp"
                       alt="Franck Muller Vegas"
                       fill
                       sizes="(min-width: 1024px) 50vw, 100vw"

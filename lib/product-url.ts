@@ -67,9 +67,10 @@ function duplicateSortKey(product: ProductUrlSource, index: number): string {
 function suffixCandidate(product: ProductUrlSource, base: string): string {
   const reference = product.reference?.trim()
   const candidates = [
+    // CMS slugs are immutable identifiers; mutable editorial fields come later.
+    product.slug,
     reference && !UNKNOWN_REFERENCE.test(reference) ? reference : undefined,
     product.year ? String(product.year) : undefined,
-    product.slug,
     product.id,
   ]
 
@@ -120,10 +121,47 @@ export function productUrlSlugMap<T extends ProductUrlSource>(
   const result = new Map<string, string>()
   const sortedGroups = [...groups.entries()].sort(([a], [b]) => a.localeCompare(b))
 
+  // Jawny canonical opublikowany przez CMS ma pierwszeństwo. Nowy panel nadaje
+  // go raz i nie zmienia przy późniejszej edycji marki lub nazwy.
+  products.forEach((product, index) => {
+    const explicit = product.urlSlug
+      ? slugifyProductUrlPart(product.urlSlug)
+      : ''
+    if (!explicit) return
+    result.set(
+      productStableKey(product, index),
+      makeUniqueSlug(explicit, used),
+    )
+  })
+
+  // Najpierw rezerwujemy kompatybilne, unikalne slugi nadane przez CMS. Dzięki
+  // temu `base-2` i `base-3` nie zmieniają się, gdy egzemplarz z `base` zniknie.
+  for (const [base, group] of sortedGroups) {
+    const sorted = [...group].sort((a, b) =>
+      duplicateSortKey(a.product, a.index).localeCompare(
+        duplicateSortKey(b.product, b.index),
+      ),
+    )
+    for (const item of sorted) {
+      const key = productStableKey(item.product, item.index)
+      if (result.has(key)) continue
+      const sourceSlug = item.product.slug
+        ? slugifyProductUrlPart(item.product.slug)
+        : ''
+      if (sourceSlug !== base && !sourceSlug.startsWith(`${base}-`)) continue
+      result.set(
+        key,
+        makeUniqueSlug(sourceSlug, used),
+      )
+    }
+  }
+
   for (const [base, group] of sortedGroups.filter(([, group]) => group.length === 1)) {
     const item = group[0]
+    const key = productStableKey(item.product, item.index)
+    if (result.has(key)) continue
     result.set(
-      productStableKey(item.product, item.index),
+      key,
       makeUniqueSlug(base, used),
     )
   }
@@ -132,11 +170,14 @@ export function productUrlSlugMap<T extends ProductUrlSource>(
     const sorted = [...group].sort((a, b) =>
       duplicateSortKey(a.product, a.index).localeCompare(duplicateSortKey(b.product, b.index)),
     )
-    sorted.forEach((item, duplicateIndex) => {
-      const preferred =
-        duplicateIndex === 0 ? base : `${base}-${suffixCandidate(item.product, base)}`
+    sorted.forEach((item) => {
+      const key = productStableKey(item.product, item.index)
+      if (result.has(key)) return
+      const preferred = used.has(base)
+        ? `${base}-${suffixCandidate(item.product, base)}`
+        : base
       result.set(
-        productStableKey(item.product, item.index),
+        key,
         makeUniqueSlug(preferred, used),
       )
     })

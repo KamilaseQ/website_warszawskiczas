@@ -1,21 +1,27 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef } from 'react'
 
 export function ScrollProgress() {
-  const [progress, setProgress] = useState(0)
+  const barRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    let frame: number | null = null
     const update = () => {
-      const scrollTop = window.scrollY
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight
-      const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0
-      setProgress(pct)
+      if (frame !== null) return
+      frame = window.requestAnimationFrame(() => {
+        const scrollTop = window.scrollY
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight
+        const progress = docHeight > 0 ? Math.min(1, Math.max(0, scrollTop / docHeight)) : 0
+        if (barRef.current) barRef.current.style.transform = `scaleX(${progress})`
+        frame = null
+      })
     }
     update()
     window.addEventListener('scroll', update, { passive: true })
     window.addEventListener('resize', update)
     return () => {
+      if (frame !== null) window.cancelAnimationFrame(frame)
       window.removeEventListener('scroll', update)
       window.removeEventListener('resize', update)
     }
@@ -27,8 +33,8 @@ export function ScrollProgress() {
       className="pointer-events-none fixed inset-x-0 top-0 z-[100] h-[2px]"
     >
       <div
-        className="h-full bg-accent-gold shadow-[0_0_8px_rgba(201,169,98,0.6)] transition-[width] duration-150 ease-out"
-        style={{ width: `${progress}%` }}
+        ref={barRef}
+        className="h-full origin-left scale-x-0 bg-accent-gold shadow-[0_0_8px_rgba(201,169,98,0.6)] will-change-transform"
       />
     </div>
   )

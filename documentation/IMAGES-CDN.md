@@ -1,6 +1,6 @@
 # Obrazy produktów i CDN
 
-> Stan kodu: 2026-07-21. Nowy kontrakt jest zaimplementowany lokalnie; produkcja wymaga wdrożenia strony, aplikacji, publikacji nowego snapshotu i opcjonalnego backfillu.
+> Stan: 2026-07-30. Historyczne warianty są obecne w produkcyjnym R2/D1. Aktualny build strony nadal wymaga wdrożenia i publikacji nowego snapshotu.
 
 ## Źródło danych
 
@@ -29,20 +29,36 @@ Schemat wymaga adresów HTTP(S), niepustego altu oraz obu wariantów albo żadne
 
 ## Odczytowy audyt obecnej produkcji
 
-Audyt wykonany 2026-07-21 przed wdrożeniem tych zmian wykazał:
+Audyt bazowy wykazał 107 niedostępnych adresów wariantów w pełnym crawl’u. Stary build strony zgadywał ich nazwy, otrzymywał 404 i dopiero wtedy pobierał wielomegabajtowy oryginał.
+
+Po backfillu z 2026-07-29:
 
 - 49 publicznych stron produktów,
-- 156 unikalnych oryginałów CDN — wszystkie zwracają poprawny obraz,
-- 193 warianty żądane przez aktualny HTML, z czego 97 zwraca 404,
-- 441 wystąpień sklejonych URL-i obrazu w sitemapie/metadata starego deployu,
-- brak znaczników `<img>` bez atrybutu `alt`.
+- 353 unikalne adresy CDN: 158 oryginałów i 195 wariantów,
+- 195 obrazów renderowanych przez HTML: wszystkie są wariantami,
+- 0 odpowiedzi 404 i 0 błędów renderowanych obrazów,
+- wszystkie warianty mają roczny, niemutowalny cache,
+- mediana wariantu to 27,4 KiB, p95 250,7 KiB, maksimum 479,8 KiB,
+- żaden wariant nie przekracza budżetu 600 KiB.
 
-To oznacza, że dane źródłowe zegarków nie zniknęły. Problemem są brakujące warianty i stary kod produkcyjny, który je zgaduje. Nowy kontrakt usuwa zgadywanie, a backfill z repo aplikacji może uzupełnić pliki.
+Aktualny deploy przestał wpadać w ciężkie fallbacki dzięki uzupełnionym obiektom R2. Wdrożenie kodu strony jest nadal potrzebne, aby używać jawnego `imageAssets`, małych `thumb` w katalogu oraz priorytetu pierwszego obrazu.
+
+Końcowy pomiar laboratoryjny Lighthouse Mobile na produkcyjnym buildzie z 65
+kartami (lokalny `CMS_MODE=mock`) uzyskał 82/100 wydajności oraz 100/100 dla
+dostępności, dobrych praktyk i SEO. Pierwsze wejście pobrało 7 obrazów o łącznym
+transferze 102,5 KiB, a CLS wyniósł 0,001. To pomiar laboratoryjny, nie dane
+terenowe Core Web Vitals z realnych urządzeń.
 
 ## Zachowanie renderowania
 
 - `imageAssets` ma pierwszeństwo przed `images`.
-- Jawny `thumb` jest używany w małych miniaturach; `medium` na kartach, w galerii i lightboxie.
+- Pierwsza karta katalogu używa pojedynczego `thumb` jako obrazu priorytetowego.
+  Pozostałe karty nie montują nawet znacznika `<img>`, dopóki nie znajdą się
+  maksymalnie 800 px od viewportu; po zamontowaniu nadal używają pojedynczego
+  `thumb` i natywnego `loading="lazy"`.
+  Katalog celowo nie emituje `srcset` `thumb`/`medium`: na ekranach DPR 2×/3×
+  przeglądarka pobierałaby cięższy `medium` dla niemal każdej karty.
+- Galeria i lightbox używają `medium`.
 - Jeżeli jawny obiekt nie ma wariantów, strona od razu używa `original` i nie wysyła żądania pod zgadywany URL.
 - Dla starego `images[]` nadal działa wyliczenie `_variants` oraz klientowy fallback do oryginału po błędzie.
 - Zmiana aktywnego zdjęcia w galerii resetuje źródło logicznie, więc błąd jednego obrazu nie zatruwa kolejnych slajdów.
@@ -51,11 +67,10 @@ To oznacza, że dane źródłowe zegarków nie zniknęły. Problemem są brakuj�
 
 ## Metadata i SEO
 
-Oryginalny URL jest używany w:
-
-- `og:image` i `twitter:image`,
-- Product JSON-LD,
-- `image:loc` w sitemapie.
+Jawny `medium` jest używany w `og:image`, `twitter:image`, Product JSON-LD oraz
+`image:loc` w sitemapie. Dla starego `images: string[]` SEO zachowuje oryginał,
+bo metadane nie mają klientowego `onError` i nie mogą bezpiecznie zgadywać URL-a
+wariantu.
 
 Pełny adres CDN nie otrzymuje prefiksu domeny witryny. Automatyczny audyt odrzuca sklejone URL-e typu `warszawskiczas.plhttps...` i znaczniki `<img>` bez atrybutu `alt`.
 
@@ -67,12 +82,13 @@ Produkcyjny optymalizator `/_next/image` był niestabilny na Hostingerze, dlateg
 
 Bezpieczna kolejność:
 
-1. wdrożyć stronę obsługującą oba formaty,
-2. wdrożyć aplikację generującą warianty i publikującą `imageAssets`,
+1. wdrożyć stronę obsługującą oba formaty, `thumb` w katalogu i priorytet pierwszego obrazu,
+2. opublikować nowy snapshot,
 3. dodać testowe zdjęcie z telefonu,
-4. opublikować nowy snapshot,
-5. uruchomić backfill starszych rekordów z instrukcji w repo aplikacji,
-6. ponownie opublikować snapshot.
+4. uruchomić testy i ponowny audyt CDN.
+
+Backfill starszych rekordów jest już wykonany. Kod aplikacji generujący warianty
+jest zaimplementowany i zweryfikowany, ale nadal wymaga wdrożenia.
 
 Rollback strony to revert commita: pole `images` nadal istnieje. Rollback aplikacji również nie wymaga migracji. Backfill ma journal i cofa `has_variants` do `0`, nie dotykając oryginałów.
 

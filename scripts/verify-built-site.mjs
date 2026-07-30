@@ -6,6 +6,7 @@ const baseUrl = `http://127.0.0.1:${port}`
 const projectRoot = fileURLToPath(new URL('..', import.meta.url))
 const nextBin = fileURLToPath(new URL('../node_modules/next/dist/bin/next', import.meta.url))
 const auditScript = fileURLToPath(new URL('./seo-audit.mjs', import.meta.url))
+const catalogAuditScript = fileURLToPath(new URL('./audit-built-catalog.mjs', import.meta.url))
 const reportOnly = process.argv.includes('--report')
 
 function waitForExit(child) {
@@ -49,7 +50,21 @@ try {
     stdio: 'inherit',
   })
   const result = await waitForExit(audit)
-  if (result.code !== 0) process.exitCode = result.code || 1
+  if (result.code !== 0) {
+    process.exitCode = result.code || 1
+  } else {
+    const catalogAudit = spawn(
+      process.execPath,
+      [catalogAuditScript, '--base-url', baseUrl],
+      {
+        cwd: projectRoot,
+        env: { ...process.env, CHECK_BASE_URL: baseUrl },
+        stdio: 'inherit',
+      },
+    )
+    const catalogResult = await waitForExit(catalogAudit)
+    if (catalogResult.code !== 0) process.exitCode = catalogResult.code || 1
+  }
 } catch (error) {
   console.error(serverOutput)
   throw error

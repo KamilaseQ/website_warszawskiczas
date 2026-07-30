@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next'
 import { getAllProducts, productUrlSlug } from '@/from-cms/adapters/products'
 import { absoluteUrl, alternateLanguageUrls, locales, type Locale } from '@/lib/i18n'
 import { indexablePublicRoutePaths } from '@/lib/seo-routes'
-import { productImageOriginal, productImageSources } from '@/lib/product-images'
+import { productImageSources, productSeoImageUrl } from '@/lib/product-images'
 
 // Sitemap jest stabilnym artefaktem buildu i korzysta z tego samego snapshotu
 // produktów co prerenderowane strony.
@@ -36,7 +36,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       return {
         ...pageEntry(path, locale),
         lastModified: validLastModified(product.updatedAt ?? product.publishedAt),
-        images: firstImage ? [absoluteUrl(productImageOriginal(firstImage))] : undefined,
+        images: firstImage
+          ? [absoluteUrl(productSeoImageUrl(firstImage, 'medium'))]
+          : undefined,
       }
     }),
   )

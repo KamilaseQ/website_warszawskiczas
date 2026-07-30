@@ -34,9 +34,14 @@ jobs:
       - name: Typecheck
         run: npm run lint
 
+      - name: Audit critical image budgets
+        run: npm run audit:static-images
+
       - name: Build (Next.js server)
         run: npm run build
         env:
+          # CI świadomie waliduje fixtures; Hostinger musi mieć jawne CMS_MODE=live.
+          CMS_MODE: mock
           # Publiczny endpoint leadów (lead + WhatsApp w aplikacji CMS).
           # Wysyłka maili NIE zależy od tej zmiennej — robi to /api/contact (SMTP env).
           NEXT_PUBLIC_CMS_LEAD_URL: https://api.camalio.pl/api/v1/leads
@@ -48,3 +53,5 @@ jobs:
 
       - name: Crawl and verify SEO invariants
         run: npm run verify:seo
+        env:
+          CMS_MODE: mock

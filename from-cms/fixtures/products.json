@@ -16,6 +16,26 @@
       "/products/breitling-niebieski/left.jpg",
       "/products/breitling-niebieski/right.jpg"
     ],
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/breitling-niebieski/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/breitling-niebieski/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/breitling-niebieski/_variants/front-medium.webp",
+        "alt": "Breitling Superocean Heritage B20 Automatic 42 — przód"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/breitling-niebieski/left.jpg",
+        "thumb": "https://cdn.camalio.pl/products/breitling-niebieski/_variants/left-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/breitling-niebieski/_variants/left-medium.webp",
+        "alt": "Breitling Superocean Heritage B20 Automatic 42 — lewy profil"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/breitling-niebieski/right.jpg",
+        "thumb": "https://cdn.camalio.pl/products/breitling-niebieski/_variants/right-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/breitling-niebieski/_variants/right-medium.webp",
+        "alt": "Breitling Superocean Heritage B20 Automatic 42 — prawy profil"
+      }
+    ],
     "description": "Breitling Superocean Heritage B20 Automatic 42 z niebieską tarczą — klasyczny styl nurkowy lat 50. w nowoczesnym, manufakturowym wydaniu.",
     "editorial": "Superocean Heritage B20 Automatic 42 łączy estetykę pierwszych nurkowych Breitlingów z 1957 roku z certyfikowanym kalibrem chronometru i 70-godzinną rezerwą chodu. Niebieska ceramika i stalowa siatka tworzą zegarek, który wygląda naturalnie zarówno przy wodzie, jak i pod mankietem marynarki.",
     "story": "Superocean Heritage czerpie z pierwszych nurkowych Breitlingów z 1957 roku, ale w wersji B20 Automatic 42 korzysta z nowoczesnego, certyfikowanego chronometru z około 70-godzinną rezerwą chodu. Trójkątne wskazówki, szeroki bezel i bransoleta mesh budują rozpoznawalny most między zegarkiem narzędziowym a eleganckim zegarkiem codziennym."
@@ -36,6 +56,26 @@
       "/products/breitling-rozowe-zloto/front.jpg",
       "/products/breitling-rozowe-zloto/left.jpg",
       "/products/breitling-rozowe-zloto/right.jpg"
+    ],
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/breitling-rozowe-zloto/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/breitling-rozowe-zloto/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/breitling-rozowe-zloto/_variants/front-medium.webp",
+        "alt": "Breitling Chronomat Evolution Chronograph — przód"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/breitling-rozowe-zloto/left.jpg",
+        "thumb": "https://cdn.camalio.pl/products/breitling-rozowe-zloto/_variants/left-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/breitling-rozowe-zloto/_variants/left-medium.webp",
+        "alt": "Breitling Chronomat Evolution Chronograph — lewy profil"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/breitling-rozowe-zloto/right.jpg",
+        "thumb": "https://cdn.camalio.pl/products/breitling-rozowe-zloto/_variants/right-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/breitling-rozowe-zloto/_variants/right-medium.webp",
+        "alt": "Breitling Chronomat Evolution Chronograph — prawy profil"
+      }
     ],
     "description": "Breitling Chronomat Evolution w złotej tonacji i z tarczą mother-of-pearl — masywny chronograf lotniczy w jubilerskim wydaniu.",
     "editorial": "To Chronomat z epoki, w której techniczny chronograf Breitlinga nabrał ostentacyjnie luksusowego charakteru. Wersja z masą perłową i złotem przenosi sportowe DNA kolekcji w stronę zegarka statusowego, zachowując mocną kopertę i obrotowy bezel.",
@@ -62,7 +102,33 @@
     ],
     "description": "Bvlgari Bvlgari BB41SPG to stalowo-złoty automat 41 mm z charakterystycznym podwójnym logo na bezelu.",
     "editorial": "Podpis na bezelu jest tu elementem projektu, nie dodatkiem — Bvlgari zrobiło z nazwy marki ornament. Koperta 41 mm, automatyczny mechanizm BVL 191 widoczny przez przeszklony dekiel i dwukolorowa bransoleta utrzymują linię między biżuterią a zegarkiem codziennym.",
-    "story": "Linia Bvlgari Bvlgari wywodzi się z estetyki rzymskich monet, gdzie inskrypcja biegnie po obwodzie. W referencji BB41SPG ten motyw łączy się z nowoczesną kopertą 41 mm, automatycznym mechanizmem BVL 191 widocznym przez przeszklony dekiel oraz dwukolorową bransoletą."
+    "story": "Linia Bvlgari Bvlgari wywodzi się z estetyki rzymskich monet, gdzie inskrypcja biegnie po obwodzie. W referencji BB41SPG ten motyw łączy się z nowoczesną kopertą 41 mm, automatycznym mechanizmem BVL 191 widocznym przez przeszklony dekiel oraz dwukolorową bransoletą.",
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/bvlgari/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/bvlgari/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/bvlgari/_variants/front-medium.webp",
+        "alt": "Bvlgari Bvlgari Bvlgari Automatic 41 — przód"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/bvlgari/left.jpg",
+        "thumb": "https://cdn.camalio.pl/products/bvlgari/_variants/left-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/bvlgari/_variants/left-medium.webp",
+        "alt": "Bvlgari Bvlgari Bvlgari Automatic 41 — lewy profil"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/bvlgari/right.jpg",
+        "thumb": "https://cdn.camalio.pl/products/bvlgari/_variants/right-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/bvlgari/_variants/right-medium.webp",
+        "alt": "Bvlgari Bvlgari Bvlgari Automatic 41 — prawy profil"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/bvlgari/back.jpg",
+        "thumb": "https://cdn.camalio.pl/products/bvlgari/_variants/back-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/bvlgari/_variants/back-medium.webp",
+        "alt": "Bvlgari Bvlgari Bvlgari Automatic 41 — tył"
+      }
+    ]
   },
   {
     "id": "4",
@@ -84,7 +150,27 @@
     ],
     "description": "Bvlgari Bvlgari z perłową tarczą i diamentowymi indeksami — subtelna, biżuteryjna interpretacja rzymskiego klasyka marki.",
     "editorial": "Najbardziej rozpoznawalnym detalem nie jest tu koronka ani indeksy, lecz pełny napis BVLGARI BVLGARI na stalowym pierścieniu. Masa perłowa i diamentowe indeksy wzmacniają jubilerski charakter, ale pozostawiają czytelny, oszczędny układ dwóch wskazówek.",
-    "story": "Zegarki Bvlgari Bvlgari są projektowane jak biżuteria użytkowa: prosta tarcza zostaje oprawiona w mocny, graficzny bezel z nazwą marki. Wariant z masą perłową i diamentowymi indeksami wzmacnia jubilerski charakter, ale pozostawia czytelny, oszczędny układ dwóch wskazówek."
+    "story": "Zegarki Bvlgari Bvlgari są projektowane jak biżuteria użytkowa: prosta tarcza zostaje oprawiona w mocny, graficzny bezel z nazwą marki. Wariant z masą perłową i diamentowymi indeksami wzmacnia jubilerski charakter, ale pozostawia czytelny, oszczędny układ dwóch wskazówek.",
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/bvlgari-diamenty/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/bvlgari-diamenty/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/bvlgari-diamenty/_variants/front-medium.webp",
+        "alt": "Bvlgari Bvlgari Bvlgari Diamond Dial — przód"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/bvlgari-diamenty/left.jpg",
+        "thumb": "https://cdn.camalio.pl/products/bvlgari-diamenty/_variants/left-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/bvlgari-diamenty/_variants/left-medium.webp",
+        "alt": "Bvlgari Bvlgari Bvlgari Diamond Dial — lewy profil"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/bvlgari-diamenty/right.jpg",
+        "thumb": "https://cdn.camalio.pl/products/bvlgari-diamenty/_variants/right-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/bvlgari-diamenty/_variants/right-medium.webp",
+        "alt": "Bvlgari Bvlgari Bvlgari Diamond Dial — prawy profil"
+      }
+    ]
   },
   {
     "id": "5",
@@ -106,7 +192,33 @@
     ],
     "description": "Cartier Must 21 Chronoscaph ref. 2424 łączy rzymski bezel, stal i gumę z praktycznym kwarcowym chronografem.",
     "editorial": "Chronoscaph pokazuje mniej formalną stronę Cartiera — nadal z rzymskimi cyframi, ale w rytmie sportowego chronografu. Bezel z cyframi i kaboszonowa koronka pozostają czytelnie cartierowskie, a chronograf, data i mieszana bransoleta dodają codziennego, dynamicznego charakteru.",
-    "story": "Must 21 Chronoscaph należy do okresu, w którym Cartier łączył własny język projektowy z bardziej sportową konstrukcją. Bezel z rzymskimi cyframi i kaboszonowa koronka pozostają czytelnie cartierowskie, a chronograf, data i mieszana bransoleta stalowo-gumowa nadają mu codzienny, dynamiczny charakter."
+    "story": "Must 21 Chronoscaph należy do okresu, w którym Cartier łączył własny język projektowy z bardziej sportową konstrukcją. Bezel z rzymskimi cyframi i kaboszonowa koronka pozostają czytelnie cartierowskie, a chronograf, data i mieszana bransoleta stalowo-gumowa nadają mu codzienny, dynamiczny charakter.",
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/cartier/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/cartier/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/cartier/_variants/front-medium.webp",
+        "alt": "Cartier Must 21 Chronoscaph — przód"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/cartier/left.jpg",
+        "thumb": "https://cdn.camalio.pl/products/cartier/_variants/left-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/cartier/_variants/left-medium.webp",
+        "alt": "Cartier Must 21 Chronoscaph — lewy profil"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/cartier/right.jpg",
+        "thumb": "https://cdn.camalio.pl/products/cartier/_variants/right-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/cartier/_variants/right-medium.webp",
+        "alt": "Cartier Must 21 Chronoscaph — prawy profil"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/cartier/back.jpg",
+        "thumb": "https://cdn.camalio.pl/products/cartier/_variants/back-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/cartier/_variants/back-medium.webp",
+        "alt": "Cartier Must 21 Chronoscaph — tył"
+      }
+    ]
   },
   {
     "id": "6",
@@ -129,7 +241,33 @@
     ],
     "description": "Chopard Happy Sport Chronograph 288499 — sportowy chronograf z ruchomymi diamentami i mocną oprawą kamieni.",
     "editorial": "Ruchome diamenty Happy Sport sprawiają, że tarcza nigdy nie wygląda dokładnie tak samo dwa razy. W wersji chronograf 42 mm model nabiera bardziej sportowego charakteru, a rozbudowana oprawa kamieni przenosi go w obszar wysokiej biżuterii.",
-    "story": "Happy Sport to jedna z najbardziej rozpoznawalnych koncepcji Chopard: diamenty poruszają się swobodnie pomiędzy szafirowymi taflami nad tarczą. W wersji chronograf 42 mm model nabiera bardziej sportowego charakteru, a rozbudowana oprawa diamentowa przenosi go w obszar wysokiej biżuterii."
+    "story": "Happy Sport to jedna z najbardziej rozpoznawalnych koncepcji Chopard: diamenty poruszają się swobodnie pomiędzy szafirowymi taflami nad tarczą. W wersji chronograf 42 mm model nabiera bardziej sportowego charakteru, a rozbudowana oprawa diamentowa przenosi go w obszar wysokiej biżuterii.",
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/chopard-full-diamenty/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/chopard-full-diamenty/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/chopard-full-diamenty/_variants/front-medium.webp",
+        "alt": "Chopard Happy Sport Chronograph Diamond — przód"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/chopard-full-diamenty/left.jpg",
+        "thumb": "https://cdn.camalio.pl/products/chopard-full-diamenty/_variants/left-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/chopard-full-diamenty/_variants/left-medium.webp",
+        "alt": "Chopard Happy Sport Chronograph Diamond — lewy profil"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/chopard-full-diamenty/right.jpg",
+        "thumb": "https://cdn.camalio.pl/products/chopard-full-diamenty/_variants/right-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/chopard-full-diamenty/_variants/right-medium.webp",
+        "alt": "Chopard Happy Sport Chronograph Diamond — prawy profil"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/chopard-full-diamenty/little-right.jpg",
+        "thumb": "https://cdn.camalio.pl/products/chopard-full-diamenty/_variants/little-right-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/chopard-full-diamenty/_variants/little-right-medium.webp",
+        "alt": "Chopard Happy Sport Chronograph Diamond — lekki prawy profil"
+      }
+    ]
   },
   {
     "id": "7",
@@ -151,7 +289,27 @@
     ],
     "description": "Chopard L.U.C Tourbillon 8 Jours — zegarek wysokiej komplikacji z 8-dniową rezerwą chodu i widocznym tourbillonem na godzinie 6.",
     "editorial": "Osiem dni rezerwy chodu i tourbillon w jednym zegarku pokazują ambicję Chopard Manufacture z początków linii L.U.C. Wielobębnowa architektura Quattro daje rzadko spotykaną autonomię, a otwarcie tarczy przy godzinie 6 eksponuje jedną z najbardziej prestiżowych komplikacji mechanicznych.",
-    "story": "Kolekcja L.U.C powstała jako manufakturowa odpowiedź Chopard na wielką tradycję zegarmistrzowską. Tourbillony L.U.C wykorzystywały wielobębnową architekturę Quattro, dającą bardzo długą rezerwę chodu, a otwarcie tarczy przy godzinie 6 eksponowało jedną z najbardziej prestiżowych komplikacji mechanicznych."
+    "story": "Kolekcja L.U.C powstała jako manufakturowa odpowiedź Chopard na wielką tradycję zegarmistrzowską. Tourbillony L.U.C wykorzystywały wielobębnową architekturę Quattro, dającą bardzo długą rezerwę chodu, a otwarcie tarczy przy godzinie 6 eksponowało jedną z najbardziej prestiżowych komplikacji mechanicznych.",
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/chopard-tourbillon/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/chopard-tourbillon/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/chopard-tourbillon/_variants/front-medium.webp",
+        "alt": "Chopard L.U.C Tourbillon 8 Jours — przód"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/chopard-tourbillon/left.jpg",
+        "thumb": "https://cdn.camalio.pl/products/chopard-tourbillon/_variants/left-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/chopard-tourbillon/_variants/left-medium.webp",
+        "alt": "Chopard L.U.C Tourbillon 8 Jours — lewy profil"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/chopard-tourbillon/right.jpg",
+        "thumb": "https://cdn.camalio.pl/products/chopard-tourbillon/_variants/right-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/chopard-tourbillon/_variants/right-medium.webp",
+        "alt": "Chopard L.U.C Tourbillon 8 Jours — prawy profil"
+      }
+    ]
   },
   {
     "id": "8",
@@ -173,7 +331,27 @@
     ],
     "description": "Chopard Imperiale Chronograph z zielonym paskiem i diamentową oprawą — cesarskie inspiracje kolekcji w wydaniu funkcjonalnego stopera.",
     "editorial": "Imperiale korzysta z detali kojarzonych z insygniami władzy — od kolumnowych uszu po kaboszony na koronce i przyciskach. W chronografie z oprawą diamentową i perłową tarczą sportowa funkcja staje się częścią biżuteryjnej kompozycji.",
-    "story": "Imperiale jest najbardziej ceremonialną z codziennych linii Chopard: geometryczne uszy, kaboszony i rzymskie akcenty odnoszą się do estetyki dawnych insygniów. W chronografie z oprawą diamentową i perłową tarczą sportowa funkcja staje się częścią biżuteryjnej kompozycji."
+    "story": "Imperiale jest najbardziej ceremonialną z codziennych linii Chopard: geometryczne uszy, kaboszony i rzymskie akcenty odnoszą się do estetyki dawnych insygniów. W chronografie z oprawą diamentową i perłową tarczą sportowa funkcja staje się częścią biżuteryjnej kompozycji.",
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/chopard-zielony/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/chopard-zielony/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/chopard-zielony/_variants/front-medium.webp",
+        "alt": "Chopard Imperiale Chronograph Jewellery — przód"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/chopard-zielony/left.jpg",
+        "thumb": "https://cdn.camalio.pl/products/chopard-zielony/_variants/left-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/chopard-zielony/_variants/left-medium.webp",
+        "alt": "Chopard Imperiale Chronograph Jewellery — lewy profil"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/chopard-zielony/right.jpg",
+        "thumb": "https://cdn.camalio.pl/products/chopard-zielony/_variants/right-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/chopard-zielony/_variants/right-medium.webp",
+        "alt": "Chopard Imperiale Chronograph Jewellery — prawy profil"
+      }
+    ]
   },
   {
     "id": "9",
@@ -195,7 +373,33 @@
     ],
     "description": "Chronoswiss Régulateur CH 1223 z czarną tarczą prezentuje czas w historycznym układzie regulatora — z osobną godziną, minutą i sekundą.",
     "editorial": "W regulatorze najważniejsza jest minuta — dlatego centralna wskazówka prowadzi odczyt, a godziny i sekundy mają własne subtarcze. Karbowana luneta i cebulkowa koronka podkreślają zegarmistrzowski rodowód formy.",
-    "story": "Chronoswiss zbudował swoją rozpoznawalność na przeniesieniu koncepcji zegara regulatorowego na zegarek naręczny. Model CH 1223 zachowuje karbowaną lunetę, cebulkową koronkę i porządek tarczy, który celowo rozdziela wskazania, aby podkreślić zegarmistrzowski rodowód formy."
+    "story": "Chronoswiss zbudował swoją rozpoznawalność na przeniesieniu koncepcji zegara regulatorowego na zegarek naręczny. Model CH 1223 zachowuje karbowaną lunetę, cebulkową koronkę i porządek tarczy, który celowo rozdziela wskazania, aby podkreślić zegarmistrzowski rodowód formy.",
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/chronoswiss/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/chronoswiss/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/chronoswiss/_variants/front-medium.webp",
+        "alt": "Chronoswiss Régulateur — przód"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/chronoswiss/left.jpg",
+        "thumb": "https://cdn.camalio.pl/products/chronoswiss/_variants/left-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/chronoswiss/_variants/left-medium.webp",
+        "alt": "Chronoswiss Régulateur — lewy profil"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/chronoswiss/right.jpg",
+        "thumb": "https://cdn.camalio.pl/products/chronoswiss/_variants/right-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/chronoswiss/_variants/right-medium.webp",
+        "alt": "Chronoswiss Régulateur — prawy profil"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/chronoswiss/back.jpg",
+        "thumb": "https://cdn.camalio.pl/products/chronoswiss/_variants/back-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/chronoswiss/_variants/back-medium.webp",
+        "alt": "Chronoswiss Régulateur — tył"
+      }
+    ]
   },
   {
     "id": "10",
@@ -216,7 +420,27 @@
     ],
     "description": "Frederique Constant FC-705N4S6 z niebieską tarczą, datownikiem wskazówkowym i fazami księżyca w smukłej kopercie manufacture.",
     "editorial": "To zegarek, który wygląda klasycznie, ale sercem jest manufakturowy kaliber FC-705 z komplikacją faz księżyca. Granatowa tarcza i zintegrowane wskazanie daty z fazą księżyca na godzinie 6 budują spokojną, garniturową kompozycję.",
-    "story": "Slimline Moonphase Manufacture jest przykładem strategii Frederique Constant: oferować klasyczne komplikacje w przystępniejszym, ale nadal eleganckim wydaniu. Referencja FC-705N4S6 wyróżnia się granatową tarczą oraz zintegrowanym wskazaniem daty i fazy księżyca na godzinie 6."
+    "story": "Slimline Moonphase Manufacture jest przykładem strategii Frederique Constant: oferować klasyczne komplikacje w przystępniejszym, ale nadal eleganckim wydaniu. Referencja FC-705N4S6 wyróżnia się granatową tarczą oraz zintegrowanym wskazaniem daty i fazy księżyca na godzinie 6.",
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/frederique-constant/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/frederique-constant/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/frederique-constant/_variants/front-medium.webp",
+        "alt": "Frederique Constant Manufacture Slimline Moonphase — przód"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/frederique-constant/left.jpg",
+        "thumb": "https://cdn.camalio.pl/products/frederique-constant/_variants/left-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/frederique-constant/_variants/left-medium.webp",
+        "alt": "Frederique Constant Manufacture Slimline Moonphase — lewy profil"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/frederique-constant/right.jpg",
+        "thumb": "https://cdn.camalio.pl/products/frederique-constant/_variants/right-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/frederique-constant/_variants/right-medium.webp",
+        "alt": "Frederique Constant Manufacture Slimline Moonphase — prawy profil"
+      }
+    ]
   },
   {
     "id": "11",
@@ -237,7 +461,27 @@
     ],
     "description": "Omega Constellation Manhattan z jasną tarczą i zintegrowaną bransoletą — elegancki kwarcowy klasyk z charakterystycznymi pazurami koperty.",
     "editorial": "Cztery pazury Constellation Manhattan zaczęły jako element konstrukcyjny, a stały się jednym z najbardziej rozpoznawalnych znaków Omegi. Jasna tarcza, rzymski bezel i zintegrowana bransoleta tworzą dyskretny, codzienny wariant tej stylistyki.",
-    "story": "Constellation Manhattan zadebiutował w 1982 roku i zmienił elegancką linię Omegi w zegarek o mocnej, architektonicznej kopercie. Jasna tarcza, rzymski bezel i zintegrowana bransoleta tworzą dyskretny, codzienny wariant tej stylistyki."
+    "story": "Constellation Manhattan zadebiutował w 1982 roku i zmienił elegancką linię Omegi w zegarek o mocnej, architektonicznej kopercie. Jasna tarcza, rzymski bezel i zintegrowana bransoleta tworzą dyskretny, codzienny wariant tej stylistyki.",
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/omega-biala-tarcza/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/omega-biala-tarcza/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/omega-biala-tarcza/_variants/front-medium.webp",
+        "alt": "Omega Constellation Manhattan Quartz Date — przód"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/omega-biala-tarcza/left.jpg",
+        "thumb": "https://cdn.camalio.pl/products/omega-biala-tarcza/_variants/left-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/omega-biala-tarcza/_variants/left-medium.webp",
+        "alt": "Omega Constellation Manhattan Quartz Date — lewy profil"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/omega-biala-tarcza/right.jpg",
+        "thumb": "https://cdn.camalio.pl/products/omega-biala-tarcza/_variants/right-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/omega-biala-tarcza/_variants/right-medium.webp",
+        "alt": "Omega Constellation Manhattan Quartz Date — prawy profil"
+      }
+    ]
   },
   {
     "id": "12",
@@ -258,7 +502,27 @@
     ],
     "description": "Omega Constellation Manhattan Day-Date z czarną tarczą — dwie subtarcze kalendarza i smukły kwarcowy profil.",
     "editorial": "W tej konfiguracji Constellation łączy elegancki profil z funkcjonalnym, niemal instrumentowym układem dnia i daty. Smukła kwarcowa koperta i osobne wskazania nadają tarczy techniczny, kolekcjonerski charakter.",
-    "story": "Wersje Day-Date Constellation Manhattan należą do najbardziej charakterystycznych odmian tej linii z lat 80. i 90. Kwarcowy kaliber pozwalał zachować bardzo smukłą kopertę, a osobne wskazania dnia tygodnia i daty nadały tarczy techniczny, kolekcjonerski charakter."
+    "story": "Wersje Day-Date Constellation Manhattan należą do najbardziej charakterystycznych odmian tej linii z lat 80. i 90. Kwarcowy kaliber pozwalał zachować bardzo smukłą kopertę, a osobne wskazania dnia tygodnia i daty nadały tarczy techniczny, kolekcjonerski charakter.",
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/omega-czarna-tarcza/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/omega-czarna-tarcza/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/omega-czarna-tarcza/_variants/front-medium.webp",
+        "alt": "Omega Constellation Manhattan Day-Date Quartz — przód"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/omega-czarna-tarcza/left.jpg",
+        "thumb": "https://cdn.camalio.pl/products/omega-czarna-tarcza/_variants/left-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/omega-czarna-tarcza/_variants/left-medium.webp",
+        "alt": "Omega Constellation Manhattan Day-Date Quartz — lewy profil"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/omega-czarna-tarcza/right.jpg",
+        "thumb": "https://cdn.camalio.pl/products/omega-czarna-tarcza/_variants/right-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/omega-czarna-tarcza/_variants/right-medium.webp",
+        "alt": "Omega Constellation Manhattan Day-Date Quartz — prawy profil"
+      }
+    ]
   },
   {
     "id": "13",
@@ -278,7 +542,21 @@
     ],
     "description": "Piaget Possession z białym paskiem i obrotowym pierścieniem — minimalistyczna biżuteria zegarkowa z jednym diamentowym akcentem.",
     "editorial": "W Possession najważniejszy jest ruch pierścienia — mały, dotykowy gest, który odróżnia zegarek od klasycznej biżuterii. Oszczędna tarcza i miękka koperta budują przedmiot bliższy luksusowej bransolecie niż klasycznemu zegarkowi narzędziowemu.",
-    "story": "Possession przenosi motyw obrotowego pierścienia z biżuterii Piageta do zegarka. Oszczędna tarcza, miękka koperta i ruchomy detal z diamentem tworzą przedmiot bliższy luksusowej bransolecie niż klasycznemu zegarkowi narzędziowemu."
+    "story": "Possession przenosi motyw obrotowego pierścienia z biżuterii Piageta do zegarka. Oszczędna tarcza, miękka koperta i ruchomy detal z diamentem tworzą przedmiot bliższy luksusowej bransolecie niż klasycznemu zegarkowi narzędziowemu.",
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/piaget/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/piaget/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/piaget/_variants/front-medium.webp",
+        "alt": "Piaget Possession — przód"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/piaget/right.jpg",
+        "thumb": "https://cdn.camalio.pl/products/piaget/_variants/right-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/piaget/_variants/right-medium.webp",
+        "alt": "Piaget Possession — prawy profil"
+      }
+    ]
   },
   {
     "id": "14",
@@ -299,7 +577,27 @@
     ],
     "description": "TAG Heuer Grand Carrera CAV5186.FC6304 to tytanowy chronograf Calibre 36 z systemem Caliper do odczytu 1/10 sekundy.",
     "editorial": "Calibre 36 bazuje na idei wysokiej częstotliwości 36 000 wahnięć na godzinę, dzięki czemu chronograf może mierzyć dziesiąte części sekundy. Skala Caliper i system Rotating System inspirowane są deską rozdzielczą samochodu GT.",
-    "story": "Grand Carrera Calibre 36 RS2 był pokazem technicznej strony TAG Heuera: zamiast klasycznych liczników wykorzystano system Rotating System i skalę Caliper, inspirowane deską rozdzielczą samochodu GT. Mechanizm Calibre 36 pracuje z wysoką częstotliwością, podkreślając sportowy rodowód marki."
+    "story": "Grand Carrera Calibre 36 RS2 był pokazem technicznej strony TAG Heuera: zamiast klasycznych liczników wykorzystano system Rotating System i skalę Caliper, inspirowane deską rozdzielczą samochodu GT. Mechanizm Calibre 36 pracuje z wysoką częstotliwością, podkreślając sportowy rodowód marki.",
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/tag-heuer/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/tag-heuer/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/tag-heuer/_variants/front-medium.webp",
+        "alt": "TAG Heuer Grand Carrera Calibre 36 RS2 Caliper Chronograph Ti2 — przód"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/tag-heuer/left.jpg",
+        "thumb": "https://cdn.camalio.pl/products/tag-heuer/_variants/left-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/tag-heuer/_variants/left-medium.webp",
+        "alt": "TAG Heuer Grand Carrera Calibre 36 RS2 Caliper Chronograph Ti2 — lewy profil"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/tag-heuer/right.jpg",
+        "thumb": "https://cdn.camalio.pl/products/tag-heuer/_variants/right-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/tag-heuer/_variants/right-medium.webp",
+        "alt": "TAG Heuer Grand Carrera Calibre 36 RS2 Caliper Chronograph Ti2 — prawy profil"
+      }
+    ]
   },
   {
     "id": "15",
@@ -320,7 +618,27 @@
     ],
     "description": "Wyler Genève Code-R Chronograph — masywny, techniczny chronograf z amortyzowaną konstrukcją Incaflex i niebieskim paskiem gumowym.",
     "editorial": "Code-R wygląda jak zegarek zbudowany wokół koperty — śruby, mostki i amortyzacja są tu częścią języka projektu. Automatyczny chronograf bazujący na ETA 2894-2 dopełnia awangardowej, technicznej kompozycji.",
-    "story": "Wyler Genève wskrzesił system Incaflex w nowoczesnej, bardzo dużej kopercie Code-R. Chronografy tej serii często korzystały z automatycznych kalibrów ETA 2894-2, miały datę, 100 m wodoszczelności i konstrukcję zaprojektowaną tak, by eksponować techniczny charakter zegarka."
+    "story": "Wyler Genève wskrzesił system Incaflex w nowoczesnej, bardzo dużej kopercie Code-R. Chronografy tej serii często korzystały z automatycznych kalibrów ETA 2894-2, miały datę, 100 m wodoszczelności i konstrukcję zaprojektowaną tak, by eksponować techniczny charakter zegarka.",
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/wyler-geneva/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/wyler-geneva/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/wyler-geneva/_variants/front-medium.webp",
+        "alt": "Wyler Genève Code-R Chronograph — przód"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/wyler-geneva/left.jpg",
+        "thumb": "https://cdn.camalio.pl/products/wyler-geneva/_variants/left-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/wyler-geneva/_variants/left-medium.webp",
+        "alt": "Wyler Genève Code-R Chronograph — lewy profil"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/wyler-geneva/right.jpg",
+        "thumb": "https://cdn.camalio.pl/products/wyler-geneva/_variants/right-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/wyler-geneva/_variants/right-medium.webp",
+        "alt": "Wyler Genève Code-R Chronograph — prawy profil"
+      }
+    ]
   },
   {
     "id": "16",
@@ -341,7 +659,27 @@
     ],
     "description": "Audemars Piguet Royal Oak Automatic ze srebrną tarczą tapisserie przenosi projekt Geralda Genty w elegancką, stalową formę na pasku skórzanym.",
     "editorial": "Ośmiokątny bezel i zintegrowana linia koperty sprawiły, że stalowy zegarek mógł stać się pełnoprawnym symbolem luksusu.",
-    "story": "Royal Oak z 1972 roku przełamał granicę między zegarkiem sportowym a prestiżowym zegarkiem mechanicznym. Egzemplarz ze srebrną tarczą, datą na godzinie 3 i automatycznym naciągiem zachowuje najważniejsze cechy projektu: śruby w bezelu, szczotkowaną stal i geometryczną tarczą typu tapisserie."
+    "story": "Royal Oak z 1972 roku przełamał granicę między zegarkiem sportowym a prestiżowym zegarkiem mechanicznym. Egzemplarz ze srebrną tarczą, datą na godzinie 3 i automatycznym naciągiem zachowuje najważniejsze cechy projektu: śruby w bezelu, szczotkowaną stal i geometryczną tarczą typu tapisserie.",
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/audemars-piguet-royal-oak-automatic/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/audemars-piguet-royal-oak-automatic/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/audemars-piguet-royal-oak-automatic/_variants/front-medium.webp",
+        "alt": "Audemars Piguet Royal Oak Automatic — przód"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/audemars-piguet-royal-oak-automatic/lewo.jpg",
+        "thumb": "https://cdn.camalio.pl/products/audemars-piguet-royal-oak-automatic/_variants/lewo-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/audemars-piguet-royal-oak-automatic/_variants/lewo-medium.webp",
+        "alt": "Audemars Piguet Royal Oak Automatic — lewy profil"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/audemars-piguet-royal-oak-automatic/prawo.jpg",
+        "thumb": "https://cdn.camalio.pl/products/audemars-piguet-royal-oak-automatic/_variants/prawo-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/audemars-piguet-royal-oak-automatic/_variants/prawo-medium.webp",
+        "alt": "Audemars Piguet Royal Oak Automatic — prawy profil"
+      }
+    ]
   },
   {
     "id": "17",
@@ -362,7 +700,27 @@
     ],
     "description": "Breitling Chronomat Evolution z niebieską tarczą to wyrazisty automatyczny chronograf o masywnej kopercie i technicznym charakterze.",
     "editorial": "Niebieska tarcza łagodzi narzędziową sylwetkę Chronomata, ale nie odbiera mu lotniczej energii.",
-    "story": "Chronomat Evolution rozwijał najważniejszą współczesną linią Breitlinga: chronograf automatyczny, obracany bezel z rider tabs, czytelne liczniki i mocną kopertę. Ten wariant z rzymskimi indeksami i datą na godzinie 3 dobrze pokazuje okres, w którym Chronomat stać się jednym z najbardziej rozpoznawalnych luksusowych zegarków sportowych początku XXI wieku."
+    "story": "Chronomat Evolution rozwijał najważniejszą współczesną linią Breitlinga: chronograf automatyczny, obracany bezel z rider tabs, czytelne liczniki i mocną kopertę. Ten wariant z rzymskimi indeksami i datą na godzinie 3 dobrze pokazuje okres, w którym Chronomat stać się jednym z najbardziej rozpoznawalnych luksusowych zegarków sportowych początku XXI wieku.",
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/breitling-chronomat-evolution-blue/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/breitling-chronomat-evolution-blue/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/breitling-chronomat-evolution-blue/_variants/front-medium.webp",
+        "alt": "Breitling Chronomat Evolution Blue Dial — przód"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/breitling-chronomat-evolution-blue/lewo.jpg",
+        "thumb": "https://cdn.camalio.pl/products/breitling-chronomat-evolution-blue/_variants/lewo-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/breitling-chronomat-evolution-blue/_variants/lewo-medium.webp",
+        "alt": "Breitling Chronomat Evolution Blue Dial — lewy profil"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/breitling-chronomat-evolution-blue/prawo.jpg",
+        "thumb": "https://cdn.camalio.pl/products/breitling-chronomat-evolution-blue/_variants/prawo-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/breitling-chronomat-evolution-blue/_variants/prawo-medium.webp",
+        "alt": "Breitling Chronomat Evolution Blue Dial — prawy profil"
+      }
+    ]
   },
   {
     "id": "18",
@@ -383,7 +741,27 @@
     ],
     "description": "Breitling for Bentley Mulliner Perpetual Calendar łączy motoryzacyjny przepych linii Bentley z rozbudowanym kalendarzem wiecznym i fazą księżyca.",
     "editorial": "To Breitling z czasów, gdy współpraca z Bentleyem oznaczała nie tylko skalą i moc, ale też teatralną komplikacją na tarczy.",
-    "story": "Linia Breitling for Bentley powstała po współpracy marki z Bentleyem przy Continental GT. Wersja Mulliner Perpetual Calendar należy do najbardziej złożonych modeli tej rodziny: pokazuje miesiąc, dzień, datą, fazą księżyca, cykl przestępny i wskazania 24-godzinne, zachowując charakter dużego, luksusowego chronografu inspirowanego światem grand tourerów."
+    "story": "Linia Breitling for Bentley powstała po współpracy marki z Bentleyem przy Continental GT. Wersja Mulliner Perpetual Calendar należy do najbardziej złożonych modeli tej rodziny: pokazuje miesiąc, dzień, datą, fazą księżyca, cykl przestępny i wskazania 24-godzinne, zachowując charakter dużego, luksusowego chronografu inspirowanego światem grand tourerów.",
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/breitling-for-bentley-mulliner-perpetual-calendar/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/breitling-for-bentley-mulliner-perpetual-calendar/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/breitling-for-bentley-mulliner-perpetual-calendar/_variants/front-medium.webp",
+        "alt": "Breitling for Bentley Mulliner Perpetual Calendar — przód"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/breitling-for-bentley-mulliner-perpetual-calendar/lewo.jpg",
+        "thumb": "https://cdn.camalio.pl/products/breitling-for-bentley-mulliner-perpetual-calendar/_variants/lewo-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/breitling-for-bentley-mulliner-perpetual-calendar/_variants/lewo-medium.webp",
+        "alt": "Breitling for Bentley Mulliner Perpetual Calendar — lewy profil"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/breitling-for-bentley-mulliner-perpetual-calendar/prawo.jpg",
+        "thumb": "https://cdn.camalio.pl/products/breitling-for-bentley-mulliner-perpetual-calendar/_variants/prawo-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/breitling-for-bentley-mulliner-perpetual-calendar/_variants/prawo-medium.webp",
+        "alt": "Breitling for Bentley Mulliner Perpetual Calendar — prawy profil"
+      }
+    ]
   },
   {
     "id": "19",
@@ -404,7 +782,27 @@
     ],
     "description": "Mały złoty Cartier z czarną tarczą i czerwonym paskiem ma charakter dyskretnej biżuterii, w której kolor gra równie mocno jak forma koperty.",
     "editorial": "Czerwony pasek zmienia klasyczny zegarek damski Cartiera w akcent, który działa jak detal haute couture.",
-    "story": "Cartier od dekad buduje damskie zegarki na pograniczu jubilerstwa i wzornictwa użytkowego. Ten egzemplarz, widoczny na zdjęciach jako niewielka złota koperta z czarną tarczą, wymaga potwierdzenia dokładnej linii po deklu, ale estetycznie wpisuje się w małe modele Baignoire, Colisée i pokrewne projekty maison z przełomu lat 90. i 2000."
+    "story": "Cartier od dekad buduje damskie zegarki na pograniczu jubilerstwa i wzornictwa użytkowego. Ten egzemplarz, widoczny na zdjęciach jako niewielka złota koperta z czarną tarczą, wymaga potwierdzenia dokładnej linii po deklu, ale estetycznie wpisuje się w małe modele Baignoire, Colisée i pokrewne projekty maison z przełomu lat 90. i 2000.",
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/cartier-mini-baignoire-czerwony/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/cartier-mini-baignoire-czerwony/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/cartier-mini-baignoire-czerwony/_variants/front-medium.webp",
+        "alt": "Cartier Mini Baignoire / Colisée — przód"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/cartier-mini-baignoire-czerwony/lewo.jpg",
+        "thumb": "https://cdn.camalio.pl/products/cartier-mini-baignoire-czerwony/_variants/lewo-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/cartier-mini-baignoire-czerwony/_variants/lewo-medium.webp",
+        "alt": "Cartier Mini Baignoire / Colisée — lewy profil"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/cartier-mini-baignoire-czerwony/prawo.jpg",
+        "thumb": "https://cdn.camalio.pl/products/cartier-mini-baignoire-czerwony/_variants/prawo-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/cartier-mini-baignoire-czerwony/_variants/prawo-medium.webp",
+        "alt": "Cartier Mini Baignoire / Colisée — prawy profil"
+      }
+    ]
   },
   {
     "id": "20",
@@ -426,7 +824,33 @@
     ],
     "description": "Cartier Tank Américaine z czarną tarczą i diamentową lunetą łączy architekturą klasycznego Tanka z bardziej wydłużoną, wieczorową sylwetkę.",
     "editorial": "W Tank Américaine prostokąt Cartiera staje się smuklejszy, bardziej formalny i zdecydowanie bardziej salonowy.",
-    "story": "Tank Américaine rozwija linią Tank Cintrée: wydłużona koperta, zakrzywiony profil i rzymska typografia zachowują DNA marki, ale nadają mu bardziej współczesne proporcje. Wersja z czarną tarczą, datą i oprawą diamentową jest propozycję katalogową dla klienta szukającego rozpoznawalnego Cartiera o wieczorowym charakterze."
+    "story": "Tank Américaine rozwija linią Tank Cintrée: wydłużona koperta, zakrzywiony profil i rzymska typografia zachowują DNA marki, ale nadają mu bardziej współczesne proporcje. Wersja z czarną tarczą, datą i oprawą diamentową jest propozycję katalogową dla klienta szukającego rozpoznawalnego Cartiera o wieczorowym charakterze.",
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/cartier-tank-americaine-diamond/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/cartier-tank-americaine-diamond/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/cartier-tank-americaine-diamond/_variants/front-medium.webp",
+        "alt": "Cartier Tank Américaine Diamond — przód"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/cartier-tank-americaine-diamond/lewo.jpg",
+        "thumb": "https://cdn.camalio.pl/products/cartier-tank-americaine-diamond/_variants/lewo-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/cartier-tank-americaine-diamond/_variants/lewo-medium.webp",
+        "alt": "Cartier Tank Américaine Diamond — lewy profil"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/cartier-tank-americaine-diamond/prawo.jpg",
+        "thumb": "https://cdn.camalio.pl/products/cartier-tank-americaine-diamond/_variants/prawo-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/cartier-tank-americaine-diamond/_variants/prawo-medium.webp",
+        "alt": "Cartier Tank Américaine Diamond — prawy profil"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/cartier-tank-americaine-diamond/bardziej-lewo.jpg",
+        "thumb": "https://cdn.camalio.pl/products/cartier-tank-americaine-diamond/_variants/bardziej-lewo-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/cartier-tank-americaine-diamond/_variants/bardziej-lewo-medium.webp",
+        "alt": "Cartier Tank Américaine Diamond — dalszy lewy profil"
+      }
+    ]
   },
   {
     "id": "21",
@@ -447,7 +871,27 @@
     ],
     "description": "Chopard Grand Prix de Monaco Historique Chronograph to zegarek z motoryzacyjnym temperamentem, podkreślony kontrastową tarczą i pomarańczowymi akcentami.",
     "editorial": "To Chopard dla osób, które wolą zapach padoku od ciszy gabloty, ale nadal oczekują szwajcarskiego wykończenia.",
-    "story": "Chopard jest wieloletnim partnerem wyścigów Grand Prix de Monaco Historique, a kolekcja powstała jako hołd dla klasycznego motorsportu. Chronografy z tej serii korzystają z czytelnego układu liczników, skali tachymetrycznej i dynamicznych kolorów, dzięki czemu mają bardziej sportowy charakter niż biżuteryjne linie Happy Sport czy Imperiale."
+    "story": "Chopard jest wieloletnim partnerem wyścigów Grand Prix de Monaco Historique, a kolekcja powstała jako hołd dla klasycznego motorsportu. Chronografy z tej serii korzystają z czytelnego układu liczników, skali tachymetrycznej i dynamicznych kolorów, dzięki czemu mają bardziej sportowy charakter niż biżuteryjne linie Happy Sport czy Imperiale.",
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/chopard-monaco-historic-grand-prix/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/chopard-monaco-historic-grand-prix/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/chopard-monaco-historic-grand-prix/_variants/front-medium.webp",
+        "alt": "Chopard Grand Prix de Monaco Historique Chronograph — przód"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/chopard-monaco-historic-grand-prix/lewo.jpg",
+        "thumb": "https://cdn.camalio.pl/products/chopard-monaco-historic-grand-prix/_variants/lewo-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/chopard-monaco-historic-grand-prix/_variants/lewo-medium.webp",
+        "alt": "Chopard Grand Prix de Monaco Historique Chronograph — lewy profil"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/chopard-monaco-historic-grand-prix/prawo.jpg",
+        "thumb": "https://cdn.camalio.pl/products/chopard-monaco-historic-grand-prix/_variants/prawo-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/chopard-monaco-historic-grand-prix/_variants/prawo-medium.webp",
+        "alt": "Chopard Grand Prix de Monaco Historique Chronograph — prawy profil"
+      }
+    ]
   },
   {
     "id": "22",
@@ -467,7 +911,21 @@
     ],
     "description": "Franck Muller Vanguard Seven Days Skeleton pokazuje mechanizm jako główny element projektu, z czerwonymi akcentami i architekturą tarczy typową dla linii Vanguard.",
     "editorial": "W tym zegarku tarcza nie zasłania mechanizmu, tylko robi z niego scenę.",
-    "story": "Franck Muller zbudował rozpoznawalność na odważnych kopertach Cintrée Curvex i komplikacjach pokazywanych w teatralny sposób. Vanguard jest bardziej sportową, współczesną interpretację tej filozofii: duża koperta tonneau, wyraziste indeksy kierunkowe i szkieletowany kaliber o siedmiodniowej rezerwie chodu tworzą zegarek zdecydowanie pokazowy."
+    "story": "Franck Muller zbudował rozpoznawalność na odważnych kopertach Cintrée Curvex i komplikacjach pokazywanych w teatralny sposób. Vanguard jest bardziej sportową, współczesną interpretację tej filozofii: duża koperta tonneau, wyraziste indeksy kierunkowe i szkieletowany kaliber o siedmiodniowej rezerwie chodu tworzą zegarek zdecydowanie pokazowy.",
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/franck-muller-vanguard-seven-days-skeleton/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/franck-muller-vanguard-seven-days-skeleton/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/franck-muller-vanguard-seven-days-skeleton/_variants/front-medium.webp",
+        "alt": "Franck Muller Vanguard Seven Days Skeleton — przód"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/franck-muller-vanguard-seven-days-skeleton/lewo.jpg",
+        "thumb": "https://cdn.camalio.pl/products/franck-muller-vanguard-seven-days-skeleton/_variants/lewo-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/franck-muller-vanguard-seven-days-skeleton/_variants/lewo-medium.webp",
+        "alt": "Franck Muller Vanguard Seven Days Skeleton — lewy profil"
+      }
+    ]
   },
   {
     "id": "23",
@@ -488,7 +946,27 @@
     ],
     "description": "Maurice Lacroix Masterpiece Double Rétrograde łączy klasyczną elegancję z widowiskową tarczą: datą retrograde, rezerwą chodu i fazą księżyca.",
     "editorial": "Retrogrady w Masterpiece działają jak mały spektakl mechaniki, który pozostaje czytelny mimo liczby wskazań.",
-    "story": "Kolekcja Masterpiece była dla Maurice Lacroix przestrzenią na bardziej ambitne komplikacje mechaniczne. Double Rétrograde Phase de Lune łączy wskazanie daty po łuku, rezerwą chodu, dzień tygodnia i fazą księżyca, tworząc zegarek o charakterze klasycznym, ale technicznie bardziej złożonym niż standardowy trzywskazówkowiec."
+    "story": "Kolekcja Masterpiece była dla Maurice Lacroix przestrzenią na bardziej ambitne komplikacje mechaniczne. Double Rétrograde Phase de Lune łączy wskazanie daty po łuku, rezerwą chodu, dzień tygodnia i fazą księżyca, tworząc zegarek o charakterze klasycznym, ale technicznie bardziej złożonym niż standardowy trzywskazówkowiec.",
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/maurice-lacroix-masterpiece-double-retrograde/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/maurice-lacroix-masterpiece-double-retrograde/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/maurice-lacroix-masterpiece-double-retrograde/_variants/front-medium.webp",
+        "alt": "Maurice Lacroix Masterpiece Double Rétrograde Phase de Lune — przód"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/maurice-lacroix-masterpiece-double-retrograde/lewo.jpg",
+        "thumb": "https://cdn.camalio.pl/products/maurice-lacroix-masterpiece-double-retrograde/_variants/lewo-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/maurice-lacroix-masterpiece-double-retrograde/_variants/lewo-medium.webp",
+        "alt": "Maurice Lacroix Masterpiece Double Rétrograde Phase de Lune — lewy profil"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/maurice-lacroix-masterpiece-double-retrograde/prawo.jpg",
+        "thumb": "https://cdn.camalio.pl/products/maurice-lacroix-masterpiece-double-retrograde/_variants/prawo-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/maurice-lacroix-masterpiece-double-retrograde/_variants/prawo-medium.webp",
+        "alt": "Maurice Lacroix Masterpiece Double Rétrograde Phase de Lune — prawy profil"
+      }
+    ]
   },
   {
     "id": "24",
@@ -509,7 +987,27 @@
     ],
     "description": "Omega De Ville Prestige Co-Axial Chronometer to spokojny, formalny zegarek w złotej kopercie, z jasną tarczą i datą na godzinie 3.",
     "editorial": "De Ville Prestige nie próbuje dominował stroju; jego siłą jest proporcja, symetria i cichy certyfikat chronometru.",
-    "story": "Linia De Ville oddzieliła się od Seamastera w latach 60. jako bardziej elegancka gałąź Omegi. Prestige zachowuje tę filozofię: klasyczna okrągła koperta, skórzany pasek i oszczędna tarcza. Wersje Co-Axial korzystają z mechanizmu z wychwytem Omegi, który stać się jednym z technologicznych znaków rozpoznawczych marki."
+    "story": "Linia De Ville oddzieliła się od Seamastera w latach 60. jako bardziej elegancka gałąź Omegi. Prestige zachowuje tę filozofię: klasyczna okrągła koperta, skórzany pasek i oszczędna tarcza. Wersje Co-Axial korzystają z mechanizmu z wychwytem Omegi, który stać się jednym z technologicznych znaków rozpoznawczych marki.",
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/omega-de-ville-prestige/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/omega-de-ville-prestige/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/omega-de-ville-prestige/_variants/front-medium.webp",
+        "alt": "Omega De Ville Prestige Co-Axial Chronometer — przód"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/omega-de-ville-prestige/lewo.jpg",
+        "thumb": "https://cdn.camalio.pl/products/omega-de-ville-prestige/_variants/lewo-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/omega-de-ville-prestige/_variants/lewo-medium.webp",
+        "alt": "Omega De Ville Prestige Co-Axial Chronometer — lewy profil"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/omega-de-ville-prestige/prawo.jpg",
+        "thumb": "https://cdn.camalio.pl/products/omega-de-ville-prestige/_variants/prawo-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/omega-de-ville-prestige/_variants/prawo-medium.webp",
+        "alt": "Omega De Ville Prestige Co-Axial Chronometer — prawy profil"
+      }
+    ]
   },
   {
     "id": "25",
@@ -530,7 +1028,27 @@
     ],
     "description": "Patek Philippe Annual Calendar 5396 z fazą księżyca to elegancki zegarek komplikowany, w którym kalendarz roczny podano w wyjątkowo czytelnym, klasycznym układzie.",
     "editorial": "Trzy okna kalendarza i faza księżyca tworzą tarczą, która wygląda spokojnie mimo bardzo praktycznej komplikacji.",
-    "story": "Patek Philippe wprowadził kalendarz roczny w 1996 roku, upraszczając codzienne korzystanie z komplikacji kalendarzowych. Referencja 5396 rozwija ten pomysł w estetyce inspirowanej zegarkami z połowy XX wieku: dzień i miesiąc w oknach pod godziną 12, faza księżyca i data na osi dolnej oraz klasyczna koperta na pasku."
+    "story": "Patek Philippe wprowadził kalendarz roczny w 1996 roku, upraszczając codzienne korzystanie z komplikacji kalendarzowych. Referencja 5396 rozwija ten pomysł w estetyce inspirowanej zegarkami z połowy XX wieku: dzień i miesiąc w oknach pod godziną 12, faza księżyca i data na osi dolnej oraz klasyczna koperta na pasku.",
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/patek-philippe-annual-calendar-5396/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/patek-philippe-annual-calendar-5396/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/patek-philippe-annual-calendar-5396/_variants/front-medium.webp",
+        "alt": "Patek Philippe Annual Calendar Moon Phases — przód"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/patek-philippe-annual-calendar-5396/lewo.jpg",
+        "thumb": "https://cdn.camalio.pl/products/patek-philippe-annual-calendar-5396/_variants/lewo-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/patek-philippe-annual-calendar-5396/_variants/lewo-medium.webp",
+        "alt": "Patek Philippe Annual Calendar Moon Phases — lewy profil"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/patek-philippe-annual-calendar-5396/prawo.jpg",
+        "thumb": "https://cdn.camalio.pl/products/patek-philippe-annual-calendar-5396/_variants/prawo-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/patek-philippe-annual-calendar-5396/_variants/prawo-medium.webp",
+        "alt": "Patek Philippe Annual Calendar Moon Phases — prawy profil"
+      }
+    ]
   },
   {
     "id": "26",
@@ -550,7 +1068,21 @@
     ],
     "description": "Rado Centrix Automatic z niebieską tarczą łączy smukłą kopertę z ceramiczną bransoletą i spokojnym, współczesnym charakterem.",
     "editorial": "Centrix pokazuje specjalność Rado: luksus codzienny oparty bardziej na materiale i wygodzie niż na ostentacji.",
-    "story": "Rado od lat buduje tożsamość wokół ceramiki high-tech i odpornych materiałów. Centrix jest jedną z najbardziej uniwersalnych linii marki: zwężająca się bransoleta, prosta tarcza i automatyczny mechanizm dają zegarek łatwy do noszenia na co dzień, a niebieski kolor dodaje mu bardziej współczesnej prezencji."
+    "story": "Rado od lat buduje tożsamość wokół ceramiki high-tech i odpornych materiałów. Centrix jest jedną z najbardziej uniwersalnych linii marki: zwężająca się bransoleta, prosta tarcza i automatyczny mechanizm dają zegarek łatwy do noszenia na co dzień, a niebieski kolor dodaje mu bardziej współczesnej prezencji.",
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/rado-centrix-automatic-blue/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/rado-centrix-automatic-blue/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/rado-centrix-automatic-blue/_variants/front-medium.webp",
+        "alt": "Rado Centrix Automatic Blue Dial — przód"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/rado-centrix-automatic-blue/lewo.jpg",
+        "thumb": "https://cdn.camalio.pl/products/rado-centrix-automatic-blue/_variants/lewo-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/rado-centrix-automatic-blue/_variants/lewo-medium.webp",
+        "alt": "Rado Centrix Automatic Blue Dial — lewy profil"
+      }
+    ]
   },
   {
     "id": "27",
@@ -571,7 +1103,27 @@
     ],
     "description": "Rolex Cosmograph Daytona 116500LN z białą tarczą to jeden z najbardziej pożądanych stalowych chronografów współczesnego rynku luksusowego.",
     "editorial": "Kontrast białej tarczy i czarnego bezela dał Daytonie przydomek, który natychmiast stać się językiem kolekcjonerów.",
-    "story": "Daytona powstała jako chronograf dla kierowców wyścigowych, a współczesna referencja 116500LN wprowadziła czarny ceramiczny bezel Cerachrom do stalowej wersji. Model korzysta z automatycznego kalibru 4130, ma skalą tachymetryczną na lunecie i układ liczników, który stać się jednym z najważniejszych kodów wizualnych Rolexa."
+    "story": "Daytona powstała jako chronograf dla kierowców wyścigowych, a współczesna referencja 116500LN wprowadziła czarny ceramiczny bezel Cerachrom do stalowej wersji. Model korzysta z automatycznego kalibru 4130, ma skalą tachymetryczną na lunecie i układ liczników, który stać się jednym z najważniejszych kodów wizualnych Rolexa.",
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/rolex-daytona-panda/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/rolex-daytona-panda/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/rolex-daytona-panda/_variants/front-medium.webp",
+        "alt": "Rolex Cosmograph Daytona White Dial — przód"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/rolex-daytona-panda/lewo.jpg",
+        "thumb": "https://cdn.camalio.pl/products/rolex-daytona-panda/_variants/lewo-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/rolex-daytona-panda/_variants/lewo-medium.webp",
+        "alt": "Rolex Cosmograph Daytona White Dial — lewy profil"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/rolex-daytona-panda/prawo.jpg",
+        "thumb": "https://cdn.camalio.pl/products/rolex-daytona-panda/_variants/prawo-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/rolex-daytona-panda/_variants/prawo-medium.webp",
+        "alt": "Rolex Cosmograph Daytona White Dial — prawy profil"
+      }
+    ]
   },
   {
     "id": "28",
@@ -593,7 +1145,33 @@
     ],
     "description": "Rolex Datejust 36 w Rolesorze, z czarną tarczą i diamentowymi indeksami, łączy codzienny format Rolexa z wyraźnie biżuteryjnym akcentem.",
     "editorial": "Czarna tarcza uspokaja złoto, a diamentowe indeksy zostawiają zegarkowi dokładnie tyle blasku, ile potrzeba.",
-    "story": "Dwukolorowe Datejusty z bransoletą Jubilee stały się jednym z najbardziej rozpoznawalnych zegarków końca XX wieku. Wariant z czarną tarczą i indeksami diamentowymi jest bardziej wieczorowy, ale zachowuje praktyczność automatycznego zegarka z datą, wodoodporną kopertę Oyster i bezelem z żółtego złota."
+    "story": "Dwukolorowe Datejusty z bransoletą Jubilee stały się jednym z najbardziej rozpoznawalnych zegarków końca XX wieku. Wariant z czarną tarczą i indeksami diamentowymi jest bardziej wieczorowy, ale zachowuje praktyczność automatycznego zegarka z datą, wodoodporną kopertę Oyster i bezelem z żółtego złota.",
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/rolex-datejust-vintage-czarna-tarcza/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/rolex-datejust-vintage-czarna-tarcza/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/rolex-datejust-vintage-czarna-tarcza/_variants/front-medium.webp",
+        "alt": "Rolex Datejust 36 Two-Tone Black Diamond Dial — przód"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/rolex-datejust-vintage-czarna-tarcza/lewo.jpg",
+        "thumb": "https://cdn.camalio.pl/products/rolex-datejust-vintage-czarna-tarcza/_variants/lewo-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/rolex-datejust-vintage-czarna-tarcza/_variants/lewo-medium.webp",
+        "alt": "Rolex Datejust 36 Two-Tone Black Diamond Dial — lewy profil"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/rolex-datejust-vintage-czarna-tarcza/prawo.jpg",
+        "thumb": "https://cdn.camalio.pl/products/rolex-datejust-vintage-czarna-tarcza/_variants/prawo-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/rolex-datejust-vintage-czarna-tarcza/_variants/prawo-medium.webp",
+        "alt": "Rolex Datejust 36 Two-Tone Black Diamond Dial — prawy profil"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/rolex-datejust-vintage-czarna-tarcza/tyl.jpg",
+        "thumb": "https://cdn.camalio.pl/products/rolex-datejust-vintage-czarna-tarcza/_variants/tyl-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/rolex-datejust-vintage-czarna-tarcza/_variants/tyl-medium.webp",
+        "alt": "Rolex Datejust 36 Two-Tone Black Diamond Dial — tył"
+      }
+    ]
   },
   {
     "id": "29",
@@ -614,7 +1192,27 @@
     ],
     "description": "Rolex Datejust 36 w żółtym złocie i z niebieską tarczą to klasyczny zegarek codzienny w bardziej prestiżowej, vintage'owej odsłonie.",
     "editorial": "Niebieska tarcza na tle żółtego złota daje Datejustowi ton bardziej klubowy niż biurowy.",
-    "story": "Datejust jest jednym z fundamentów katalogu Rolexa od 1945 roku. Wersje 36 mm ze złotą kopertę, karbowanym bezelem i datownikiem pod lupą Cyclops pozostają najbardziej rozpoznawalnym symbolem eleganckiego zegarka codziennego. Egzemplarz na pasku skórzanym ma lżejszy charakter niż konfiguracja na bransolecie President lub Jubilee."
+    "story": "Datejust jest jednym z fundamentów katalogu Rolexa od 1945 roku. Wersje 36 mm ze złotą kopertę, karbowanym bezelem i datownikiem pod lupą Cyclops pozostają najbardziej rozpoznawalnym symbolem eleganckiego zegarka codziennego. Egzemplarz na pasku skórzanym ma lżejszy charakter niż konfiguracja na bransolecie President lub Jubilee.",
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/rolex-datejust-36-yellow-gold-blue-dial/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/rolex-datejust-36-yellow-gold-blue-dial/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/rolex-datejust-36-yellow-gold-blue-dial/_variants/front-medium.webp",
+        "alt": "Rolex Datejust 36 Yellow Gold Blue Dial — przód"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/rolex-datejust-36-yellow-gold-blue-dial/lewo.jpg",
+        "thumb": "https://cdn.camalio.pl/products/rolex-datejust-36-yellow-gold-blue-dial/_variants/lewo-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/rolex-datejust-36-yellow-gold-blue-dial/_variants/lewo-medium.webp",
+        "alt": "Rolex Datejust 36 Yellow Gold Blue Dial — lewy profil"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/rolex-datejust-36-yellow-gold-blue-dial/prawo.jpg",
+        "thumb": "https://cdn.camalio.pl/products/rolex-datejust-36-yellow-gold-blue-dial/_variants/prawo-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/rolex-datejust-36-yellow-gold-blue-dial/_variants/prawo-medium.webp",
+        "alt": "Rolex Datejust 36 Yellow Gold Blue Dial — prawy profil"
+      }
+    ]
   },
   {
     "id": "30",
@@ -635,7 +1233,27 @@
     ],
     "description": "Rolex Datejust 41 Everose Rolesor z tarczą sundust łączy klasyczną architekturą Datejusta z cieplejszym, współczesnym tonem różowego złota.",
     "editorial": "Everose Rolesor sprawia, że Datejust 41 jest bardziej miękki wizualnie, ale nadal pozostaje jednym z najbardziej czytelnych symboli Rolexa.",
-    "story": "Współczesny Datejust 41 zachowuje najważniejsze znaki linii: datą, lupą Cyclops, karbowany bezel i bransoletą Jubilee. Referencja 126331 łączy stal Oystersteel z 18-karatowym złotem Everose, a mechanizm generacji 3235 zapewnia około 70 godzin rezerwy chodu i certyfikacją Superlative Chronometer."
+    "story": "Współczesny Datejust 41 zachowuje najważniejsze znaki linii: datą, lupą Cyclops, karbowany bezel i bransoletą Jubilee. Referencja 126331 łączy stal Oystersteel z 18-karatowym złotem Everose, a mechanizm generacji 3235 zapewnia około 70 godzin rezerwy chodu i certyfikacją Superlative Chronometer.",
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/rolex-datejust-41-everose-sundust/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/rolex-datejust-41-everose-sundust/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/rolex-datejust-41-everose-sundust/_variants/front-medium.webp",
+        "alt": "Rolex Datejust 41 Everose Rolesor — przód"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/rolex-datejust-41-everose-sundust/lewo.jpg",
+        "thumb": "https://cdn.camalio.pl/products/rolex-datejust-41-everose-sundust/_variants/lewo-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/rolex-datejust-41-everose-sundust/_variants/lewo-medium.webp",
+        "alt": "Rolex Datejust 41 Everose Rolesor — lewy profil"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/rolex-datejust-41-everose-sundust/prawo.jpg",
+        "thumb": "https://cdn.camalio.pl/products/rolex-datejust-41-everose-sundust/_variants/prawo-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/rolex-datejust-41-everose-sundust/_variants/prawo-medium.webp",
+        "alt": "Rolex Datejust 41 Everose Rolesor — prawy profil"
+      }
+    ]
   },
   {
     "id": "31",
@@ -657,7 +1275,33 @@
     "description": "Rolex Sky-Dweller 326934 z czarną tarczą to zegarek podróżny z rocznym kalendarzem, drugą strefą czasu i bezelem Ring Command.",
     "editorial": "Sky-Dweller ukrywa jedną z najbardziej praktycznych komplikacji Rolexa w formie, która z daleka pozostaje klasycznie elegancka.",
     "story": "Sky-Dweller zostać zaprezentowany jako najbardziej komplikowany współczesny Rolex: łączy czas lokalny, czas domowy w 24-godzinnym pierścieniu oraz kalendarz roczny Saros. W wersji 326934 stalowa koperta współpracuje z bezelem z białego złota, a obsługa funkcji odbywa się przez obracany bezel Ring Command.",
-    "price": 72000
+    "price": 72000,
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/rolex-sky-dweller/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/rolex-sky-dweller/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/rolex-sky-dweller/_variants/front-medium.webp",
+        "alt": "Rolex Sky-Dweller 326934 — przód"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/rolex-sky-dweller/lewo.jpg",
+        "thumb": "https://cdn.camalio.pl/products/rolex-sky-dweller/_variants/lewo-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/rolex-sky-dweller/_variants/lewo-medium.webp",
+        "alt": "Rolex Sky-Dweller 326934 — lewy profil"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/rolex-sky-dweller/prawo.jpg",
+        "thumb": "https://cdn.camalio.pl/products/rolex-sky-dweller/_variants/prawo-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/rolex-sky-dweller/_variants/prawo-medium.webp",
+        "alt": "Rolex Sky-Dweller 326934 — prawy profil"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/rolex-sky-dweller/front-lewo.jpg",
+        "thumb": "https://cdn.camalio.pl/products/rolex-sky-dweller/_variants/front-lewo-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/rolex-sky-dweller/_variants/front-lewo-medium.webp",
+        "alt": "Rolex Sky-Dweller 326934 — przód i lewy profil"
+      }
+    ]
   },
   {
     "id": "32",
@@ -677,7 +1321,21 @@
     ],
     "description": "Rolex Yacht-Master 40 w żółtym złocie to bardziej luksusowa interpretacja sportowego zegarka Oyster, z charakterystycznym bezelem regatowym.",
     "editorial": "Yacht-Master wygląda jak zegarek na pokład, ale w złocie mówi przede wszystkim językiem luksusowego stylu życia.",
-    "story": "Yacht-Master zadebiutował w 1992 roku jako elegantsza, jachtowa alternatywa dla typowo narzędziowego Submarinera. Referencja 16628 w żółtym złocie należy do pierwszej generacji modelu i ma bezel z wypukłymi cyframi oraz pełnozłotą bransoletą Oyster. Ponieważ w paczce są tylko zdjęcia boczne, tarczą i wariant należy potwierdzić przed publikacją."
+    "story": "Yacht-Master zadebiutował w 1992 roku jako elegantsza, jachtowa alternatywa dla typowo narzędziowego Submarinera. Referencja 16628 w żółtym złocie należy do pierwszej generacji modelu i ma bezel z wypukłymi cyframi oraz pełnozłotą bransoletą Oyster. Ponieważ w paczce są tylko zdjęcia boczne, tarczą i wariant należy potwierdzić przed publikacją.",
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/rolex-yacht-master-40-yellow-gold-blue-dial/lewo.jpg",
+        "thumb": "https://cdn.camalio.pl/products/rolex-yacht-master-40-yellow-gold-blue-dial/_variants/lewo-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/rolex-yacht-master-40-yellow-gold-blue-dial/_variants/lewo-medium.webp",
+        "alt": "Rolex Yacht-Master 40 Yellow Gold Blue Dial — lewy profil"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/rolex-yacht-master-40-yellow-gold-blue-dial/prawo.jpg",
+        "thumb": "https://cdn.camalio.pl/products/rolex-yacht-master-40-yellow-gold-blue-dial/_variants/prawo-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/rolex-yacht-master-40-yellow-gold-blue-dial/_variants/prawo-medium.webp",
+        "alt": "Rolex Yacht-Master 40 Yellow Gold Blue Dial — prawy profil"
+      }
+    ]
   },
   {
     "id": "33",
@@ -698,7 +1356,27 @@
     ],
     "description": "Vacheron Constantin Malte Diamond łączy kształt tonneau, giloszowaną tarczą i dyskretną oprawą diamentową w klasycznym zegarku wieczorowym.",
     "editorial": "Tonneau Vacherona ma w sobie miękkość biżuterii, ale zachowuje porządek tradycyjnego zegarmistrzostwa genewskiego.",
-    "story": "Kolekcja Malte jest jedną z linii, w których Vacheron Constantin rozwijał nieokrągłe koperty i bardziej dekoracyjne wykończenia. Egzemplarz ze zdjęć ma wydłużoną kopertę tonneau, diamentowe boki, rzymskie cyfry 12 i 6 oraz giloszowaną tarczą, co lokuje go po stronie eleganckich, jubilerskich modeli maison."
+    "story": "Kolekcja Malte jest jedną z linii, w których Vacheron Constantin rozwijał nieokrągłe koperty i bardziej dekoracyjne wykończenia. Egzemplarz ze zdjęć ma wydłużoną kopertę tonneau, diamentowe boki, rzymskie cyfry 12 i 6 oraz giloszowaną tarczą, co lokuje go po stronie eleganckich, jubilerskich modeli maison.",
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/vacheron-constantin-malte-diamond/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/vacheron-constantin-malte-diamond/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/vacheron-constantin-malte-diamond/_variants/front-medium.webp",
+        "alt": "Vacheron Constantin Malte Diamond — przód"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/vacheron-constantin-malte-diamond/lewo.jpg",
+        "thumb": "https://cdn.camalio.pl/products/vacheron-constantin-malte-diamond/_variants/lewo-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/vacheron-constantin-malte-diamond/_variants/lewo-medium.webp",
+        "alt": "Vacheron Constantin Malte Diamond — lewy profil"
+      },
+      {
+        "original": "https://cdn.camalio.pl/products/vacheron-constantin-malte-diamond/prawo.jpg",
+        "thumb": "https://cdn.camalio.pl/products/vacheron-constantin-malte-diamond/_variants/prawo-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/vacheron-constantin-malte-diamond/_variants/prawo-medium.webp",
+        "alt": "Vacheron Constantin Malte Diamond — prawy profil"
+      }
+    ]
   },
   {
     "id": "34",
@@ -719,7 +1397,15 @@
     "editorial": "Ref. 5960R-001 to pierwszy w historii Patek Philippe chronograf z kalendarzem rocznym napędzany w pełni manufakturowym kalibrem CH 28-520. Trzy okienka kalendarza w jednej linii i wskaźnik dzień/noc to najbardziej współczesna kompozycja wśród skomplikowanych Patków.",
     "story": "Annual Calendar Chronograph reprezentuje klasyczne podejście Patek Philippe do zegarków komplikowanych i eleganckich. Najważniejsze są proporcja, czytelność wskazań i potwierdzona dokumentacja konkretnego egzemplarza.",
     "isNew": true,
-    "isExclusive": true
+    "isExclusive": true,
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/patek-philippe-annual-calendar-chronograph/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/patek-philippe-annual-calendar-chronograph/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/patek-philippe-annual-calendar-chronograph/_variants/front-medium.webp",
+        "alt": "Patek Philippe Annual Calendar Chronograph — przód"
+      }
+    ]
   },
   {
     "id": "35",
@@ -739,7 +1425,15 @@
     "description": "Audemars Piguet Royal Oak ref. 14800.ST 36 mm z rzadko spotykaną czerwoną tarczą — kolekcjonerski egzemplarz wczesnej generacji Royal Oaka.",
     "editorial": "Ref. 14800.ST to przejście między pierwszym Royal Oakiem Genty a późniejszymi 15202. Czerwona tarcza w wersji 36 mm jest jedną z rzadszych konfiguracji tego modelu — kolekcjonerski wybór dla osób, które wolą dyskretną kopertę i mocny akcent kolorystyczny.",
     "story": "Royal Oak Red Dial pokazuje charakter Audemars Piguet oparty na mocnej architekturze koperty i wysokim standardzie wykończenia. Forma jest tu równie istotna jak mechanika i pochodzenie egzemplarza.",
-    "isExclusive": true
+    "isExclusive": true,
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/audemars-piguet-royal-oak-red-dial/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/audemars-piguet-royal-oak-red-dial/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/audemars-piguet-royal-oak-red-dial/_variants/front-medium.webp",
+        "alt": "Audemars Piguet Royal Oak Red Dial — przód"
+      }
+    ]
   },
   {
     "id": "36",
@@ -759,7 +1453,15 @@
     "description": "Rolex Datejust 41 z aftermarketową tarczą z arabskimi cyframi i pełną oprawą diamentową koperty oraz lunety.",
     "editorial": "Bazą jest seryjny Datejust 41, ale tarcza z arabskimi indeksami i pełne aftermarketowe oblamowanie diamentami zmieniają charakter zegarka w stronę kolekcji hip-hopowej. Wersja przeznaczona dla osób, które traktują Datejust jak pretekst do biżuterii.",
     "story": "Datejust Iced Out Custom Arabic Dial wpisuje się w najważniejsze kody marki: kopertę Oyster, mocny status rynkowy i praktyczną elegancję. Dokładną konfigurację egzemplarza należy potwierdzić po dokumentach lub numerach referencyjnych.",
-    "isExclusive": true
+    "isExclusive": true,
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/rolex-datejust-iced-out-custom-arabic-dial/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/rolex-datejust-iced-out-custom-arabic-dial/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/rolex-datejust-iced-out-custom-arabic-dial/_variants/front-medium.webp",
+        "alt": "Rolex Datejust Iced Out Custom Arabic Dial — przód"
+      }
+    ]
   },
   {
     "id": "37",
@@ -779,7 +1481,15 @@
     "description": "Rolex Day-Date 36 mm z bransoletą President Tridor splecioną z białego, żółtego i różowego złota — rzadka konfiguracja z lat 90.",
     "editorial": "Tridor to specjalna bransoleta President spleciona z trzech kolorów złota — białego, żółtego i różowego. Ref. 18239B z lat 90. łączy klasyczną kopertę 36 mm z efektem światła zmieniającego się w zależności od kąta padania, co dziś trudno znaleźć w nowych kolekcjach Rolexa.",
     "story": "Day-Date Tridor wpisuje się w najważniejsze kody marki: kopertę Oyster, mocny status rynkowy i praktyczną elegancję. Dokładną konfigurację egzemplarza należy potwierdzić po dokumentach lub numerach referencyjnych.",
-    "isExclusive": true
+    "isExclusive": true,
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/rolex-day-date-tridor/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/rolex-day-date-tridor/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/rolex-day-date-tridor/_variants/front-medium.webp",
+        "alt": "Rolex Day-Date Tridor — przód"
+      }
+    ]
   },
   {
     "id": "38",
@@ -799,7 +1509,15 @@
     "description": "Rolex Cosmograph Daytona ref. 126503 w wersji Rolesor stal/żółte złoto, z kalibrem manufakturowym 4131.",
     "editorial": "Ref. 126503 to wersja Rolesor Daytony — koperta ze stali z bezelem i koroną z żółtego złota oraz kalibrem 4131. Następca legendarnej 116503, z odświeżonym mechanizmem o 72-godzinnej rezerwie chodu i przeprojektowanymi licznikami chronografu.",
     "story": "Daytona Dial wpisuje się w najważniejsze kody marki: kopertę Oyster, mocny status rynkowy i praktyczną elegancję. Dokładną konfigurację egzemplarza należy potwierdzić po dokumentach lub numerach referencyjnych.",
-    "isExclusive": true
+    "isExclusive": true,
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/rolex-daytona-dial/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/rolex-daytona-dial/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/rolex-daytona-dial/_variants/front-medium.webp",
+        "alt": "Rolex Daytona Dial — przód"
+      }
+    ]
   },
   {
     "id": "39",
@@ -819,7 +1537,15 @@
     "description": "Audemars Piguet Royal Oak ref. 15300ST 39 mm z głęboko niebieską tarczą Petite Tapisserie — następca Jumbo, poprzednik 15202.",
     "editorial": "Ref. 15300ST z głęboko niebieską tarczą Petite Tapisserie była produkowana zaledwie kilka lat między Jumbo a obecną 15202/15500. Koperta 39 mm trafia w sweet spot między historyczną Jumbo a współczesnym 41 — proporcja, którą wielu kolekcjonerów uważa za optymalną.",
     "story": "Royal Oak Blue Dial Boutique Edition pokazuje charakter Audemars Piguet oparty na mocnej architekturze koperty i wysokim standardzie wykończenia. Forma jest tu równie istotna jak mechanika i pochodzenie egzemplarza.",
-    "isExclusive": true
+    "isExclusive": true,
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/audemars-piguet-royal-oak-blue-dial-boutique-edition/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/audemars-piguet-royal-oak-blue-dial-boutique-edition/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/audemars-piguet-royal-oak-blue-dial-boutique-edition/_variants/front-medium.webp",
+        "alt": "Audemars Piguet Royal Oak Blue Dial Boutique Edition — przód"
+      }
+    ]
   },
   {
     "id": "40",
@@ -838,7 +1564,15 @@
     ],
     "description": "Girard-Perregaux Classic w prostokątnej kopercie 35,4 × 30,4 mm z białego złota i diamentowymi indeksami — biżuteryjny zegarek wieczorowy.",
     "editorial": "Prostokątna koperta 35,4 × 30,4 mm z białego złota i diamentowymi indeksami sięga do języka art déco — epoki, w której Girard-Perregaux budował część swojej tożsamości. Mały, biżuteryjny zegarek wieczorowy o czysto klasycznych proporcjach.",
-    "story": "Classic pokazuje klasyczną stronę Girard-Perregaux: elegancką formę, szlachetne materiały i zegarmistrzowski rodowód historycznej manufaktury."
+    "story": "Classic pokazuje klasyczną stronę Girard-Perregaux: elegancką formę, szlachetne materiały i zegarmistrzowski rodowód historycznej manufaktury.",
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/girard-perregaux-classic/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/girard-perregaux-classic/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/girard-perregaux-classic/_variants/front-medium.webp",
+        "alt": "Girard-Perregaux Classic — przód"
+      }
+    ]
   },
   {
     "id": "41",
@@ -857,7 +1591,15 @@
     ],
     "description": "Cartier Santos ref. WSSA0013 w pełnej oprawie diamentowej — kwadratowa koperta ze stali zachowana w ikonicznym kształcie projektu Louisa Cartiera.",
     "editorial": "Santos w wersji w pełni wysadzanej diamentami zachowuje charakterystyczne, widoczne śruby na bezelu i kwadratowy obrys koperty zaprojektowany jeszcze dla Alberta Santos-Dumonta. Diamenty nie chowają architektury zegarka — wzmacniają ją.",
-    "story": "Santos wersja Iced Out korzysta z języka projektowego Cartiera: biżuteryjnej proporcji, rozpoznawalnej koperty i detalu. Dokładną konfigurację warto potwierdzić po referencji."
+    "story": "Santos wersja Iced Out korzysta z języka projektowego Cartiera: biżuteryjnej proporcji, rozpoznawalnej koperty i detalu. Dokładną konfigurację warto potwierdzić po referencji.",
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/cartier-santos-wersja-iced-out/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/cartier-santos-wersja-iced-out/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/cartier-santos-wersja-iced-out/_variants/front-medium.webp",
+        "alt": "Cartier Santos wersja Iced Out — przód"
+      }
+    ]
   },
   {
     "id": "42",
@@ -878,7 +1620,15 @@
     "editorial": "Ref. 126619LB to Submariner w pełni z białego złota — koperta, bransoleta i bezel z 18-karatowego stopu, niebieska tarcza i zielony pierścień Cerachrom. Najbardziej kosztowna wersja seryjnego Submarinera, ważąca prawie dwa razy więcej niż stalowy odpowiednik.",
     "story": "Submariner wpisuje się w najważniejsze kody marki: kopertę Oyster, mocny status rynkowy i praktyczną elegancję. Dokładną konfigurację egzemplarza należy potwierdzić po dokumentach lub numerach referencyjnych.",
     "isNew": true,
-    "isExclusive": true
+    "isExclusive": true,
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/rolex-submariner/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/rolex-submariner/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/rolex-submariner/_variants/front-medium.webp",
+        "alt": "Rolex Submariner — przód"
+      }
+    ]
   },
   {
     "id": "43",
@@ -898,7 +1648,15 @@
     "description": "Patek Philippe Calatrava ref. 5205G-010 z białego złota — kalendarz roczny i niebieska gradientowa tarcza w klasycznej kopercie 40 mm.",
     "editorial": "Ref. 5205G-010 łączy klasyczną kopertę Calatravy z kalendarzem rocznym — komplikacją opatentowaną przez Patek Philippe w 1996 roku, która wymaga ręcznej korekty tylko raz w roku. Tarcza w gradientowym niebieskim z dniem, datą i miesiącem w jednej linii to jeden z bardziej wyważonych projektów współczesnego Patka.",
     "story": "Calatrava Annual Calendar reprezentuje klasyczne podejście Patek Philippe do zegarków komplikowanych i eleganckich. Najważniejsze są proporcja, czytelność wskazań i potwierdzona dokumentacja konkretnego egzemplarza.",
-    "isExclusive": true
+    "isExclusive": true,
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/patek-philippe-calatrava-annual-calendar/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/patek-philippe-calatrava-annual-calendar/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/patek-philippe-calatrava-annual-calendar/_variants/front-medium.webp",
+        "alt": "Patek Philippe Calatrava Annual Calendar — przód"
+      }
+    ]
   },
   {
     "id": "44",
@@ -917,7 +1675,15 @@
     ],
     "description": "Bvlgari Bvlgari BB23GL w pełnym żółtym złocie — biżuteryjna koperta 23 mm z charakterystycznym podwójnym logo na bezelu.",
     "editorial": "Linia Bvlgari Bvlgari z podwójnym, grawerowanym logo na bezelu powstała w 1977 roku jako jeden z pierwszych zegarków rzymskiej manufaktury jubilerskiej. Wersja BB23 w 23 mm i pełnym żółtym złocie to klasyczny biżuteryjny rozmiar — bliżej bransoletki niż klasycznego zegarka damskiego.",
-    "story": "Bvlgari BB23GL pokazuje rzymski, graficzny język Bvlgari, w którym logo i geometria koperty są częścią projektu. To zegarek stojący blisko biżuterii, ale zachowujący codzienną funkcję."
+    "story": "Bvlgari BB23GL pokazuje rzymski, graficzny język Bvlgari, w którym logo i geometria koperty są częścią projektu. To zegarek stojący blisko biżuterii, ale zachowujący codzienną funkcję.",
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/bvlgari-bvlgari-bb23gl/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/bvlgari-bvlgari-bb23gl/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/bvlgari-bvlgari-bb23gl/_variants/front-medium.webp",
+        "alt": "Bvlgari Bvlgari BB23GL — przód"
+      }
+    ]
   },
   {
     "id": "45",
@@ -937,7 +1703,15 @@
     "description": "Audemars Piguet Royal Oak ref. 14800.OR z lat 90. — pełne żółte złoto, koperta 36 mm i klasyczna złota tarcza Tapisserie.",
     "editorial": "Ref. 14800.OR to wczesny Royal Oak w pełnym żółtym złocie i koperce 36 mm — wymiarze bliższym oryginałowi Genty z 1972 roku niż dzisiejszym 41 mm. Tonalna, złota tarcza Tapisserie z kompletną złotą bransoletą daje masę i ciepło, których nowsze wersje już nie powtarzają.",
     "story": "Royal Oak 14800.OR pokazuje charakter Audemars Piguet oparty na mocnej architekturze koperty i wysokim standardzie wykończenia. Forma jest tu równie istotna jak mechanika i pochodzenie egzemplarza.",
-    "isExclusive": true
+    "isExclusive": true,
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/audemars-piguet-royal-oak-14800-or/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/audemars-piguet-royal-oak-14800-or/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/audemars-piguet-royal-oak-14800-or/_variants/front-medium.webp",
+        "alt": "Audemars Piguet Royal Oak 14800.OR — przód"
+      }
+    ]
   },
   {
     "id": "46",
@@ -957,7 +1731,15 @@
     "description": "Audemars Piguet Code 11:59 ref. 15210OR w różowym złocie — koperta 41 mm z podwójnie zakrzywionym szkłem szafirowym i ośmiokątnym pierścieniem środkowym.",
     "editorial": "Code 11:59 to próba Audemars Piguet, by stworzyć trzecią — obok Royal Oaka i Royal Oak Offshore — własną architekturę okrągłej koperty. Podwójnie zakrzywione szkło szafirowe i ośmiokątny pierścień środkowy między kopertą a uchami sprawiają, że projekt mieni się w zupełnie inny sposób przy każdym kącie spojrzenia.",
     "story": "Code 11:59 pokazuje charakter Audemars Piguet oparty na mocnej architekturze koperty i wysokim standardzie wykończenia. Forma jest tu równie istotna jak mechanika i pochodzenie egzemplarza.",
-    "isExclusive": true
+    "isExclusive": true,
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/audemars-piguet-code-11-59/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/audemars-piguet-code-11-59/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/audemars-piguet-code-11-59/_variants/front-medium.webp",
+        "alt": "Audemars Piguet Code 11:59 — przód"
+      }
+    ]
   },
   {
     "id": "47",
@@ -977,7 +1759,15 @@
     "description": "Rolex Day-Date 40 ref. 228396TBR w platynie 950, z bezelem z baguette diamentów i bransoletą President.",
     "editorial": "Ref. 228396TBR to najwyższa półka kolekcji Day-Date — platynowa koperta 40 mm z bezelem ustawionym 36 baguette'ami diamentów. Platyna ma matową, niemal zimną głębię, której nie da się odtworzyć w żadnym innym metalu szlachetnym; w połączeniu z bransoletą President to najcięższy seryjny Rolex w produkcji.",
     "story": "Day-Date Platinum wpisuje się w najważniejsze kody marki: kopertę Oyster, mocny status rynkowy i praktyczną elegancję. Dokładną konfigurację egzemplarza należy potwierdzić po dokumentach lub numerach referencyjnych.",
-    "isExclusive": true
+    "isExclusive": true,
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/rolex-day-date-platinum/41265376-e639-4f17-bf54-cbb384db582a.jpg",
+        "thumb": "https://cdn.camalio.pl/products/rolex-day-date-platinum/_variants/41265376-e639-4f17-bf54-cbb384db582a-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/rolex-day-date-platinum/_variants/41265376-e639-4f17-bf54-cbb384db582a-medium.webp",
+        "alt": "Rolex Day-Date Platinum — przód"
+      }
+    ]
   },
   {
     "id": "48",
@@ -996,7 +1786,15 @@
     ],
     "description": "Cartier Panthère ref. W25022B9 Small w żółtym złocie — szeroka, miękka bransoleta z połączonych ogniw i prostokątna koperta 22 × 30 mm.",
     "editorial": "Panthère, wprowadzona w 1983 roku, była symbolem stylu lat 80. — od Madonny po Pierce'a Brosnana w roli Bonda. Po dekadach przerwy Cartier wznowił model w 2017 roku w niemal niezmienionej formie. Płynna, szeroka bransoleta z połączonych ogniw to jeden z najbardziej charakterystycznych elementów ikonografii marki.",
-    "story": "Panthère korzysta z języka projektowego Cartiera: biżuteryjnej proporcji, rozpoznawalnej koperty i detalu. Dokładną konfigurację warto potwierdzić po referencji."
+    "story": "Panthère korzysta z języka projektowego Cartiera: biżuteryjnej proporcji, rozpoznawalnej koperty i detalu. Dokładną konfigurację warto potwierdzić po referencji.",
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/cartier-panthere/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/cartier-panthere/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/cartier-panthere/_variants/front-medium.webp",
+        "alt": "Cartier Panthère — przód"
+      }
+    ]
   },
   {
     "id": "49",
@@ -1016,7 +1814,15 @@
     "description": "Rolex Yacht-Master 40 ref. 126621 Rolesor — Oystersteel z różowym złotem Everose, czarna tarcza i obrotowy bezel.",
     "editorial": "Ref. 126621 łączy stal Oystersteel z różowym złotem Everose w wersji Rolesor — bransoletą Oyster i bezelem z dwukierunkowo obracaną skalą minutową. To najbardziej żeglarski z Yacht-Masterów: cieplejszy charakter niż stal, bardziej praktyczny niż pełne złoto.",
     "story": "Yacht Master 40 Black Dial wpisuje się w najważniejsze kody marki: kopertę Oyster, mocny status rynkowy i praktyczną elegancję. Dokładną konfigurację egzemplarza należy potwierdzić po dokumentach lub numerach referencyjnych.",
-    "isNew": true
+    "isNew": true,
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/rolex-yacht-master-40-black-dial/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/rolex-yacht-master-40-black-dial/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/rolex-yacht-master-40-black-dial/_variants/front-medium.webp",
+        "alt": "Rolex Yacht Master 40 Black Dial — przód"
+      }
+    ]
   },
   {
     "id": "50",
@@ -1035,7 +1841,15 @@
     ],
     "description": "Omega Seamaster Diver 300 m Chronograph 44 mm — kaliber co-axial 9900, niebieska ceramiczna luneta i charakterystyczna falista tarcza.",
     "editorial": "Seamaster Diver 300 m Chronograph łączy charakterystyczną falistą tarczę z chronografem napędzanym kalibrem co-axial 9900. Niebieska ceramiczna luneta, zawór helowy o godzinie 10 i opływowa koperta 44 mm — Omega rozwiązuje tu kwestię nurkowej użyteczności bez kompromisów estetycznych.",
-    "story": "Seamaster Diver 300 m Chronograph należy do praktycznej, rozpoznawalnej części świata Omegi, gdzie historia modelu spotyka się z codzienną użytecznością. Referencja i stan wymagają standardowej weryfikacji."
+    "story": "Seamaster Diver 300 m Chronograph należy do praktycznej, rozpoznawalnej części świata Omegi, gdzie historia modelu spotyka się z codzienną użytecznością. Referencja i stan wymagają standardowej weryfikacji.",
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/omega-seamaster-diver-300-m-chronograph/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/omega-seamaster-diver-300-m-chronograph/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/omega-seamaster-diver-300-m-chronograph/_variants/front-medium.webp",
+        "alt": "Omega Seamaster Diver 300 m Chronograph — przód"
+      }
+    ]
   },
   {
     "id": "51",
@@ -1055,7 +1869,15 @@
     "description": "Rolex Datejust 41 ref. 126333 Rolesor stal/żółte złoto, z grafitową tarczą Wimbledon i zielonymi cyframi rzymskimi.",
     "editorial": "Wimbledon to potoczna nazwa wersji Datejust z grafitową tarczą i zielonymi cyframi rzymskimi — odsyłka do barw najstarszego turnieju tenisowego, którego Rolex jest oficjalnym chronometrażystą od 1978 roku. Ref. 126333 w wersji Rolesor 41 mm z karbowanym bezelem to jeden z najbardziej rozpoznawalnych dialów współczesnej kolekcji.",
     "story": "Datejust Wimbledon wpisuje się w najważniejsze kody marki: kopertę Oyster, mocny status rynkowy i praktyczną elegancję. Dokładną konfigurację egzemplarza należy potwierdzić po dokumentach lub numerach referencyjnych.",
-    "isNew": true
+    "isNew": true,
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/rolex-datejust-wimbledon/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/rolex-datejust-wimbledon/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/rolex-datejust-wimbledon/_variants/front-medium.webp",
+        "alt": "Rolex Datejust Wimbledon — przód"
+      }
+    ]
   },
   {
     "id": "52",
@@ -1075,7 +1897,15 @@
     "description": "Patek Philippe Twenty~4 ref. 4910/20 z białego złota, w prostokątnej kopercie 25,1 × 30 mm z podwójnym rzędem diamentów.",
     "editorial": "Ref. 4910/20 to oryginalna, prostokątna Twenty~4 wprowadzona w 1999 roku — biały złoto, podwójny rząd diamentów wzdłuż obrysu koperty i kwarcowy mechanizm. Patek Philippe zaprojektował ją wprost jako codzienny zegarek dla nowoczesnej kobiety; dziś ten konkretny układ jest stopniowo wycofywany na rzecz wersji okrągłej z mechanizmem automatycznym.",
     "story": "Twenty~4 reprezentuje klasyczne podejście Patek Philippe do zegarków komplikowanych i eleganckich. Najważniejsze są proporcja, czytelność wskazań i potwierdzona dokumentacja konkretnego egzemplarza.",
-    "isExclusive": true
+    "isExclusive": true,
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/patek-philippe-twenty-4/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/patek-philippe-twenty-4/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/patek-philippe-twenty-4/_variants/front-medium.webp",
+        "alt": "Patek Philippe Twenty~4 — przód"
+      }
+    ]
   },
   {
     "id": "53",
@@ -1094,7 +1924,15 @@
     ],
     "description": "Franck Muller Vegas ref. 5850 w różowym złocie — kolekcjonerska komplikacja z działającą ruletką osadzoną na tarczy.",
     "editorial": "Vegas 5850 to kolekcjonerski żart Francka Mullera: na tarczy zegarka osadzono działającą ruletkę uruchamianą przyciskiem na boku koperty Cintrée Curvex. Komplikacja, której nie ma żaden inny producent — i jeden z najbardziej rozpoznawalnych modeli z genewskiej części repertuaru marki.",
-    "story": "Vegas pokazuje odważniejszą stronę zegarmistrzostwa: charakterystyczną kopertę, mocną typografię i projekt wychodzący poza klasyczną zachowawczość."
+    "story": "Vegas pokazuje odważniejszą stronę zegarmistrzostwa: charakterystyczną kopertę, mocną typografię i projekt wychodzący poza klasyczną zachowawczość.",
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/franck-muller-vegas/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/franck-muller-vegas/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/franck-muller-vegas/_variants/front-medium.webp",
+        "alt": "Franck Muller Vegas — przód"
+      }
+    ]
   },
   {
     "id": "54",
@@ -1113,7 +1951,15 @@
     ],
     "description": "Zenith El Primero Espada w różowym złocie — chronograf wysokiej częstotliwości 36 000 vph w sportowo-eleganckiej obudowie 40 mm.",
     "editorial": "El Primero z 1969 roku był pierwszym automatycznym chronografem wysokiej częstotliwości — 36 000 vph pozwala mierzyć czas z dokładnością do 1/10 sekundy. Wersja Espada w pełnym różowym złocie z trzylicznikową tarczą i zintegrowaną bransoletą sięga do estetyki sportowo-eleganckiej z lat 70., kiedy ta kategoria właśnie się definiowała.",
-    "story": "El Primero Espada odwołuje się do technicznej historii Zenith i rodziny El Primero. Mechaniczny rodowód marki jest równie ważny jak materiał i stan egzemplarza."
+    "story": "El Primero Espada odwołuje się do technicznej historii Zenith i rodziny El Primero. Mechaniczny rodowód marki jest równie ważny jak materiał i stan egzemplarza.",
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/zenith-el-primero-espada/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/zenith-el-primero-espada/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/zenith-el-primero-espada/_variants/front-medium.webp",
+        "alt": "Zenith El Primero Espada — przód"
+      }
+    ]
   },
   {
     "id": "55",
@@ -1132,7 +1978,15 @@
     ],
     "description": "Omega Speedmaster Moonwatch Professional 42 mm — ręcznie nakręcany chronograf certyfikowany przez NASA, z kalibrem Master Chronometer 3861.",
     "editorial": "Speedmaster Professional to jedyny zegarek certyfikowany przez NASA do misji załogowych w przestrzeni kosmicznej — od Gemini, przez wszystkie sześć lądowań na Księżycu, po ISS. Aktualna wersja z kalibrem Master Chronometer 3861 zachowuje ręczne nakręcanie, hesalitowe szkło w opcji oraz architekturę tarczy praktycznie niezmienioną od 1969 roku.",
-    "story": "Speedmaster Moonwatch Professional należy do praktycznej, rozpoznawalnej części świata Omegi, gdzie historia modelu spotyka się z codzienną użytecznością. Referencja i stan wymagają standardowej weryfikacji."
+    "story": "Speedmaster Moonwatch Professional należy do praktycznej, rozpoznawalnej części świata Omegi, gdzie historia modelu spotyka się z codzienną użytecznością. Referencja i stan wymagają standardowej weryfikacji.",
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/omega-speedmaster-moonwatch-professional/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/omega-speedmaster-moonwatch-professional/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/omega-speedmaster-moonwatch-professional/_variants/front-medium.webp",
+        "alt": "Omega Speedmaster Moonwatch Professional — przód"
+      }
+    ]
   },
   {
     "id": "56",
@@ -1151,7 +2005,15 @@
     ],
     "description": "Omega Constellation 39 mm w wersji steel-gold z cyframi rzymskimi i kalibrem Master Chronometer 8900.",
     "editorial": "Constellation to najstarsza ciągle produkowana linia Omegi — debiutowała w 1952 roku jako pierwszy seryjny chronometr marki. Charakterystyczne, czteropazurowe „mocowania” na bezelu i zintegrowana bransoleta od 1982 roku stały się sygnaturą modelu. Wersja steel-gold z cyframi rzymskimi i kalibrem Master Chronometer 8900 to klasyk gatunku Sport-Elegant.",
-    "story": "Constellation należy do praktycznej, rozpoznawalnej części świata Omegi, gdzie historia modelu spotyka się z codzienną użytecznością. Referencja i stan wymagają standardowej weryfikacji."
+    "story": "Constellation należy do praktycznej, rozpoznawalnej części świata Omegi, gdzie historia modelu spotyka się z codzienną użytecznością. Referencja i stan wymagają standardowej weryfikacji.",
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/omega-constellation/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/omega-constellation/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/omega-constellation/_variants/front-medium.webp",
+        "alt": "Omega Constellation — przód"
+      }
+    ]
   },
   {
     "id": "57",
@@ -1171,7 +2033,15 @@
     "description": "Chopard Happy Sport ref. 278559-3001 w białym złocie z ruchomymi diamentami pływającymi nad tarczą — sygnaturalna komplikacja maison.",
     "editorial": "Happy Sport, debiut 1993, opiera się na opatentowanym pomyśle Caroline Scheufele: ruchome diamenty zamknięte między dwoma szafirowymi kryształami, swobodnie pływające po tarczy. Każdy obrót nadgarstka wprawia kamienie w ruch — to mechaniczna kinetyka, która zaprojektowała własny język marki Chopard.",
     "story": "Happy Sport łączy zegarmistrzostwo Chopard z jubilerskim wyczuciem formy. Przy takich modelach szczególnie ważne jest potwierdzenie kamieni, materiału oraz kompletności dokumentów.",
-    "isExclusive": true
+    "isExclusive": true,
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/chopard-happy-sport/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/chopard-happy-sport/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/chopard-happy-sport/_variants/front-medium.webp",
+        "alt": "Chopard Happy Sport — przód"
+      }
+    ]
   },
   {
     "id": "58",
@@ -1191,7 +2061,15 @@
     "description": "Patek Philippe Perpetual Calendar ref. 3940J w żółtym złocie — najdłużej produkowany kalendarz wieczny Patka (1985–2007).",
     "editorial": "Ref. 3940 produkowano w latach 1985–2007 — to najdłużej oferowany kalendarz wieczny Patek Philippe i jeden z najcieńszych automatycznych perpetuali w historii (3,75 mm grubości mechanizmu). Trzy podtarcze, wskaźnik faz księżyca i okienko 24-godzinne ułożone z idealną symetrią, której nowsza ref. 5327 już nie odtwarza tak czysto.",
     "story": "Perpetual Calendar reprezentuje klasyczne podejście Patek Philippe do zegarków komplikowanych i eleganckich. Najważniejsze są proporcja, czytelność wskazań i potwierdzona dokumentacja konkretnego egzemplarza.",
-    "isExclusive": true
+    "isExclusive": true,
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/patek-philippe-perpetual-calendar/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/patek-philippe-perpetual-calendar/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/patek-philippe-perpetual-calendar/_variants/front-medium.webp",
+        "alt": "Patek Philippe Perpetual Calendar — przód"
+      }
+    ]
   },
   {
     "id": "59",
@@ -1211,7 +2089,15 @@
     "description": "Vacheron Constantin Overseas ref. 1205V z lat 90. — pełne żółte złoto z diamentowym bezelem, pierwsza generacja kontynuująca dziedzictwo ref. 222.",
     "editorial": "Pierwsza generacja Overseas (ref. 1205V) z lat 90. wywodzi się bezpośrednio z legendarnej 222 zaprojektowanej przez Jörga Hyseka w 1977 roku — odpowiedzi Vacheron Constantin na Royal Oaka i Nautilusa. Wersja w pełnym żółtym złocie z diamentowym bezelem to rzadko spotykana, jubilerska interpretacja sportowo-eleganckiego klasyka Genewy.",
     "story": "Overseas wpisuje się w tradycję jednej z najstarszych genewskich manufaktur. Istotne są proporcje, wykończenie oraz pewność referencji konkretnego egzemplarza.",
-    "isExclusive": true
+    "isExclusive": true,
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/vacheron-constantin-overseas/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/vacheron-constantin-overseas/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/vacheron-constantin-overseas/_variants/front-medium.webp",
+        "alt": "Vacheron Constantin Overseas — przód"
+      }
+    ]
   },
   {
     "id": "60",
@@ -1231,7 +2117,15 @@
     "description": "Chopard L.U.C Chronometer ref. 161902-5001 — limitowana edycja 100 egzemplarzy w pełnym złocie, z certyfikatem COSC i pieczęcią genewską.",
     "editorial": "Limitowana edycja 100 egzemplarzy w pełnym złocie — Chopard od lat buduje w manufakturze L.U.C w Fleurier zegarki z certyfikacją chronometru COSC i pieczęcią genewską jednocześnie. Numerowany egzemplarz to dokument konkretnego momentu w historii L.U.C, mającego krótszą, ale bardzo zdyscyplinowaną tradycję wśród szwajcarskich manufaktur.",
     "story": "Chronometer 1 of 100 łączy zegarmistrzostwo Chopard z jubilerskim wyczuciem formy. Przy takich modelach szczególnie ważne jest potwierdzenie kamieni, materiału oraz kompletności dokumentów.",
-    "isExclusive": true
+    "isExclusive": true,
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/chopard-chronometer-1-of-100/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/chopard-chronometer-1-of-100/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/chopard-chronometer-1-of-100/_variants/front-medium.webp",
+        "alt": "Chopard Chronometer 1 of 100 — przód"
+      }
+    ]
   },
   {
     "id": "61",
@@ -1250,7 +2144,15 @@
     ],
     "description": "Franck Muller Long Island ref. 1200 SC DT w różowym złocie — prostokątna koperta art déco z charakterystyczną „balonową” typografią cyfr.",
     "editorial": "Long Island Franck Mullera bezpośrednio cytuje epokę art déco i prostokątne zegarki Cartiera, Patka i Jaeger-LeCoultre z lat 20. i 30. Charakterystyczna typografia liczb w „balonowych” odlewach i wydłużona, lekko wybrzuszona koperta to znak rozpoznawczy tego niezależnego mistrza komplikacji.",
-    "story": "Long Island pokazuje odważniejszą stronę zegarmistrzostwa: charakterystyczną kopertę, mocną typografię i projekt wychodzący poza klasyczną zachowawczość."
+    "story": "Long Island pokazuje odważniejszą stronę zegarmistrzostwa: charakterystyczną kopertę, mocną typografię i projekt wychodzący poza klasyczną zachowawczość.",
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/franck-muller-long-island/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/franck-muller-long-island/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/franck-muller-long-island/_variants/front-medium.webp",
+        "alt": "Franck Muller Long Island — przód"
+      }
+    ]
   },
   {
     "id": "62",
@@ -1270,7 +2172,15 @@
     "description": "Bvlgari Bvlgari ref. 103711 w stali, koperta 41 mm z grawerowanym podwójnym logo na bezelu i manufakturowym kalibrem BVL 191.",
     "editorial": "Współczesna interpretacja linii Bvlgari Bvlgari w kopercie 41 mm ze stali — z grawerowanym podwójnym logo na bezelu, które pozostaje znakiem rozpoznawczym kolekcji od 1977 roku. Manufakturowy kaliber automatyczny BVL 191 i czysto rzymska estetyka, którą Bvlgari rozwija od momentu przejęcia Daniela Roth i Gérald Genta w 2000 roku.",
     "story": "Bvlgari 103711 pokazuje rzymski, graficzny język Bvlgari, w którym logo i geometria koperty są częścią projektu. To zegarek stojący blisko biżuterii, ale zachowujący codzienną funkcję.",
-    "isNew": true
+    "isNew": true,
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/bvlgari-bvlgari-103711/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/bvlgari-bvlgari-103711/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/bvlgari-bvlgari-103711/_variants/front-medium.webp",
+        "alt": "Bvlgari Bvlgari 103711 — przód"
+      }
+    ]
   },
   {
     "id": "63",
@@ -1289,7 +2199,15 @@
     ],
     "description": "IWC Portugieser Chronograph ref. IW371611 w różowym złocie 41 mm — klasyczny układ z dwiema podtarczami i kolejowym torem minutowym.",
     "editorial": "Linia Portugieser powstała w 1939 roku jako duży, czytelny zegarek dla portugalskich oficerów marynarki — na tarczy obowiązywała precyzja chronometrów morskich. Wersja chronograf w różowym złocie 41 mm z kalibrem 69355 to klasyczny układ z dwiema podtarczami, kolejowym torem minutowym i charakterystycznym smukłym Feuilles.",
-    "story": "Chronograph Portugieser reprezentuje techniczną, czytelną elegancję IWC. Marka słynie z dużych tarcz, praktycznych komplikacji i zegarków użytkowych mimo prestiżowego charakteru."
+    "story": "Chronograph Portugieser reprezentuje techniczną, czytelną elegancję IWC. Marka słynie z dużych tarcz, praktycznych komplikacji i zegarków użytkowych mimo prestiżowego charakteru.",
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/iwc-chronograph-portugieser/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/iwc-chronograph-portugieser/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/iwc-chronograph-portugieser/_variants/front-medium.webp",
+        "alt": "IWC Chronograph Portugieser — przód"
+      }
+    ]
   },
   {
     "id": "64",
@@ -1309,7 +2227,15 @@
     "description": "IWC Portugieser Perpetual Calendar ref. IW503404 — limitowana edycja 250 egzemplarzy w różowym złocie, z 7-dniową rezerwą chodu i fazami księżyca dla obu półkul.",
     "editorial": "Limitowana do 250 egzemplarzy seria Portugieser Perpetual Calendar w pełnym różowym złocie — z mechanizmem 51614, 7-dniową rezerwą chodu i wskazaniem faz księżyca dla obu półkul (błąd jednego dnia raz na 577,5 roku). Komplikacja zaprojektowana przez Kurta Klausa w latach 80. i do dziś używana praktycznie bez zmian konstrukcyjnych.",
     "story": "Perpetual Calendar 1 of 250 reprezentuje techniczną, czytelną elegancję IWC. Marka słynie z dużych tarcz, praktycznych komplikacji i zegarków użytkowych mimo prestiżowego charakteru.",
-    "isExclusive": true
+    "isExclusive": true,
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/iwc-perpetual-calendar-1-of-250/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/iwc-perpetual-calendar-1-of-250/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/iwc-perpetual-calendar-1-of-250/_variants/front-medium.webp",
+        "alt": "IWC Perpetual Calendar 1 of 250 — przód"
+      }
+    ]
   },
   {
     "id": "65",
@@ -1328,6 +2254,14 @@
     ],
     "description": "IWC Portugieser Automatic 7 Days ref. IW500705 w stali 42,3 mm — manufakturowy kaliber 51011 z tygodniową rezerwą chodu i wskaźnikiem rezerwy o godzinie 3.",
     "editorial": "Manufakturowy kaliber 51011 zapewnia tygodniową rezerwę chodu — dlatego po dłuższym zostawieniu zegarka „w szufladzie” i tak chodzi dalej. Wskaźnik rezerwy o godzinie 3 i mała sekunda o godzinie 9 dają tarczy znak rozpoznawczy całej linii Portugieser; wersja stalowa 42,3 mm to klasyczny punkt wejścia w manufakturową ofertę IWC.",
-    "story": "Portugieser 7 days reprezentuje techniczną, czytelną elegancję IWC. Marka słynie z dużych tarcz, praktycznych komplikacji i zegarków użytkowych mimo prestiżowego charakteru."
+    "story": "Portugieser 7 days reprezentuje techniczną, czytelną elegancję IWC. Marka słynie z dużych tarcz, praktycznych komplikacji i zegarków użytkowych mimo prestiżowego charakteru.",
+    "imageAssets": [
+      {
+        "original": "https://cdn.camalio.pl/products/iwc-portugieser-7-days/front.jpg",
+        "thumb": "https://cdn.camalio.pl/products/iwc-portugieser-7-days/_variants/front-thumb.webp",
+        "medium": "https://cdn.camalio.pl/products/iwc-portugieser-7-days/_variants/front-medium.webp",
+        "alt": "IWC Portugieser 7 days — przód"
+      }
+    ]
   }
 ]

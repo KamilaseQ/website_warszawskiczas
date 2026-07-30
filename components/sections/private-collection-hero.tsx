@@ -49,7 +49,7 @@ export function PrivateCollectionHero({ locale = 'pl' }: { locale?: Locale } = {
     >
       <div className="pointer-events-none absolute inset-0">
         <CriticalHeroImage
-          src="/watch-31.jpg"
+          src="/watch-31-v2.webp"
           alt=""
           fill
           priority

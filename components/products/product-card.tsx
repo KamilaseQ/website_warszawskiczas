@@ -8,10 +8,21 @@ import { localeFromPathname, localizePath, ui } from '@/lib/i18n'
 import { productUrlSlug } from '@/lib/product-url'
 import { formatProductPrice, localizeProductStatus } from '@/lib/localized-products'
 import { ProductImage } from '@/components/products/product-image'
-import type { Product } from '@/from-cms/schemas/product'
+import type { CdnImageVariant } from '@/lib/cdn-image'
+import type { CatalogProduct } from '@/lib/catalog-product'
 import { productImageAlt, productImageSources } from '@/lib/product-images'
 
-function CardImage({ product }: { product: Product }) {
+function CardImage({
+  product,
+  priority = false,
+  variant,
+  deferUntilVisible = false,
+}: {
+  product: CatalogProduct
+  priority?: boolean
+  variant: CdnImageVariant
+  deferUntilVisible?: boolean
+}) {
   const image = productImageSources(product)[0]
   if (!image) {
     return (
@@ -24,23 +35,31 @@ function CardImage({ product }: { product: Product }) {
   return (
     <ProductImage
       image={image}
-      variant="medium"
+      variant={variant}
       alt={productImageAlt(image, `${product.brand} ${product.name}`)}
       fill
-      sizes="(min-width: 1280px) 22vw, (min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"
+      priority={priority}
+      fetchPriority={priority ? 'high' : 'auto'}
+      loading={priority ? 'eager' : 'lazy'}
+      deferUntilVisible={deferUntilVisible}
+      sizes="(min-width: 1280px) 22vw, (min-width: 1024px) 30vw, 45vw"
       className="object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.05]"
     />
   )
 }
 
 interface ProductCardProps {
-  product: Product
+  product: CatalogProduct
   className?: string
   /** aspect ratio klasy obrazu — dla bento */
   aspect?: 'portrait' | 'square' | 'tall' | 'wide'
   /** układ karty: default = standard pionowy, feature = horyzontalny breakout */
   layout?: 'default' | 'feature'
   priority?: boolean
+  /** Katalog używa lekkiego `thumb`; większe pojedyncze karty mogą wybrać `medium`. */
+  imageVariant?: CdnImageVariant
+  /** Stabilny znacznik wyłącznie dla kart w głównym katalogu i jego testów. */
+  catalogItem?: boolean
 }
 
 // Tymczasowo wyłączone plakietki na kartach produktów (status „Dostępny",
@@ -55,12 +74,21 @@ const aspectMap = {
   wide: 'aspect-[4/3] sm:aspect-[16/10]',
 }
 
-export function ProductCard({ product, className, aspect = 'portrait', layout = 'default' }: ProductCardProps) {
+export function ProductCard({
+  product,
+  className,
+  aspect = 'portrait',
+  layout = 'default',
+  priority = false,
+  imageVariant = 'medium',
+  catalogItem = false,
+}: ProductCardProps) {
   const pathname = usePathname()
   const locale = localeFromPathname(pathname)
   const t = ui[locale]
   const formattedPrice = formatProductPrice(product, locale)
   const primaryImage = productImageSources(product)[0]
+  const ProductNameHeading = catalogItem ? 'h2' : 'h3'
 
   const statusColor =
     product.status === 'Niedostępny'
@@ -83,6 +111,8 @@ export function ProductCard({ product, className, aspect = 'portrait', layout = 
               variant="medium"
               alt={productImageAlt(primaryImage, `${product.brand} ${product.name}`)}
               fill
+              priority={priority}
+              fetchPriority={priority ? 'high' : 'auto'}
               sizes="(min-width: 1024px) 40vw, 90vw"
               className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
             />
@@ -97,16 +127,16 @@ export function ProductCard({ product, className, aspect = 'portrait', layout = 
         </div>
 
         <div className="col-span-2 flex flex-col justify-center">
-          <p className="font-sans text-[9px] font-bold uppercase tracking-[0.35em] text-accent-gold sm:text-[10px]">
+          <p className="font-sans text-[10px] font-bold uppercase tracking-[0.32em] text-accent-gold-dark">
             {product.brand}
           </p>
-          <h3 className="mt-1 font-serif text-base font-medium leading-tight text-foreground transition-colors duration-300 group-hover:text-accent-gold sm:text-2xl">
+          <ProductNameHeading className="mt-1 font-serif text-base font-medium leading-tight text-foreground transition-colors duration-300 group-hover:text-accent-gold sm:text-2xl">
             {product.name}
-          </h3>
-          {product.reference && (
-            <p className="mt-1 font-sans text-[9px] uppercase tracking-[0.2em] text-muted-foreground sm:text-[11px]">
-              Ref. {product.reference}
-              {product.year ? ` · ${product.year}` : ''}
+          </ProductNameHeading>
+          {(product.reference || product.year) && (
+            <p className="mt-1 font-sans text-[10px] uppercase tracking-[0.18em] text-muted-foreground sm:text-[11px]">
+              {product.reference ? `Ref. ${product.reference}` : product.year}
+              {product.reference && product.year ? ` · ${product.year}` : ''}
             </p>
           )}
           <div className="mt-3 h-px w-8 bg-accent-gold/40" />
@@ -118,7 +148,7 @@ export function ProductCard({ product, className, aspect = 'portrait', layout = 
           >
             {formattedPrice}
           </span>
-          <span className="mt-2 inline-flex items-center gap-1 text-[9px] font-bold uppercase tracking-[0.3em] text-foreground/70 transition-colors duration-300 group-hover:text-accent-gold sm:text-[10px]">
+          <span className="mt-2 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-[0.28em] text-foreground/70 transition-colors duration-300 group-hover:text-accent-gold">
             {locale === 'pl' ? 'Zobacz' : locale === 'en' ? 'View' : 'Переглянути'}{' '}
             <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
           </span>
@@ -131,14 +161,21 @@ export function ProductCard({ product, className, aspect = 'portrait', layout = 
     <Link
       href={localizePath(`/produkty/${productUrlSlug(product)}`, locale)}
       prefetch={false}
+      data-catalog-card={catalogItem ? '' : undefined}
       className={cn(
-        'group relative block transition-transform duration-500 ease-out will-change-transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:translate-y-0',
+        'group relative block transition-transform duration-500 ease-out hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:translate-y-0',
+        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-gold focus-visible:ring-offset-4 focus-visible:ring-offset-background',
         className
       )}
     >
-      <div className={cn('relative overflow-hidden', aspectMap[aspect])}>
+      <div className={cn('relative overflow-hidden bg-muted', aspectMap[aspect])}>
         <div className="absolute inset-0">
-          <CardImage product={product} />
+          <CardImage
+            product={product}
+            priority={priority}
+            variant={imageVariant}
+            deferUntilVisible={catalogItem && !priority}
+          />
         </div>
 
         <Badges product={product} statusColor={statusColor} statusLabel={statusLabel} labels={{ new: t.new, onRequest: t.onRequest }} />
@@ -162,16 +199,16 @@ export function ProductCard({ product, className, aspect = 'portrait', layout = 
       </div>
 
       <div className="mt-3 sm:mt-4">
-        <p className="font-sans text-[8px] font-bold uppercase tracking-[0.35em] text-accent-gold sm:text-[10px]">
+        <p className="font-sans text-[10px] font-bold uppercase tracking-[0.3em] text-accent-gold-dark">
           {product.brand}
         </p>
-        <h3 className="mt-1 font-serif text-sm font-medium leading-tight text-foreground transition-colors duration-300 group-hover:text-accent-gold sm:text-xl">
+        <ProductNameHeading className="mt-1 font-serif text-base font-medium leading-tight text-foreground transition-colors duration-300 group-hover:text-accent-gold sm:text-xl">
           {product.name}
-        </h3>
-        {product.reference && (
-          <p className="mt-1 font-sans text-[8px] uppercase tracking-[0.2em] text-muted-foreground sm:text-[11px]">
-            Ref. {product.reference}
-            {product.year ? ` · ${product.year}` : ''}
+        </ProductNameHeading>
+        {(product.reference || product.year) && (
+          <p className="mt-1 font-sans text-[10px] uppercase tracking-[0.16em] text-muted-foreground sm:text-[11px] sm:tracking-[0.2em]">
+            {product.reference ? `Ref. ${product.reference}` : product.year}
+            {product.reference && product.year ? ` · ${product.year}` : ''}
           </p>
         )}
         <div className="mt-2 flex items-center justify-between gap-2 sm:mt-3 sm:gap-4">
@@ -199,7 +236,7 @@ function Badges({
   statusLabel,
   labels,
 }: {
-  product: Product
+  product: Pick<CatalogProduct, 'status' | 'isNew' | 'isExclusive'>
   statusColor: string
   statusLabel?: string
   labels: { new: string; onRequest: string }

@@ -17,7 +17,7 @@
  */
 
 import { LeadPayloadSchema, LeadResponseSchema, type LeadPayload, type LeadResponse } from '../schemas/lead'
-import { PUBLIC_LEAD_URL } from '../mode'
+import { PUBLIC_LEAD_URL } from '../public-lead'
 
 const CONTACT_ENDPOINT = '/api/contact'
 

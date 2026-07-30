@@ -208,7 +208,7 @@ export function BoutiquePage({ locale = 'pl' }: { locale?: Locale } = {}) {
       <section className="relative isolate min-h-screen w-full overflow-hidden bg-[#050403] text-white">
         <div className="absolute inset-0">
           <CriticalHeroImage
-            src="/butikmain.jpg"
+            src="/butikmain-v2.webp"
             alt={t.imageAltMain}
             fill
             priority

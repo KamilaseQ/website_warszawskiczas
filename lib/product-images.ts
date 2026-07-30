@@ -29,6 +29,26 @@ export function productImageVariantUrl(
   return image[variant] ?? image.original
 }
 
+/**
+ * SEO nie ma runtime `onError`, więc dla starego `images: string[]` nie wolno
+ * zgadywać URL-a wariantu. Jawny kontrakt `imageAssets` może bezpiecznie użyć WebP.
+ */
+export function productSeoImageUrl(
+  image: ProductImageSource,
+  variant: CdnImageVariant,
+): string {
+  return typeof image === 'string' ? image : productImageVariantUrl(image, variant)
+}
+
+export function productSeoImageUrls(
+  product: Pick<Product, 'imageAssets' | 'images'>,
+  variant: CdnImageVariant,
+): string[] {
+  return productImageSources(product).map((image) =>
+    productSeoImageUrl(image, variant),
+  )
+}
+
 export function productOriginalUrls(product: Pick<Product, 'imageAssets' | 'images'>): string[] {
   return productImageSources(product).map(productImageOriginal)
 }

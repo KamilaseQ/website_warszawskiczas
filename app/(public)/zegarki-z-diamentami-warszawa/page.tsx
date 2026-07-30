@@ -22,9 +22,9 @@ export const metadata: Metadata = {
     description: DESCRIPTION,
     siteName: 'Warszawski Czas',
     locale: 'pl_PL',
-    images: [{ url: 'https://warszawskiczas.pl/chopard.jpg', alt: 'Zegarki z diamentami — butik Warszawski Czas' }],
+    images: [{ url: 'https://warszawskiczas.pl/chopard-v2.webp', alt: 'Zegarki z diamentami — butik Warszawski Czas' }],
   },
-  twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION, images: ['https://warszawskiczas.pl/chopard.jpg'] },
+  twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION, images: ['https://warszawskiczas.pl/chopard-v2.webp'] },
 }
 
 export default async function Page() {
@@ -42,7 +42,7 @@ export default async function Page() {
         intro="Zegarki z diamentami w wersjach fabrycznych i custom iced out: Rolex Datejust z bezelem diamentowym, Cartier Panthère i Tank z indeksami brylantowymi, Chopard Happy Sport z ruchomymi diamentami, Patek Philippe Twenty~4, Bvlgari Bvlgari Bvlgari, Audemars Piguet Royal Oak frosted gold. Wszystkie egzemplarze z certyfikatem autentyczności i wyceną diamentów."
         primaryCtaLabel="Zobacz zegarki z diamentami"
         source="landing-zegarki-z-diamentami"
-        heroImage={{ src: '/chopard.jpg', alt: 'Chopard z diamentami — Warszawski Czas' }}
+        heroImage={{ src: '/chopard-v2.webp', alt: 'Chopard z diamentami — Warszawski Czas' }}
         body={[
           {
             heading: 'Diamentowe zegarki — fabryczne, after-market i custom iced out',

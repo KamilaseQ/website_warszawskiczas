@@ -31,14 +31,16 @@ npm ci
 npm run dev
 ```
 
-Domyślnie, bez `CMS_MODE=live`, adapter produktów korzysta z `from-cms/fixtures/products.json`.
+W `npm run dev` brak `CMS_MODE` świadomie oznacza fixtures. Produkcyjny build
+jest fail-closed i wymaga jawnego `CMS_MODE=mock` albo `CMS_MODE=live`; brak lub
+literówka przerywa build zamiast po cichu publikować stare dane.
 
 ## Kontrole przed commitem
 
 Pełna kontrola lokalna:
 
 ```bash
-npm run verify
+CMS_MODE=mock npm run verify
 ```
 
 Polecenie wykonuje kolejno:

@@ -14,6 +14,8 @@
     /* Accent colors */
     --accent-green: 153 42% 18%;
     --accent-gold: 42 65% 36%;
+    /* Ciemniejsze złoto dla drobnego tekstu na jasnym tle (WCAG AA). */
+    --accent-gold-dark: 42 65% 32%;
     /* Borders */
     --border: 30 10% 90%;
     --input: 30 10% 90%;

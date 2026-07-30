@@ -27,6 +27,28 @@ function cleanValue(value: unknown): string | undefined {
   return text ? text : undefined
 }
 
+/**
+ * Normalizuje wagę zapisaną przez CMS. Starsze rekordy zawierają zarówno
+ * wartości liczbowe (`12`), jak i gotowe etykiety (`12 g`), dlatego jednostkę
+ * dokładamy tylko wtedy, gdy nie ma jej już w danych.
+ */
+export function formatProductWeight(value: unknown): string | undefined {
+  const weight = cleanValue(value)
+  if (!weight) return undefined
+
+  const grams = weight.match(
+    /^(.*\d)\s*(?:(?:g|gr|gram(?:s|y|ów)?)\.?\s*)+$/iu,
+  )
+  if (grams) return `${grams[1].trim()} g`
+
+  // Nie zmieniamy jawnie podanej innej jednostki.
+  if (/^.*\d\s*(?:mg|kg|milligrams?|kilograms?)\.?$/iu.test(weight)) {
+    return weight
+  }
+
+  return `${weight} g`
+}
+
 export function productReferenceIdentifier(
   product: Pick<Product, 'reference'>,
 ): string | undefined {
@@ -50,23 +72,37 @@ export function productCategoryName(category: ProductCategory, locale: Locale): 
 
 export function productAdditionalProperties(product: Product) {
   const reference = productReferenceIdentifier(product)
-  const properties = [
+  const categoryProperties: Array<[string, unknown]> =
+    product.category === 'zegarki'
+      ? [['Case size', product.caseSize]]
+      : product.category === 'bizuteria'
+        ? [
+            ['Fineness', product.fineness],
+            ['Gemstone', product.gemstone],
+            ['Weight', formatProductWeight(product.weightG)],
+            ['Jewellery size', product.jewelrySize],
+          ]
+        : []
+  const rawProperties: Array<[string, unknown]> = [
     ['Reference', reference],
-    ['Case size', product.caseSize],
+    ...categoryProperties,
     ['Production year', product.year],
     ['Condition', product.condition],
+    ['Material', product.material],
     ['Availability status', product.status],
   ]
-    .map(([name, value]) => {
-      const clean = cleanValue(value)
-      if (!clean) return null
-      return {
-        '@type': 'PropertyValue',
-        name,
-        value: clean,
-      }
-    })
-    .filter(Boolean)
+  const properties = rawProperties.flatMap(([name, value]) => {
+    const clean = cleanValue(value)
+    return clean
+      ? [
+          {
+            '@type': 'PropertyValue',
+            name,
+            value: clean,
+          },
+        ]
+      : []
+  })
 
   return properties.length ? properties : undefined
 }

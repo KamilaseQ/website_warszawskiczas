@@ -13,9 +13,13 @@
     "check:links": "node scripts/seo-audit.mjs --scope links",
     "check:images": "node scripts/seo-audit.mjs --scope images",
     "audit:cdn-images": "node scripts/audit-product-cdn.mjs",
+    "audit:fixture-images": "node scripts/enrich-fixture-image-assets.mjs --verify",
+    "audit:static-images": "node scripts/audit-static-images.mjs",
+    "optimize:static-images": "node scripts/optimize-static-images.mjs",
+    "fixtures:image-assets": "node scripts/enrich-fixture-image-assets.mjs",
     "check:product-urls": "node scripts/seo-audit.mjs --scope products",
     "verify:seo": "node scripts/verify-built-site.mjs",
-    "verify": "npm run lint && npm run build && npm run verify:seo"
+    "verify": "npm run lint && npm run audit:static-images && npm run build && npm run verify:seo"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.4",

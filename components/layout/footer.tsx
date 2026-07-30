@@ -70,7 +70,7 @@ export function Footer() {
             <p className="mt-5 whitespace-pre-line font-serif text-base italic leading-snug text-white/80">
               {t.footerTagline}
             </p>
-            <p className="mt-4 text-sm leading-relaxed text-white/45">{t.footerDescription}</p>
+            <p className="mt-4 text-sm leading-relaxed text-white/70">{t.footerDescription}</p>
 
             <div className="mt-6 flex items-center gap-4">
               <a
@@ -105,7 +105,7 @@ export function Footer() {
 
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:col-span-2">
             <div>
-              <h3 className="font-sans text-[10px] font-bold uppercase tracking-[0.4em] text-white/40">
+              <h3 className="font-sans text-[10px] font-bold uppercase tracking-[0.4em] text-white/70">
                 {t.offer}
               </h3>
               <ul className="mt-4 space-y-3">
@@ -123,7 +123,7 @@ export function Footer() {
             </div>
 
             <div>
-              <h3 className="font-sans text-[10px] font-bold uppercase tracking-[0.4em] text-white/40">
+              <h3 className="font-sans text-[10px] font-bold uppercase tracking-[0.4em] text-white/70">
                 {t.services}
               </h3>
               <ul className="mt-4 space-y-3">
@@ -141,7 +141,7 @@ export function Footer() {
             </div>
 
             <div>
-              <h3 className="font-sans text-[10px] font-bold uppercase tracking-[0.4em] text-white/40">
+              <h3 className="font-sans text-[10px] font-bold uppercase tracking-[0.4em] text-white/70">
                 {t.info}
               </h3>
               <ul className="mt-4 space-y-3">
@@ -169,7 +169,7 @@ export function Footer() {
           </div>
 
           <div className="lg:col-span-1">
-            <h3 className="font-sans text-[10px] font-bold uppercase tracking-[0.4em] text-white/40">
+            <h3 className="font-sans text-[10px] font-bold uppercase tracking-[0.4em] text-white/70">
               {t.contact}
             </h3>
             <ul className="mt-4 space-y-4">
@@ -214,27 +214,27 @@ export function Footer() {
         </div>
 
         <div className="mt-12 flex flex-col items-center gap-4 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-center text-xs uppercase tracking-[0.25em] text-white/30 sm:text-left">
+          <p className="text-center text-xs uppercase tracking-[0.25em] text-white/70 sm:text-left">
             &copy; {new Date().getFullYear()} Warszawski Czas
           </p>
-          <nav className="flex items-center gap-6">
+          <nav className="flex flex-wrap items-center justify-center gap-x-4 gap-y-3 sm:gap-6">
             <Link
               href={localizePath('/polityka-prywatnosci', locale)}
-              className="font-sans text-[10px] uppercase tracking-[0.3em] text-white/40 transition-colors hover:text-accent-gold"
+              className="font-sans text-[10px] uppercase tracking-[0.3em] text-white/70 transition-colors hover:text-accent-gold"
             >
               {t.privacy}
             </Link>
             <span className="h-1 w-1 rounded-full bg-white/20" aria-hidden />
             <Link
               href={localizePath('/regulamin', locale)}
-              className="font-sans text-[10px] uppercase tracking-[0.3em] text-white/40 transition-colors hover:text-accent-gold"
+              className="font-sans text-[10px] uppercase tracking-[0.3em] text-white/70 transition-colors hover:text-accent-gold"
             >
               {t.terms}
             </Link>
             <span className="h-1 w-1 rounded-full bg-white/20" aria-hidden />
             <Link
               href={localizePath('/deklaracja-dostepnosci', locale)}
-              className="font-sans text-[10px] uppercase tracking-[0.3em] text-white/40 transition-colors hover:text-accent-gold"
+              className="font-sans text-[10px] uppercase tracking-[0.3em] text-white/70 transition-colors hover:text-accent-gold"
             >
               {t.accessibility}
             </Link>
@@ -242,7 +242,7 @@ export function Footer() {
             <button
               type="button"
               onClick={() => window.dispatchEvent(new Event('wc-open-cookie-settings'))}
-              className="font-sans text-[10px] uppercase tracking-[0.3em] text-white/40 transition-colors hover:text-accent-gold"
+              className="font-sans text-[10px] uppercase tracking-[0.3em] text-white/70 transition-colors hover:text-accent-gold"
             >
               {locale === 'en' ? 'Cookie settings' : locale === 'ua' ? 'Налаштування cookie' : 'Ustawienia cookies'}
             </button>
