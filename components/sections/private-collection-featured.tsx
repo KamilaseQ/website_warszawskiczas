@@ -16,6 +16,7 @@ import {
   ShieldCheck,
   Unlock,
 } from 'lucide-react'
+import { STATIC_IMAGES } from '@/lib/static-images'
 import { Container, Section, Magnetic } from '@/components/ui'
 import { FadeIn } from '@/components/ui/fade-in'
 import { cn } from '@/lib/utils'
@@ -76,7 +77,7 @@ const copy = {
         status: 'available',
         editorial:
           'Najbardziej skomplikowany Nautilus, jaki Patek wprowadził do kolekcji — dwie strefy czasowe z rozdzielonymi wskazaniami LOCAL/HOME, chronograf typu flyback i dyskretny datownik dzień/noc, wszystko upakowane w sportową kopertę Genty z lat 70. W wersji 5990/1R różowe złoto przesuwa ten zegarek z kategorii „sportowa elegancja" w stronę nocnej eleganckiej biżuterii — niebieska tarcza z poziomym reliefem łapie światło inaczej co minutę.',
-        image: '/patek-v2.webp',
+        image: STATIC_IMAGES.patek,
         specs: {
           mechanism: 'Automat, kal. CH 28-520 C FUS, flyback',
           diameter: '40,5 mm',
@@ -95,7 +96,7 @@ const copy = {
         status: 'available',
         editorial:
           'Royal Oak w klasycznych proporcjach 36 mm — tych, które Gérald Genta narysował w 1972 r. — z niezwykle rzadką burgundową tarczą Petite Tapisserie. Wino, stal i osiem heksagonalnych śrub na stalowym bezelu: kombinacja, która z na pozór codziennego sportowego zegarka robi pozycję trudną do znalezienia poza prywatnymi zbiorami. Burgundowa skóra aligatora dopowiada ton.',
-        image: '/ap-v2.webp',
+        image: STATIC_IMAGES.ap,
         specs: {
           mechanism: 'Automat, kal. AP 2225',
           diameter: '36 mm',
@@ -114,7 +115,7 @@ const copy = {
         status: 'available',
         editorial:
           'Tu nie chodzi już o pomiar czasu — chodzi o światło. Pełna pavéowa tarcza, trzy subtarcze chronografu wycięte w masie diamentów, koperta i bezel z baguettowymi kamieniami i klasycznymi cyframi rzymskimi w złocie. Kategorię tego zegarka Chopard zarezerwował dla najmniejszej, najbardziej dyskretnej linii haute joaillerie — egzemplarze tej skali rzadko opuszczają prywatne kolekcje rodzin szwajcarskich.',
-        image: '/chopard-v2.webp',
+        image: STATIC_IMAGES.chopard,
         specs: {
           mechanism: 'Automat, chronograph',
           diameter: '38 mm',
@@ -165,7 +166,7 @@ const copy = {
         status: 'available',
         editorial:
           "The most complicated Nautilus Patek has placed in the collection — two time zones with separate LOCAL/HOME indications, a flyback chronograph and a discreet day/night date, all packed inside Genta's 1970s sports case. In the 5990/1R the rose gold shifts this watch from \"sport elegance\" toward evening fine jewellery — the blue dial with horizontal relief catches the light differently every minute.",
-        image: '/patek-v2.webp',
+        image: STATIC_IMAGES.patek,
         specs: {
           mechanism: 'Automatic, cal. CH 28-520 C FUS, flyback',
           diameter: '40.5 mm',
@@ -184,7 +185,7 @@ const copy = {
         status: 'available',
         editorial:
           "A Royal Oak in the classic 36 mm proportions — the ones Gérald Genta drew in 1972 — with an exceptionally rare burgundy Petite Tapisserie dial. Wine, steel and eight hexagonal screws on a steel bezel: a combination that turns an apparently everyday sports watch into a piece hard to find outside private collections. The burgundy alligator strap completes the tone.",
-        image: '/ap-v2.webp',
+        image: STATIC_IMAGES.ap,
         specs: {
           mechanism: 'Automatic, cal. AP 2225',
           diameter: '36 mm',
@@ -203,7 +204,7 @@ const copy = {
         status: 'available',
         editorial:
           "This is no longer about measuring time — it is about light. A full pavé dial, three chronograph sub-dials cut from a mass of diamonds, a case and bezel set with baguette stones and classical Roman numerals in gold. Chopard reserved this category for the smallest, most discreet line of haute joaillerie — pieces of this scale rarely leave the private collections of Swiss families.",
-        image: '/chopard-v2.webp',
+        image: STATIC_IMAGES.chopard,
         specs: {
           mechanism: 'Automatic, chronograph',
           diameter: '38 mm',
@@ -254,7 +255,7 @@ const copy = {
         status: 'available',
         editorial:
           'Найскладніший Nautilus, який Patek представив у колекції — два часові пояси з окремими індикаціями LOCAL/HOME, флайбек-хронограф і дискретна індикація день/ніч, усе в спортивному корпусі Genta з 1970-х. У версії 5990/1R рожеве золото переводить цей годинник із категорії «спортивна елегантність» у вечірні ювелірні аксесуари — синій циферблат із горизонтальним рельєфом ловить світло по-різному щохвилини.',
-        image: '/patek-v2.webp',
+        image: STATIC_IMAGES.patek,
         specs: {
           mechanism: 'Автомат, кал. CH 28-520 C FUS, флайбек',
           diameter: '40,5 мм',
@@ -273,7 +274,7 @@ const copy = {
         status: 'available',
         editorial:
           'Royal Oak у класичних пропорціях 36 мм — тих, які Жеральд Жента намалював у 1972 р., — з надзвичайно рідкісним бордовим циферблатом Petite Tapisserie. Вино, сталь і вісім шестикутних гвинтів на сталевому безелі: комбінація, що перетворює, здавалося б, повсякденний спортивний годинник на екземпляр, який важко знайти поза приватними колекціями.',
-        image: '/ap-v2.webp',
+        image: STATIC_IMAGES.ap,
         specs: {
           mechanism: 'Автомат, кал. AP 2225',
           diameter: '36 мм',
@@ -292,7 +293,7 @@ const copy = {
         status: 'available',
         editorial:
           'Тут уже не йдеться про вимірювання часу — йдеться про світло. Повністю діамантовий циферблат, три субциферблати хронографа, вирізані в масі діамантів, корпус і безель з багетними каменями та класичними римськими цифрами із золота. Цю категорію Chopard зарезервував для найменшої, найдискретнішої лінії haute joaillerie — екземпляри такого рівня рідко залишають приватні колекції швейцарських родин.',
-        image: '/chopard-v2.webp',
+        image: STATIC_IMAGES.chopard,
         specs: {
           mechanism: 'Автомат, хронограф',
           diameter: '38 мм',

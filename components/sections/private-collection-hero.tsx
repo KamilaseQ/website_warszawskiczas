@@ -3,6 +3,7 @@ import { CriticalHeroImage } from '@/components/ui/critical-hero-image'
 import { Container, Section } from '@/components/ui'
 import { FadeIn } from '@/components/ui/fade-in'
 import type { Locale } from '@/lib/i18n'
+import { STATIC_IMAGES } from '@/lib/static-images'
 
 const copy = {
   pl: {
@@ -49,7 +50,7 @@ export function PrivateCollectionHero({ locale = 'pl' }: { locale?: Locale } = {
     >
       <div className="pointer-events-none absolute inset-0">
         <CriticalHeroImage
-          src="/watch-31-v2.webp"
+          src={STATIC_IMAGES.privateCollectionHero}
           alt=""
           fill
           priority

@@ -4,6 +4,7 @@ import { SeoLanding, landingBreadcrumbJsonLd, serviceJsonLd, itemListJsonLd } fr
 import { diamondWatches } from '@/lib/seo-product-filters'
 import { getAllProducts } from '@/from-cms/adapters/products'
 import { relatedLinksFor } from '@/lib/related-links'
+import { absoluteStaticImageUrl, STATIC_IMAGES } from '@/lib/static-images'
 
 const SLUG = 'zegarki-z-diamentami-warszawa'
 const URL = `https://warszawskiczas.pl/${SLUG}`
@@ -22,9 +23,9 @@ export const metadata: Metadata = {
     description: DESCRIPTION,
     siteName: 'Warszawski Czas',
     locale: 'pl_PL',
-    images: [{ url: 'https://warszawskiczas.pl/chopard-v2.webp', alt: 'Zegarki z diamentami — butik Warszawski Czas' }],
+    images: [{ url: absoluteStaticImageUrl(STATIC_IMAGES.chopard), alt: 'Zegarki z diamentami — butik Warszawski Czas' }],
   },
-  twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION, images: ['https://warszawskiczas.pl/chopard-v2.webp'] },
+  twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION, images: [absoluteStaticImageUrl(STATIC_IMAGES.chopard)] },
 }
 
 export default async function Page() {
@@ -42,7 +43,7 @@ export default async function Page() {
         intro="Zegarki z diamentami w wersjach fabrycznych i custom iced out: Rolex Datejust z bezelem diamentowym, Cartier Panthère i Tank z indeksami brylantowymi, Chopard Happy Sport z ruchomymi diamentami, Patek Philippe Twenty~4, Bvlgari Bvlgari Bvlgari, Audemars Piguet Royal Oak frosted gold. Wszystkie egzemplarze z certyfikatem autentyczności i wyceną diamentów."
         primaryCtaLabel="Zobacz zegarki z diamentami"
         source="landing-zegarki-z-diamentami"
-        heroImage={{ src: '/chopard-v2.webp', alt: 'Chopard z diamentami — Warszawski Czas' }}
+        heroImage={{ src: STATIC_IMAGES.chopard, alt: 'Chopard z diamentami — Warszawski Czas' }}
         body={[
           {
             heading: 'Diamentowe zegarki — fabryczne, after-market i custom iced out',

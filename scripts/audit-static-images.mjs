@@ -29,6 +29,7 @@ const retiredHeavyReferences = [
   '/patek.jpg',
   '/ap.jpg',
 ]
+const rawOptimizedPublicReference = /['"`]\/[^'"`?#]+-v2\.webp(?:[?#][^'"`]*)?['"`]/gi
 const failures = []
 
 for (const fileName of criticalImages) {
@@ -55,6 +56,12 @@ for (const fileName of metadataImages) {
 
 for (const file of await sourceFiles(sourceRoots)) {
   const source = await readFile(file, 'utf8')
+  for (const match of source.matchAll(rawOptimizedPublicReference)) {
+    failures.push(
+      `${path.relative(projectRoot, file)} references ${match[0]} as a raw public URL; ` +
+        'use STATIC_IMAGES so Hostinger serves the hashed build asset atomically',
+    )
+  }
   for (const retired of retiredHeavyReferences) {
     if (source.includes(retired)) {
       failures.push(`${path.relative(projectRoot, file)} still references ${retired}`)

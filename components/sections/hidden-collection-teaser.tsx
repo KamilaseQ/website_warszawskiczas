@@ -8,6 +8,7 @@ import { Lock } from 'lucide-react'
 import { Container, Section, ImagePlaceholder, KenBurns, ScrollDrift } from '@/components/ui'
 import { FadeIn } from '@/components/ui/fade-in'
 import { localeFromPathname, localizePath } from '@/lib/i18n'
+import { STATIC_IMAGES } from '@/lib/static-images'
 
 export function HiddenCollectionTeaser() {
   const pathname = usePathname()
@@ -104,7 +105,7 @@ export function HiddenCollectionTeaser() {
                       showDial={true}
                     />
                     <Image
-                      src="/franck-muller-vegas4-v2.webp"
+                      src={STATIC_IMAGES.franckMuller}
                       alt="Franck Muller Vegas"
                       fill
                       sizes="(min-width: 1024px) 50vw, 100vw"

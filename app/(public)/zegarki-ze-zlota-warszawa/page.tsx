@@ -4,6 +4,7 @@ import { SeoLanding, landingBreadcrumbJsonLd, serviceJsonLd, itemListJsonLd } fr
 import { goldWatches } from '@/lib/seo-product-filters'
 import { getAllProducts } from '@/from-cms/adapters/products'
 import { relatedLinksFor } from '@/lib/related-links'
+import { absoluteStaticImageUrl, STATIC_IMAGES } from '@/lib/static-images'
 
 const SLUG = 'zegarki-ze-zlota-warszawa'
 const URL = `https://warszawskiczas.pl/${SLUG}`
@@ -22,9 +23,9 @@ export const metadata: Metadata = {
     description: DESCRIPTION,
     siteName: 'Warszawski Czas',
     locale: 'pl_PL',
-    images: [{ url: 'https://warszawskiczas.pl/patek-v2.webp', alt: 'Złote zegarki — Warszawski Czas, Mokotowska 71' }],
+    images: [{ url: absoluteStaticImageUrl(STATIC_IMAGES.patek), alt: 'Złote zegarki — Warszawski Czas, Mokotowska 71' }],
   },
-  twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION, images: ['https://warszawskiczas.pl/patek-v2.webp'] },
+  twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION, images: [absoluteStaticImageUrl(STATIC_IMAGES.patek)] },
 }
 
 export default async function Page() {
@@ -42,7 +43,7 @@ export default async function Page() {
         intro="Zegarki w 18-karatowym złocie żółtym, różowym (Everose), białym oraz w wersjach bicolor (stal-złoto i Rolesor). Rolex Day-Date i Datejust w pełnym złocie, Patek Philippe Calatrava i Annual Calendar, Audemars Piguet Royal Oak w żółtym i różowym złocie, Cartier Tank Louis Cartier i Santos w 18K, Omega Constellation bicolor — szeroki wybór złotych zegarków w Warszawie."
         primaryCtaLabel="Zobacz złote zegarki"
         source="landing-zegarki-ze-zlota"
-        heroImage={{ src: '/patek-v2.webp', alt: 'Patek Philippe w złocie — butik Warszawski Czas' }}
+        heroImage={{ src: STATIC_IMAGES.patek, alt: 'Patek Philippe w złocie — butik Warszawski Czas' }}
         body={[
           {
             heading: 'Złote zegarki w Warszawie — żółte, różowe, białe i bicolor',

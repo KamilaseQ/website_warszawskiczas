@@ -4,6 +4,7 @@ import { SeoLanding, landingBreadcrumbJsonLd, serviceJsonLd, itemListJsonLd } fr
 import { chronographWatches } from '@/lib/seo-product-filters'
 import { getAllProducts } from '@/from-cms/adapters/products'
 import { relatedLinksFor } from '@/lib/related-links'
+import { absoluteStaticImageUrl, STATIC_IMAGES } from '@/lib/static-images'
 
 const SLUG = 'chronografy-warszawa'
 const URL = `https://warszawskiczas.pl/${SLUG}`
@@ -22,7 +23,7 @@ export const metadata: Metadata = {
     description: DESCRIPTION,
     siteName: 'Warszawski Czas',
     locale: 'pl_PL',
-    images: [{ url: 'https://warszawskiczas.pl/patek-philippe-nautilus-v2.webp', alt: 'Chronografy luksusowe — Warszawski Czas' }],
+    images: [{ url: absoluteStaticImageUrl(STATIC_IMAGES.patekNautilus), alt: 'Chronografy luksusowe — Warszawski Czas' }],
   },
   twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION },
 }

@@ -17,6 +17,21 @@ Strona jest dodana w hPanel jako **Node.js / Next.js app**, build leci
 Pliki klienta (`/_next/static/*`) i route'y serwerowe (`/api/*`) serwuje
 **proces Node**, a nie Apache z katalogu statycznego.
 
+### Krytyczne obrazy: import statyczny, nie surowy URL `/public`
+
+Warstwa hCDN/public_html Hostingera potrafi zacząć podawać nowy HTML wcześniej
+niż nowe pliki dodane pod głównymi URL-ami `/nazwa.webp`. Powstaje wtedy krótka,
+ale widoczna regresja: nowa strona odwołuje się do obrazu, który nadal zwraca
+404. Dlatego krytyczne obrazy interfejsu są importowane przez
+`lib/static-images.ts`. Next emituje je jako hashowane
+`/_next/static/media/*`, atomowo razem z buildem.
+
+- Nie przywracać w komponentach surowych odwołań `src="/...-v2.webp"`.
+- Nowy obraz krytyczny dodać do `STATIC_IMAGES` i używać wygenerowanego `src`.
+- `npm run audit:static-images` blokuje raw URL-e zoptymalizowanych plików.
+- Po deployu sprawdzić, że URL-e z HTML wskazują na `/_next/static/media/` i
+  zwracają 200.
+
 Konfiguracja aplikacji Node w hPanel (musi tak zostać):
 
 | Ustawienie | Wartość |

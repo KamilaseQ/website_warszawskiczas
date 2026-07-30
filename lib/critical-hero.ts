@@ -1,10 +1,11 @@
 import { canonicalPath, localeFromPathname } from '@/lib/i18n'
+import { STATIC_IMAGES } from '@/lib/static-images'
 
 export const CRITICAL_HERO_READY_EVENT = 'wc-critical-hero-ready'
 
 const CRITICAL_HERO_BY_ROUTE: Record<string, string> = {
-  '/butik': '/butikmain-v2.webp',
-  '/kolekcja-na-zapytanie': '/watch-31-v2.webp',
+  '/butik': STATIC_IMAGES.boutiqueHero,
+  '/kolekcja-na-zapytanie': STATIC_IMAGES.privateCollectionHero,
 }
 
 declare global {

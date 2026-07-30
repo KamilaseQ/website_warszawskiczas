@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation'
 import { Container, Section, ImagePlaceholder, KenBurns, ScrollDrift } from '@/components/ui'
 import { FadeIn } from '@/components/ui/fade-in'
 import { localeFromPathname } from '@/lib/i18n'
+import { STATIC_IMAGES } from '@/lib/static-images'
 
 const values = [
   {
@@ -123,7 +124,7 @@ export function BrandPositioning() {
                     label={copy.imageLabel}
                   />
                   <Image
-                    src="/patek-philippe-nautilus-v2.webp"
+                    src={STATIC_IMAGES.patekNautilus}
                     alt="Patek Philippe Nautilus"
                     fill
                     sizes="(min-width: 1024px) 52vw, 100vw"

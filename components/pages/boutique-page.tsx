@@ -5,6 +5,7 @@ import { CriticalHeroImage } from '@/components/ui/critical-hero-image'
 import { Container, Section, LocationMap } from '@/components/ui'
 import { CONTACT_PHONE, CONTACT_PHONE_RAW } from '@/lib/config'
 import type { Locale } from '@/lib/i18n'
+import { STATIC_IMAGES } from '@/lib/static-images'
 
 const JAREK_PHONE = '+48 604 312 411'
 const JAREK_PHONE_RAW = '+48604312411'
@@ -208,7 +209,7 @@ export function BoutiquePage({ locale = 'pl' }: { locale?: Locale } = {}) {
       <section className="relative isolate min-h-screen w-full overflow-hidden bg-[#050403] text-white">
         <div className="absolute inset-0">
           <CriticalHeroImage
-            src="/butikmain-v2.webp"
+            src={STATIC_IMAGES.boutiqueHero}
             alt={t.imageAltMain}
             fill
             priority
