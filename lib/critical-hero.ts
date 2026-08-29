@@ -5,7 +5,6 @@ export const CRITICAL_HERO_READY_EVENT = 'wc-critical-hero-ready'
 
 const CRITICAL_HERO_BY_ROUTE: Record<string, string> = {
   '/butik': STATIC_IMAGES.boutiqueHero,
-  '/kolekcja-na-zapytanie': STATIC_IMAGES.privateCollectionHero,
 }
 
 declare global {

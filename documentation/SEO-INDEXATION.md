@@ -46,6 +46,34 @@ Strony pozostają dostępne z nawigacji i dla użytkowników, ale nie są oferow
 4. usunąć trzy adresy z `seo-audit-policy.json`,
 5. uruchomić `npm run verify`.
 
+## Trasy wycofane
+
+Trasa zdjęta ze strony nie może zwrócić 404 — traci wtedy cały zebrany link
+juice i psuje pokrycie w GSC. Obowiązująca procedura: usuń stronę i wszystkie
+linki do niej, wypisz trasę z `publicRoutePaths` (znika z sitemapy, hreflang
+i `generateStaticParams`), a stary adres przekieruj trwale na najbliższy
+tematycznie żywy URL.
+
+### `/kolekcja-na-zapytanie` — kolekcja prywatna (usunięta 2026-08-29)
+
+| Stary adres | Cel |
+|---|---|
+| `/kolekcja-na-zapytanie` | `/produkty` |
+| `/ukryta-kolekcja` (starszy alias) | `/produkty` — **wprost**, bez łańcucha przez nieistniejącą trasę |
+| `/en/private-collection` | `/en/products` |
+| `/ua/приватна-колекція` | `/ua/каталог` |
+
+Warianty PL obsługuje `redirects()` w `next.config.js`. Warianty EN/UA
+obsługuje `permanentRedirect()` w `app/(public)/[locale]/[[...path]]/page.tsx` —
+tam ścieżka jest już zdekodowana z UTF-8, więc cyrylicki slug działa niezależnie
+od tego, czy przeglądarka wysłała go zakodowanego procentowo. Z tego samego
+powodu mapowania slugów `kolekcja-na-zapytanie` zostały w `SEGMENT_TRANSLATIONS`
+w `lib/i18n.ts`: bez nich `/en/private-collection` nie zostałoby rozpoznane
+i skończyłoby 404 zamiast przekierowaniem.
+
+Po zmianie sitemapa ma 297 URL-i (było 300 — trzy warianty językowe tej trasy),
+zero sierot i zero nieosiągalnych adresów (`npm run verify:seo`).
+
 ## Obrazy produktów
 
 `absoluteUrl()` rozpoznaje wejście `http://` i `https://`. Dla takiego wejścia zwraca URL bez dołączania `warszawskiczas.pl`. Naprawa obejmuje:

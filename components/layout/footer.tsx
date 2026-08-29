@@ -41,8 +41,7 @@ export function Footer() {
   const footerLinks = {
     oferta: [
       { href: '/produkty', label: t.products },
-      { href: '/kolekcja-na-zapytanie', label: t.hiddenCollection },
-    ],
+      ],
     uslugi: [
       { href: '/uslugi/naprawa-i-serwis', label: t.repair },
       { href: '/uslugi/skup', label: t.buyingWatches },

@@ -3,7 +3,6 @@ import {
   Hero,
   BrandPositioning,
   ProductShowcase,
-  HiddenCollectionTeaser,
   ServicesOverview,
   BoutiquePreview,
   TrustSignals,
@@ -27,7 +26,6 @@ export default async function HomePage() {
       <ProductShowcase featured={featured} others={others} />
       <TrustSignals />
       <BrandPositioning />
-      <HiddenCollectionTeaser />
       <ServicesOverview />
       <BoutiquePreview />
       <FinalCTA />

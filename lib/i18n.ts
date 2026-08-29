@@ -66,6 +66,8 @@ const SEGMENT_TRANSLATIONS: Record<NonPlLocale, Record<string, string>> = {
     'naprawa-i-serwis': 'repair-and-service',
     kontakt: 'contact',
     dziekujemy: 'thank-you',
+    // Wycofana trasa — mapowanie zostaje wyłącznie po to, żeby `/en/private-collection`
+    // dało się rozpoznać i przekierować 308 na katalog (patrz app/(public)/[locale]).
     'kolekcja-na-zapytanie': 'private-collection',
     'polityka-prywatnosci': 'privacy-policy',
     regulamin: 'terms',
@@ -104,6 +106,7 @@ const SEGMENT_TRANSLATIONS: Record<NonPlLocale, Record<string, string>> = {
     'naprawa-i-serwis': 'ремонт-і-сервіс',
     kontakt: 'контакт',
     dziekujemy: 'дякуємо',
+    // Wycofana trasa — patrz komentarz w mapie `en`.
     'kolekcja-na-zapytanie': 'приватна-колекція',
     'polityka-prywatnosci': 'політика-конфіденційності',
     regulamin: 'правила',
@@ -250,7 +253,6 @@ export const publicRoutePaths = [
   '/uslugi/naprawa-i-serwis',
   '/kontakt',
   '/kontakt/dziekujemy',
-  '/kolekcja-na-zapytanie',
   '/polityka-prywatnosci',
   '/regulamin',
   '/deklaracja-dostepnosci',
@@ -285,7 +287,6 @@ export const ui = {
     consult: 'Umów konsultację',
     home: 'Strona główna',
     products: 'Produkty',
-    hiddenCollection: 'Ukryta Kolekcja',
     services: 'Usługi',
     repair: 'Naprawa i serwis',
     buying: 'Skup',
@@ -350,7 +351,6 @@ export const ui = {
     consult: 'Book a consultation',
     home: 'Home',
     products: 'Products',
-    hiddenCollection: 'Hidden Collection',
     services: 'Services',
     repair: 'Repair and service',
     buying: 'Buying',
@@ -415,7 +415,6 @@ export const ui = {
     consult: 'Записатися на консультацію',
     home: 'Головна',
     products: 'Каталог',
-    hiddenCollection: 'Прихована колекція',
     services: 'Послуги',
     repair: 'Ремонт і сервіс',
     buying: 'Викуп',

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { notFound, redirect } from 'next/navigation'
+import { notFound, permanentRedirect, redirect } from 'next/navigation'
 import { ContactLink } from '@/components/contact-link'
 import { ProductCatalog } from '@/components/products'
 import { RelatedGrid } from '@/components/products'
@@ -14,7 +14,6 @@ import {
   BoutiquePreview,
   FinalCTA,
   Hero,
-  HiddenCollectionTeaser,
   ProductShowcase,
   ServicesOverview,
   TrustSignals,
@@ -50,7 +49,6 @@ import {
   productSeoImageUrl,
   productSeoImageUrls,
 } from '@/lib/product-images'
-import { PrivateCollectionPage } from '@/components/pages/private-collection-page'
 import { AccessibilityStatementPage } from '@/components/pages/accessibility-statement-page'
 import { BoutiquePage } from '@/components/pages/boutique-page'
 import { ContactPage } from '@/components/pages/contact-page'
@@ -250,7 +248,9 @@ export default async function LocalizedPage({ params }: PageProps) {
   const route = routeFromPath(path, locale)
 
   if (route === '/') return await renderLocalizedHome()
-  if (route === '/kolekcja-na-zapytanie') return <PrivateCollectionPage locale={locale} />
+  // Wycofana trasa: kolekcja prywatna zniknęła ze strony. 308 na katalog, żeby
+  // zaindeksowane `/en/private-collection` i `/ua/приватна-колекція` nie kończyły 404.
+  if (route === '/kolekcja-na-zapytanie') permanentRedirect(encodeURI(localizePath('/produkty', locale)))
   if (route === '/butik') return <BoutiquePage locale={locale} />
   if (route === '/kontakt') return <ContactPage locale={locale} />
   if (route === '/kontakt/dziekujemy') return <ThankYouPage locale={locale} />
@@ -311,7 +311,6 @@ async function renderLocalizedHome() {
       <ProductShowcase featured={featured} others={others} />
       <TrustSignals />
       <BrandPositioning />
-      <HiddenCollectionTeaser />
       <ServicesOverview />
       <BoutiquePreview />
       <FinalCTA />
@@ -450,12 +449,9 @@ async function LocalizedProducts({ locale }: { locale: Exclude<Locale, 'pl'> }) 
           </Text>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Button asChild>
-              <Link href={localizePath('/kolekcja-na-zapytanie', locale)}>
-                {locale === 'en' ? 'Private Collection' : 'Приватна колекція'}
-              </Link>
-            </Button>
-            <Button variant="outline" asChild>
-              <ContactLink source="product-listing">{locale === 'en' ? 'Contact us' : 'Зв’язатися'}</ContactLink>
+              <ContactLink source="product-listing">
+                {locale === 'en' ? 'Ask about availability' : 'Запитати про наявність'}
+              </ContactLink>
             </Button>
           </div>
         </Container>
@@ -812,15 +808,6 @@ function simplePageCopy(route: string, locale: Exclude<Locale, 'pl'>): SimplePag
       cta: en ? 'Back to catalogue' : 'Назад до каталогу',
       bullets: [],
       noIndex: true,
-    },
-    '/kolekcja-na-zapytanie': {
-      title: en ? 'Private watch collection Warsaw - hidden collection on request' : 'Приватна колекція годинників у Варшаві - на запит',
-      description: en ? 'Private and hidden collection of luxury watches available after a discreet consultation.' : 'Приватна й прихована колекція люксових годинників, доступна після дискретної консультації.',
-      eyebrow: en ? 'Private Collection' : 'Приватна колекція',
-      h1: en ? 'Hidden watches available on request' : 'Приховані годинники доступні за запитом',
-      intro: en ? 'Some watches are never published openly. We present private collection pieces to verified clients after a short consultation.' : 'Частина годинників ніколи не публікується відкрито. Ми показуємо приватні екземпляри перевіреним клієнтам після короткої консультації.',
-      cta: en ? 'Request private access' : 'Запросити приватний доступ',
-      bullets: en ? ['Unpublished watches', 'Rare references and private consignments', 'Discreet client verification'] : ['Неопубліковані годинники', 'Рідкісні референси та приватні комісійні позиції', 'Дискретна перевірка клієнта'],
     },
     '/polityka-prywatnosci': legalCopy(locale, 'privacy'),
     '/regulamin': legalCopy(locale, 'terms'),

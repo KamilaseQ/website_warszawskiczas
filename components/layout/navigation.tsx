@@ -18,7 +18,6 @@ function getNavItems(locale: ReturnType<typeof localeFromPathname>): NavItem[] {
   const t = ui[locale]
   return [
     { href: '/produkty', label: t.products },
-    { href: '/kolekcja-na-zapytanie', label: t.hiddenCollection },
     {
       href: '/uslugi',
       label: t.services,

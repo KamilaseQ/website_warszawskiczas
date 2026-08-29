@@ -23,7 +23,6 @@ function getPrimaryNav(locale: ReturnType<typeof localeFromPathname>): NavEntry[
   return [
     { href: '/', label: t.home },
     { href: '/produkty', label: t.products },
-    { href: '/kolekcja-na-zapytanie', label: t.hiddenCollection },
     { href: '/uslugi/naprawa-i-serwis', label: t.repair },
     { href: '/uslugi/skup', label: t.buyingWatches },
     { href: '/uslugi/komis', label: t.consignment },

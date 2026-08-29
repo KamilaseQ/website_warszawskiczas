@@ -12,7 +12,11 @@ const legacyRedirects = [
   { source: '/kontakt-z-nami', destination: '/kontakt', permanent: true },
   { source: '/kontakt-lokalizacja', destination: '/kontakt', permanent: true },
   { source: '/lokalizacja', destination: '/kontakt', permanent: true },
-  { source: '/ukryta-kolekcja', destination: '/kolekcja-na-zapytanie', permanent: true },
+  // Kolekcja prywatna zdjęta ze strony — oba historyczne URL-e prowadzą wprost
+  // do katalogu (bez łańcucha 301→301). Warianty /en i /ua obsługuje 308
+  // w app/(public)/[locale]/[[...path]]/page.tsx, bo tam ścieżka jest już zdekodowana.
+  { source: '/ukryta-kolekcja', destination: '/produkty', permanent: true },
+  { source: '/kolekcja-na-zapytanie', destination: '/produkty', permanent: true },
   { source: '/informacje-o-butiku', destination: '/o-nas', permanent: true },
   { source: '/luxury-watches-warsaw', destination: '/zegarki-luksusowe-warszawa', permanent: true },
   { source: '/newBlogPost-:slug', destination: '/produkty', permanent: true },

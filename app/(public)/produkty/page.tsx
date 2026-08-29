@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import { localizedAlternates } from '@/lib/i18n'
-import Link from 'next/link'
 import { ContactLink } from '@/components/contact-link'
 import { Container, Section, Heading, Text, Button } from '@/components/ui'
 import { ProductCatalog } from '@/components/products'
@@ -138,10 +137,7 @@ export default async function ProduktyPage() {
           </Text>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Button asChild>
-              <Link href="/kolekcja-na-zapytanie">Kolekcja Prywatna</Link>
-            </Button>
-            <Button variant="outline" asChild>
-              <ContactLink source="product-listing">Skontaktuj się</ContactLink>
+              <ContactLink source="product-listing">Zapytaj o dostępność</ContactLink>
             </Button>
           </div>
         </Container>
