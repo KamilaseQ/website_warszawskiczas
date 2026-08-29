@@ -35,12 +35,19 @@ function getTransporter(): Transporter {
   return cached
 }
 
+export interface MailAttachment {
+  filename: string
+  content: Buffer
+  contentType: string
+}
+
 export interface SendMailInput {
   to: string | string[]
   subject: string
   html: string
   text: string
   replyTo?: string
+  attachments?: MailAttachment[]
 }
 
 export async function sendMail(input: SendMailInput): Promise<void> {
@@ -54,6 +61,9 @@ export async function sendMail(input: SendMailInput): Promise<void> {
     html: input.html,
     text: input.text,
     replyTo: input.replyTo,
+    // `undefined` zamiast pustej tablicy — nodemailer nie dokłada wtedy
+    // struktury multipart/mixed do maili bez zdjęć.
+    attachments: input.attachments?.length ? input.attachments : undefined,
   })
 }
 

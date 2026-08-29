@@ -129,7 +129,7 @@ Dokument operacyjny. Każdy slice ma własną sekcję z zakresem, testami automa
 - [x] Aktualizacja env strony: `NEXT_PUBLIC_CMS_LEAD_URL` zgodnie z [CMS-CRM-ENVIRONMENT.md](CMS-CRM-ENVIRONMENT.md)
 - [x] Test lokalny strony z nowym endpointem leadów (`CMS_MODE=mock` dla produktów)
 - [x] Redeploy demo strony na Vercel z `NEXT_PUBLIC_CMS_LEAD_URL`
-- [ ] Wszystkie 3 formularze strony trafiają do CMS: kontakt (`type=contact`), zapytanie produktowe (`type=inquiry`), kolekcja na zapytanie (`type=inquiry`, `source=kolekcja-prywatna`)
+- [ ] Wszystkie formularze strony trafiają do CMS: kontakt (`type=contact`) oraz zapytania z podstron usług — skup / komis / naprawa (`type=inquiry`, `source` = temat podstrony). Formularz kolekcji prywatnej został usunięty razem z sekcją (2026-08-29).
 
 ### Testy automatyczne
 
@@ -147,7 +147,7 @@ Dokument operacyjny. Każdy slice ma własną sekcję z zakresem, testami automa
 - [ ] Golden path:
   - [ ] Wypełnić formularz `/kontakt` na produkcji - lead widoczny w PWA w mniej niż 5 sekund
   - [ ] Wypełnić formularz z karty produktu - lead ma poprawny `product_id`
-  - [ ] Wypełnić formularz kolekcji na zapytanie - lead ma poprawne źródło `kolekcja-prywatna`
+  - [ ] Wypełnić formularz na `/uslugi/skup` - lead ma `type=inquiry` i `source` z tematem podstrony
 - [ ] Try to break it:
   - [ ] Wysłać 10 leadów w 30 sekund - 11-ty zwraca 429
   - [ ] Wysłać payload z `company` (honeypot wypełniony) - nie pojawia się w PWA

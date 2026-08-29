@@ -7,6 +7,7 @@ import { readSessionPath } from '@/components/session-tracker'
 import { clearContactSource, readContactSource } from '@/components/contact-link'
 import { localizePath, type Locale } from '@/lib/i18n'
 import { submitLead } from '@/from-cms/adapters/leads'
+import { PhotoAttachments, toLeadAttachments, type PhotoAttachment } from './photo-attachments'
 
 interface ContactFormProps {
   variant?: 'light' | 'dark'
@@ -98,6 +99,7 @@ export function ContactForm({ variant = 'light', locale = 'pl' }: ContactFormPro
   const mountedAt = useRef<number>(Date.now())
   const [status, setStatus] = useState<Status>('idle')
   const [errorMsg, setErrorMsg] = useState<string>('')
+  const [photos, setPhotos] = useState<PhotoAttachment[]>([])
   const t = copy[locale]
 
   useEffect(() => {
@@ -132,6 +134,7 @@ export function ContactForm({ variant = 'light', locale = 'pl' }: ContactFormPro
       product: tracked.product,
       sessionPath: readSessionPath(),
       referrer: typeof document !== 'undefined' ? document.referrer || undefined : undefined,
+      attachments: toLeadAttachments(photos),
     }
 
     try {
@@ -230,6 +233,14 @@ export function ContactForm({ variant = 'light', locale = 'pl' }: ContactFormPro
           className={cn(inputClass, 'resize-none')}
         />
       </div>
+
+      <PhotoAttachments
+        value={photos}
+        onChange={setPhotos}
+        locale={locale}
+        variant={variant}
+        disabled={submitting}
+      />
 
       <div className="space-y-3">
         <label className="flex cursor-pointer select-none items-start gap-3">

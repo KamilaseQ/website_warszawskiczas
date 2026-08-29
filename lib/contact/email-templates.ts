@@ -15,6 +15,8 @@ export interface SubmissionContext {
   ip?: string
   userAgent?: string
   submittedAt: Date
+  /** Nazwy zdjęć dołączonych do maila. Puste/undefined = zgłoszenie bez zdjęć. */
+  attachmentNames?: string[]
 }
 
 const GOLD = '#b89968'
@@ -58,6 +60,14 @@ export function buildOwnerEmail(ctx: SubmissionContext): { subject: string; html
   if (ctx.sessionPath && ctx.sessionPath.length > 0) {
     ctxRows.push(row('Ścieżka po stronie', ctx.sessionPath.map((p) => escapeHtml(p)).join(' → ')))
   }
+  if (ctx.attachmentNames?.length) {
+    ctxRows.push(
+      row(
+        'Zdjęcia',
+        `${ctx.attachmentNames.length} w załączniku: ${ctx.attachmentNames.map((name) => escapeHtml(name)).join(', ')}`,
+      ),
+    )
+  }
   if (ctx.referrer) ctxRows.push(row('Referrer zewnętrzny', escapeHtml(ctx.referrer)))
   if (ctx.ip) ctxRows.push(row('IP', escapeHtml(ctx.ip)))
   if (ctx.userAgent) ctxRows.push(row('User-Agent', escapeHtml(ctx.userAgent)))
@@ -96,6 +106,9 @@ export function buildOwnerEmail(ctx: SubmissionContext): { subject: string; html
     `--- Kontekst ---\n` +
     (ctx.product ? `Produkt: ${ctx.product}\n` : '') +
     (ctx.source ? `Źródło: ${ctx.source}\n` : '') +
+    (ctx.attachmentNames?.length
+      ? `Zdjęcia (${ctx.attachmentNames.length}): ${ctx.attachmentNames.join(', ')}\n`
+      : '') +
     (ctx.sessionPath?.length ? `Ścieżka: ${ctx.sessionPath.join(' → ')}\n` : '') +
     (ctx.referrer ? `Referrer: ${ctx.referrer}\n` : '') +
     (ctx.ip ? `IP: ${ctx.ip}\n` : '') +

@@ -8,6 +8,7 @@ import { cn } from '@/lib/utils'
 import { readSessionPath } from '@/components/session-tracker'
 import { localizePath, type Locale } from '@/lib/i18n'
 import { submitLead } from '@/from-cms/adapters/leads'
+import { PhotoAttachments, toLeadAttachments, type PhotoAttachment } from './photo-attachments'
 
 interface InquiryFormProps {
   subject?: string
@@ -90,6 +91,7 @@ export function InquiryForm({
   const mountedAt = useRef<number>(Date.now())
   const [status, setStatus] = useState<Status>('idle')
   const [errorMsg, setErrorMsg] = useState<string>('')
+  const [photos, setPhotos] = useState<PhotoAttachment[]>([])
   const t = copy[locale]
 
   useEffect(() => {
@@ -124,6 +126,7 @@ export function InquiryForm({
       source: subject,
       sessionPath: readSessionPath(),
       referrer: typeof document !== 'undefined' ? document.referrer || undefined : undefined,
+      attachments: toLeadAttachments(photos),
     }
 
     try {
@@ -186,6 +189,8 @@ export function InquiryForm({
         placeholder={t.detailsPlaceholder}
         required
       />
+
+      <PhotoAttachments value={photos} onChange={setPhotos} locale={locale} disabled={submitting} />
 
       <label className="flex cursor-pointer select-none items-start gap-3">
         <input type="checkbox" required name="rodo" className="mt-1 h-4 w-4 flex-shrink-0 accent-accent-gold" />

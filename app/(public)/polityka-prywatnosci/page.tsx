@@ -58,9 +58,12 @@ export default function PolitykaPrywatnosciPage() {
               W związku z korzystaniem z formularza kontaktowego oraz prowadzoną
               korespondencją administrator może przetwarzać następujące dane osobowe:
               imię i nazwisko, adres e-mail, numer telefonu, treść wiadomości,
-              a także techniczne dane sesyjne (adres IP, źródło wejścia, ścieżka
+              opcjonalnie dołączone przez użytkownika zdjęcia (np. zegarka
+              przekazywanego do wyceny, skupu, komisu lub serwisu), a także
+              techniczne dane sesyjne (adres IP, źródło wejścia, ścieżka
               poruszania się po serwisie) wykorzystywane do obsługi zgłoszenia
-              i ochrony przed nadużyciami.
+              i ochrony przed nadużyciami. Dołączenie zdjęć jest dobrowolne
+              i nie jest warunkiem wysłania formularza.
             </Text>
           </section>
 

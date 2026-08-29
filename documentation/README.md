@@ -101,7 +101,8 @@ Zmiana architektury, sposobu deployu, polityki indeksowania albo kontraktu CMS m
 - [SEO-INDEXATION.md](SEO-INDEXATION.md) — sitemap, canonical i `noindex`,
 - [INTERNAL-LINKING.md](INTERNAL-LINKING.md) — linkowanie i wersje językowe,
 - [IMAGES-CDN.md](IMAGES-CDN.md) — obrazy produkcyjne i ograniczenia wariantów,
-- [FROM-CMS-BOUNDARY.md](FROM-CMS-BOUNDARY.md) — granica witryny i CMS-u.
+- [FROM-CMS-BOUNDARY.md](FROM-CMS-BOUNDARY.md) — granica witryny i CMS-u,
+- [FORMULARZ-ZDJECIA.md](FORMULARZ-ZDJECIA.md) — załączniki w formularzu: stan na stronie i lista prac po stronie aplikacji.
 
 `ARCHITECTURE-REVIEW.md`, `AUDYT-STRONY-10-10.md` oraz `CMS-CRM-APP-PLAN.md`
 są materiałami historycznymi lub planistycznymi. Nie należy na ich podstawie

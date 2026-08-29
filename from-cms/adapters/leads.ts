@@ -14,6 +14,13 @@
  *
  * Walidacja zod po stronie klienta to pierwsza linia obrony; serwer (route + CMS)
  * waliduje ten sam schemat ponownie.
+ *
+ * ZDJĘCIA (`payload.attachments`, opcjonalne) lecą tym samym JSON-em do obu
+ * kanałów. MAIL dokłada je jako załączniki do powiadomienia dla butiku. APP
+ * przyjmie je dopiero po wdrożeniu obsługi po stronie CMS-a — do tego czasu
+ * `z.object()` w Workerze po prostu strippuje nieznane pole, więc zgłoszenie
+ * zapisuje się normalnie, tylko bez zdjęć. Nie ma tu stanu pośredniego, w którym
+ * lead ginie.
  */
 
 import { LeadPayloadSchema, LeadResponseSchema, type LeadPayload, type LeadResponse } from '../schemas/lead'
